@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動画テスト - ブラウザ互換性チェック</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        h1 {
+            color: #00ffcc;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .video-test-container {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        
+        .video-info {
+            margin-bottom: 15px;
+            color: #b0b0b0;
+        }
+        
+        video {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border: 1px solid #00ffcc;
+            border-radius: 4px;
+        }
+        
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .success { background-color: #1f4f3f; color: #4caf50; }
+        .error { background-color: #4f1f1f; color: #f44336; }
+        .info { background-color: #1f3f4f; color: #2196f3; }
+        
+        .console {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            color: #00ff00;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .test-results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>動画ファイル再生テスト</h1>
+    
+    <div class="test-results">
+        <h2>ブラウザ情報:</h2>
+        <div id="browser-info"></div>
+    </div>
+    
+    <!-- テスト用動画ファイル1 -->
+    <div class="video-test-container">
+        <div class="video-info">
+            <strong>テスト1:</strong> 2024-05-24-18-40-13.mp4 (2MB)
+            <br>ファイルパス: /videos/2024-05-24-18-40-13.mp4
+        </div>
+        <video id="video1" controls preload="metadata">
+            <source src="videos/2024-05-24-18-40-13.mp4" type="video/mp4">
+            お使いのブラウザは動画再生をサポートしていません。
+        </video>
+        <div id="status1" class="status info">読み込み中...</div>
+    </div>
+    
+    <!-- テスト用動画ファイル2 -->
+    <div class="video-test-container">
+        <div class="video-info">
+            <strong>テスト2:</strong> F2.mp4 (2.4MB)
+            <br>ファイルパス: /videos/F2.mp4
+        </div>
+        <video id="video2" controls preload="metadata">
+            <source src="videos/F2.mp4" type="video/mp4">
+            お使いのブラウザは動画再生をサポートしていません。
+        </video>
+        <div id="status2" class="status info">読み込み中...</div>
+    </div>
+    
+    <!-- テスト用動画ファイル3 (AVI) -->
+    <div class="video-test-container">
+        <div class="video-info">
+            <strong>テスト3:</strong> javaw_20230702_171812F-1.avi (8.5MB) - AVIファイル
+            <br>ファイルパス: /videos/javaw_20230702_171812F-1.avi
+        </div>
+        <video id="video3" controls preload="metadata">
+            <source src="videos/javaw_20230702_171812F-1.avi" type="video/avi">
+            お使いのブラウザは動画再生をサポートしていません。
+        </video>
+        <div id="status3" class="status info">読み込み中...</div>
+    </div>
+    
+    <!-- 大きなファイルのテスト -->
+    <div class="video-test-container">
+        <div class="video-info">
+            <strong>テスト4:</strong> athletic_full.mp4 (25MB) - 大容量ファイル
+            <br>ファイルパス: /videos/athletic_full.mp4
+        </div>
+        <video id="video4" controls preload="metadata">
+            <source src="videos/athletic_full.mp4" type="video/mp4">
+            お使いのブラウザは動画再生をサポートしていません。
+        </video>
+        <div id="status4" class="status info">読み込み中...</div>
+    </div>
+    
+    <div class="console" id="console">
+        <div>コンソールログ:</div>
+    </div>
+    
+    <script>
+        // ブラウザ情報を表示
+        const browserInfo = document.getElementById('browser-info');
+        browserInfo.innerHTML = `
+            <strong>User Agent:</strong> ${navigator.userAgent}<br>
+            <strong>プラットフォーム:</strong> ${navigator.platform}<br>
+            <strong>言語:</strong> ${navigator.language}<br>
+            <strong>画面解像度:</strong> ${screen.width}x${screen.height}<br>
+            <strong>ビューポート:</strong> ${window.innerWidth}x${window.innerHeight}
+        `;
+        
+        // コンソールロガー
+        function logToConsole(message) {
+            const console_div = document.getElementById('console');
+            const now = new Date().toLocaleTimeString();
+            console_div.innerHTML += `<br>[${now}] ${message}`;
+            console_div.scrollTop = console_div.scrollHeight;
+            console.log(message);
+        }
+        
+        // 各動画のイベントリスナーを設定
+        for (let i = 1; i <= 4; i++) {
+            const video = document.getElementById(`video${i}`);
+            const status = document.getElementById(`status${i}`);
+            
+            // ロードイベント
+            video.addEventListener('loadstart', () => {
+                logToConsole(`動画${i}: ロード開始`);
+                status.className = 'status info';
+                status.textContent = 'ロード開始...';
+            });
+            
+            video.addEventListener('loadedmetadata', () => {
+                logToConsole(`動画${i}: メタデータ読み込み完了 - 解像度: ${video.videoWidth}x${video.videoHeight}, 長さ: ${video.duration.toFixed(2)}秒`);
+                status.className = 'status success';
+                status.textContent = `メタデータ読み込み完了 (${video.videoWidth}x${video.videoHeight}, ${video.duration.toFixed(2)}秒)`;
+            });
+            
+            video.addEventListener('loadeddata', () => {
+                logToConsole(`動画${i}: 最初のフレーム読み込み完了`);
+            });
+            
+            video.addEventListener('canplay', () => {
+                logToConsole(`動画${i}: 再生可能状態`);
+            });
+            
+            video.addEventListener('canplaythrough', () => {
+                logToConsole(`動画${i}: 完全に読み込み完了、スムーズな再生が可能`);
+                status.className = 'status success';
+                status.textContent += ' - 再生準備完了';
+            });
+            
+            // エラーイベント
+            video.addEventListener('error', (e) => {
+                const errorCode = video.error ? video.error.code : 'unknown';
+                const errorMessage = video.error ? video.error.message : 'エラーメッセージなし';
+                logToConsole(`動画${i}: エラー発生 - コード: ${errorCode}, メッセージ: ${errorMessage}`);
+                status.className = 'status error';
+                status.textContent = `エラー: ${errorCode} - ${errorMessage}`;
+            });
+            
+            // 再生イベント
+            video.addEventListener('play', () => {
+                logToConsole(`動画${i}: 再生開始`);
+            });
+            
+            video.addEventListener('pause', () => {
+                logToConsole(`動画${i}: 再生一時停止`);
+            });
+        }
+        
+        // ページロード完了時
+        window.addEventListener('load', () => {
+            logToConsole('ページロード完了');
+            
+            // HTML5動画サポート情報をチェック
+            const video = document.createElement('video');
+            const formats = {
+                'MP4 (H.264)': 'video/mp4; codecs="avc1.42E01E"',
+                'MP4 (H.265)': 'video/mp4; codecs="hev1"',
+                'WebM (VP8)': 'video/webm; codecs="vp8"',
+                'WebM (VP9)': 'video/webm; codecs="vp9"',
+                'OGV (Theora)': 'video/ogg; codecs="theora"'
+            };
+            
+            logToConsole('--- ブラウザ動画サポート情報 ---');
+            for (const [name, codec] of Object.entries(formats)) {
+                const support = video.canPlayType(codec);
+                logToConsole(`${name}: ${support || 'サポートなし'}`);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>業務委託契約 - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #cccccc;
+            --primary-color: #00ffcc;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: var(--neon-glow);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.3);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--text-light);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            color: var(--text-gray);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid var(--primary-color);
+            border-radius: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        .contract-section {
+            margin-bottom: 40px;
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .contract-intro {
+            background-color: rgba(0, 255, 204, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .contract-intro p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .article-number {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .important-note {
+            background-color: rgba(255, 165, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid orange;
+            margin: 20px 0;
+        }
+
+        .important-note p {
+            color: var(--text-light);
+        }
+
+        .highlight {
+            background-color: rgba(0, 255, 204, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .highlight p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: rgba(0, 255, 204, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .definition-box p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .definition-box strong {
+            color: var(--primary-color);
+        }
+
+        ul {
+            color: var(--text-gray);
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .signature-section {
+            background-color: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--primary-color);
+            margin-top: 40px;
+        }
+
+        .signature-section h3 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .signature-section p {
+            color: var(--text-light);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>業務委託契約</h1>
+
+        <div class="contract-intro">
+            <p><strong>本契約について</strong></p>
+            <p>本契約は、以下の条件に基づき、if(塾)（以下「委託者」とします。）とif(塾)に通塾する生徒（以下「受託者」とします。）との間で締結されます。</p>
+            <p>本契約は、委託者及び必要に応じてその法定代理人がWeb上の指定された箇所へ入力を行い、その入力されたデータが委託者に送信され到達した時点で締結されたものとみなします。なお、未成年の受託者については、法定代理人の同意が必要となります。</p>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第1条（業務の内容）</span>
+            <p>委託者は受託者に対し、別途定める具体的な業務（以下「本業務」とします。）を委託します。本業務は、委託者が第三者企業（以下「依頼企業」とします。）から受託した案件に関連するものです。</p>
+            
+            <div class="definition-box">
+                <p><strong>本業務の例：</strong></p>
+                <ul>
+                    <li>Webサイトの制作・開発</li>
+                    <li>プログラミング関連作業</li>
+                    <li>デザイン・グラフィック制作</li>
+                    <li>データ入力・整理作業</li>
+                    <li>その他、受託者の能力に応じた業務</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第2条（秘密保持）</span>
+            <p>受託者は、本業務を通じて知り得た委託者及び依頼企業の秘密情報を第三者に漏洩してはなりません。</p>
+            
+            <div class="definition-box">
+                <p><strong>秘密情報とは：</strong></p>
+                <p>技術的、商業的、財務的、組織的な情報であり、口頭、書面、電子的またはその他の形式にかかわらず、本業務に関連して受託者が知り得た全ての情報を指します。</p>
+            </div>
+
+            <div class="highlight">
+                <p><strong>秘密情報から除外される情報：</strong></p>
+                <ul>
+                    <li>本業務に関連して知り得る前に既に知られておりその事実を自ら立証できる情報</li>
+                    <li>本業務に関連して知り得る前に既に自ら所有しておりその事実を自ら立証できる情報</li>
+                    <li>本業務に関連して知り得た後、自らの責によらず公に知られたものでその事実を自ら立証できる情報</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <p><strong>重要：</strong>本条項の義務は、契約終了後も無期限に継続します。</p>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第3条（報酬）</span>
+            <p>受託者に対する報酬は、本業務に関連する案件ごとに別途委託者と受託者の間で合意された条件に基づき支払われます。</p>
+            
+            <div class="definition-box">
+                <p><strong>報酬の決定要因：</strong></p>
+                <ul>
+                    <li>案件の性質</li>
+                    <li>業務の範囲</li>
+                    <li>受託者の貢献度</li>
+                    <li>作業時間・難易度</li>
+                </ul>
+                <p>報酬の支払い条件、方法及び時期については、案件ごとに定めます。</p>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第4条（成果物の帰属）</span>
+            <p>本業務により受託者が作成した成果物の一切の権利は、委託者を経由して依頼企業に帰属します。受託者は、成果物に関する著作権その他一切の権利を依頼企業に譲渡します。</p>
+            
+            <div class="highlight">
+                <p><strong>成果物に含まれるもの：</strong></p>
+                <ul>
+                    <li>プログラムコード</li>
+                    <li>デザインファイル</li>
+                    <li>ドキュメント</li>
+                    <li>データベース</li>
+                    <li>その他、業務に関連して作成されたあらゆる成果物</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第5条（契約期間）</span>
+            <p>本契約の契約期間は、受託者が本業務を開始した日から、本業務の完了又は委託者が本契約を解除するまでとします。</p>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第6条（契約の解除）</span>
+            <p>委託者は、受託者が本契約に違反した場合、何らの通知なしに本契約を解除することができます。</p>
+            
+            <div class="important-note">
+                <p><strong>契約違反の例：</strong></p>
+                <ul>
+                    <li>秘密情報の漏洩</li>
+                    <li>業務の著しい遅延</li>
+                    <li>品質基準を満たさない成果物の提出</li>
+                    <li>その他、本契約に定められた義務の履行違反</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第7条（法定代理人の同意）</span>
+            <p>未成年の受託者が本契約を締結する場合、法定代理人の同意が必要となります。</p>
+            
+            <div class="definition-box">
+                <p><strong>同意の方法：</strong></p>
+                <p>法定代理人は、登録時においてWeb上の指定箇所に自らの手書きによる電子署名をすること、およびチェックボックスへのチェックを入れることにより、本契約に同意し、その意思表示をしたものとみなします。</p>
+            </div>
+
+            <div class="important-note">
+                <p><strong>注意：</strong>未成年者の場合、法定代理人（通常は保護者）の同意なしに契約を締結することはできません。必ず保護者の同意を得てから手続きを行ってください。</p>
+            </div>
+        </div>
+
+        <div class="contract-section">
+            <span class="article-number">第8条（一般条項）</span>
+            <p>本契約に関する通知は、電子メールにより行うものとします。本契約に定めのない事項については、関連する法律規則に従って処理します。</p>
+            
+            <div class="highlight">
+                <p><strong>適用される法律：</strong></p>
+                <ul>
+                    <li>日本国民法</li>
+                    <li>労働基準法</li>
+                    <li>著作権法</li>
+                    <li>個人情報保護法</li>
+                    <li>その他関連法令</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="signature-section">
+            <h3>契約締結について</h3>
+            <p>以上の契約条件に基づく契約締結の証として、受託者およびまたは法定代理人はWeb上の指定された箇所への入力、手書きによる電子署名、チェックボックスへのチェックを行い、その入力データを委託者に送信します。</p>
+        </div>
+
+        <div class="important-note">
+            <p><strong>契約前にご確認ください：</strong></p>
+            <ul>
+                <li>本契約の内容を十分に理解していますか？</li>
+                <li>未成年の場合、保護者の同意は得られていますか？</li>
+                <li>秘密保持義務について理解していますか？</li>
+                <li>成果物の権利帰属について理解していますか？</li>
+            </ul>
+            <p>ご不明な点がございましたら、契約締結前に必ずお問い合わせください。</p>
+        </div>
+
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+    </div>
+</body>
+</html>

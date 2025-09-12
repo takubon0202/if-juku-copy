@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>コマンドを実行する対象、ターゲットセレクター(java1.20.1) - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,122 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>コマンドを実行する対象、ターゲットセレクター(java1.20.1)</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年08月30日</div>
             <div class="post-categories">
-                <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
+                <span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">コマンドを実行する対象、ターゲットセレクター(java1.20.1)</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
+            <!-- wp:paragraph -->
+<p>コマンドでよく見かける<strong>@s</strong>や<strong>@e</strong>など。「何を表しているかわからない」「違いがわからない」と困ったことはありませんか？<br>これらは<strong>コマンドを実行する対象</strong>を表しています。普通にプレイヤーIDを書くよりもこれらを使ったほうが楽なときがあります。<br>そこで、今回は<strong>ターゲットセレクター</strong>について紹介します。違いを知っておくと便利なのでしっかりと理解して使い分けれるようになりましょう！</p>
+<!-- /wp:paragraph -->
+
+<img src="../images/2023/08/スクリーンショット-2023-08-29-224354-1024x241.png" alt="" />
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">対象者の表し方は6種類</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+<p>対象者の表し方は以下の6種類です。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>プレイヤーID</li>
+<!-- /wp:list-item -->
 
+<!-- wp:list-item -->
+<li>@s</li>
+<!-- /wp:list-item -->
 
-そ
+<!-- wp:list-item -->
+<li>@p</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>＠a</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>@e</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>@r</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">プレイヤーID</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>対象者が<strong>自分以外の特定の1人</strong>だった場合はそのプレイヤーのIDをそのまま書くのがいいでしょう。</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">＠s</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p><strong>@s</strong>は<strong>自分自身、実行者1人</strong>という意味です。主にチャットでコマンドを打つ場合に使います。そのチャットコマンドを打っている自分に向けてコマンドが実行されます。<br>注意が必要なのが<strong>コマンドブロックに書くときは不向き</strong>だということです。コマンドブロックでの実行者はコマンドブロック自身になってしまいます。だから、下の画像のようにリンゴを与えるコマンドを書いて実行しても「プレイヤーが見つかりませんでした」といわれ、誰にもリンゴが与えらず終了します。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<img src="../images/2023/08/スクリーンショット-2023-08-29-224802-1024x709.png" alt="" style="width:831px;height:575px" width="831" height="575" />
+
+<!-- wp:paragraph -->
+<p>ただし、下の画像の@sは<strong>例外で</strong>コマンドブロックに打ち込んで実行すると、しっかりリンゴをもらえます。<br>この場合、「execute」で実行者を先に宣言しているのでその実行者自身という意味になり、@sに省略できたということです。</p>
+<!-- /wp:paragraph -->
+
+<img src="../images/2023/08/スクリーンショット-2023-08-29-230129-1024x681.png" alt="" style="width:836px;height:556px" width="836" height="556" />
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">@p</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p><strong>@p</strong>は<strong>最も近いプレイヤー1人</strong>という意味です。コマンドブロックに打てばそのコマンドブロックに一番近い場所にいるプレイヤー1人が対象になります。チャットに打てばチャットコマンドの実行者に近い人、実行者に一番近いのは実行者自身なのでチャットの場合、@sと同じく自分自身が対象となります。</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<h3 class="wp-block-heading">@a</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p><strong>@a</strong>は<strong>全てのプレイヤー</strong>という意味です。ワールド内の全員がどこにいても対象なので関係ないプレイヤーまで巻き込まないようにしましょう。プレイヤーが1人でも問題なく実行されます。</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
+<h3 class="wp-block-heading">@e</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p><strong>@e</strong>は<strong>全てのエンティティ</strong>という意味です。エンティティというのはプレイヤー、モブ、落ちているアイテム、ボートや防具立てなどのブロック以外のことを指す言葉です。@aよりも対象とする範囲が広いので気をつけて使いましょう。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">@r</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>@r</strong>は<strong>ランダムなプレイヤー1人</strong>という意味です。あくまでもプレイヤーの中から選ばれるのでモブなどがいくらいても関係ありません。プレイヤーが1人の場合はその人が対象になります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">対象を細かく指定するには？</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>プレイヤーIDを除く5種類にはそのすぐあとに大きいかっこ<strong></strong>をつけてその中に<strong>セレクター引数</strong>を書くことで細かく対象を指定することができます。セレクター引数にはたくさんの種類があります。それは別のところで紹介します。</p>
+<!-- /wp:paragraph -->
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

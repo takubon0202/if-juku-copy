@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft effectコマンドの使い方(java1.20.1) - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,226 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft effectコマンドの使い方(java1.20.1)</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年09月01日</div>
             <div class="post-categories">
                 <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft effectコマンドの使い方(java1.20.1)</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+            <!-- wp:paragraph -->
+<p>マイクラでサバイバルをしていて、ポーションを飲んだり、金のリンゴを食べたり、海底神殿に近づいたりなどをしたときにつくいろいろな効果のことを<strong>エフェクト</strong>と言います。<br>そのエフェクトを自由につけたり消したり、ポーションよりももっと強力なレベルのものをつけたりすることができるのがeffectコマンドです。今回はそれについて紹介します。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
+<img src="../images/2023/09/スクリーンショット-2023-09-01-192056-1024x576.png" alt="" style="width:948px;height:533px" width="948" height="533" />
 
-
-そ
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<!-- wp:heading -->
+<h2 class="wp-block-heading">effectの構文</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>effectの構文は以下の通りです。順番に説明します。<br><span class="swl-fz u-fz-l">/effect ＜与えるか消すか＞＜対象＞＜エフェクトの種類＞＜効果時間＞＜効果レベル＞＜モヤモヤが出るか出ないか＞</span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">与えるか消すか</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>エフェクトを対象に与えるなら<span class="swl-fz u-fz-l">give</span>、<br>エフェクトを対象から消すなら<span class="swl-fz u-fz-l">clear</span>を選びましょう。下のコマンドは自分についているエフェクトを全て消すものです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/effect clear @s</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph -->
+<p><span class="swl-fz u-fz-l">clear</span>を選び＜対象＞のあとに＜エフェクトの種類＞を書くとその効果だけを消すことができます。<br>下のコマンドの場合、毒の効果だけが消えます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/effect clear @s minecraft:poison</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">エフェクトは33種類</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
-<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">移動速度上昇 speed</span></li>
+<!-- /wp:list-item -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">移動速度低下 slowness</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">採掘速度上昇 haste</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">採掘速度低下 mining_fatigue </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">攻撃力上昇 strength  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">即時回復 instant_health  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">即時ダメージ instant_damage  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">跳躍力上昇 jump_boost  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">吐き気 nausea  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">再生能力 regeneration  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">耐性 resistance  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">火炎耐性 fire_resistance  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">水中呼吸 water_breathing  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">透明化 invisibility  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">盲目 blindness  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">暗視 night_vision  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">空腹 hunger  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">弱体化 weakness  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">毒 poison  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">衰弱 wither  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">体力増強 health_boost  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">衝撃吸収 absorption  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">満腹度回復 saturation  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">発光 glowing  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">浮遊 levitation  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">幸運 luck  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">不運 unluck  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">落下速度低下 slow_falling  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">コンジットパワー conduit_power  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">イルカの好意 dolphins_grace  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">不吉な予感 bad_omen  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">村の英雄 hero_of_the_village  </span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">暗闇 darkness</span></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<h3 class="wp-block-heading">効果時間・効果レベル</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>効果時間は1と書けば1秒というように秒単位で指定します。<span class="swl-fz u-fz-l">infinite</span>と書けば無限秒、つまり効果が時間で切れなくなります。<br>効果レベルは0～255の中で選び、0と書けばレベル1、1と書けばレベル2というように「書いた数＋1」レベルが設定されます。<br>持っているエフェクトと同じものを付与するとき、効果レベルが高ければ上書きされます。だから、持っている効果のレベルを下げる場合は一度、その効果を消す必要があります。</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
+<h3 class="wp-block-heading">モヤモヤが出るか出ないか</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p>エフェクトが付与されたときに出るモヤモヤは<strong>パーティクル</strong>と呼ばれるものの内の1つです。<br>ポーションのパーティクルを表示したければ<span class="swl-fz u-fz-l">false</span>、<br>非表示にしたければ<span class="swl-fz u-fz-l">true</span>を選びましょう。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/effect give @s minecraft:invisibility 10 0 true</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph -->
+<p>上のコマンドは1レベルの透明化を10秒、ポーションパーティクル非表示で付与するコマンドです。<br>つまり、完全透明です。モヤモヤが見えないことで他のプレイヤーからはどこにいるか全く分からなくなります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/effect give @e minecraft:invisibility infinite 0 true</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph -->
+<p>応用として、上のコマンドでワールドにいるクリーパーを全て完全透明にできます。<br>音しか聞こえないので爆発を回避するのはかなり難しいです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:video {"id":1313,"align":"center"} -->
+<figure class="wp-block-video aligncenter" style="text-align: center;"><video controls src="../videos/20230901_194630.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

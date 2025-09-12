@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraftでタイマーを作ろう！！ - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,175 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraftでタイマーを作ろう！！</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年05月09日</div>
             <div class="post-categories">
-                <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
+                <span class="category-tag">Minecraft</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraftでタイマーを作ろう！！</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+            <!-- wp:paragraph -->
+<p>Minecraftでアスレチックなどにある、タイマーの作り方を説明します！<br>これはJava 1.19.2で作成しました。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
+<img src="../images/2023/05/image.png" alt="" width="369" height="241" />
 
+<!-- wp:paragraph -->
+<p><span class="swl-fz u-fz-l">※イメージ</span></p>
+<!-- /wp:paragraph -->
 
-そ
+<!-- wp:video {"id":966} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="../videos/Minecraft_-1.19.2-マルチプレイ（サードパーティーのサーバー）-2023-05-09-19-10-46.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">ステップ① オブジェクトを作成しよう！</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<img src="../images/2023/05/Minecraft_-1.19.2-マルチプレイ（サードパーティーのサーバー）-2023_05_09-火-19_12_54-1024x538.png" alt="" width="618" height="324" />
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-0"} -->
+<p class="u-mb-ctrl u-mb-0">コマンドブロックを入手する</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
+<!-- wp:code -->
+<pre class="wp-block-code"><code>/give @p minecraft:command_block</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard objectives add cu1 dummy "ティック"
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard objectives add cu2 dummy "秒"
+</code></pre>
 <!-- /wp:code -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>そして実行します。これで完了です</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">ステップ② タイマー本体を作ろう！</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>リピート,常時実行</strong>に設定し、以下のコマンドを入力します。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players add @a cu1 1
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">①コマンドブロックを<strong>リピート,常時実行</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a add byou
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">②コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し①に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players remove @a cu1 20</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">③コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し②に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players add @a cu2 1
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">④コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し③に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a remove byou</code></pre>
+<!-- /wp:code -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">ステップ③ タイマーをStartさせるコマンドを作成しよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>※これはアスレチックなどのスタート地点に設置します。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">①コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a remove stop</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">②コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し①に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players set @a cu1 0</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">③コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し②に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players set @a cu2 0</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">④コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し③に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard objectives setdisplay sidebar cu2</code></pre>
+<!-- /wp:code -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<h3 class="wp-block-heading">ステップ④ タイマーをStopさせるコマンドを作成しよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>※これはアスレチックなどのゴール地点に設置します。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @p add stop</code></pre>
+<!-- /wp:code -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p><strong>これで全て完了です！タイマーを使っていろんなゲームを作ろう！！！</strong></p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

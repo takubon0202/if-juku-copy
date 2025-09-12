@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft fillコマンドの使い方(おまけsetblock)(java1.20.1) - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,156 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft fillコマンドの使い方(おまけsetblock)(java1.20.1)</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年09月01日</div>
             <div class="post-categories">
                 <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft fillコマンドの使い方(おまけsetblock)(java1.20.1)</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
+            <!-- wp:paragraph -->
+<p>１種類のブロックでできた直方体を出現させることができるfillコマンドについて紹介します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">fillの構文</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+<p>fillの構文は以下の通りです。順番に説明します。<br><span class="swl-fz u-fz-l">/fill ＜範囲の始点＞＜範囲の終点＞＜ブロック引数＞＜設置の仕方＞</span></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">範囲の始点・終点</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>まず、ブロックを敷き詰める範囲を決めます。その範囲の角が左下の画像の黄色のように8か所あります。その角の内、右下の画像の赤と青のような位置の関係にある２つの角の座標が範囲の始点・終点になります。どちらを先に書いても結果は同じになります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><img style="display: block; margin: 0 auto;" src="../images/2023/08/スクリーンショット-2023-08-31-234255-1024x797.png" alt="" />
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/08/スクリーンショット-2023-08-31-235257.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">ブロック引数</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ブロックにはそれぞれ、英語の名前として<strong>ブロック引数</strong>があります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">石　minecraft:stone</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">オークの板材　minecraft:oak_planks</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">ガラス　minecraft:glass</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">草ブロック　minecraft:grass_block</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">黒曜石　minecraft:obsidian</span></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>上を見て分かる通りjava版ではどのブロックにも先頭に<strong>「minecraft:」</strong>がついています。ですが、この「minecraft:」は書かないで省略することが可能です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">設置の仕方は5種類</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>＜設置の仕方＞というのは設置する範囲内に他のブロックがもともとあった場合、そのブロックをどのように残すのか残さないのかを決めるものです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">destroy</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">hollow</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">keep</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">outline</span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l">replace</span></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>5種類ありますがよく使うものは２つなのでそれだけ紹介します。</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
-
-
-そ
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h4 class="wp-block-heading">destroy</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<p>destroyは選択した範囲にあるブロックを全てドロップ化させてアイテムにし、そこを選択したブロックで<br>埋めるものです。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/fill ~3 ~3 ~3 ~-3 ~-3 ~-3 minecraft:air destroy</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>ちなみに上のようなコマンドでは、埋めるブロックを空気にしているので単純に近くのブロックがドロップ化します。注意ですが、ガラスや液体、ツタなど<strong>シャベル・ツルハシで回収できないものはドロップ化しません</strong>。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">replace</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>replaceは選択した範囲にもともとブロックがあったとしてもそれを無視して選択したブロックが上書き設置されます。<br>replaceのあとにブロック引数を追加して書くことで選択した範囲内にあるそのブロックのみ置き換えられます。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/fill ~5 ~5 ~5 ~-5 ~-5 ~-5 minecraft:air replace minecraft:stone</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<!-- wp:paragraph -->
+<p>上のコマンドは近くにある石だけを消すものです。地下で実行すると鉱石などが残って出現するので鉱石のある場所を知るのに使えます。<br>＜設置の仕方＞は省略が可能です。省略した場合はreplaceが適用されます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">fillの仲間</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>fillは複数のブロックを設置できますがブロックを１つだけ設置するsetblockというコマンドがあります。<br>setblockの構文は以下の通りです。<br><span class="swl-fz u-fz-l">/setblock ＜座標＞＜ブロック引数＞＜設置の仕方＞</span><br>＜設置の仕方＞は<span class="swl-fz u-fz-l">destroy,keep,replace</span>の3種類です。</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
-<!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>fillは新しく設置するのが主ですが、選択した範囲のものをコピーするcloneというコマンドがあります。それについては別のところで紹介します。</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
-<!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

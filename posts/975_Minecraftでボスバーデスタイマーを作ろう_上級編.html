@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraftでボスバーデスタイマーを作ろう！（上級編） - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,318 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraftでボスバーデスタイマーを作ろう！（上級編）</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年05月13日</div>
             <div class="post-categories">
-                <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
+                <span class="category-tag">Minecraft</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraftでボスバーデスタイマーを作ろう！（上級編）</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+            <!-- wp:paragraph -->
+<p>Minecraftでアスレチックなどにある、タイマーの作り方を説明します！<br>今回はボスバーを活用したタイマーです。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10"><strong>※イメージ</strong></p>
+<!-- /wp:paragraph -->
 
+<img style="display: block; margin: 0 auto;" src="../images/2023/05/スクリーンショット-2023-05-13-200609.png" alt="" />
 
-そ
+<!-- wp:video {"id":992} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="videos/Base-Profile-2023.05.13-21.12.10.01.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">ステップ① スコアボードとボスバーを作成しよう！</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。そして実行します</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>scoreboard objectives add cd1 dummy "ティック"</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。そして実行します</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>bossbar add nokori "残り時間"</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">ステップ② デスタイマー本体を作ろう！</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">①コマンドブロックを<strong>リピート,常時実行</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>scoreboard players add @e cd1 1</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">②コマンドブロックを<strong>チェーン,常時実行</strong>に設定し①に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>tag @e add byoua</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">③コマンドブロックを<strong>チェーン,常時実行</strong>に設定し②に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>scoreboard players remove @e cd1 20</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">④コマンドブロックを<strong>チェーン,常時実行</strong>に設定し③に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players remove @e cd2 1
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑤コマンドブロックを<strong>チェーン,常時実行</strong>に設定し④に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @e remove byoua
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑥コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑤に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>execute store result bossbar nokori value run scoreboard players get @e cd2
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑦コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑥に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>execute if score @e cd2 matches 0 run tellraw @a {"text":"\u6642\u9593\u7d42\u4e86\u3067\u3059\u3002","color":"light_purple"}
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑧コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑦に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>execute if score @e cd2 matches 0 run kill @a
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑨コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑧に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>execute if score @e cd2 matches 0 run tag @a add stop
+</code></pre>
+<!-- /wp:code -->
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/05/image-2.png" alt="" width="265" height="492" />
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">ステップ③ スタートコマンドを作成しよう！</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">①コマンドブロックを<strong>インパルス</strong>に設定し、以下のコマンドを入力します。（ボタンを設置）</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a remove came
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">②コマンドブロックを<strong>チェーン,常時実行</strong>に設定し①に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a remove stop
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">③コマンドブロックを<strong>チェーン,常時実行</strong>に設定し②に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard objectives remove cd2
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">④コマンドブロックを<strong>チェーン,常時実行</strong>に設定し③に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard objectives add cd2 dummy "残り時間"
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑤コマンドブロックを<strong>チェーン,常時実行</strong>に設定し④に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a remove gg
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑥コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑤に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players set @a cd1 0
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑦コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑥に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players set @a cd2 20
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑧コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑦に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard players set @e cd2 20
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑨コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑧に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>scoreboard objectives setdisplay sidebar cd2
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑩コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑧に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>bossbar set nokori players @a
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑪コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑩に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>bossbar set nokori max 20
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑫コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑪に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tellraw @a {"text":"\u30b9\u30bf\u30fc\u30c8\u3067\u3059\u3002","color":"aqua"}
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">⑬コマンドブロックを<strong>チェーン,常時実行</strong>に設定し⑫に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tp @a スタートの座標</code></pre>
+<!-- /wp:code -->
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/05/image-3.png" alt="" width="301" height="526" />
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">ステップ④ ゴール地点の作成（難しい）</h3>
+<!-- /wp:heading -->
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/05/image-4-1024x452.png" alt="" />
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">コマンドブロックを<strong>リピート,常時実行</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a add gg
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">①コマンドブロックを<strong>リピート,常時実行</strong>に設定し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>execute if entity @a run tellraw @a ","color":"yellow"},{"text":"\u3055\u3093\u304c\u30b4\u30fc\u30eb\u3057\u307e\u3057\u305f\u3002","color":"yellow"}]</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">②コマンドブロックを<strong>チェーン,常時実行,条件付き</strong>に設定し①に繋げて設置し、以下のコマンドを入力します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tag @a add came
+</code></pre>
 <!-- /wp:code -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>※<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-swl-deep-01-color">〇</mark>に任意の座標を入力します。dx,dy,dzについて詳しくは<a rel="noreferrer noopener" href="https://www.youtube.com/watch?v=TNCKRu2goL4" target="_blank">こちら</a></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<!-- wp:heading {"level":3,"className":"u-mb-ctrl u-mb-10"} -->
+<h3 class="wp-block-heading u-mb-ctrl u-mb-10">ステップ⑤ ボスバーを起動させよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p><span class="swl-fz u-fz-l">①防具立てを入手しよう！</span></p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p><span class="swl-fz u-fz-l">②金床を入手し、名札に「nokori」と入力しよう！</span></p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
-<!-- /wp:heading -->
+<img style="display: block; margin: 0 auto;" src="../images/2023/05/image-5.png" alt="" />
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p><span class="swl-fz u-fz-l">③nokoriの名札を防具立てに右クリックをしよう！</span></p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
+<img style="display: block; margin: 0 auto;" src="../images/2023/05/image-6.png" alt="" />
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p><strong><span class="swl-fz u-fz-xl">これで完成です！</span></strong></p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

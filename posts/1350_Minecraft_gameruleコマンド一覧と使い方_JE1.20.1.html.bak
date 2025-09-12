@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft gameruleコマンド一覧と使い方(JE1.20.1) - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,90 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft gameruleコマンド一覧と使い方(JE1.20.1)</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年09月05日</div>
             <div class="post-categories">
                 <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft gameruleコマンド一覧と使い方(JE1.20.1)</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+            <!-- wp:paragraph -->
+<p>Minecraftでよく使われるgameruleコマンドの一覧と使い方について説明します。<br>※Minecraft 1.20.1でのやり方です。統合版ではありません</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
-
-
-そ
+<!-- wp:video {"id":1367} -->
+<figure class="wp-block-video"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-05-17-22-36.mp4" style="width: 50%; height: auto;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">①落下ダメージをなくそう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<p>まずは落下ダメージを無効化してみましょう！<br>コマンドの構文は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/gamerule fallDamage false</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:video {"id":1351} -->
+<figure class="wp-block-video"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-05-16-42-18.mp4" style="width: 50%; height: auto;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>ミニゲームで落下ダメージを無くしたい時などに使ってみましょう！</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">②コマンドログを消してみよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>次にコマンドブロックでコマンドを実行した時に表示されるコマンドログを消してみましょう！<br>コマンドの構文は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/gamerule commandBlockOutput false</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:video {"id":1354} -->
+<figure class="wp-block-video"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-05-16-48-19.mp4" style="width: 50%; height: auto;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">③ウィザーの爆発でブロックを破壊されないようにしよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>ウィザーの爆発でブロックを破壊されないようにしてみよう！<br>クリーパーなどの爆発でも破壊されなくなります。<br>コマンドの構文は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/gamerule mobGriefing false</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<!-- wp:video {"id":1356} -->
+<figure class="wp-block-video"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-05-16-54-41.mp4" style="width: 50%; height: auto;"></video></figure>
+<!-- /wp:video -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">gameruleコマンド一覧表（JE1.20.1）</h2>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
-<!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
+<!-- wp:table {"className":"is-style-regular min_width10_","swlScrollable":"sp"} -->
+<figure class="wp-block-table is-style-regular min_width10_"><table><tbody><tr><td><span class="swl-cell-bg has-swl-main-thin-background-color" data-text-color="black" aria-hidden="true"> </span><strong>gamerule名</strong></td><td><strong><span class="swl-cell-bg has-swl-main-thin-background-color" data-text-color="black" aria-hidden="true"> </span>内容</strong></td><td><strong><span class="swl-cell-bg has-swl-main-thin-background-color" data-text-color="black" aria-hidden="true"> </span>初期値</strong></td></tr><tr><td>firedamage</td><td>火のダメージを受けるかどうか</td><td>true</td></tr><tr><td>falldamage</td><td>落下ダメージを受けるかどうか</td><td>true</td></tr><tr><td>keepInventory</td><td>死んだ時にアイテムをばらまかなくなる</td><td>false</td></tr><tr><td>logAdminCommands</td><td>サーバーの管理ログの表示・非表示</td><td>true</td></tr><tr><td>mobGriefing</td><td>クリーパーなどの爆発でブロックが破壊されるか</td><td>true</td></tr><tr><td>naturalRegeneration</td><td>満腹の時に自然回復できるかどうか</td><td>true</td></tr><tr><td>pvp</td><td>他のプレイヤーを攻撃できるか</td><td>true</td></tr><tr><td>randomTickSpeed</td><td>植物の生長スピードなど</td><td>3</td></tr><tr><td>reducedDebugInfo</td><td>デバック情報の表示・非表示</td><td>false</td></tr><tr><td>sendCommandFeedback</td><td>プレイヤーが実行したコマンドログをチャット欄に表示するかどうか</td><td>true</td></tr><tr><td>showDeathMessages</td><td>死亡メッセージの表示・非表示</td><td>true</td></tr><tr><td>spawnRadius</td><td>初期スタート地点のリスポーン範囲</td><td>10</td></tr><tr><td>spectatorsGenerateChunks</td><td>スペクテイターモードでチャンクを生成するかどうか</td><td>true</td></tr><tr><td>announceAdvancements</td><td>進捗の達成をチャット欄に表示・非表示</td><td>true</td></tr><tr><td>commandBlocksEnabled</td><td>コマンドブロックが使用できるか</td><td>true</td></tr><tr><td>disableElytraMovementChec</td><td>エリトラの速度チェックをするか</td><td>false</td></tr><tr><td>commandBlockOutput</td><td>コマンドブロックの実行ログ表示・非表示</td><td>true</td></tr><tr><td>doDaylightCycle</td><td>時間を進めるか</td><td>true</td></tr><tr><td>doEntityDrops</td><td>エンティティを破壊したときにドロップするか</td><td>true</td></tr><tr><td>doFireTick</td><td>火が燃え広がるか</td><td>true</td></tr><tr><td>doLimitedCrafting</td><td>解放されていないレシピのクラフトを禁止する</td><td>false</td></tr><tr><td>doMobLoot</td><td>モブがアイテムや経験値をドロップするか</td><td>true</td></tr><tr><td>doMobSpawning</td><td>モブが自然にスポーンするか</td><td>true</td></tr><tr><td>doTileDrops</td><td>ブロックを破壊した時にドロップするか</td><td>true</td></tr><tr><td>doWeatherCycle</td><td>天気が自然に変わるか</td><td>true</td></tr><tr><td>drowningdamage</td><td>溺れてる時ダメージを受けるか</td><td>true</td></tr><tr><td>maxCommandChainLength</td><td>チェーンコマンドブロックがチェーンする回数</td><td>65536</td></tr><tr><td>maxEntityCramming</td><td>プライヤー,モブが重ねられる数</td><td>24</td></tr><tr><td>spectatorsGenerateChunks</td><td>スペクテイター時チャンクを生成するか</td><td>true</td></tr></tbody></table></figure>
+<!-- /wp:table -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p>今回はこれで終わりです！ありがとうございました！</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

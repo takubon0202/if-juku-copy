@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft if鬼ごっこ紹介 - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,298 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft if鬼ごっこ紹介</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年10月13日</div>
             <div class="post-categories">
-                <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
+                <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span><span class="category-tag">鬼ごっこ</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft if鬼ごっこ紹介</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
+            <img src="../images/2023/10/スクリーンショット-2023-10-11-140122.png" alt="" style="width:681px;height:398px" />
+
+<!-- wp:paragraph -->
+<p>if塾でMinecraft鬼ごっこを制作しました。<br>まずはルール説明動画をご覧下さい</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/sEfvNwmRgns","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+https://youtu.be/sEfvNwmRgns
+</div></figure>
+<!-- /wp:embed -->
+
+<!-- wp:heading {"className":"u-mb-ctrl u-mb-20"} -->
+<h2 class="wp-block-heading u-mb-ctrl u-mb-20">if鬼ルール 詳細</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">必要要件</h3>
+<!-- /wp:heading -->
+
+<!-- wp:table {"hasFixedLayout":true,"className":"is-style-double"} -->
+<figure class="wp-block-table is-style-double"><table class="has-fixed-layout"><tbody><tr><td class="has-text-align-left" data-align="left">最少要件</td><td>推奨要件</td></tr><tr><td class="has-text-align-left" data-align="left">2人～（鬼1人,逃1人）</td><td>6人～（鬼1人につき逃2人）</td></tr><tr><td class="has-text-align-left" data-align="left">基本操作ができる</td><td>戦闘が得意</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">制限時間 5分(300秒)</h3>
+<!-- /wp:heading -->
+
+<img src="../images/2023/09/スクリーンショット-2023-09-14-200446.png" alt="" style="width:527px;height:474px" />
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>鬼は最初の11秒間、動くことができない。 鬼は落下などで死ぬことはあるが、何度でも復活することができる。その際、鬼についている効果はすべて消え、リスポーン地点まで戻される。 鬼は残り時間が11秒になると足の速さが1.3倍になり、逃走者よりも足が早くなる。</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">勝利条件</h3>
+<!-- /wp:heading -->
+
+<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><img src="../images/2023/09/Minecraft_-1.20.1-マルチプレイ（サードパーティーのサーバー）-2023_09_14-木-20_21_31-1024x548.png" alt="" />
+
+<img src="../images/2023/09/Minecraft_-1.20.1-マルチプレイ（サードパーティーのサーバー）-2023_09_14-木-20_17_18-1024x548.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><span class="swl-fz u-fz-l"><strong>逃走者は5分(300秒)間逃げ切れば勝利！</strong></span></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item {"className":"u-mb-ctrl u-mb-10"} -->
+<li class="u-mb-ctrl u-mb-10"><span class="swl-fz u-fz-l"><strong>鬼は5分(300秒)以内に逃走者を倒せば勝利！</strong></span></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">発光条件</h3>
+<!-- /wp:heading -->
+
+<img src="../images/2023/10/Minecraft_-1.20.1-マルチプレイ（サードパーティーのサーバー）-2023_10_11-水-14_20_18-1024x548.png" alt="" />
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong><span class="swl-fz u-fz-l">1分(60秒)ごとに発光</span></strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong><span class="swl-fz u-fz-l">発光ひまわりを使用する</span></strong></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>1分(60秒)ことに全員発光します、発光の際、逃走者は青色,鬼は赤色に発光します。発光時間は5秒間です<br>発光ひまわりを使用することでも発光させることができます。発光時間は同じく5秒間です。<br>※発光ひまわりは鬼の誰か1人に配布されます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">全員配布アイテム</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+<p><strong>全員に配布されるアイテムは以下の2つです。</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>ステーキ64個（空腹を満たすことができる）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>望遠鏡（遠くを見ることができる）</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><img src="../images/2023/10/スクリーンショット-2023-09-29-144257.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144312.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">逃走者用アイテム</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>逃走者のみに配布されるアイテムは以下の通りです</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"className":"is-style-bg_stripe"} -->
+<div class="wp-block-group is-style-bg_stripe"><!-- wp:paragraph -->
+<p>左から右へ順に</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">逃走者全員に配布される物と<br>逃走者誰か一人にランダムで配布される物があります</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
+<h4 class="wp-block-heading">逃走者全員配布アイテム</h4>
 <!-- /wp:heading -->
 
+<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><img src="../images/2023/10/スクリーンショット-2023-09-29-144153.png" alt="" />
 
-そ
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144210.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144203.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:paragraph -->
+<p>左から順に</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"u-mb-ctrl u-mb-10"} -->
+<ul class="u-mb-ctrl u-mb-10"><!-- wp:list-item -->
+<li>止まれゴマ（残留スプラッシュ型）<br><strong>移動速度低下Ⅴ 2秒</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>ウォーデン発動（残留スプラッシュ型）<br><strong>暗闇Ⅱ 2秒</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>イリュージョン<br><strong>移動速度上昇Ⅵ 5秒</strong></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-20"} -->
+<p class="u-mb-ctrl u-mb-20">※鬼が逃走者を1人捕まえるごとに 鬼の誰か1人にイリュージョンが配布される</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">逃走者ランダム配布アイテム（誰か1人）</h4>
+<!-- /wp:heading -->
+
+<!-- wp:gallery {"columns":3,"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-3 is-cropped"><img src="../images/2023/10/スクリーンショット-2023-09-29-144249.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144241.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144224.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:gallery {"columns":2,"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-2 is-cropped"><img src="../images/2023/10/スクリーンショット-2023-09-29-144233.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144218.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:paragraph -->
+<p>左から順に</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>うにょ～ん（スプラッシュ型）<br><strong>吐き気Ⅳ 10秒＋盲目Ⅳ 10秒</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>ATフィールド！（スプラッシュ型）<br><strong>移動速度X 5秒＋耐性V 5秒(無敵)</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>きえろぉぉ（スプラッシュ型）<br><strong>透明化 20秒</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>対鬼ピッケル<br><strong>一度だけ使用できる＋一撃で鬼を倒せる</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>禦ぐ！(ふせぐ)<br><strong>一度だけ攻撃を防ぐ＋ノックバックⅤ</strong><br></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">鬼用アイテム</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<!-- wp:group {"className":"is-style-bg_stripe"} -->
+<div class="wp-block-group is-style-bg_stripe"><!-- wp:paragraph -->
+<p>左から右へ順に</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">逃走者全員に配布される物と<br>逃走者誰か一人にランダムで配布される物があります</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">逃走者全員配布アイテム</h4>
+<!-- /wp:heading -->
+
+<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><img src="../images/2023/10/スクリーンショット-2023-09-29-144318.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144333.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144340.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144351.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144324.png" alt="" />
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144357.png" alt="" /></figure>
+<!-- /wp:gallery -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>左から順に</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"u-mb-ctrl u-mb-10"} -->
+<ul class="u-mb-ctrl u-mb-10"><!-- wp:list-item -->
+<li>鬼の金棒<br><strong>一撃で倒せる</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>鬼の弓<br><strong>3回使用すると壊れる</strong><br><strong>矢を当てると倒せる</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>矢<br><strong>3本配布される 刺さると消える</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>消える（ポーション型）<br><strong>透明化II 25秒</strong><br></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>早くなるよ！（ポーション型）<br><strong>移動速度上昇Ⅲ 35秒</strong><br></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">逃走者ランダム配布アイテム（誰か1人）</h4>
+<!-- /wp:heading -->
+
+<img src="../images/2023/10/スクリーンショット-2023-09-29-144407.png" alt="" style="width:174px;height:169px" />
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>めっちゃひかる！（捨てることで使用）<br><strong>全員 5秒間の発光</strong></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">プレイ動画</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
-<!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
+<!-- wp:embed {"url":"https://www.youtube.com/watch?v=sEfvNwmRgns","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+https://www.youtube.com/watch?v=sEfvNwmRgns
+</div></figure>
+<!-- /wp:embed -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>今回はこれで終わりです！ありがとうございました！</p>
 <!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
-<!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
-<!-- /wp:paragraph -->
-
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>コマンドブロックの基礎知識(java1.20) - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,108 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>コマンドブロックの基礎知識(java1.20)</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年08月29日</div>
             <div class="post-categories">
-                <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
+                <span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">コマンドブロックの基礎知識(java1.20)</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
-
-
-そ
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+            <!-- wp:paragraph -->
+<p>コマンドブロックに書いた内容がうまく動かないときはありませんか？<br>中途半端な知識では思い通りにいかないかもしれません。<br>そこで、今回はコマンドブロックの基礎知識を紹介します。<br>コマンドブロックの特性をしっかりと理解して正しく使いましょう！</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">１．コマンドブロックの入手の仕方</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>「 / 」を押すとコマンドを打つことができるようになります。そこに</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/give @s minecraft:command_block</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:paragraph -->
+<p>と打ち、「 Enter 」でコマンドブロックが手に入ります。</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">２．コマンドブロックの種類</h3>
 <!-- /wp:heading -->
 
+<img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-04-204243.png" alt="" style="width:427px;height:603px" width="427" height="603" />
+
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>上の画像のようにコマンドブロックには見た目が6種類あります。<br>上２つのオレンジが<strong>インパルス</strong>、真ん中２つの緑色が<strong>チェーン</strong>、下２つの紫色が<strong>リピート</strong>で、<br>左の列が<strong>無条件</strong>、右の列が<strong>条件付き</strong>となっています。それぞれ、色とマークの形が変わっているのが分かります。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
+<img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-04-204706-1024x771.png" alt="" style="width:750px;height:564px" width="750" height="564" />
+
+<!-- wp:paragraph -->
+<p>コマンドブロックを右クリックすることで上の画像のような画面が開きます。<br>ここの画面で、「<strong>インパルス</strong>か<strong>チェーン</strong>か<strong>リピート</strong>か」、「<strong>無条件</strong>か<strong>条件付き</strong>か」、「<strong>動力が必要</strong>か<strong>常時実行</strong>か」の３つの項目を設定することができます。</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<h3 class="wp-block-heading">３．コマンドブロックの種類による特性</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p><strong>インパルス</strong>は動力が来た時に一回だけ実行されます。つまり、ボタンでは1回押すと1回実行され、レバーではONにした時に1回実行されるということになります。<br><strong>チェーン</strong>はこのコマンドブロックの後ろにあるコマンドブロックに続いて実行されます。だから、インパルスかリピートにつなげないと実行されません。<br><strong>リピート</strong>は動力が来ている間、1秒間に20回の速度で実行され続けます。つまり、ボタンでは1回押すと20回実行され、レバーではONにしている間、ずっと実行されます。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
+<!-- wp:paragraph -->
+<p><strong>無条件</strong>はインパルス、リピートの場合は普通に実行するという意味です。チェーンの場合は後ろのコマンドブロックの次にただ実行されるということになります。<br><strong>条件付き</strong>はこのコマンドブロックの後ろにあるコマンドブロックが実行されたならば、このコマンドを実行するという意味です。だから、<strong>条件付きはチェーンにしか使いません。</strong>よって、<strong>下の画像の２つに書いたコマンドは実行されません。</strong></p>
+<!-- /wp:paragraph -->
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-04-230726.png" alt="" style="width:568px;height:422px" width="568" height="422" />
+
+<!-- wp:paragraph -->
+<p><strong>動力が必要</strong>は動力が常にOFFで、ボタンやレバーなどで信号を送られた時に実行されるという意味です。<br><strong>常時実行</strong>は動力が常にONで、インパルスの場合は常時実行に設定を変更してコマンドの設定画面を閉じたときに１回実行されるという意味で、チェーンの場合は後ろのコマンドに続いて実行されるという機能自体をONにするという意味、リピートの場合はレバーでONにした時と同じように常に実行されるという意味です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>結局のところ12通りあるうち、<strong>「インパルス/無条件/動力が必要」「チェーン/無条件/常時実行」<br>「チェーン/条件付き/常時実行」「リピート/無条件/常時実行」「リピート/無条件/動力が必要」</strong>の5通りしかほとんど使いません。目的に応じて使い分けれるようになりましょう！</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
+<h3 class="wp-block-heading">４．コマンドブロックの向き</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p>コマンドブロックには向きが存在します。チェーンを使えるようになるためにはこれを理解しなければなりません。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
+<!-- wp:gallery {"columns":2,"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-2 is-cropped"><img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-04-204439-1024x955.png" alt="" />
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-04-204503.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-0"} -->
+<p class="u-mb-ctrl u-mb-0">上の２つの画像で言うと赤が前で、青が後ろとなっています。左上の画像で前のマークは<span class="swl-fz u-fz-l">♢</span>の形をしていて、右上の画像で後ろのマークは<span class="swl-fz u-fz-xl">□</span>の形をしているのが分かります。<br>実行の順番は下の２つの画像で言うと<strong>赤<span class="swl-fz u-fz-l">→</span>青<span class="swl-fz u-fz-l">→</span>黄</strong>となっています。一番最初に実行されるところは<strong>インパルスかリピートのどちらか</strong>でそこに動力を与えるようにします。だから、そこ以外は<strong>全てチェーン</strong>となります。<br><strong>コマンドブロックの向きを間違えるとうまく動かなくなる</strong>ので注意が必要です。右下の画像のように縦にした場合でも同じく注意しましょう。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:gallery {"linkTo":"none"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped"><img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-05-001948-1024x831.png" alt="" />
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/07/スクリーンショット-2023-07-05-002308.png" alt="" /></figure>
+<!-- /wp:gallery -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">５．コマンドブロックでの書き方</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>コマンドは必ず「 / 」から書きはじめますが、コマンドブロックに書き込むときは「 / 」を最初につけてもつけなくてもどちらでもしっかりと実行されます。<br>コマンドを書くとき、なるべく間違いを減らせるように予測を活用することをおすすめします。<br>予測が出てきたら、スクロールして探してクリックしたり、「 Tab 」で選んで「 Enter 」したりすることで確定できます。</p>
+<!-- /wp:paragraph -->
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

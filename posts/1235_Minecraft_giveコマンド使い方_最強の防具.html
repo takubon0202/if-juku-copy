@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft giveコマンド使い方（最強の防具） - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,110 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft giveコマンド使い方（最強の防具）</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年08月31日</div>
             <div class="post-categories">
                 <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft giveコマンド使い方（最強の防具）</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
-
-
-そ
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+            <!-- wp:paragraph -->
+<p>Minecraftですごく使われる、giveコマンドについて説明します。<br>ここではgiveコマンドを使った最強の防具の作り方も説明します。</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">①自分に何かを64個(本)与えよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>今回は例として自分に木の棒を64本与えて見ます。<br>コマンドの構成は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/give @p minecraft:stick 64</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/08/image-4-1024x141.png" alt="" />
+
+<!-- wp:paragraph -->
+<p>早速やってみましょう！</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">②自分にエンチャントした物を与えよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>今回は例として鉄の剣にアンデット特攻X(10)が付与されたものを与えてみます。<br>コマンドの構成は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/give @p minecraft:iron_sword{Enchantments:}</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:video {"id":1238} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="videos/Minecraft_-1.20.1-singleplayer-2023-08-31-19-33-42.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
+
+<!-- wp:paragraph -->
+<p>様々な場所で使えるのでやってみましょう！</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<h3 class="wp-block-heading">③超吹き飛ばしクワを作って見よう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>作り方は先ほどと似ています。<br>今回はネザライトのクワにノックバック255を付与した物を作ります。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/give @p minecraft:netherite_hoe{Enchantments:}</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:video {"id":1240} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="videos/Minecraft_-1.20.1-singleplayer-2023-08-31-19-41-44.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
+
+<!-- wp:paragraph -->
+<p>いろんなモブを吹き飛ばしてみましょう！</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
+<h3 class="wp-block-heading">④応用編 最強の防具を作って見よう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p>こちらも作り方は先ほどと似ています。<br>ただコマンドがとても長いです！なのでコマンドブロックを使用してください</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/give @p minecraft:netherite_chestplate{display:{Name:"\"硬ーいEXチェスト\""},Unbreakable:1,Enchantments:,AttributeModifiers:},{AttributeName:"generic.armor",Amount:100000000,Operation:0,Slot:"chest",UUID:},{AttributeName:"generic.armor_toughness",Amount:100000000,Operation:0,Slot:"chest",UUID:}]}</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:video {"id":1242} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="videos/Minecraft_-1.20.1-singleplayer-2023-08-31-19-47-42.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
+
+<!-- wp:paragraph -->
+<p>最強の防具を作って強くなりましょう！</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">⑤番外編 最強の武器シリーズ</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>最強の武器シリーズはこちら<br><a href="https://if-juku.net/2023/03/19/minecraft%e3%81%a7%e6%9c%80%e5%bc%b7%e3%81%ae%e6%ad%a6%e5%99%a8%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81/">Minecraftで最強の武器を作ろう！</a></p>
+<!-- /wp:paragraph -->
+
+<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft-1.19.4-singleplayer-2023_03_19-9_48_07-1024x538.png" alt="" />
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

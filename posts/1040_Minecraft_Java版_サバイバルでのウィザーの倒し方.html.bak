@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft Java版 サバイバルでのウィザーの倒し方 - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,76 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft Java版 サバイバルでのウィザーの倒し方</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年07月05日</div>
             <div class="post-categories">
                 <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft Java版 サバイバルでのウィザーの倒し方</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+            <!-- wp:paragraph -->
+<p>Minecraft Java版のサバイバルでのウィザーの倒し方を紹介します！<br>※Ver 1.20.1での場合です。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
-
-
-そ
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<!-- wp:paragraph {"className":"is-style-emboss_box has-border -border01"} -->
+<p class="is-style-emboss_box has-border -border01">ウィザーの召喚方法<br>・ウィザースケルトンの頭×3<br>・ソウルサンド×4<br>ゴーレムを作るときのように置きます ※草が生えていたりすると召喚できません。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
+<img src="../images/2023/07/2023-07-05_06.18.45-1024x534.png" alt="" />
 
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<!-- wp:paragraph {"className":"is-style-emboss_box has-border -border03"} -->
+<p class="is-style-emboss_box has-border -border03">素材の入手方法</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
-
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>ソウルサンドは、ネザーの各所にあります。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
-<!-- /wp:heading -->
-
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>ウィザースケルトンの頭は、ウィザースケルトンから一定の確率（2.5%）でドロップします</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
-<!-- /wp:heading -->
-
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>ドロップ増加3をつけると、5.5%になります。(統合版は8.5%)</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
-
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<!-- wp:paragraph {"className":"is-style-stitch"} -->
+<p class="is-style-stitch">おすすめの装備</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
+<!-- wp:paragraph -->
+<p>自分にマイクラのスキルがあると思う人は鉄フルで大丈夫でしょう()<br>自信のない人は鉄フルのエンチャント、心配性の人はダイヤ装備を入れたら良いでしょう</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"is-style-icon_good"} -->
+<p class="is-style-icon_good">倒し方</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ウィザーの体力が半分になると弓などの遠距離攻撃が利かなくなるので<br>それまで削り続きましょう。<br>半分になると高度を下げてくるので剣などで殴り続けましょう</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"is-style-emboss_box"} -->
+<p class="is-style-emboss_box">番外編</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>どうしても倒せない!自分に倒せるか不安だ..という人へ!<br>ハメ技を使いましょう!<br>ネザーのY座標123辺りの岩盤にめり込むように横方向で召喚します</p>
+<!-- /wp:paragraph -->
+
+<img src="../images/2023/07/2023-07-04_19.55.21-2-1024x534.png" alt="" />
+
+<img src="../images/2023/07/2023-07-05_06.08.43-1024x534.png" alt="" />
+
+<!-- wp:paragraph {"className":"is-style-big_icon_check"} -->
+<p class="is-style-big_icon_check">以上！ウィザーの倒し方でした</p>
+<!-- /wp:paragraph -->
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

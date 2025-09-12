@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft タイトルコマンド出し方マニュアル - if(塾)</title>
+    <title>Minecraft summonコマンド使い方 - if(塾)</title>
     <style>
         * {
             margin: 0;
@@ -1508,89 +1508,114 @@
         <nav class="breadcrumb">
             <a href="../index.html">ホーム</a> / 
             <a href="../materials.html">教材</a> / 
-            <span>Minecraft タイトルコマンド出し方マニュアル</span>
+            <span>Minecraft summonコマンド使い方</span>
         </nav>
         
         <div class="post-meta">
-            <div class="post-date">2022年11月08日</div>
+            <div class="post-date">2023年09月01日</div>
             <div class="post-categories">
                 <span class="category-tag">Minecraft</span><span class="category-tag">Minecraft Java</span>
             </div>
         </div>
         
-        <h1 class="post-title">Minecraft タイトルコマンド出し方マニュアル</h1>
+        <h1 class="post-title">Minecraft summonコマンド使い方</h1>
         
         <div class="post-content">
-            <!-- wp:heading {"textAlign":"center","level":1} -->
-<h1 class="wp-block-heading has-text-align-center">Minecraftで/titleコマンドを出してみよう！</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Minecraftで実況者がやっているミニゲームなどで開始時などに、「〇〇ゲームスタート！」とよく見る方が多いと思いますが、ここではその文字の出し方を説明したいと思います！</p>
+            <!-- wp:paragraph -->
+<p>Minecraftでよく使われる、summonコマンドの使い方について説明します。<br>ここではsummonコマンドを使って、様々な物を出したいと思います。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">※イメージ</h4>
-<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">※イメージ</p>
+<!-- /wp:paragraph -->
 
-
-そ
+<!-- wp:video {"id":1281} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-01-16-33-25.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ① タイトルを出す時間を決める！※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">①自分の好きなMobを出してみよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まず/titleを出す時間を決めます。<br>コマンドの構成は</span> </p>
+<p>ここでは例として、ゾンビを出したいと思います。<br>コマンドの構成は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:code {"backgroundColor":"swl-gray"} -->
-<pre class="wp-block-code has-swl-gray-background-color has-background"><code><strong>/title 誰 times 表示時間 表示 消え時間</strong></code></pre>
-<!-- /wp:code -->
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/summon minecraft:zombie ~ ~ ~</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<img src="../images/2023/09/image-1024x626.png" alt="" />
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">【/title 誰 times 表示時間 表示 消え時間】</span> <span class="swl-fz u-fz-l">なっています</span><br><span class="swl-fz u-fz-l">例えば 文字を5秒間、全員に表示させたい場合</span><br><span class="swl-fz u-fz-l">【/title @a times 20 100 20】となります</span><br><span class="swl-fz u-fz-l">マイクラ内での1秒は20なのでこの場合、【入り時間1秒 表示時間5秒 消え時間1秒】 となります。 </span></p>
+<p>このzombieの部分をいろんなモブに変えると他のモブを召喚できます。<br>とても便利なので、早速やってみましょう。</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ② 文字を表示させよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">②腕付きの防具立てを出してみよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">時間を決めた所で、次は実際に文字を作りましょう！<br>コマンドの構成は 【/title 誰 title {"text":"〇〇〇"}】と なっています<br>例えばタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>Minecraft統合版では最初から防具立てに腕がついていますが、Javaだとデフォルトではついていません。<br>なのでsummonコマンドを使って腕付きの防具立てを出してみましょう<br>コマンドの構成は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_11_44-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/summon armor_stand ~ ~ ~ {ShowArms:1b}</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<img src="../images/2023/09/Minecraft_-1.20.1-シングルプレイ-2023_09_01-金-16_42_58-1024x548.png" alt="" />
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">ステップ③ 実際にMinecraftで出してみよう！ ※Java 1.16~の場合</h3>
+<h3 class="wp-block-heading">③村人を高いところから落としてみよう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">まずコマンドブロックを出します！<br>出し方は【/give @p minecraft:command_block】です</span>。<br><span class="swl-fz u-fz-l">コマンドが作れた所で、次は実際にMinecraftで文字を出しましょう！<br>コマンドのブロックの構成と配置は【①時間コマンド.②文字コマンド】の順番で配置します。</span><br><span class="swl-fz u-fz-l">一つ目のコマンドブロックは、コマンドブロックをインパルスにし</span>、<span class="swl-fz u-fz-l">二つ目からはチェーンにします</span>。<br></p>
+<p>次に村人を高いところから落としてみましょう！<br>コマンドの構成は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_19_42-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/summon minecraft:villager ~ 100 ~</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
+
+<!-- wp:video {"id":1286,"className":"u-mb-ctrl u-mb-0"} -->
+<figure class="wp-block-video u-mb-ctrl u-mb-0" style="text-align: center;"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-01-16-48-41.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
+
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">音量注意！</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>先ほどと同じでvillagerの部分を他のモブやエンティティに変えることができます。<br>楽しいので早速やってみましょう！</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編① サブタイトルを出して見よう！</h3>
+<h3 class="wp-block-heading">➃ウィザーを召喚して最強の武器で倒そう！</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">応用編でサブタイトルを出してみよう！<br>コマンドの構成は 【/title 誰 subtitle {"text":"〇〇〇"}】と なっています<br>例えばサブタイトルでABCDEと、全員に表示させたい場合<br>【/title @a title {"text":"ABCDE"}】となります。</span></p>
+<p>まずはウィザーを召喚しましょう！<br>コマンドの構成は以下の通りです。</p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_13_21-1024x538.png" alt="" />
+<!-- wp:loos-hcb/code-block -->
+<div class="hcb_wrap"><pre class="prism undefined-numbers lang-plain"><code>/summon minecraft:wither</code></pre></div>
+<!-- /wp:loos-hcb/code-block -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">応用編② 日本語を出してみよう！</h3>
-<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"u-mb-ctrl u-mb-10"} -->
+<p class="u-mb-ctrl u-mb-10">戦いをご覧下さい！</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:video {"id":1288} -->
+<figure class="wp-block-video" style="text-align: center;"><video controls src="../videos/Minecraft_-1.20.1-シングルプレイ-2023-09-01-17-08-57.mp4" style="width: 50%; height: auto; display: inline-block;"></video></figure>
+<!-- /wp:video -->
 
 <!-- wp:paragraph -->
-<p><span class="swl-fz u-fz-l">タイトルを日本語で表示させよう！<br>日本語は<a rel="noreferrer noopener" href="https://minecraft.tools/en/title.php" target="_blank">https://minecraft.tools/en/title.php</a>というツールを使って作るのがおすすめです！<br>コマンドの構成は 【/title 誰 (subtitle or title) {"text":"〇〇〇"}】です。<br>タイトルで「普通ってなんですか？」と表示させたい場合<br></span>→【/title @a title {"text":"\u666e\u901a\u3063\u3066\u306a\u3093\u3067\u3059\u304b\uff1f"}】です。<span class="swl-fz u-fz-l"><br>サブタイトルで「今、生きてて楽しいですか？」と表示させたい場合<br></span><span class="swl-fz u-fz-s">【/title @a subtitle {"text":"\u4eca\u3001\u751f\u304d\u3066\u3066\u697d\u3057\u3044\u3067\u3059\u304b\uff1f"}】です。</span></p>
+<p>この防具はgiveコマンドの使い方の最後に紹介した最強の防具です。<br>こちらをご参照ください→<a href="https://if-juku.net/2023/08/31/minecraft-give%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e4%bd%bf%e3%81%84%e6%96%b9%ef%bc%88%e6%9c%80%e5%bc%b7%e3%81%ae%e9%98%b2%e5%85%b7%ef%bc%89/">Minecraft giveコマンド使い方（最強の防具）</a></p>
 <!-- /wp:paragraph -->
 
-<img style="display: block; margin: 0 auto;" src="../images/2023/03/Minecraft_-1.19.2-singleplayer-2023_03_13-15_15_25-1024x538.png" alt="" />
+<!-- wp:paragraph -->
+<p>今回はこれで終わりです！ありがとうございました！</p>
+<!-- /wp:paragraph -->
         </div>
         
         <a href="../materials.html" class="back-to-list">← 教材一覧に戻る</a>

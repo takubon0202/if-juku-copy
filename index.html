@@ -31,6 +31,12 @@
             position: relative;
         }
 
+        /* Global responsive image fix */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -437,21 +443,14 @@
         }
 
         .service-card::before {
-            content: attr(data-title);
+            content: '';
             position: absolute;
-            top: 15px;
-            left: 15px;
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 3;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-card:hover::before {
-            opacity: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+            z-index: 1;
         }
 
         .service-card:hover {
@@ -469,22 +468,13 @@
             left: 0;
         }
 
-        .service-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.7));
-        }
 
         .service-info {
             position: absolute;
             bottom: 20px;
             left: 20px;
             right: 20px;
-            z-index: 3;
+            z-index: 2;
         }
 
         .service-name {
@@ -506,14 +496,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.9);
             color: var(--text-light);
             padding: 20px;
             text-align: center;
-            font-size: 0.85rem;
-            line-height: 1.4;
+            font-size: 1.1rem;
+            line-height: 1.6;
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 4;
@@ -956,13 +946,16 @@
         /* NPO if(AI) Section Styles */
         #if-ai .business-card {
             position: relative;
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s;
             min-height: 250px;
+            width: 100%;
+            max-width: 100%;
         }
 
         #if-ai .business-card::before {
@@ -982,7 +975,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
             z-index: 0;
         }
@@ -1016,14 +1010,17 @@
             color: var(--text-light);
             padding: 20px;
             text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.5;
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 4;
             display: flex;
             align-items: center;
             justify-content: center;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
         }
 
         #if-ai .business-card:hover .business-card-detail,
@@ -1049,16 +1046,40 @@
             position: relative;
         }
 
-        .business-video, .kitazuna-video {
-            position: absolute;
+        .business-video {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
-            opacity: 1;
+            opacity: 0;
             z-index: -1;
             pointer-events: none;
+            transition: opacity 0.5s ease;
+            filter: brightness(0.7);
+        }
+
+        .business-video.active {
+            opacity: 1;
+        }
+
+        .kitazuna-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            filter: brightness(0.7);
+        }
+
+        .kitazuna-video.active {
+            opacity: 1;
         }
 
         #business::after, #kitazuna::after {
@@ -1279,6 +1300,81 @@
         }
 
         /* Responsive Design */
+        /* Mobile specific styles for if(AI) section */
+        @media (max-width: 768px) {
+            #if-ai .business-card {
+                min-height: 200px;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            #if-ai .business-card-content h3 {
+                font-size: 1.2rem;
+            }
+            #if-ai .business-card-detail {
+                font-size: 0.95rem;
+                padding: 15px;
+            }
+
+            /* Course titles smaller on mobile */
+            .course-title {
+                font-size: 1.2rem !important;
+                line-height: 1.4;
+            }
+
+            /* Challenge subtitle smaller on mobile */
+            .challenge-title {
+                font-size: 1.2rem !important;
+            }
+
+            /* Section titles smaller for long titles */
+            #beginner .section-title,
+            #comic .section-title,
+            #business .section-title,
+            #kitazuna .section-title {
+                font-size: 1.5rem !important;
+                line-height: 1.2;
+            }
+
+            /* Flow section button adjustments */
+            .flow-button .cta-button {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+
+            /* Business section subtitle smaller */
+            .business-subtitle {
+                font-size: 1rem !important;
+            }
+
+            /* Message section fixes */
+            .message-signature {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 2rem;
+                text-align: center;
+            }
+
+            .message-signature > div {
+                flex-direction: row !important;
+                gap: 2rem !important;
+                justify-content: center !important;
+            }
+
+            .message-signature p {
+                margin: 2px 0 !important;
+                line-height: 1.2;
+            }
+
+            /* if(AI) section mobile fixes */
+            #if-ai .business-card-detail {
+                font-size: 0.9rem !important;
+                padding: 15px !important;
+                line-height: 1.4 !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 width: 100%;
@@ -1323,6 +1419,19 @@
 
             .comic-slider {
                 padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #if-ai .business-card {
+                min-height: 150px;
+                aspect-ratio: 16/9;
+            }
+            #if-ai .business-card-content {
+                padding: 15px;
+            }
+            #if-ai .business-card-content h3 {
+                font-size: 1rem;
             }
         }
 
@@ -1660,7 +1769,7 @@
         <h2 class="section-title">サービス案内</h2>
         <p style="color: var(--text-gray); margin-bottom: 2rem;">月額11,000円（税込）〜で利用できる、if(塾)の全面サポートサブスクリプション！</p>
         <div class="service-grid">
-            <div class="service-card" data-title="サービス案内">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service1.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">オンライン授業</h3>
@@ -1670,7 +1779,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="サービス案内">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service2.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">オフラインイベント</h3>
@@ -1680,7 +1789,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="サービス案内">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service3.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">教育相談</h3>
@@ -1690,7 +1799,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="if(塾)への仕事のご依頼はこちら">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service4.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">案件割振</h3>
@@ -1700,7 +1809,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="Kitazuna -未来杉の守護者-">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service5.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">独立サポート</h3>
@@ -1710,7 +1819,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="サービス案内">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service6.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">AI先生</h3>
@@ -1727,7 +1836,7 @@
     <section id="beginner">
         <h2 class="section-title">if(チャレンジ)forビギナー</h2>
         <div class="service-grid">
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/quest1.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">Quest 1</h3>
@@ -1737,7 +1846,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/quest2.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">Quest 2</h3>
@@ -1747,7 +1856,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/quest3.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">Quest 3</h3>
@@ -1757,7 +1866,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/quest4.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">Quest 4</h3>
@@ -1767,7 +1876,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/quest5.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">Quest 5</h3>
@@ -1777,7 +1886,7 @@
                     </div>
                 </div>
             </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
+            <div class="service-card">
                 <div class="service-image" style="background-image: url('images/quest6.png');"></div>
                 <div class="service-info">
                     <h3 class="service-name">Quest 6</h3>
@@ -2038,8 +2147,8 @@
             <div class="business-content">
                 <h2 class="section-title">Kitazuna -未来杉の守護者-</h2>
                 <p class="business-text" style="margin-bottom: 3rem;">
-                    秋田県全域を舞台にしたRPGで、地域の伝統文化をテーマにしたRPGです。<br>
-                    プレイヤーは杉野健太として秋田各地を巡り、ナマハゲや稲庭うどん、竿燈祭りなどの伝統文化に触れながら、過度な真面目さが生んだ化身「スギノオウ」を封印する冒険を繰り広げます。<br>
+                    秋田県全域を舞台にした地域の伝統文化をテーマにしたRPGです。<br>
+                    プレイヤーは杉野健太として秋田各地を巡り、ナマハゲやきりたんぽ、竿燈祭りなどの伝統文化に触れながら、過度な真面目さの化身「スギノオウ」を封印する冒険を繰り広げます。<br>
                     ゲーム開発を通じて、伝統と現代の融合を学び、実際の収益化体験まで可能な教育プラットフォームとして設計されています。現在、開発中です。
                 </p>
                 <div class="business-grid">
@@ -2358,7 +2467,7 @@
                 comicSlides.forEach((img, index) => {
                     const spSrc = img.src;
                     if (spSrc.includes('ifcomicsp')) {
-                        const pcNumber = index + 1 === 10 ? '10png' : index + 1;
+                        const pcNumber = index + 1;
                         img.src = spSrc.replace(/ifcomicsp\d+/, `ifcomicpc${pcNumber}`);
                     }
                 });
@@ -2371,12 +2480,44 @@
         // Parallax Effect
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('video');
-            
+            const parallaxElements = document.querySelectorAll('video:not(.kitazuna-video):not(.business-video)');
+
             parallaxElements.forEach(element => {
                 const speed = 0.5;
                 element.style.transform = `translateY(${scrolled * speed}px)`;
             });
+
+            // Business video visibility control
+            const businessSection = document.getElementById('business');
+            const businessVideo = document.querySelector('.business-video');
+
+            if (businessSection && businessVideo) {
+                const rect = businessSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Show video when business section is 50% visible
+                if (rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.5) {
+                    businessVideo.classList.add('active');
+                } else {
+                    businessVideo.classList.remove('active');
+                }
+            }
+
+            // Kitazuna video visibility control
+            const kitazunaSection = document.getElementById('kitazuna');
+            const kitazunaVideo = document.querySelector('.kitazuna-video');
+
+            if (kitazunaSection && kitazunaVideo) {
+                const rect = kitazunaSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Show video when kitazuna section is 50% visible
+                if (rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.5) {
+                    kitazunaVideo.classList.add('active');
+                } else {
+                    kitazunaVideo.classList.remove('active');
+                }
+            }
         });
 
         // Add intersection observer for fade-in animations

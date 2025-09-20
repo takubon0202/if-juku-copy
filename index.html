@@ -862,6 +862,16 @@
             display: block;
         }
 
+        /* SP only slides - hidden by default */
+        .comic-slide.sp-only {
+            display: none !important;
+        }
+
+        /* Only show SP slides when they are active */
+        .comic-slide.sp-only.active {
+            display: block !important;
+        }
+
         .comic-slide img {
             width: 100%;
             border-radius: 15px;
@@ -2063,7 +2073,37 @@
                 <img src="images/ifcomicpc9.png" alt="漫画ページ9">
             </div>
             <div class="comic-slide">
-                <img src="images/ifcomicpc10png.png" alt="漫画ページ10">
+                <img src="images/ifcomicpc10.png" alt="漫画ページ10">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp11.png" alt="漫画ページ11">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp12.png" alt="漫画ページ12">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp13.png" alt="漫画ページ13">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp14.png" alt="漫画ページ14">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp15.png" alt="漫画ページ15">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp16.png" alt="漫画ページ16">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp17.png" alt="漫画ページ17">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp18.png" alt="漫画ページ18">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp19.png" alt="漫画ページ19">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp20.png" alt="漫画ページ20">
             </div>
         </div>
         <div class="comic-nav">
@@ -2406,20 +2446,50 @@
         });
 
         // Comic Slider
-        const comicSlides = document.querySelectorAll('.comic-slide');
+        let allComicSlides = document.querySelectorAll('.comic-slide');
         const prevComic = document.getElementById('prevComic');
         const nextComic = document.getElementById('nextComic');
         let currentComicSlide = 0;
 
+        function getVisibleComicSlides() {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                // On mobile, include all slides (PC 1-10 + SP 11-20)
+                return document.querySelectorAll('.comic-slide');
+            } else {
+                // On PC, only show first 10 slides
+                return document.querySelectorAll('.comic-slide:not(.sp-only)');
+            }
+        }
+
         function showComicSlide(index) {
-            comicSlides.forEach(slide => slide.classList.remove('active'));
-            comicSlides[index].classList.add('active');
-            
+            const visibleSlides = getVisibleComicSlides();
+
+            // Remove active class from all slides
+            allComicSlides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Add active class to the current slide (CSS will handle display)
+            if (visibleSlides[index]) {
+                visibleSlides[index].classList.add('active');
+            }
+
             prevComic.disabled = index === 0;
-            nextComic.disabled = index === comicSlides.length - 1;
+            nextComic.disabled = index === visibleSlides.length - 1;
+        }
+
+        function updateComicSlider() {
+            const visibleSlides = getVisibleComicSlides();
+            // Reset to first slide if current slide is out of range
+            if (currentComicSlide >= visibleSlides.length) {
+                currentComicSlide = 0;
+            }
+            showComicSlide(currentComicSlide);
         }
 
         prevComic.addEventListener('click', () => {
+            const visibleSlides = getVisibleComicSlides();
             if (currentComicSlide > 0) {
                 currentComicSlide--;
                 showComicSlide(currentComicSlide);
@@ -2427,14 +2497,20 @@
         });
 
         nextComic.addEventListener('click', () => {
-            if (currentComicSlide < comicSlides.length - 1) {
+            const visibleSlides = getVisibleComicSlides();
+            if (currentComicSlide < visibleSlides.length - 1) {
                 currentComicSlide++;
                 showComicSlide(currentComicSlide);
             }
         });
 
         // Initialize comic slider
-        showComicSlide(0);
+        updateComicSlider();
+
+        // Update comic slider when window resizes
+        window.addEventListener('resize', () => {
+            updateComicSlider();
+        });
 
         // Duplicate blog items for infinite scroll
         const blogItems = document.querySelectorAll('.blog-items');
@@ -2453,29 +2529,55 @@
         // Update comic images for mobile
         function updateComicImages() {
             const isMobile = window.innerWidth <= 768;
-            const comicSlides = document.querySelectorAll('.comic-slide img');
-            
+            const comicSlides = document.querySelectorAll('.comic-slide');
+            const spOnlySlides = document.querySelectorAll('.comic-slide.sp-only');
+
             if (isMobile) {
-                comicSlides.forEach((img, index) => {
-                    const pcSrc = img.src;
-                    if (pcSrc.includes('ifcomicpc')) {
-                        const spNumber = index <= 19 ? index + 1 : index + 1;
-                        img.src = pcSrc.replace(/ifcomicpc\d+/, `ifcomicsp${spNumber}`);
+                // Make SP only slides available on mobile - remove any inline styles
+                spOnlySlides.forEach(slide => {
+                    slide.style.display = ''; // Remove inline style, let CSS handle it
+                    slide.classList.remove('active');
+                });
+
+                // Update existing slides to SP version
+                comicSlides.forEach((slide, index) => {
+                    if (!slide.classList.contains('sp-only')) {
+                        const img = slide.querySelector('img');
+                        const pcSrc = img.src;
+                        if (pcSrc.includes('ifcomicpc')) {
+                            const spNumber = index + 1;
+                            img.src = pcSrc.replace(/ifcomicpc\d+/, `ifcomicsp${spNumber}`);
+                        }
                     }
                 });
             } else {
-                comicSlides.forEach((img, index) => {
-                    const spSrc = img.src;
-                    if (spSrc.includes('ifcomicsp')) {
-                        const pcNumber = index + 1;
-                        img.src = spSrc.replace(/ifcomicsp\d+/, `ifcomicpc${pcNumber}`);
+                // Hide SP only slides on PC
+                spOnlySlides.forEach(slide => {
+                    slide.style.display = 'none';
+                    slide.classList.remove('active');
+                });
+
+                // Update existing slides to PC version
+                comicSlides.forEach((slide, index) => {
+                    if (!slide.classList.contains('sp-only')) {
+                        const img = slide.querySelector('img');
+                        const spSrc = img.src;
+                        if (spSrc.includes('ifcomicsp')) {
+                            const pcNumber = index + 1;
+                            if (pcNumber <= 10) {
+                                img.src = spSrc.replace(/ifcomicsp\d+/, `ifcomicpc${pcNumber}`);
+                            }
+                        }
                     }
                 });
             }
         }
 
         updateComicImages();
-        window.addEventListener('resize', updateComicImages);
+        window.addEventListener('resize', () => {
+            updateComicImages();
+            updateComicSlider();
+        });
 
         // Parallax Effect
         window.addEventListener('scroll', () => {

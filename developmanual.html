@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム開発マニュアル - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        .mode-tabs {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-tab {
+            padding: 10px 20px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .mode-tab:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+
+        .content-elementary {
+            display: none;
+        }
+
+        .content-junior {
+            display: block;
+        }
+
+        body.elementary-mode .content-elementary {
+            display: block;
+        }
+
+        body.elementary-mode .content-junior {
+            display: none;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .price-box {
+            background: rgba(255, 0, 255, 0.15);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            box-shadow: var(--purple-glow);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 20px 20px 20px 60px;
+            margin-bottom: 15px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 12px 12px 40px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tool-box {
+            background: rgba(0, 255, 204, 0.05);
+            border: 2px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tool-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tool-box ul li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tool-box ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .warning-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 15px 15px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-tabs">
+        <div class="mode-tab active" onclick="switchMode('junior')">中学生以上</div>
+        <div class="mode-tab" onclick="switchMode('elementary')">小学生</div>
+    </div>
+
+    <div class="container">
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+
+        <h1 class="content-junior">システム開発マニュアル</h1>
+        <h1 class="content-elementary">システム<ruby>開発<rt>かいはつ</rt></ruby>マニュアル</h1>
+
+        <div class="intro content-junior">
+            AIに聞きながらホームページやWebアプリを開発!<br>
+            ChatGPTやClaude、Cursorなどのツールを使って実践的なスキルを身につけよう
+        </div>
+        <div class="intro content-elementary">
+            AIに<ruby>聞<rt>き</rt></ruby>きながらホームページやWebアプリを<ruby>開発<rt>かいはつ</rt></ruby>!<br>
+            ChatGPTやClaude、Cursorなどのツールを<ruby>使<rt>つか</rt></ruby>って<ruby>実践的<rt>じっせんてき</rt></ruby>なスキルを<ruby>身<rt>み</rt></ruby>につけよう
+        </div>
+
+        <div class="warning-box content-junior" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                参加前に必ず確認! 18歳未満の方は、必ず保護者の同意を得てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお仕事に参加するには、業務委託契約の締結が必要です。下のボタンから契約フォームに進んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    業務委託契約フォームへ
+                </a>
+            </div>
+        </div>
+        <div class="warning-box content-elementary" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                <ruby>参加<rt>さんか</rt></ruby><ruby>前<rt>まえ</rt></ruby>に<ruby>必<rt>かなら</rt></ruby>ず<ruby>確認<rt>かくにん</rt></ruby>! 18<ruby>歳<rt>さい</rt></ruby><ruby>未満<rt>みまん</rt></ruby>の<ruby>方<rt>かた</rt></ruby>は、<ruby>必<rt>かなら</rt></ruby>ず<ruby>保護者<rt>ほごしゃ</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>を<ruby>得<rt>え</rt></ruby>てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>に<ruby>参加<rt>さんか</rt></ruby>するには、<ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>の<ruby>締結<rt>ていけつ</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>です。<ruby>下<rt>した</rt>の</ruby>ボタンから<ruby>契約<rt>けいやく</rt></ruby>フォームに<ruby>進<rt>すす</rt></ruby>んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    <ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>フォームへ
+                </a>
+            </div>
+        </div>
+
+        <!-- お仕事の内容 -->
+        <div class="section content-junior">
+            <h2>お仕事の内容</h2>
+            <p>ホームページやWebアプリケーションの開発を行うお仕事です。AIツール(ChatGPT、Claude、Cursorなど)を活用しながら開発を進めていくので、プログラミング初心者でも大丈夫!</p>
+
+            <div class="price-box">
+                報酬: 要相談
+            </div>
+
+            <div class="highlight-box">
+                <strong>報酬はプロジェクトの規模や複雑さによって決定します</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>簡単なランディングページ: 5,000円〜</li>
+                    <li>企業サイト: 20,000円〜</li>
+                    <li>Webアプリケーション: 50,000円〜</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-gray);">※ あくまで目安です。詳細は相談の上決定します</p>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>お<ruby>仕事<rt>しごと</rt></ruby>の<ruby>内容<rt>ないよう</rt></ruby></h2>
+            <p>ホームページやWebアプリケーションの<ruby>開発<rt>かいはつ</rt></ruby>を<ruby>行<rt>おこな</rt></ruby>うお<ruby>仕事<rt>しごと</rt></ruby>です。AIツール(ChatGPT、Claude、Cursorなど)を<ruby>活用<rt>かつよう</rt></ruby>しながら<ruby>開発<rt>かいはつ</rt></ruby>を<ruby>進<rt>すす</rt></ruby>めていくので、プログラミング<ruby>初心者<rt>しょしんしゃ</rt></ruby>でも<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>!</p>
+
+            <div class="price-box">
+                <ruby>報酬<rt>ほうしゅう</rt></ruby>: <ruby>要相談<rt>ようそうだん</rt></ruby>
+            </div>
+
+            <div class="highlight-box">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>はプロジェクトの<ruby>規模<rt>きぼ</rt></ruby>や<ruby>複雑<rt>ふくざつ</rt></ruby>さによって<ruby>決定<rt>けってい</rt></ruby>します</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><ruby>簡単<rt>かんたん</rt></ruby>なランディングページ: 5,000<ruby>円<rt>えん</rt></ruby>〜</li>
+                    <li><ruby>企業<rt>きぎょう</rt></ruby>サイト: 20,000<ruby>円<rt>えん</rt></ruby>〜</li>
+                    <li>Webアプリケーション: 50,000<ruby>円<rt>えん</rt></ruby>〜</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-gray);">※ あくまで<ruby>目安<rt>めやす</rt></ruby>です。<ruby>詳細<rt>しょうさい</rt></ruby>は<ruby>相談<rt>そうだん</rt></ruby>の<ruby>上決定<rt>うえけってい</rt></ruby>します</p>
+            </div>
+        </div>
+
+        <!-- 開発の流れ -->
+        <div class="section content-junior">
+            <h2>開発の流れ</h2>
+
+            <ul class="step-list">
+                <li>
+                    <strong>Step 1: 開発要件の確認</strong><br>
+                    クライアントやメンターから要件をヒアリングし、何を作るのか明確化します。
+                </li>
+                <li>
+                    <strong>Step 2: AIツールで調査・学習</strong><br>
+                    わからないことはAIに質問。サンプルコードを参考にしながら、技術的な実装方法を学びます。
+                </li>
+                <li>
+                    <strong>Step 3: 開発・実装</strong><br>
+                    HTML/CSS/JavaScriptでコーディング。AIツールで効率的に開発を進め、エラーもAIに聞いて解決します。
+                </li>
+                <li>
+                    <strong>Step 4: テスト・修正</strong><br>
+                    動作確認を行い、バグを修正。クライアントに確認してもらいながら調整します。
+                </li>
+                <li>
+                    <strong>Step 5: 納品</strong><br>
+                    完成したシステムを納品し、使い方を説明します。
+                </li>
+            </ul>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>開発<rt>かいはつ</rt></ruby>の<ruby>流<rt>なが</rt></ruby>れ</h2>
+
+            <ul class="step-list">
+                <li>
+                    <strong>Step 1: <ruby>開発要件<rt>かいはつようけん</rt></ruby>の<ruby>確認<rt>かくにん</rt></ruby></strong><br>
+                    クライアントやメンターから<ruby>要件<rt>ようけん</rt></ruby>をヒアリングし、<ruby>何<rt>なに</rt></ruby>を<ruby>作<rt>つく</rt></ruby>るのか<ruby>明確化<rt>めいかくか</rt></ruby>します。
+                </li>
+                <li>
+                    <strong>Step 2: AIツールで<ruby>調査<rt>ちょうさ</rt></ruby>・<ruby>学習<rt>がくしゅう</rt></ruby></strong><br>
+                    わからないことはAIに<ruby>質問<rt>しつもん</rt></ruby>。サンプルコードを<ruby>参考<rt>さんこう</rt></ruby>にしながら、<ruby>技術的<rt>ぎじゅつてき</rt></ruby>な<ruby>実装方法<rt>じっそうほうほう</rt></ruby>を<ruby>学<rt>まな</rt></ruby>びます。
+                </li>
+                <li>
+                    <strong>Step 3: <ruby>開発<rt>かいはつ</rt></ruby>・<ruby>実装<rt>じっそう</rt></ruby></strong><br>
+                    HTML/CSS/JavaScriptでコーディング。AIツールで<ruby>効率的<rt>こうりつてき</rt></ruby>に<ruby>開発<rt>かいはつ</rt></ruby>を<ruby>進<rt>すす</rt></ruby>め、エラーもAIに<ruby>聞<rt>き</rt></ruby>いて<ruby>解決<rt>かいけつ</rt></ruby>します。
+                </li>
+                <li>
+                    <strong>Step 4: テスト・<ruby>修正<rt>しゅうせい</rt></ruby></strong><br>
+                    <ruby>動作確認<rt>どうさかくにん</rt></ruby>を<ruby>行<rt>おこな</rt></ruby>い、バグを<ruby>修正<rt>しゅうせい</rt></ruby>。クライアントに<ruby>確認<rt>かくにん</rt></ruby>してもらいながら<ruby>調整<rt>ちょうせい</rt></ruby>します。
+                </li>
+                <li>
+                    <strong>Step 5: <ruby>納品<rt>のうひん</rt></ruby></strong><br>
+                    <ruby>完成<rt>かんせい</rt></ruby>したシステムを<ruby>納品<rt>のうひん</rt></ruby>し、<ruby>使<rt>つか</rt></ruby>い<ruby>方<rt>かた</rt></ruby>を<ruby>説明<rt>せつめい</rt></ruby>します。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 使用するツール・技術 -->
+        <div class="section content-junior">
+            <h2>使用するツール・技術</h2>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">AI開発ツール</h3>
+                <ul>
+                    <li>ChatGPT - 質問と回答で開発をサポート</li>
+                    <li>Claude - 複雑な実装の相談に</li>
+                    <li>Cursor - AIと一緒にコードを書けるエディタ</li>
+                    <li>GitHub Copilot - コードの自動補完</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">開発言語</h3>
+                <ul>
+                    <li>HTML - Webページの構造を作る</li>
+                    <li>CSS - デザインやレイアウトを整える</li>
+                    <li>JavaScript - 動きをつける</li>
+                    <li>Python - 高度な機能の実装に</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">エディタ・開発環境</h3>
+                <ul>
+                    <li>VS Code - 無料で使える高機能エディタ</li>
+                    <li>Cursor - AIアシスタント付きエディタ</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">デプロイ(公開)ツール</h3>
+                <ul>
+                    <li>Vercel - 簡単に公開できる</li>
+                    <li>Netlify - 静的サイトの公開に</li>
+                    <li>GitHub Pages - GitHubから直接公開</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>使用<rt>しよう</rt></ruby>するツール・<ruby>技術<rt>ぎじゅつ</rt></ruby></h2>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">AI<ruby>開発<rt>かいはつ</rt></ruby>ツール</h3>
+                <ul>
+                    <li>ChatGPT - <ruby>質問<rt>しつもん</rt></ruby>と<ruby>回答<rt>かいとう</rt></ruby>で<ruby>開発<rt>かいはつ</rt></ruby>をサポート</li>
+                    <li>Claude - <ruby>複雑<rt>ふくざつ</rt></ruby>な<ruby>実装<rt>じっそう</rt></ruby>の<ruby>相談<rt>そうだん</rt></ruby>に</li>
+                    <li>Cursor - AIと<ruby>一緒<rt>いっしょ</rt></ruby>にコードを<ruby>書<rt>か</rt></ruby>けるエディタ</li>
+                    <li>GitHub Copilot - コードの<ruby>自動補完<rt>じどうほかん</rt></ruby></li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;"><ruby>開発言語<rt>かいはつげんご</rt></ruby></h3>
+                <ul>
+                    <li>HTML - Webページの<ruby>構造<rt>こうぞう</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る</li>
+                    <li>CSS - デザインやレイアウトを<ruby>整<rt>ととの</rt></ruby>える</li>
+                    <li>JavaScript - <ruby>動<rt>うご</rt></ruby>きをつける</li>
+                    <li>Python - <ruby>高度<rt>こうど</rt></ruby>な<ruby>機能<rt>きのう</rt></ruby>の<ruby>実装<rt>じっそう</rt></ruby>に</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">エディタ・<ruby>開発環境<rt>かいはつかんきょう</rt></ruby></h3>
+                <ul>
+                    <li>VS Code - <ruby>無料<rt>むりょう</rt></ruby>で<ruby>使<rt>つか</rt></ruby>える<ruby>高機能<rt>こうきのう</rt></ruby>エディタ</li>
+                    <li>Cursor - AIアシスタント<ruby>付<rt>つ</rt></ruby>きエディタ</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">デプロイ(<ruby>公開<rt>こうかい</rt></ruby>)ツール</h3>
+                <ul>
+                    <li>Vercel - <ruby>簡単<rt>かんたん</rt></ruby>に<ruby>公開<rt>こうかい</rt></ruby>できる</li>
+                    <li>Netlify - <ruby>静的<rt>せいてき</rt></ruby>サイトの<ruby>公開<rt>こうかい</rt></ruby>に</li>
+                    <li>GitHub Pages - GitHubから<ruby>直接公開<rt>ちょくせつこうかい</rt></ruby></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 報酬について -->
+        <div class="section content-junior">
+            <h2>報酬について</h2>
+
+            <div class="highlight-box">
+                <strong>報酬はプロジェクトごとに相談して決定します</strong>
+                <p style="margin-top: 15px;">プロジェクトの規模、複雑さ、納期などを考慮して、適切な報酬を決定します。</p>
+            </div>
+
+            <div class="warning-box">
+                <strong>報酬の目安</strong><br>
+                • 簡単なランディングページ(1ページ): 5,000円〜<br>
+                • 企業サイト(複数ページ): 20,000円〜<br>
+                • Webアプリケーション(機能付き): 50,000円〜<br>
+                <br>
+                ※ あくまで目安です。詳細は相談の上決定します
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;">銀行振込を希望する場合、振込手数料500円がかかります</strong>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>報酬<rt>ほうしゅう</rt></ruby>について</h2>
+
+            <div class="highlight-box">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>はプロジェクトごとに<ruby>相談<rt>そうだん</rt></ruby>して<ruby>決定<rt>けってい</rt></ruby>します</strong>
+                <p style="margin-top: 15px;">プロジェクトの<ruby>規模<rt>きぼ</rt></ruby>、<ruby>複雑<rt>ふくざつ</rt></ruby>さ、<ruby>納期<rt>のうき</rt></ruby>などを<ruby>考慮<rt>こうりょ</rt></ruby>して、<ruby>適切<rt>てきせつ</rt></ruby>な<ruby>報酬<rt>ほうしゅう</rt></ruby>を<ruby>決定<rt>けってい</rt></ruby>します。</p>
+            </div>
+
+            <div class="warning-box">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>の<ruby>目安<rt>めやす</rt></ruby></strong><br>
+                • <ruby>簡単<rt>かんたん</rt></ruby>なランディングページ(1ページ): 5,000<ruby>円<rt>えん</rt></ruby>〜<br>
+                • <ruby>企業<rt>きぎょう</rt></ruby>サイト(<ruby>複数<rt>ふくすう</rt></ruby>ページ): 20,000<ruby>円<rt>えん</rt></ruby>〜<br>
+                • Webアプリケーション(<ruby>機能付<rt>きのうつ</rt></ruby>き): 50,000<ruby>円<rt>えん</rt></ruby>〜<br>
+                <br>
+                ※ あくまで<ruby>目安<rt>めやす</rt></ruby>です。<ruby>詳細<rt>しょうさい</rt></ruby>は<ruby>相談<rt>そうだん</rt></ruby>の<ruby>上決定<rt>うえけってい</rt></ruby>します
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;"><ruby>銀行振込<rt>ぎんこうふりこみ</rt></ruby>を<ruby>希望<rt>きぼう</rt></ruby>する<ruby>場合<rt>ばあい</rt></ruby>、<ruby>振込手数料<rt>ふりこみてすうりょう</rt></ruby>500<ruby>円<rt>えん</rt></ruby>がかかります</strong>
+            </div>
+        </div>
+
+        <!-- 求める能力 -->
+        <div class="section content-junior">
+            <h2>こんな人にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>プログラミングに興味がある</li>
+                <li>Webサイトやアプリを作ってみたい</li>
+                <li>AIツールを活用して効率的に学びたい</li>
+                <li>実践的なスキルを身につけたい</li>
+                <li>論理的思考が好き</li>
+                <li>パソコンの基本操作ができる</li>
+                <li>わからないことを自分で調べられる</li>
+                <li>期限をきっちり守れる</li>
+                <li>LINEの返信をちゃんと見る、返信ができる</li>
+                <li>報告・連絡・相談がちゃんとできる</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>年齢制限: 小学生高学年からOK!</strong><br>
+                プログラミングに興味があれば、誰でもチャレンジできます!
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>こんな<ruby>人<rt>ひと</rt></ruby>にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>プログラミングに<ruby>興味<rt>きょうみ</rt></ruby>がある</li>
+                <li>Webサイトやアプリを<ruby>作<rt>つく</rt></ruby>ってみたい</li>
+                <li>AIツールを<ruby>活用<rt>かつよう</rt></ruby>して<ruby>効率的<rt>こうりつてき</rt></ruby>に<ruby>学<rt>まな</rt></ruby>びたい</li>
+                <li><ruby>実践的<rt>じっせんてき</rt></ruby>なスキルを<ruby>身<rt>み</rt></ruby>につけたい</li>
+                <li><ruby>論理的思考<rt>ろんりてきしこう</rt></ruby>が<ruby>好<rt>す</rt></ruby>き</li>
+                <li>パソコンの<ruby>基本操作<rt>きほんそうさ</rt></ruby>ができる</li>
+                <li>わからないことを<ruby>自分<rt>じぶん</rt></ruby>で<ruby>調<rt>しら</rt></ruby>べられる</li>
+                <li><ruby>期限<rt>きげん</rt></ruby>をきっちり<ruby>守<rt>まも</rt></ruby>れる</li>
+                <li>LINEの<ruby>返信<rt>へんしん</rt></ruby>をちゃんと<ruby>見<rt>み</rt></ruby>る、<ruby>返信<rt>へんしん</rt></ruby>ができる</li>
+                <li><ruby>報告<rt>ほうこく</rt></ruby>・<ruby>連絡<rt>れんらく</rt></ruby>・<ruby>相談<rt>そうだん</rt></ruby>がちゃんとできる</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong><ruby>年齢制限<rt>ねんれいせいげん</rt></ruby>: <ruby>小学生高学年<rt>しょうがくせいこうがくねん</rt></ruby>からOK!</strong><br>
+                プログラミングに<ruby>興味<rt>きょうみ</rt></ruby>があれば、<ruby>誰<rt>だれ</rt></ruby>でもチャレンジできます!
+            </div>
+        </div>
+
+        <!-- まとめ -->
+        <div class="section content-junior">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお仕事は、AIツールを活用しながら実際のWeb開発を経験できる貴重な機会です。<br>
+                わからないことはAIに聞きながら進められるので、プログラミング初心者でも安心してチャレンジできます。<br>
+                実践を通じて、将来役立つ技術力を身につけましょう!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">AIと一緒に、未来のエンジニアへの第一歩を踏み出そう!</strong>
+            </p>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>は、AIツールを<ruby>活用<rt>かつよう</rt></ruby>しながら<ruby>実際<rt>じっさい</rt></ruby>のWeb<ruby>開発<rt>かいはつ</rt></ruby>を<ruby>経験<rt>けいけん</rt></ruby>できる<ruby>貴重<rt>きちょう</rt></ruby>な<ruby>機会<rt>きかい</rt></ruby>です。<br>
+                わからないことはAIに<ruby>聞<rt>き</rt></ruby>きながら<ruby>進<rt>すす</rt></ruby>められるので、プログラミング<ruby>初心者<rt>しょしんしゃ</rt></ruby>でも<ruby>安心<rt>あんしん</rt></ruby>してチャレンジできます。<br>
+                <ruby>実践<rt>じっせん</rt></ruby>を<ruby>通<rt>とお</rt></ruby>じて、<ruby>将来役立<rt>しょうらいやくだ</rt></ruby>つ<ruby>技術力<rt>ぎじゅつりょく</rt></ruby>を<ruby>身<rt>み</rt></ruby>につけましょう!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">AIと<ruby>一緒<rt>いっしょ</rt></ruby>に、<ruby>未来<rt>みらい</rt></ruby>のエンジニアへの<ruby>第一歩<rt>だいいっぽ</rt></ruby>を<ruby>踏<rt>ふ</rt></ruby>み<ruby>出<rt>だ</rt></ruby>そう!</strong>
+            </p>
+        </div>
+
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+    </div>
+
+    <script>
+        function switchMode(mode) {
+            const tabs = document.querySelectorAll('.mode-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            if (mode === 'elementary') {
+                document.body.classList.add('elementary-mode');
+                tabs[1].classList.add('active');
+            } else {
+                document.body.classList.remove('elementary-mode');
+                tabs[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>if(塾) - AIと起業を学ぶオンラインプログラミング塾</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -29,6 +33,7 @@
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
+            font-size: 18px;
         }
 
         /* Global responsive image fix */
@@ -105,9 +110,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             transition: all 0.3s;
             box-shadow: var(--neon-glow);
+            position: relative;
         }
 
         .hamburger span {
@@ -118,15 +124,16 @@
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(7px, 7px);
         }
 
         .hamburger.active span:nth-child(2) {
             opacity: 0;
+            transform: scale(0);
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .hamburger.active {
@@ -228,13 +235,94 @@
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             font-weight: 700;
+            color: #4da6ff;
+            text-shadow:
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                0 0 20px rgba(77, 166, 255, 0.8),
+                0 0 40px rgba(77, 166, 255, 0.6),
+                0 0 60px rgba(77, 166, 255, 0.4);
+            animation: blueGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes blueGlow {
+            0%, 100% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 20px rgba(100, 200, 255, 0.8),
+                    0 0 40px rgba(100, 200, 255, 0.6),
+                    0 0 60px rgba(100, 200, 255, 0.4);
+            }
+            50% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 30px rgba(100, 200, 255, 1),
+                    0 0 50px rgba(100, 200, 255, 0.8),
+                    0 0 70px rgba(100, 200, 255, 0.6);
+            }
         }
 
         .hero-subtitle {
             font-size: clamp(1rem, 2vw, 1.3rem);
-            color: var(--text-gray);
+            color: #ffd700;
             margin-bottom: 3rem;
             line-height: 1.8;
+            text-shadow:
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.6),
+                0 0 60px rgba(255, 215, 0, 0.4);
+            animation: yellowGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes yellowGlow {
+            0%, 100% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 20px rgba(255, 215, 0, 0.8),
+                    0 0 40px rgba(255, 215, 0, 0.6),
+                    0 0 60px rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 30px rgba(255, 215, 0, 1),
+                    0 0 50px rgba(255, 215, 0, 0.8),
+                    0 0 70px rgba(255, 215, 0, 0.6);
+            }
         }
 
         .cta-button {
@@ -409,14 +497,16 @@
             box-shadow: var(--purple-glow);
         }
 
-        .calendar-container iframe {
+        .calendar-image {
             width: 100%;
             border-radius: 10px;
+            display: block;
         }
 
         .schedule-note {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 0;
+            padding-top: 1rem;
             font-size: 1rem;
             color: var(--text-gray);
             line-height: 1.4;
@@ -493,38 +583,81 @@
         }
 
         .service-detail {
-            position: absolute;
+            display: none;
+        }
+
+        .service-modal {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
             color: var(--text-light);
-            padding: 20px;
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .service-modal.active {
+            display: flex;
+        }
+
+        .service-modal-content {
+            max-width: 800px;
+            width: 100%;
             text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 4;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .service-modal-close {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            word-wrap: break-word;
-            white-space: normal;
+            transition: all 0.3s;
+            font-weight: bold;
         }
 
-        .service-card:hover .service-detail {
-            opacity: 1;
+        .service-modal-close:hover {
+            background: var(--text-light);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .service-modal-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .service-modal-content {
+                font-size: 1.1rem;
+                padding: 60px 20px 20px;
+            }
         }
 
         /* Challenge Section */
         .challenge-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 40px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             align-items: center;
         }
 
@@ -686,7 +819,7 @@
 
         .staff-role {
             position: absolute;
-            top: 20px;
+            bottom: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.8);
             padding: 8px 16px;
@@ -804,7 +937,7 @@
         .youtube-scroll {
             display: flex;
             gap: 20px;
-            animation: scroll-left 30s linear infinite;
+            animation: scroll-left 10s linear infinite;
         }
 
         @keyframes scroll-left {
@@ -908,8 +1041,9 @@
         /* Message Section */
         .message-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px;
             background: url('images/paper.png') center/cover;
+            background-size: 110%;
             border-radius: 15px;
             padding: 60px;
             box-shadow: var(--purple-glow);
@@ -938,14 +1072,13 @@
             line-height: 2;
             margin-bottom: 2rem;
             color: var(--text-light);
+            padding-left: 1.2em;
         }
 
         .message-signature {
             text-align: right;
             margin-top: 3rem;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            position: relative;
         }
 
         .message-signature p {
@@ -956,91 +1089,56 @@
         /* NPO if(AI) Section Styles */
         #if-ai .business-card {
             position: relative;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
             border-radius: 15px;
             overflow: hidden;
-            cursor: pointer;
             transition: all 0.3s;
-            min-height: 250px;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        #if-ai .business-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
-            z-index: 1;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            display: flex;
+            flex-direction: column;
+            aspect-ratio: 1/1;
         }
 
         #if-ai .business-card-image {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background-size: contain;
+            height: 60%;
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            z-index: 0;
+            flex-shrink: 0;
         }
 
         #if-ai .business-card-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px;
-            height: 100%;
+            padding: 20px 15px;
+            height: 40%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
+            overflow: hidden;
         }
 
         #if-ai .business-card-content h3 {
             font-size: 1.5rem;
-            margin-bottom: 0;
+            margin-bottom: 0.8rem;
             color: var(--primary-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         #if-ai .business-card-detail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
             color: var(--text-light);
-            padding: 20px;
-            text-align: center;
-            font-size: 1rem;
-            line-height: 1.5;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            box-sizing: border-box;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
-        #if-ai .business-card:hover .business-card-detail,
-        #if-ai .business-card:active .business-card-detail {
-            opacity: 1;
+        #if-ai .business-card-detail p {
+            margin: 0;
         }
 
         #if-ai .business-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--neon-glow);
+            border-color: var(--primary-color);
         }
 
         /* Business Section */
@@ -1133,6 +1231,12 @@
             margin-bottom: 3rem;
         }
 
+        #if-ai .business-grid {
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+            gap: 40px;
+        }
+
         .business-card {
             background-size: cover;
             background-position: center;
@@ -1204,25 +1308,65 @@
         .contact-link {
             display: block;
             padding: 20px 40px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            background-size: 200% 100%;
-            background-position: -100% 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             color: var(--text-light);
             text-decoration: none;
             text-align: center;
             font-size: 1.2rem;
             font-weight: bold;
-            border: 2px solid var(--primary-color);
+            border: 2px solid;
             border-radius: 50px;
             transition: all 0.3s;
-            box-shadow: var(--neon-glow);
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-link:hover {
-            background-position: 0 0;
-            color: var(--bg-dark);
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
+        }
+
+        .contact-link:nth-child(1) {
+            border-color: #4a90e2;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:nth-child(1):hover {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0, 255, 204, 0.6);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:nth-child(2) {
+            border-color: #ff8c42;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:nth-child(2):hover {
+            background: linear-gradient(135deg, #ff8c42, #ff6b1a);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:nth-child(3) {
+            border-color: #06c755;
+            box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:nth-child(3):hover {
+            background: linear-gradient(135deg, #06c755, #05a344);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 199, 85, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .contact-info {
@@ -1271,7 +1415,7 @@
         .blog-items {
             display: flex;
             gap: 20px;
-            animation: scroll-right 40s linear infinite;
+            animation: scroll-right 13s linear infinite;
         }
 
         @keyframes scroll-right {
@@ -1280,7 +1424,7 @@
         }
 
         .blog-items.reverse {
-            animation: scroll-left 40s linear infinite;
+            animation: scroll-left 13s linear infinite;
         }
 
         .blog-item {
@@ -1429,6 +1573,15 @@
             .comic-slider {
                 padding: 0 20px;
             }
+
+            .flow-image {
+                width: 85%;
+            }
+
+            .cta-button {
+                width: 90%;
+                max-width: 400px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1483,6 +1636,7 @@
             height: 100%;
             background: var(--bg-dark);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10000;
@@ -1494,10 +1648,249 @@
             pointer-events: none;
         }
 
+        .loading-logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .loading-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: logoFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+        .loading-progress {
+            width: 300px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+        }
+
         .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .loading-percentage {
             font-size: 2rem;
             color: var(--primary-color);
-            animation: pulse 1s infinite;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Visitor Counter */
+        .visitor-counter {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 3px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.4), inset 0 0 20px rgba(0, 255, 204, 0.1);
+            font-family: 'Courier New', monospace;
+            min-width: 250px;
+            margin-left: 20px;
+        }
+
+        .counter-title {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        .counter-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .counter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .counter-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .counter-value {
+            display: flex;
+            gap: 3px;
+        }
+
+        .counter-digit {
+            display: inline-block;
+            background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            min-width: 28px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.3), 0 0 8px rgba(255, 0, 255, 0.2);
+            animation: digitGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes digitGlow {
+            0%, 100% {
+                box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.3), 0 0 8px rgba(255, 0, 255, 0.2);
+            }
+            50% {
+                box-shadow: inset 0 0 15px rgba(255, 0, 255, 0.5), 0 0 12px rgba(255, 0, 255, 0.4);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .visitor-counter {
+                display: block;
+                min-width: 200px;
+                padding: 12px 15px;
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .counter-title {
+                font-size: 0.75rem;
+            }
+
+            .counter-label {
+                font-size: 0.75rem;
+            }
+
+            .counter-digit {
+                font-size: 0.85rem;
+                min-width: 24px;
+                padding: 3px 6px;
+            }
+        }
+
+        /* Minecraft Style Text */
+        .minecraft-text {
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ffff00;
+            text-shadow:
+                3px 3px 0px #000000,
+                -1px -1px 0px #000000,
+                1px -1px 0px #000000,
+                -1px 1px 0px #000000,
+                0 0 20px rgba(255, 255, 0, 0.8);
+            transform: skewY(-5deg);
+            display: block;
+            animation: minecraftPulse 2s ease-in-out infinite;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            margin-top: -1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: right;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        @keyframes minecraftPulse {
+            0%, 100% {
+                transform: skewY(-5deg) scale(1);
+            }
+            50% {
+                transform: skewY(-5deg) scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .minecraft-text {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Fire Effect for Challenge Title */
+        .fire-text {
+            position: relative;
+            display: inline-block;
+            animation: fireFlicker 1.5s ease-in-out infinite;
+        }
+
+        @keyframes fireFlicker {
+            0%, 100% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 10px #ff6600,
+                    0 0 20px #ff6600,
+                    0 0 30px #ff3300,
+                    0 0 40px #ff3300,
+                    0 0 50px #ff0000,
+                    0 -10px 60px #ff3300,
+                    0 -15px 80px #ff0000;
+                filter: brightness(1.2);
+            }
+            50% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 5px #ff9900,
+                    0 0 15px #ff6600,
+                    0 0 25px #ff3300,
+                    0 0 35px #ff3300,
+                    0 0 45px #ff0000,
+                    0 -5px 55px #ff6600,
+                    0 -10px 70px #ff3300;
+                filter: brightness(1);
+            }
         }
 
         /* Blog Modal Styles */
@@ -1597,7 +1990,14 @@
 <body>
     <!-- Loading Screen -->
     <div class="loading" id="loading">
-        <div class="loading-text">if(塾) Loading...</div>
+        <div class="loading-logo">
+            <img src="images/logo.png" alt="if(塾)">
+        </div>
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
+        <div class="loading-text">読み込み中...</div>
     </div>
 
     <!-- Navigation -->
@@ -1642,7 +2042,26 @@
             <img src="images/logo.png" alt="if(塾)ロゴ" class="hero-logo">
             <h1 class="hero-title">AIと起業を学ぶ、オンラインプログラミング塾</h1>
             <p class="hero-subtitle">遠隔・全国対応で、好きなことを学びながら稼げる力を育成</p>
-            <a href="#contact" class="cta-button smooth-scroll">無料体験授業を申し込む</a>
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                <a href="#contact" class="cta-button smooth-scroll">無料体験授業を申し込む</a>
+                <div class="visitor-counter">
+                    <div class="counter-title">Visitors</div>
+                    <div class="counter-stats">
+                        <div class="counter-row">
+                            <span class="counter-label">今日</span>
+                            <div class="counter-value" id="counterToday"></div>
+                        </div>
+                        <div class="counter-row">
+                            <span class="counter-label">今週</span>
+                            <div class="counter-value" id="counterWeek"></div>
+                        </div>
+                        <div class="counter-row">
+                            <span class="counter-label">今月</span>
+                            <div class="counter-value" id="counterMonth"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1700,16 +2119,15 @@
     <section id="schedule">
         <h2 class="section-title">授業スケジュール</h2>
         <div class="calendar-container">
-            <iframe src="https://calendar.google.com/calendar/embed?src=ifjuku%40gmail.com&ctz=Asia%2FTokyo" 
-                    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+            <img src="images/calenderpc.png" alt="授業スケジュール" class="calendar-image" id="calendarImage">
+            <p class="schedule-note">授業は基本的にオンラインで実施されます。</p>
         </div>
-        <p class="schedule-note">授業は基本的にオンラインで実施されます。</p>
     </section>
 
     <!-- Challenge Section -->
     <section id="challenge">
-        <h2 class="section-title">if(チャレンジ)</h2>
-        <p class="challenge-intro" style="color: var(--text-gray); text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.1rem; line-height: 1.8;">
+        <h2 class="section-title">if(<span class="fire-text">チャレンジ</span>)</h2>
+        <p class="challenge-intro" style="color: var(--text-gray); text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.1rem; line-height: 1.5;">
             if(塾)では、独自開発のAIツールにより、多くの仕事を小学生から誰でも取り組みやすい形にしています。<br>
             自分が少し得意なことでお金を稼ぐ経験を幼い頃からすることで、将来への見通しや意欲が生まれます。<br>
             こうした実践的な経験が自信となり、より本格的なスキル習得へとつながっていきます。
@@ -1724,67 +2142,69 @@
             </div>
             <div class="service-grid">
                 <div class="service-card">
-                    <div class="service-image" style="background-image: url('images/quest1.png');"></div>
+                    <div class="service-image" style="background-image: url('images/quest1.png'); position: relative;">
+                        <a href="shortmoviemanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ff6b6b, #ff8c42); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 0 40px rgba(255, 140, 66, 0.5); transition: all 0.3s; z-index: 10;">
+                            ショート動画<br>マニュアル
+                        </a>
+                    </div>
                     <div class="service-info">
                         <h3 class="service-name">Quest 1</h3>
-                        <p class="service-brief">動画編集にチャレンジ</p>
-                        <div class="service-detail">
-                            動画編集ソフトを使って、自分だけのオリジナル動画を作成します。カット、エフェクト、BGMの追加など、基本的な動画編集技術を習得します。
-                        </div>
+                        <p class="service-brief">ショート動画作成</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-image" style="background-image: url('images/quest2.png');"></div>
+                    <div class="service-image" style="background-image: url('images/quest2.png'); position: relative;">
+                        <a href="minecraftmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #8bc34a, #4caf50); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(139, 195, 74, 0.8), 0 0 40px rgba(76, 175, 80, 0.5); transition: all 0.3s; z-index: 10;">
+                            マイクラ<br>マニュアル
+                        </a>
+                    </div>
                     <div class="service-info">
                         <h3 class="service-name">Quest 2</h3>
                         <p class="service-brief">マインクラフトで建築</p>
-                        <div class="service-detail">
-                            マインクラフトを使って創造力を発揮し、自分だけの建築物を作成します。基本的な建築技術から応用まで、楽しく学習できます。
-                        </div>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-image" style="background-image: url('images/quest3.png');"></div>
+                    <div class="service-image" style="background-image: url('images/quest3.png'); position: relative;">
+                        <a href="developmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #4a90e2, #357abd); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(74, 144, 226, 0.8), 0 0 40px rgba(53, 122, 189, 0.5); transition: all 0.3s; z-index: 10;">
+                            システム開発<br>マニュアル
+                        </a>
+                    </div>
                     <div class="service-info">
                         <h3 class="service-name">Quest 3</h3>
-                        <p class="service-brief">プログラミング基礎</p>
-                        <div class="service-detail">
-                            ビジュアルプログラミングから始めて、プログラミングの基本概念を学習します。ゲーム感覚で楽しく論理的思考を身につけます。
-                        </div>
+                        <p class="service-brief">システム開発</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest4.png'); position: relative;">
                         <a href="instagrammanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #00ffcc, #00ff00); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); transition: all 0.3s; z-index: 10;">
-                            📱 SNS運用マニュアルを見る
+                            SNS運用<br>マニュアル
                         </a>
                     </div>
                     <div class="service-info">
                         <h3 class="service-name">Quest 4</h3>
                         <p class="service-brief">SNS運用</p>
-                        <div class="service-detail">
-                            インスタグラムなどのSNS運用にチャレンジ!独自開発のツールを使うから、誰でも簡単に投稿作成ができます。楽しみながらSNSマーケティングを学べます。
-                        </div>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-image" style="background-image: url('images/quest5.png');"></div>
+                    <div class="service-image" style="background-image: url('images/quest5.png'); position: relative;">
+                        <a href="advertisingmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #9c27b0, #e91e63); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(156, 39, 176, 0.8), 0 0 40px rgba(233, 30, 99, 0.5); transition: all 0.3s; z-index: 10;">
+                            広告デザイン<br>マニュアル
+                        </a>
+                    </div>
                     <div class="service-info">
                         <h3 class="service-name">Quest 5</h3>
-                        <p class="service-brief">3Dモデリング体験</p>
-                        <div class="service-detail">
-                            3Dモデリングソフトを使って、立体的な作品を作成します。空間認識能力を養いながら、新しい表現方法を学びます。
-                        </div>
+                        <p class="service-brief">広告デザイン</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-image" style="background-image: url('images/quest6.png');"></div>
+                    <div class="service-image" style="background-image: url('images/quest6.png'); position: relative;">
+                        <a href="allinmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ffd700, #ffb300); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 179, 0, 0.5); transition: all 0.3s; z-index: 10;">
+                            総合開発<br>マニュアル
+                        </a>
+                    </div>
                     <div class="service-info">
                         <h3 class="service-name">Quest 6</h3>
-                        <p class="service-brief">総合プロジェクト</p>
-                        <div class="service-detail">
-                            これまでに学習した技術を組み合わせて、オリジナルの作品を完成させます。企画から完成まで、一連の制作プロセスを体験します。
-                        </div>
+                        <p class="service-brief">総合開発</p>
                     </div>
                 </div>
             </div>
@@ -1843,7 +2263,7 @@
     <!-- Services Section -->
     <section id="services">
         <h2 class="section-title">サービス案内</h2>
-        <p style="color: var(--text-gray); margin-bottom: 2rem;">月額11,000円（税込）〜で利用できる、if(塾)の全面サポートサブスクリプション！</p>
+        <p class="minecraft-text">月額11,000円（税込）〜で利用できる、<br>if(塾)の全面サポートサブスクリプション！</p>
         <div class="service-grid">
             <div class="service-card">
                 <div class="service-image" style="background-image: url('images/service1.png');"></div>
@@ -1908,6 +2328,14 @@
         </div>
     </section>
 
+    <!-- Service Modal -->
+    <div class="service-modal" id="serviceModal">
+        <div class="service-modal-content">
+            <button class="service-modal-close" id="serviceModalClose">×</button>
+            <p id="serviceModalText"></p>
+        </div>
+    </div>
+
     <!-- Staff Section -->
     <section id="staff">
         <h2 class="section-title">運営メンバー</h2>
@@ -1934,6 +2362,11 @@
                     <p class="staff-text">
                         高校1年でIT会社を起業！Web開発やPCコンサルタントとして活躍後、if(塾)を開業。塾長としてみんなをまとめ、授業もメインで回す頼れるリーダーだよ！AI開発や講演も行う、AI活用の最前線に立つ若きイノベーター！中学時代は支援級で過ごした経験も力に、現役で国立大学合格！
                     </p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://amzn.asia/d/1lVoFg1" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #ff9900, #ff6600); color: #ffffff; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4); transition: all 0.3s;">
+                            📚 Kindleで著書を読む
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="staff-slide">
@@ -2116,22 +2549,22 @@
         <h2 class="section-title">if(メッセージ)</h2>
         <div class="message-container">
             <div class="message-content">
-                <p class="message-text">
-                    現代は目まぐるしく変化する時代です。AIの活用は今後さらに重要になり、教育の在り方も価値観も変わっていくでしょう。<br><br>
-                    このサイトは最新AIで制作されています。表現手段とAIを組み合わせれば表現できないものはありません。皆さんもAIを使った開発や起業、自由な表現に挑戦してほしいです。<br><br>
-                    学校が面白くないと感じる人もいるかもしれません。私たちもそうでした。だからこそ、誰でも楽しめる塾を目指しています。<br><br>
-                    行動すれば世界は変わります。if(塾)の運営メンバーも高校生から始め、挑戦を形にしています。<br><br>
-                    まずは日常の何かを変えてみましょう。第一歩として、if(塾)で好きなことに取り組んでみませんか？<br><br>
+                <p class="message-text" style="line-height: 1.7;">
+                    現代は目まぐるしく変化する時代です。AIの活用は今後さらに重要になり、教育の在り方も価値観も変わっていくでしょう。<br>
+                    このサイトは最新AIで制作されています。表現手段とAIを組み合わせれば表現できないものはありません。皆さんもAIを使った開発や起業、自由な表現に挑戦してほしいです。<br>
+                    学校が面白くないと感じる人もいるかもしれません。私たちもそうでした。だからこそ、誰でも楽しめる塾を目指しています。<br>
+                    行動すれば世界は変わります。if(塾)の運営メンバーも高校生から始め、挑戦を形にしています。<br>
+                    まずは日常の何かを変えてみましょう。第一歩として、if(塾)で好きなことに取り組んでみませんか？<br>
                     if(塾)で、あなたの可能性を最大限に引き出しましょう。
                 </p>
                 <div class="message-signature">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem;">
-                        <div style="text-align: center;">
-                            <p>塾頭</p>
+                    <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 2rem; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                            <p style="font-size: 0.9rem;">塾頭</p>
                             <p style="font-size: 1.2rem;">高崎翔太</p>
                         </div>
-                        <div style="text-align: center;">
-                            <p>塾長</p>
+                        <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                            <p style="font-size: 0.9rem;">塾長</p>
                             <p style="font-size: 1.2rem;">山﨑琢己</p>
                         </div>
                     </div>
@@ -2220,11 +2653,12 @@
         <h2 class="section-title">NPO法人if(AI)</h2>
         <div class="section-content">
             <div class="section-description" style="text-align: center; margin-bottom: 3rem;">
-                <p style="font-size: 1.5rem; margin-bottom: 1rem;">地域と共に歩む、温かい就労支援</p>
-                <p style="font-size: 1.2rem;">秋田市の若者・障がい者の皆様にAIと地域の力で新しい未来を</p>
+                <p style="font-size: 2rem; margin-bottom: 1rem;">地域と共に歩む、温かい就労支援</p>
+                <p style="font-size: 1.5rem;">秋田市の若者・障がい者の皆様にAIと地域の力で新しい未来を</p>
             </div>
             <div class="business-grid">
-                <div class="business-card" data-support-type="truancy" style="background-image: url('images/npo1.png');">
+                <div class="business-card" data-support-type="truancy">
+                    <div class="business-card-image" style="background-image: url('images/npo1.png');"></div>
                     <div class="business-card-content">
                         <h3>不登校支援</h3>
                         <div class="business-card-detail">
@@ -2232,7 +2666,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="business-card" data-support-type="disability" style="background-image: url('images/npo2.png');">
+                <div class="business-card" data-support-type="disability">
+                    <div class="business-card-image" style="background-image: url('images/npo2.png');"></div>
                     <div class="business-card-content">
                         <h3>障がい者就労支援</h3>
                         <div class="business-card-detail">
@@ -2240,7 +2675,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="business-card" data-support-type="youth" style="background-image: url('images/npo3.png');">
+                <div class="business-card" data-support-type="youth">
+                    <div class="business-card-image" style="background-image: url('images/npo3.png');"></div>
                     <div class="business-card-content">
                         <h3>若者自立支援</h3>
                         <div class="business-card-detail">
@@ -2282,12 +2718,91 @@
     </footer>
 
     <script>
-        // Loading Screen
+        // Loading Screen with Progress
+        let progress = 0;
+        const loadingProgressBar = document.getElementById('loadingProgressBar');
+        const loadingPercentage = document.getElementById('loadingPercentage');
+
+        // Simulate loading progress
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+
+            loadingProgressBar.style.width = progress + '%';
+            loadingPercentage.textContent = Math.floor(progress) + '%';
+
+            if (progress >= 100) {
+                clearInterval(progressInterval);
+            }
+        }, 200);
+
         window.addEventListener('load', () => {
+            // Ensure progress reaches 100% when loaded
+            progress = 100;
+            loadingProgressBar.style.width = '100%';
+            loadingPercentage.textContent = '100%';
+
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
             }, 1000);
         });
+
+        // Visitor Counter
+        function updateCounter(elementId, count) {
+            const element = document.getElementById(elementId);
+            const digits = count.toString().padStart(4, '0').split('');
+            element.innerHTML = digits.map(digit =>
+                `<span class="counter-digit">${digit}</span>`
+            ).join('');
+        }
+
+        function initVisitorCounter() {
+            // Get or initialize visitor data from localStorage
+            const today = new Date().toDateString();
+            const currentWeek = getWeekNumber(new Date());
+            const currentMonth = new Date().getMonth();
+
+            let visitorData = JSON.parse(localStorage.getItem('visitorData') || '{}');
+
+            // Reset counters if period changed
+            if (visitorData.lastVisitDate !== today) {
+                if (!visitorData.todayCount) visitorData.todayCount = 0;
+                visitorData.todayCount++;
+                visitorData.lastVisitDate = today;
+            }
+
+            if (visitorData.lastVisitWeek !== currentWeek) {
+                visitorData.weekCount = 1;
+                visitorData.lastVisitWeek = currentWeek;
+            } else {
+                if (!visitorData.weekCount) visitorData.weekCount = 0;
+                visitorData.weekCount++;
+            }
+
+            if (visitorData.lastVisitMonth !== currentMonth) {
+                visitorData.monthCount = 1;
+                visitorData.lastVisitMonth = currentMonth;
+            } else {
+                if (!visitorData.monthCount) visitorData.monthCount = 0;
+                visitorData.monthCount++;
+            }
+
+            // Save updated data
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+
+            // Update display
+            updateCounter('counterToday', visitorData.todayCount || 1);
+            updateCounter('counterWeek', visitorData.weekCount || 1);
+            updateCounter('counterMonth', visitorData.monthCount || 1);
+        }
+
+        function getWeekNumber(date) {
+            const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+            const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+            return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+        }
+
+        initVisitorCounter();
 
         // Responsive Video and Image
         function updateMedia() {
@@ -2295,6 +2810,7 @@
             const heroVideo = document.getElementById('heroVideo');
             const aboutImage = document.getElementById('aboutImage');
             const flowImage = document.getElementById('flowImage');
+            const calendarImage = document.getElementById('calendarImage');
 
             if (heroVideo) {
                 heroVideo.src = isMobile ? 'images/ifmvsp.mp4' : 'images/ifmvpc.mp4';
@@ -2306,6 +2822,10 @@
 
             if (flowImage) {
                 flowImage.src = isMobile ? 'images/flowsp.png' : 'images/flowpc.png';
+            }
+
+            if (calendarImage) {
+                calendarImage.src = isMobile ? 'images/calendersp.png' : 'images/calenderpc.png';
             }
         }
 
@@ -2833,6 +3353,30 @@
 
         // Load YouTube videos
         loadYouTubeVideos();
+
+        // Service Modal functionality
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceModalClose = document.getElementById('serviceModalClose');
+        const serviceModalText = document.getElementById('serviceModalText');
+        const serviceCards = document.querySelectorAll('#services .service-card');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const detailText = card.querySelector('.service-detail').textContent.trim();
+                serviceModalText.textContent = detailText;
+                serviceModal.classList.add('active');
+            });
+        });
+
+        serviceModalClose.addEventListener('click', () => {
+            serviceModal.classList.remove('active');
+        });
+
+        serviceModal.addEventListener('click', (e) => {
+            if (e.target === serviceModal) {
+                serviceModal.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>

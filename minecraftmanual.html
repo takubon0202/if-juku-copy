@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マインクラフト建築マニュアル - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        .mode-tabs {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-tab {
+            padding: 10px 20px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .mode-tab:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+
+        .content-elementary {
+            display: none;
+        }
+
+        .content-junior {
+            display: block;
+        }
+
+        body.elementary-mode .content-elementary {
+            display: block;
+        }
+
+        body.elementary-mode .content-junior {
+            display: none;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .price-box {
+            background: rgba(255, 0, 255, 0.15);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            box-shadow: var(--purple-glow);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 20px 20px 20px 60px;
+            margin-bottom: 15px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 12px 12px 40px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        .warning-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 15px 15px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-tabs">
+        <div class="mode-tab active" onclick="switchMode('junior')">中学生以上</div>
+        <div class="mode-tab" onclick="switchMode('elementary')">小学生</div>
+    </div>
+
+    <div class="container">
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+
+        <h1 class="content-junior">マインクラフト建築マニュアル</h1>
+        <h1 class="content-elementary">マインクラフト<ruby>建築<rt>けんちく</rt></ruby>マニュアル</h1>
+
+        <div class="intro content-junior">
+            if(塾)のマインクラフトワールド内で建築やコマンド仕組みを作成!<br>
+            創造力を活かして、楽しくお小遣い稼ぎができるよ
+        </div>
+        <div class="intro content-elementary">
+            if(<ruby>塾<rt>じゅく</rt></ruby>)のマインクラフトワールド<ruby>内<rt>ない</rt></ruby>で<ruby>建築<rt>けんちく</rt></ruby>やコマンド<ruby>仕組<rt>しく</rt></ruby>みを<ruby>作成<rt>さくせい</rt></ruby>!<br>
+            <ruby>創造力<rt>そうぞうりょく</rt></ruby>を<ruby>活<rt>い</rt></ruby>かして、<ruby>楽<rt>たの</rt></ruby>しくお<ruby>小遣<rt>こづか</rt></ruby>い<ruby>稼<rt>かせ</rt></ruby>ぎができるよ
+        </div>
+
+        <div class="warning-box content-junior" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                参加前に必ず確認! 18歳未満の方は、必ず保護者の同意を得てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお仕事に参加するには、業務委託契約の締結が必要です。下のボタンから契約フォームに進んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    業務委託契約フォームへ
+                </a>
+            </div>
+        </div>
+        <div class="warning-box content-elementary" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                <ruby>参加<rt>さんか</rt></ruby><ruby>前<rt>まえ</rt></ruby>に<ruby>必<rt>かなら</rt></ruby>ず<ruby>確認<rt>かくにん</rt></ruby>! 18<ruby>歳<rt>さい</rt></ruby><ruby>未満<rt>みまん</rt></ruby>の<ruby>方<rt>かた</rt></ruby>は、<ruby>必<rt>かなら</rt></ruby>ず<ruby>保護者<rt>ほごしゃ</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>を<ruby>得<rt>え</rt></ruby>てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>に<ruby>参加<rt>さんか</rt></ruby>するには、<ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>の<ruby>締結<rt>ていけつ</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>です。<ruby>下<rt>した</rt></ruby>のボタンから<ruby>契約<rt>けいやく</rt></ruby>フォームに<ruby>進<rt>すす</rt></ruby>んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    <ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>フォームへ
+                </a>
+            </div>
+        </div>
+
+        <!-- お仕事の内容 -->
+        <div class="section content-junior">
+            <h2>お仕事の内容</h2>
+            <p>if(塾)のマインクラフトワールド内で建築物を作成したり、コマンドブロックで仕組みを実装するお仕事です!</p>
+
+            <div class="price-box">
+                報酬は要相談<br>
+                <span style="font-size: 1rem;">建物や仕組みの規模・複雑さによって変動します</span>
+            </div>
+
+            <div class="highlight-box">
+                <strong>作成するもの</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>建築物(学校、街、モニュメント、アトラクションなど)</li>
+                    <li>コマンドブロックでの仕組み(ミニゲーム、自動化システムなど)</li>
+                    <li>レッドストーン回路(自動ドア、エレベーター、複雑な機械装置など)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>お<ruby>仕事<rt>しごと</rt></ruby>の<ruby>内容<rt>ないよう</rt></ruby></h2>
+            <p>if(<ruby>塾<rt>じゅく</rt></ruby>)のマインクラフトワールド<ruby>内<rt>ない</rt></ruby>で<ruby>建築物<rt>けんちくぶつ</rt></ruby>を<ruby>作成<rt>さくせい</rt></ruby>したり、コマンドブロックで<ruby>仕組<rt>しく</rt></ruby>みを<ruby>実装<rt>じっそう</rt></ruby>するお<ruby>仕事<rt>しごと</rt></ruby>です!</p>
+
+            <div class="price-box">
+                <ruby>報酬<rt>ほうしゅう</rt></ruby>は<ruby>要相談<rt>ようそうだん</rt></ruby><br>
+                <span style="font-size: 1rem;"><ruby>建物<rt>たてもの</rt></ruby>や<ruby>仕組<rt>しく</rt></ruby>みの<ruby>規模<rt>きぼ</rt></ruby>・<ruby>複雑<rt>ふくざつ</rt></ruby>さによって<ruby>変動<rt>へんどう</rt></ruby>します</span>
+            </div>
+
+            <div class="highlight-box">
+                <strong><ruby>作成<rt>さくせい</rt></ruby>するもの</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><ruby>建築物<rt>けんちくぶつ</rt></ruby>(<ruby>学校<rt>がっこう</rt></ruby>、<ruby>街<rt>まち</rt></ruby>、モニュメント、アトラクションなど)</li>
+                    <li>コマンドブロックでの<ruby>仕組<rt>しく</rt></ruby>み(ミニゲーム、<ruby>自動化<rt>じどうか</rt></ruby>システムなど)</li>
+                    <li>レッドストーン<ruby>回路<rt>かいろ</rt></ruby>(<ruby>自動<rt>じどう</rt></ruby>ドア、エレベーター、<ruby>複雑<rt>ふくざつ</rt></ruby>な<ruby>機械装置<rt>きかいそうち</rt></ruby>など)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 仕事の種類 -->
+        <div class="section content-junior">
+            <h2>仕事の種類</h2>
+
+            <h3>1. 建築物の作成</h3>
+            <div class="highlight-box">
+                <strong>内装デザインも含めた建築作業</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>学校の教室、図書館、体育館</li>
+                    <li>街の建物(商店、住宅、公共施設)</li>
+                    <li>モニュメントや記念碑</li>
+                    <li>アトラクション施設</li>
+                    <li>その他、if(塾)で必要とされる建築物</li>
+                </ul>
+            </div>
+
+            <h3>2. コマンドブロックでの仕組み実装</h3>
+            <div class="highlight-box">
+                <strong>プログラミング的思考を活かした仕組み作り</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>ミニゲームの作成</li>
+                    <li>自動化システム</li>
+                    <li>インタラクティブな仕掛け</li>
+                    <li>テレポート機能</li>
+                    <li>スコアボードシステム</li>
+                </ul>
+            </div>
+
+            <h3>3. レッドストーン回路</h3>
+            <div class="highlight-box">
+                <strong>論理回路を使った機械装置</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>自動ドア、エレベーター</li>
+                    <li>複雑な機械装置</li>
+                    <li>自動収穫システム</li>
+                    <li>隠し扉や隠し通路</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>仕事<rt>しごと</rt></ruby>の<ruby>種類<rt>しゅるい</rt></ruby></h2>
+
+            <h3>1. <ruby>建築物<rt>けんちくぶつ</rt></ruby>の<ruby>作成<rt>さくせい</rt></ruby></h3>
+            <div class="highlight-box">
+                <strong><ruby>内装<rt>ないそう</rt></ruby>デザインも<ruby>含<rt>ふく</rt></ruby>めた<ruby>建築作業<rt>けんちくさぎょう</rt></ruby></strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><ruby>学校<rt>がっこう</rt></ruby>の<ruby>教室<rt>きょうしつ</rt></ruby>、<ruby>図書館<rt>としょかん</rt></ruby>、<ruby>体育館<rt>たいいくかん</rt></ruby></li>
+                    <li><ruby>街<rt>まち</rt></ruby>の<ruby>建物<rt>たてもの</rt></ruby>(<ruby>商店<rt>しょうてん</rt></ruby>、<ruby>住宅<rt>じゅうたく</rt></ruby>、<ruby>公共施設<rt>こうきょうしせつ</rt></ruby>)</li>
+                    <li>モニュメントや<ruby>記念碑<rt>きねんひ</rt></ruby></li>
+                    <li>アトラクション<ruby>施設<rt>しせつ</rt></ruby></li>
+                    <li>その<ruby>他<rt>ほか</rt></ruby>、if(<ruby>塾<rt>じゅく</rt></ruby>)で<ruby>必要<rt>ひつよう</rt></ruby>とされる<ruby>建築物<rt>けんちくぶつ</rt></ruby></li>
+                </ul>
+            </div>
+
+            <h3>2. コマンドブロックでの<ruby>仕組<rt>しく</rt></ruby>み<ruby>実装<rt>じっそう</rt></ruby></h3>
+            <div class="highlight-box">
+                <strong>プログラミング<ruby>的思考<rt>てきしこう</rt></ruby>を<ruby>活<rt>い</rt></ruby>かした<ruby>仕組<rt>しく</rt></ruby>み<ruby>作<rt>づく</rt></ruby>り</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>ミニゲームの<ruby>作成<rt>さくせい</rt></ruby></li>
+                    <li><ruby>自動化<rt>じどうか</rt></ruby>システム</li>
+                    <li>インタラクティブな<ruby>仕掛<rt>しか</rt></ruby>け</li>
+                    <li>テレポート<ruby>機能<rt>きのう</rt></ruby></li>
+                    <li>スコアボードシステム</li>
+                </ul>
+            </div>
+
+            <h3>3. レッドストーン<ruby>回路<rt>かいろ</rt></ruby></h3>
+            <div class="highlight-box">
+                <strong><ruby>論理回路<rt>ろんりかいろ</rt></ruby>を<ruby>使<rt>つか</rt></ruby>った<ruby>機械装置<rt>きかいそうち</rt></ruby></strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><ruby>自動<rt>じどう</rt></ruby>ドア、エレベーター</li>
+                    <li><ruby>複雑<rt>ふくざつ</rt></ruby>な<ruby>機械装置<rt>きかいそうち</rt></ruby></li>
+                    <li><ruby>自動収穫<rt>じどうしゅうかく</rt></ruby>システム</li>
+                    <li><ruby>隠<rt>かく</rt></ruby>し<ruby>扉<rt>とびら</rt></ruby>や<ruby>隠<rt>かく</rt></ruby>し<ruby>通路<rt>つうろ</rt></ruby></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 求められるスキル -->
+        <div class="section content-junior">
+            <h2>求められるスキル</h2>
+            <ul class="requirements-list">
+                <li>マインクラフトの基本操作ができる</li>
+                <li>建築センス(建築の場合)</li>
+                <li>コマンドブロックの知識(仕組み実装の場合)</li>
+                <li>レッドストーンの理解(回路の場合)</li>
+                <li>if(塾)メンバーとのコミュニケーション能力</li>
+                <li>期限を守れる</li>
+                <li>報告・連絡・相談ができる</li>
+                <li>創造力を活かせる</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>初心者でもOK!</strong><br>
+                簡単な建築から始めて、徐々にレベルアップできます。メンターがサポートするので安心してチャレンジしてください!
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>求<rt>もと</rt></ruby>められるスキル</h2>
+            <ul class="requirements-list">
+                <li>マインクラフトの<ruby>基本操作<rt>きほんそうさ</rt></ruby>ができる</li>
+                <li><ruby>建築<rt>けんちく</rt></ruby>センス(<ruby>建築<rt>けんちく</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>)</li>
+                <li>コマンドブロックの<ruby>知識<rt>ちしき</rt></ruby>(<ruby>仕組<rt>しく</rt></ruby>み<ruby>実装<rt>じっそう</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>)</li>
+                <li>レッドストーンの<ruby>理解<rt>りかい</rt></ruby>(<ruby>回路<rt>かいろ</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>)</li>
+                <li>if(<ruby>塾<rt>じゅく</rt></ruby>)メンバーとのコミュニケーション<ruby>能力<rt>のうりょく</rt></ruby></li>
+                <li><ruby>期限<rt>きげん</rt></ruby>を<ruby>守<rt>まも</rt></ruby>れる</li>
+                <li><ruby>報告<rt>ほうこく</rt></ruby>・<ruby>連絡<rt>れんらく</rt></ruby>・<ruby>相談<rt>そうだん</rt></ruby>ができる</li>
+                <li><ruby>創造力<rt>そうぞうりょく</rt></ruby>を<ruby>活<rt>い</rt></ruby>かせる</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong><ruby>初心者<rt>しょしんしゃ</rt></ruby>でもOK!</strong><br>
+                <ruby>簡単<rt>かんたん</rt></ruby>な<ruby>建築<rt>けんちく</rt></ruby>から<ruby>始<rt>はじ</rt></ruby>めて、<ruby>徐々<rt>じょじょ</rt></ruby>にレベルアップできます。メンターがサポートするので<ruby>安心<rt>あんしん</rt></ruby>してチャレンジしてください!
+            </div>
+        </div>
+
+        <!-- 報酬について -->
+        <div class="section content-junior">
+            <h2>報酬について</h2>
+
+            <div class="price-box">
+                建物や仕組みの規模によって要相談
+            </div>
+
+            <div class="highlight-box">
+                <strong>報酬の目安</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>小規模:</strong> 1,000円〜 (小さな建物、シンプルな仕組み)</li>
+                    <li><strong>中規模:</strong> 3,000円〜 (中程度の建物、複数の機能を持つ仕組み)</li>
+                    <li><strong>大規模:</strong> 10,000円〜 (大きな建物、複雑な仕組み、複数の建築物)</li>
+                </ul>
+                <p style="margin-top: 15px; color: var(--text-gray);">
+                    ※ あくまで目安です。完成後にメンターが評価し、報酬を決定します。<br>
+                    ※ 作業前に相談して、大体の報酬額を確認できます。
+                </p>
+            </div>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong>報酬の受け取り方</strong><br>
+                • 完成後、メンターが評価して報酬額を決定します<br>
+                • 10個未満の場合は次月以降に繰り越し可能<br>
+                • 銀行振込を希望する場合、振込手数料500円がかかります
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>報酬<rt>ほうしゅう</rt></ruby>について</h2>
+
+            <div class="price-box">
+                <ruby>建物<rt>たてもの</rt></ruby>や<ruby>仕組<rt>しく</rt></ruby>みの<ruby>規模<rt>きぼ</rt></ruby>によって<ruby>要相談<rt>ようそうだん</rt></ruby>
+            </div>
+
+            <div class="highlight-box">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>の<ruby>目安<rt>めやす</rt></ruby></strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong><ruby>小規模<rt>しょうきぼ</rt></ruby>:</strong> 1,000<ruby>円<rt>えん</rt></ruby>〜 (<ruby>小<rt>ちい</rt></ruby>さな<ruby>建物<rt>たてもの</rt></ruby>、シンプルな<ruby>仕組<rt>しく</rt></ruby>み)</li>
+                    <li><strong><ruby>中規模<rt>ちゅうきぼ</rt></ruby>:</strong> 3,000<ruby>円<rt>えん</rt></ruby>〜 (<ruby>中程度<rt>ちゅうていど</rt></ruby>の<ruby>建物<rt>たてもの</rt></ruby>、<ruby>複数<rt>ふくすう</rt></ruby>の<ruby>機能<rt>きのう</rt></ruby>を<ruby>持<rt>も</rt></ruby>つ<ruby>仕組<rt>しく</rt></ruby>み)</li>
+                    <li><strong><ruby>大規模<rt>だいきぼ</rt></ruby>:</strong> 10,000<ruby>円<rt>えん</rt></ruby>〜 (<ruby>大<rt>おお</rt></ruby>きな<ruby>建物<rt>たてもの</rt></ruby>、<ruby>複雑<rt>ふくざつ</rt></ruby>な<ruby>仕組<rt>しく</rt></ruby>み、<ruby>複数<rt>ふくすう</rt></ruby>の<ruby>建築物<rt>けんちくぶつ</rt></ruby>)</li>
+                </ul>
+                <p style="margin-top: 15px; color: var(--text-gray);">
+                    ※ あくまで<ruby>目安<rt>めやす</rt></ruby>です。<ruby>完成後<rt>かんせいご</rt></ruby>にメンターが<ruby>評価<rt>ひょうか</rt></ruby>し、<ruby>報酬<rt>ほうしゅう</rt></ruby>を<ruby>決定<rt>けってい</rt></ruby>します。<br>
+                    ※ <ruby>作業前<rt>さぎょうまえ</rt></ruby>に<ruby>相談<rt>そうだん</rt></ruby>して、<ruby>大体<rt>だいたい</rt></ruby>の<ruby>報酬額<rt>ほうしゅうがく</rt></ruby>を<ruby>確認<rt>かくにん</rt></ruby>できます。
+                </p>
+            </div>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>の<ruby>受<rt>う</rt></ruby>け<ruby>取<rt>と</rt></ruby>り<ruby>方<rt>かた</rt></ruby></strong><br>
+                • <ruby>完成後<rt>かんせいご</rt></ruby>、メンターが<ruby>評価<rt>ひょうか</rt></ruby>して<ruby>報酬額<rt>ほうしゅうがく</rt></ruby>を<ruby>決定<rt>けってい</rt></ruby>します<br>
+                • 10<ruby>個未満<rt>こみまん</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>は<ruby>次月以降<rt>じげついこう</rt></ruby>に<ruby>繰<rt>く</rt></ruby>り<ruby>越<rt>こ</rt></ruby>し<ruby>可能<rt>かのう</rt></ruby><br>
+                • <ruby>銀行振込<rt>ぎんこうふりこみ</rt></ruby>を<ruby>希望<rt>きぼう</rt></ruby>する<ruby>場合<rt>ばあい</rt></ruby>、<ruby>振込手数料<rt>ふりこみてすうりょう</rt></ruby>500<ruby>円<rt>えん</rt></ruby>がかかります
+            </div>
+        </div>
+
+        <!-- こんな人にピッタリ -->
+        <div class="section content-junior">
+            <h2>こんな人にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>マインクラフトが好き</li>
+                <li>建築やレッドストーンが得意</li>
+                <li>創造力を活かしたい</li>
+                <li>if(塾)ワールドに貢献したい</li>
+                <li>コツコツ作業できる</li>
+                <li>自分のアイデアを形にしたい</li>
+                <li>プログラミング的思考を磨きたい</li>
+                <li>ゲームを作る側になりたい</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>年齢制限: 小学生からOK!</strong><br>
+                マインクラフトが好きなら、誰でもチャレンジできるお仕事だよ!
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>こんな<ruby>人<rt>ひと</rt></ruby>にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>マインクラフトが<ruby>好<rt>す</rt></ruby>き</li>
+                <li><ruby>建築<rt>けんちく</rt></ruby>やレッドストーンが<ruby>得意<rt>とくい</rt></ruby></li>
+                <li><ruby>創造力<rt>そうぞうりょく</rt></ruby>を<ruby>活<rt>い</rt></ruby>かしたい</li>
+                <li>if(<ruby>塾<rt>じゅく</rt></ruby>)ワールドに<ruby>貢献<rt>こうけん</rt></ruby>したい</li>
+                <li>コツコツ<ruby>作業<rt>さぎょう</rt></ruby>できる</li>
+                <li><ruby>自分<rt>じぶん</rt></ruby>のアイデアを<ruby>形<rt>かたち</rt></ruby>にしたい</li>
+                <li>プログラミング<ruby>的思考<rt>てきしこう</rt></ruby>を<ruby>磨<rt>みが</rt></ruby>きたい</li>
+                <li>ゲームを<ruby>作<rt>つく</rt></ruby>る<ruby>側<rt>がわ</rt></ruby>になりたい</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong><ruby>年齢制限<rt>ねんれいせいげん</rt></ruby>: <ruby>小学生<rt>しょうがくせい</rt></ruby>からOK!</strong><br>
+                マインクラフトが<ruby>好<rt>す</rt></ruby>きなら、<ruby>誰<rt>だれ</rt></ruby>でもチャレンジできるお<ruby>仕事<rt>しごと</rt></ruby>だよ!
+            </div>
+        </div>
+
+        <!-- まとめ -->
+        <div class="section content-junior">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                マインクラフト建築のお仕事は、あなたの創造力を最大限に活かせる仕事です。<br>
+                建築スキル、コマンドブロック、レッドストーンなど、様々なスキルを磨きながら報酬も得られます。<br>
+                if(塾)のワールドをより楽しく、より便利にする一員として、一緒に素敵な世界を作りましょう!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">好きなマインクラフトで創造力を発揮して、楽しくお小遣いを稼ごう!</strong>
+            </p>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                マインクラフト<ruby>建築<rt>けんちく</rt></ruby>のお<ruby>仕事<rt>しごと</rt></ruby>は、あなたの<ruby>創造力<rt>そうぞうりょく</rt></ruby>を<ruby>最大限<rt>さいだいげん</rt></ruby>に<ruby>活<rt>い</rt></ruby>かせる<ruby>仕事<rt>しごと</rt></ruby>です。<br>
+                <ruby>建築<rt>けんちく</rt></ruby>スキル、コマンドブロック、レッドストーンなど、<ruby>様々<rt>さまざま</rt></ruby>なスキルを<ruby>磨<rt>みが</rt></ruby>きながら<ruby>報酬<rt>ほうしゅう</rt></ruby>も<ruby>得<rt>え</rt></ruby>られます。<br>
+                if(<ruby>塾<rt>じゅく</rt></ruby>)のワールドをより<ruby>楽<rt>たの</rt></ruby>しく、より<ruby>便利<rt>べんり</rt></ruby>にする<ruby>一員<rt>いちいん</rt></ruby>として、<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>素敵<rt>すてき</rt></ruby>な<ruby>世界<rt>せかい</rt></ruby>を<ruby>作<rt>つく</rt></ruby>りましょう!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);"><ruby>好<rt>す</rt></ruby>きなマインクラフトで<ruby>創造力<rt>そうぞうりょく</rt></ruby>を<ruby>発揮<rt>はっき</rt></ruby>して、<ruby>楽<rt>たの</rt></ruby>しくお<ruby>小遣<rt>こづか</rt></ruby>いを<ruby>稼<rt>かせ</rt></ruby>ごう!</strong>
+            </p>
+        </div>
+
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+    </div>
+
+    <script>
+        function switchMode(mode) {
+            const tabs = document.querySelectorAll('.mode-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            if (mode === 'elementary') {
+                document.body.classList.add('elementary-mode');
+                tabs[1].classList.add('active');
+            } else {
+                document.body.classList.remove('elementary-mode');
+                tabs[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

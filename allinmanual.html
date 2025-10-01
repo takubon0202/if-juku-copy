@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>総合開発マニュアル - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        .mode-tabs {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-tab {
+            padding: 10px 20px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .mode-tab:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+
+        .content-elementary {
+            display: none;
+        }
+
+        .content-junior {
+            display: block;
+        }
+
+        body.elementary-mode .content-elementary {
+            display: block;
+        }
+
+        body.elementary-mode .content-junior {
+            display: none;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .price-box {
+            background: rgba(255, 0, 255, 0.15);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            box-shadow: var(--purple-glow);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 20px 20px 20px 60px;
+            margin-bottom: 15px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 12px 12px 40px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .project-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-list li {
+            padding: 15px 15px 15px 50px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .project-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 20px;
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        .warning-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 15px 15px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-tabs">
+        <div class="mode-tab active" onclick="switchMode('junior')">中学生以上</div>
+        <div class="mode-tab" onclick="switchMode('elementary')">小学生</div>
+    </div>
+
+    <div class="container">
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+
+        <h1 class="content-junior">総合開発マニュアル</h1>
+        <h1 class="content-elementary"><ruby>総合開発<rt>そうごうかいはつ</rt></ruby>マニュアル</h1>
+
+        <div class="intro content-junior">
+            これまでのQuest 1-5で学んだ全ての技術を結集して、<br>
+            AIシステムやゲームなど、大規模プロジェクトに挑戦しよう!
+        </div>
+        <div class="intro content-elementary">
+            これまでのQuest 1-5で<ruby>学<rt>まな</rt></ruby>んだ<ruby>全<rt>すべ</rt></ruby>ての<ruby>技術<rt>ぎじゅつ</rt></ruby>を<ruby>結集<rt>けっしゅう</rt></ruby>して、<br>
+            AIシステムやゲームなど、<ruby>大規模<rt>だいきぼ</rt></ruby>プロジェクトに<ruby>挑戦<rt>ちょうせん</rt></ruby>しよう!
+        </div>
+
+        <div class="warning-box content-junior" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                参加前に必ず確認! 18歳未満の方は、必ず保護者の同意を得てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお仕事に参加するには、業務委託契約の締結が必要です。下のボタンから契約フォームに進んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    業務委託契約フォームへ
+                </a>
+            </div>
+        </div>
+        <div class="warning-box content-elementary" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                <ruby>参加<rt>さんか</rt></ruby><ruby>前<rt>まえ</rt></ruby>に<ruby>必<rt>かなら</rt></ruby>ず<ruby>確認<rt>かくにん</rt></ruby>! 18<ruby>歳<rt>さい</rt></ruby><ruby>未満<rt>みまん</rt></ruby>の<ruby>方<rt>かた</rt></ruby>は、<ruby>必<rt>かなら</rt></ruby>ず<ruby>保護者<rt>ほごしゃ</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>を<ruby>得<rt>え</rt></ruby>てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>に<ruby>参加<rt>さんか</rt></ruby>するには、<ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>の<ruby>締結<rt>ていけつ</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>です。<ruby>下<rt>した</rt></ruby>のボタンから<ruby>契約<rt>けいやく</rt></ruby>フォームに<ruby>進<rt>すす</rt></ruby>んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    <ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>フォームへ
+                </a>
+            </div>
+        </div>
+
+        <!-- お仕事の内容 -->
+        <div class="section content-junior">
+            <h2>お仕事の内容</h2>
+            <p>これまでのQuestで学んだ技術を全て活用して、AIを組み込んだシステムやゲーム、大規模なWebアプリケーションなどを開発するお仕事です。</p>
+
+            <div class="price-box">
+                報酬: 要相談<br>
+                <span style="font-size: 1rem; color: var(--text-gray);">プロジェクト規模により 10,000円〜100,000円以上</span>
+            </div>
+
+            <div class="highlight-box">
+                <strong>このお仕事で取り組むこと</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>AIを組み込んだシステム開発</li>
+                    <li>ゲームプロダクトの開発</li>
+                    <li>大規模なWebアプリケーション</li>
+                    <li>Quest 1-5の技術を全て組み合わせた総合的なプロジェクト</li>
+                    <li>報酬は規模によって大きく変動（要相談、10,000円〜100,000円以上も可能）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>お<ruby>仕事<rt>しごと</rt></ruby>の<ruby>内容<rt>ないよう</rt></ruby></h2>
+            <p>これまでのQuestで<ruby>学<rt>まな</rt></ruby>んだ<ruby>技術<rt>ぎじゅつ</rt></ruby>を<ruby>全<rt>すべ</rt></ruby>て<ruby>活用<rt>かつよう</rt></ruby>して、AIを<ruby>組<rt>く</rt></ruby>み<ruby>込<rt>こ</rt></ruby>んだシステムやゲーム、<ruby>大規模<rt>だいきぼ</rt></ruby>なWebアプリケーションなどを<ruby>開発<rt>かいはつ</rt></ruby>するお<ruby>仕事<rt>しごと</rt></ruby>です。</p>
+
+            <div class="price-box">
+                <ruby>報酬<rt>ほうしゅう</rt></ruby>: <ruby>要相談<rt>ようそうだん</rt></ruby><br>
+                <span style="font-size: 1rem; color: var(--text-gray);">プロジェクト<ruby>規模<rt>きぼ</rt></ruby>により 10,000<ruby>円<rt>えん</rt></ruby>〜100,000<ruby>円以上<rt>えんいじょう</rt></ruby></span>
+            </div>
+
+            <div class="highlight-box">
+                <strong>このお<ruby>仕事<rt>しごと</rt></ruby>で<ruby>取<rt>と</rt></ruby>り<ruby>組<rt>く</rt></ruby>むこと</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>AIを<ruby>組<rt>く</rt></ruby>み<ruby>込<rt>こ</rt></ruby>んだシステム<ruby>開発<rt>かいはつ</rt></ruby></li>
+                    <li>ゲームプロダクトの<ruby>開発<rt>かいはつ</rt></ruby></li>
+                    <li><ruby>大規模<rt>だいきぼ</rt></ruby>なWebアプリケーション</li>
+                    <li>Quest 1-5の<ruby>技術<rt>ぎじゅつ</rt></ruby>を<ruby>全<rt>すべ</rt></ruby>て<ruby>組<rt>く</rt></ruby>み<ruby>合<rt>あ</rt></ruby>わせた<ruby>総合的<rt>そうごうてき</rt></ruby>なプロジェクト</li>
+                    <li><ruby>報酬<rt>ほうしゅう</rt></ruby>は<ruby>規模<rt>きぼ</rt></ruby>によって<ruby>大<rt>おお</rt></ruby>きく<ruby>変動<rt>へんどう</rt></ruby>（<ruby>要相談<rt>ようそうだん</rt></ruby>、10,000<ruby>円<rt>えん</rt></ruby>〜100,000<ruby>円以上<rt>えんいじょう</rt></ruby>も<ruby>可能<rt>かのう</rt></ruby>）</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- プロジェクトの例 -->
+        <div class="section content-junior">
+            <h2>プロジェクトの例</h2>
+            <ul class="project-list">
+                <li>AIチャットボット搭載のWebサイト</li>
+                <li>ゲーム開発（Unity、Unreal Engine等）</li>
+                <li>データ分析システム</li>
+                <li>ECサイト構築</li>
+                <li>マッチングアプリ</li>
+                <li>業務効率化ツール</li>
+                <li>AIを活用した自動化システム</li>
+            </ul>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>プロジェクトの<ruby>例<rt>れい</rt></ruby></h2>
+            <ul class="project-list">
+                <li>AIチャットボット<ruby>搭載<rt>とうさい</rt></ruby>のWebサイト</li>
+                <li>ゲーム<ruby>開発<rt>かいはつ</rt></ruby>（Unity、Unreal Engine<ruby>等<rt>とう</rt></ruby>）</li>
+                <li>データ<ruby>分析<rt>ぶんせき</rt></ruby>システム</li>
+                <li>ECサイト<ruby>構築<rt>こうちく</rt></ruby></li>
+                <li>マッチングアプリ</li>
+                <li><ruby>業務効率化<rt>ぎょうむこうりつか</rt></ruby>ツール</li>
+                <li>AIを<ruby>活用<rt>かつよう</rt></ruby>した<ruby>自動化<rt>じどうか</rt></ruby>システム</li>
+            </ul>
+        </div>
+
+        <!-- 開発の流れ -->
+        <div class="section content-junior">
+            <h2>開発の流れ</h2>
+
+            <h3>Step 1: プロジェクト企画</h3>
+            <ul class="step-list">
+                <li>クライアントと綿密に打ち合わせ</li>
+                <li>要件定義書の作成</li>
+                <li>技術選定</li>
+                <li>スケジュール策定</li>
+            </ul>
+
+            <h3>Step 2: 設計</h3>
+            <ul class="step-list">
+                <li>システム設計</li>
+                <li>データベース設計</li>
+                <li>UI/UXデザイン</li>
+            </ul>
+
+            <h3>Step 3: 開発</h3>
+            <ul class="step-list">
+                <li>フロントエンド開発</li>
+                <li>バックエンド開発</li>
+                <li>AI機能の実装</li>
+                <li>データベース構築</li>
+            </ul>
+
+            <h3>Step 4: テスト</h3>
+            <ul class="step-list">
+                <li>単体テスト</li>
+                <li>結合テスト</li>
+                <li>ユーザーテスト</li>
+            </ul>
+
+            <h3>Step 5: デプロイ・納品</h3>
+            <ul class="step-list">
+                <li>本番環境へのデプロイ</li>
+                <li>ドキュメント作成</li>
+                <li>運用サポート</li>
+            </ul>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>開発<rt>かいはつ</rt></ruby>の<ruby>流<rt>なが</rt></ruby>れ</h2>
+
+            <h3>Step 1: プロジェクト<ruby>企画<rt>きかく</rt></ruby></h3>
+            <ul class="step-list">
+                <li>クライアントと<ruby>綿密<rt>めんみつ</rt></ruby>に<ruby>打<rt>う</rt></ruby>ち<ruby>合<rt>あ</rt></ruby>わせ</li>
+                <li><ruby>要件定義書<rt>ようけんていぎしょ</rt></ruby>の<ruby>作成<rt>さくせい</rt></ruby></li>
+                <li><ruby>技術選定<rt>ぎじゅつせんてい</rt></ruby></li>
+                <li>スケジュール<ruby>策定<rt>さくてい</rt></ruby></li>
+            </ul>
+
+            <h3>Step 2: <ruby>設計<rt>せっけい</rt></ruby></h3>
+            <ul class="step-list">
+                <li>システム<ruby>設計<rt>せっけい</rt></ruby></li>
+                <li>データベース<ruby>設計<rt>せっけい</rt></ruby></li>
+                <li>UI/UXデザイン</li>
+            </ul>
+
+            <h3>Step 3: <ruby>開発<rt>かいはつ</rt></ruby></h3>
+            <ul class="step-list">
+                <li>フロントエンド<ruby>開発<rt>かいはつ</rt></ruby></li>
+                <li>バックエンド<ruby>開発<rt>かいはつ</rt></ruby></li>
+                <li>AI<ruby>機能<rt>きのう</rt></ruby>の<ruby>実装<rt>じっそう</rt></ruby></li>
+                <li>データベース<ruby>構築<rt>こうちく</rt></ruby></li>
+            </ul>
+
+            <h3>Step 4: テスト</h3>
+            <ul class="step-list">
+                <li><ruby>単体<rt>たんたい</rt></ruby>テスト</li>
+                <li><ruby>結合<rt>けつごう</rt></ruby>テスト</li>
+                <li>ユーザーテスト</li>
+            </ul>
+
+            <h3>Step 5: デプロイ・<ruby>納品<rt>のうひん</rt></ruby></h3>
+            <ul class="step-list">
+                <li><ruby>本番環境<rt>ほんばんかんきょう</rt></ruby>へのデプロイ</li>
+                <li>ドキュメント<ruby>作成<rt>さくせい</rt></ruby></li>
+                <li><ruby>運用<rt>うんよう</rt></ruby>サポート</li>
+            </ul>
+        </div>
+
+        <!-- 必要なスキル -->
+        <div class="section content-junior">
+            <h2>必要なスキル</h2>
+            <ul class="requirements-list">
+                <li>プログラミングの基礎知識</li>
+                <li>AI・機械学習の理解</li>
+                <li>データベースの知識</li>
+                <li>プロジェクト管理能力</li>
+                <li>コミュニケーション能力</li>
+                <li>問題解決力</li>
+                <li>これまでのQuestで学んだ全ての技術</li>
+            </ul>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>必要<rt>ひつよう</rt></ruby>なスキル</h2>
+            <ul class="requirements-list">
+                <li>プログラミングの<ruby>基礎知識<rt>きそちしき</rt></ruby></li>
+                <li>AI・<ruby>機械学習<rt>きかいがくしゅう</rt></ruby>の<ruby>理解<rt>りかい</rt></ruby></li>
+                <li>データベースの<ruby>知識<rt>ちしき</rt></ruby></li>
+                <li>プロジェクト<ruby>管理能力<rt>かんりのうりょく</rt></ruby></li>
+                <li>コミュニケーション<ruby>能力<rt>のうりょく</rt></ruby></li>
+                <li><ruby>問題解決力<rt>もんだいかいけつりょく</rt></ruby></li>
+                <li>これまでのQuestで<ruby>学<rt>まな</rt></ruby>んだ<ruby>全<rt>すべ</rt></ruby>ての<ruby>技術<rt>ぎじゅつ</rt></ruby></li>
+            </ul>
+        </div>
+
+        <!-- 報酬について -->
+        <div class="section content-junior">
+            <h2>報酬について</h2>
+
+            <div class="highlight-box">
+                <strong>報酬体系</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>小規模プロジェクト:</strong> 10,000円〜</li>
+                    <li><strong>中規模プロジェクト:</strong> 50,000円〜</li>
+                    <li><strong>大規模プロジェクト:</strong> 100,000円〜</li>
+                </ul>
+            </div>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong>報酬の決定方法</strong><br>
+                • プロジェクトごとに個別見積もり<br>
+                • 開発期間や難易度により変動<br>
+                • チーム開発の場合は報酬を分配<br>
+                • 振込手数料500円
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;">※ 報酬は要相談となります。プロジェクトの詳細が決まり次第、個別に見積もりを提示します。</strong>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>報酬<rt>ほうしゅう</rt></ruby>について</h2>
+
+            <div class="highlight-box">
+                <strong><ruby>報酬体系<rt>ほうしゅうたいけい</rt></ruby></strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong><ruby>小規模<rt>しょうきぼ</rt></ruby>プロジェクト:</strong> 10,000<ruby>円<rt>えん</rt></ruby>〜</li>
+                    <li><strong><ruby>中規模<rt>ちゅうきぼ</rt></ruby>プロジェクト:</strong> 50,000<ruby>円<rt>えん</rt></ruby>〜</li>
+                    <li><strong><ruby>大規模<rt>だいきぼ</rt></ruby>プロジェクト:</strong> 100,000<ruby>円<rt>えん</rt></ruby>〜</li>
+                </ul>
+            </div>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>の<ruby>決定方法<rt>けっていほうほう</rt></ruby></strong><br>
+                • プロジェクトごとに<ruby>個別見積<rt>こべつみつも</rt></ruby>もり<br>
+                • <ruby>開発期間<rt>かいはつきかん</rt></ruby>や<ruby>難易度<rt>なんいど</rt></ruby>により<ruby>変動<rt>へんどう</rt></ruby><br>
+                • チーム<ruby>開発<rt>かいはつ</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>は<ruby>報酬<rt>ほうしゅう</rt></ruby>を<ruby>分配<rt>ぶんぱい</rt></ruby><br>
+                • <ruby>振込手数料<rt>ふりこみてすうりょう</rt></ruby>500<ruby>円<rt>えん</rt></ruby>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;">※ <ruby>報酬<rt>ほうしゅう</rt></ruby>は<ruby>要相談<rt>ようそうだん</rt></ruby>となります。プロジェクトの<ruby>詳細<rt>しょうさい</rt></ruby>が<ruby>決<rt>き</rt></ruby>まり<ruby>次第<rt>しだい</rt></ruby>、<ruby>個別<rt>こべつ</rt></ruby>に<ruby>見積<rt>みつも</rt></ruby>もりを<ruby>提示<rt>ていじ</rt></ruby>します。</strong>
+            </div>
+        </div>
+
+        <!-- こんな人にピッタリ -->
+        <div class="section content-junior">
+            <h2>こんな人にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>Quest 1-5をクリアした人</li>
+                <li>大きなプロジェクトに挑戦したい</li>
+                <li>AIや最新技術に興味がある</li>
+                <li>チームで開発したい</li>
+                <li>高度なスキルを身につけたい</li>
+                <li>起業を目指している</li>
+            </ul>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>こんな<ruby>人<rt>ひと</rt></ruby>にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>Quest 1-5をクリアした<ruby>人<rt>ひと</rt></ruby></li>
+                <li><ruby>大<rt>おお</rt></ruby>きなプロジェクトに<ruby>挑戦<rt>ちょうせん</rt></ruby>したい</li>
+                <li>AIや<ruby>最新技術<rt>さいしんぎじゅつ</rt></ruby>に<ruby>興味<rt>きょうみ</rt></ruby>がある</li>
+                <li>チームで<ruby>開発<rt>かいはつ</rt></ruby>したい</li>
+                <li><ruby>高度<rt>こうど</rt></ruby>なスキルを<ruby>身<rt>み</rt></ruby>につけたい</li>
+                <li><ruby>起業<rt>きぎょう</rt></ruby>を<ruby>目指<rt>めざ</rt></ruby>している</li>
+            </ul>
+        </div>
+
+        <!-- まとめ -->
+        <div class="section content-junior">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                総合開発は、これまでのQuestで学んだ全ての技術を結集する、最高難度のチャレンジです。<br>
+                AIシステムやゲーム開発など、大規模なプロジェクトを通じて、実践的なスキルと実績を積み上げることができます。<br>
+                報酬も規模に応じて大きく、将来のキャリアに直結する経験が得られます。
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">学習の集大成として、大規模開発に挑戦し、実践的なスキルと高額報酬を獲得しよう!</strong>
+            </p>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                <ruby>総合開発<rt>そうごうかいはつ</rt></ruby>は、これまでのQuestで<ruby>学<rt>まな</rt></ruby>んだ<ruby>全<rt>すべ</rt></ruby>ての<ruby>技術<rt>ぎじゅつ</rt></ruby>を<ruby>結集<rt>けっしゅう</rt></ruby>する、<ruby>最高難度<rt>さいこうなんど</rt></ruby>のチャレンジです。<br>
+                AIシステムやゲーム<ruby>開発<rt>かいはつ</rt></ruby>など、<ruby>大規模<rt>だいきぼ</rt></ruby>なプロジェクトを<ruby>通<rt>とお</rt></ruby>じて、<ruby>実践的<rt>じっせんてき</rt></ruby>なスキルと<ruby>実績<rt>じっせき</rt></ruby>を<ruby>積<rt>つ</rt></ruby>み<ruby>上<rt>あ</rt></ruby>げることができます。<br>
+                <ruby>報酬<rt>ほうしゅう</rt></ruby>も<ruby>規模<rt>きぼ</rt></ruby>に<ruby>応<rt>おう</rt></ruby>じて<ruby>大<rt>おお</rt></ruby>きく、<ruby>将来<rt>しょうらい</rt></ruby>のキャリアに<ruby>直結<rt>ちょっけつ</rt></ruby>する<ruby>経験<rt>けいけん</rt></ruby>が<ruby>得<rt>え</rt></ruby>られます。
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);"><ruby>学習<rt>がくしゅう</rt></ruby>の<ruby>集大成<rt>しゅうたいせい</rt></ruby>として、<ruby>大規模開発<rt>だいきぼかいはつ</rt></ruby>に<ruby>挑戦<rt>ちょうせん</rt></ruby>し、<ruby>実践的<rt>じっせんてき</rt></ruby>なスキルと<ruby>高額報酬<rt>こうがくほうしゅう</rt></ruby>を<ruby>獲得<rt>かくとく</rt></ruby>しよう!</strong>
+            </p>
+        </div>
+
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+    </div>
+
+    <script>
+        function switchMode(mode) {
+            const tabs = document.querySelectorAll('.mode-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            if (mode === 'elementary') {
+                document.body.classList.add('elementary-mode');
+                tabs[1].classList.add('active');
+            } else {
+                document.body.classList.remove('elementary-mode');
+                tabs[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

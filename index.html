@@ -1337,7 +1337,6 @@
             }
 
             /* Section titles smaller for long titles */
-            #beginner .section-title,
             #comic .section-title,
             #business .section-title,
             #kitazuna .section-title {
@@ -1617,7 +1616,6 @@
                         <li><a href="#schedule">授業スケジュール</a></li>
                         <li><a href="#services">サービス内容</a></li>
                         <li><a href="#challenge">if(チャレンジ)</a></li>
-                        <li><a href="#beginner">if(チャレンジ)forビギナー</a></li>
                         <li><a href="#issues">if(塾)が取り組む課題</a></li>
                         <li><a href="#flow">入塾までの流れ</a></li>
                         <li><a href="#staff">運営メンバー</a></li>
@@ -1711,16 +1709,82 @@
     <!-- Challenge Section -->
     <section id="challenge">
         <h2 class="section-title">if(チャレンジ)</h2>
+        <p class="challenge-intro" style="color: var(--text-gray); text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.1rem; line-height: 1.8;">
+            if(塾)では、独自開発のAIツールにより、多くの仕事を小学生から誰でも取り組みやすい形にしています。<br>
+            自分が少し得意なことでお金を稼ぐ経験を幼い頃からすることで、将来への見通しや意欲が生まれます。<br>
+            こうした実践的な経験が自信となり、より本格的なスキル習得へとつながっていきます。
+        </p>
         <div class="challenge-container">
-            <img src="images/cyclepc.png" alt="if(チャレンジ)" class="challenge-image">
-            <div class="challenge-window">
-                <h3 class="challenge-title">能動的に学ぶ力を身につける</h3>
-                <p class="challenge-text">
-                    企業からの案件を割り振って、実際に報酬を得ながら実践的なスキルを習得します。
-                    メンターのサポートのもと、リアルなビジネス環境で成長していきます。
-                </p>
-                <p class="challenge-note">※ 案件参加には保護者の同意が必要になります</p>
-                <a href="#contact" class="cta-button smooth-scroll">if(塾)の塾生に仕事を依頼する</a>
+            <img src="images/cyclepc.png" alt="if(チャレンジ)" class="challenge-image" style="filter: brightness(0.6);">
+            <div class="service-grid" style="position: relative; z-index: 10;">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest1.png');"></div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 1</h3>
+                        <p class="service-brief">動画編集にチャレンジ</p>
+                        <div class="service-detail">
+                            動画編集ソフトを使って、自分だけのオリジナル動画を作成します。カット、エフェクト、BGMの追加など、基本的な動画編集技術を習得します。
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest2.png');"></div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 2</h3>
+                        <p class="service-brief">マインクラフトで建築</p>
+                        <div class="service-detail">
+                            マインクラフトを使って創造力を発揮し、自分だけの建築物を作成します。基本的な建築技術から応用まで、楽しく学習できます。
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest3.png');"></div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 3</h3>
+                        <p class="service-brief">プログラミング基礎</p>
+                        <div class="service-detail">
+                            ビジュアルプログラミングから始めて、プログラミングの基本概念を学習します。ゲーム感覚で楽しく論理的思考を身につけます。
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest4.png'); position: relative;">
+                        <a href="instagrammanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #00ffcc, #00ff00); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); transition: all 0.3s; z-index: 10;">
+                            📱 SNS運用マニュアルを見る
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 4</h3>
+                        <p class="service-brief">SNS運用</p>
+                        <div class="service-detail">
+                            インスタグラムなどのSNS運用にチャレンジ!独自開発のツールを使うから、誰でも簡単に投稿作成ができます。楽しみながらSNSマーケティングを学べます。
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest5.png');"></div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 5</h3>
+                        <p class="service-brief">3Dモデリング体験</p>
+                        <div class="service-detail">
+                            3Dモデリングソフトを使って、立体的な作品を作成します。空間認識能力を養いながら、新しい表現方法を学びます。
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest6.png');"></div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 6</h3>
+                        <p class="service-brief">総合プロジェクト</p>
+                        <div class="service-detail">
+                            これまでに学習した技術を組み合わせて、オリジナルの作品を完成させます。企画から完成まで、一連の制作プロセスを体験します。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem; position: relative; z-index: 10;">
+                <p class="challenge-note" style="color: var(--text-gray); margin-bottom: 1.5rem;">※ 案件参加には保護者の同意が必要になります</p>
+                <a href="https://forms.gle/pPdswo61LDD1QUtt7" class="cta-button" target="_blank">if(チャレンジ)に申し込む</a>
             </div>
         </div>
     </section>
@@ -1836,77 +1900,6 @@
                     <p class="service-brief">24時間質問可能</p>
                     <div class="service-detail">
                         最新のAI技術を活用した学習サポート。24時間いつでも質問でき、個人のレベルに合わせた最適な学習を提供します。
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Beginner Challenge Section -->
-    <section id="beginner">
-        <h2 class="section-title">if(チャレンジ)forビギナー</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/quest1.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 1</h3>
-                    <p class="service-brief">動画編集にチャレンジ</p>
-                    <div class="service-detail">
-                        動画編集ソフトを使って、自分だけのオリジナル動画を作成します。カット、エフェクト、BGMの追加など、基本的な動画編集技術を習得します。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/quest2.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 2</h3>
-                    <p class="service-brief">マインクラフトで建築</p>
-                    <div class="service-detail">
-                        マインクラフトを使って創造力を発揮し、自分だけの建築物を作成します。基本的な建築技術から応用まで、楽しく学習できます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/quest3.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 3</h3>
-                    <p class="service-brief">プログラミング基礎</p>
-                    <div class="service-detail">
-                        ビジュアルプログラミングから始めて、プログラミングの基本概念を学習します。ゲーム感覚で楽しく論理的思考を身につけます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/quest4.png'); position: relative;">
-                    <a href="instagrammanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #00ffcc, #00ff00); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); transition: all 0.3s; z-index: 10;">
-                        📱 SNS運用マニュアルを見る
-                    </a>
-                </div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 4</h3>
-                    <p class="service-brief">SNS運用</p>
-                    <div class="service-detail">
-                        インスタグラムなどのSNS運用にチャレンジ!独自開発のツールを使うから、誰でも簡単に投稿作成ができます。楽しみながらSNSマーケティングを学べます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/quest5.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 5</h3>
-                    <p class="service-brief">3Dモデリング体験</p>
-                    <div class="service-detail">
-                        3Dモデリングソフトを使って、立体的な作品を作成します。空間認識能力を養いながら、新しい表現方法を学びます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/quest6.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 6</h3>
-                    <p class="service-brief">総合プロジェクト</p>
-                    <div class="service-detail">
-                        これまでに学習した技術を組み合わせて、オリジナルの作品を完成させます。企画から完成まで、一連の制作プロセスを体験します。
                     </div>
                 </div>
             </div>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNS運用マニュアル - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: '🎯';
+            font-size: 1.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3::before {
+            content: '✨';
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .price-box {
+            background: rgba(255, 0, 255, 0.15);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            box-shadow: var(--purple-glow);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 20px 20px 20px 60px;
+            margin-bottom: 15px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 12px 12px 40px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        .warning-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 15px 15px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html#beginner" class="back-button">← if(チャレンジ)forビギナーに戻る</a>
+
+        <h1>SNS運用マニュアル</h1>
+
+        <div class="intro">
+            インスタグラムの投稿を作って、楽しくお小遣い稼ぎ!<br>
+            専用ツールを使うから、小学生でもカンタンにできるよ
+        </div>
+
+        <div class="warning-box" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                参加前に必ず確認! 18歳未満の方は、必ず保護者の同意を得てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお仕事に参加するには、業務委託契約の締結が必要です。下のボタンから契約フォームに進んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    業務委託契約フォームへ
+                </a>
+            </div>
+        </div>
+
+        <!-- お仕事の内容 -->
+        <div class="section">
+            <h2>お仕事の内容</h2>
+            <p>こちらが用意している投稿内容に合わせて、インスタグラムのカルーセル投稿(画像が複数枚あるやつ)を作成するお仕事です!</p>
+
+            <div class="price-box">
+                1投稿につき 300円
+            </div>
+
+            <div class="highlight-box">
+                <strong>作る画像は全部で5枚!</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>表紙</li>
+                    <li>画像1</li>
+                    <li>画像2</li>
+                    <li>画像3</li>
+                    <li>サンクスメッセージ(こちらは毎回同じ画像)</li>
+                </ul>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">実際に作る画像のイメージ</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; max-width: 900px; margin: 0 auto; justify-content: center;">
+                    <div style="position: relative; flex: 0 0 calc(33.333% - 10px);">
+                        <img src="images/instagrammanual/instagrammanual1.png" alt="表紙" style="width: 100%; border-radius: 8px; border: 2px solid var(--primary-color); aspect-ratio: 1/1; object-fit: cover;">
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0, 255, 204, 0.9); color: #000; padding: 5px 15px; border-radius: 5px; font-weight: bold;">表紙</div>
+                    </div>
+                    <div style="position: relative; flex: 0 0 calc(33.333% - 10px);">
+                        <img src="images/instagrammanual/instagrammanual2.png" alt="画像1" style="width: 100%; border-radius: 8px; border: 2px solid var(--primary-color); aspect-ratio: 1/1; object-fit: cover;">
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0, 255, 204, 0.9); color: #000; padding: 5px 15px; border-radius: 5px; font-weight: bold;">画像1</div>
+                    </div>
+                    <div style="position: relative; flex: 0 0 calc(33.333% - 10px);">
+                        <img src="images/instagrammanual/instagrammanual3.png" alt="画像2" style="width: 100%; border-radius: 8px; border: 2px solid var(--primary-color); aspect-ratio: 1/1; object-fit: cover;">
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0, 255, 204, 0.9); color: #000; padding: 5px 15px; border-radius: 5px; font-weight: bold;">画像2</div>
+                    </div>
+                    <div style="position: relative; flex: 0 0 calc(33.333% - 10px);">
+                        <img src="images/instagrammanual/instagrammanual4.png" alt="画像3" style="width: 100%; border-radius: 8px; border: 2px solid var(--primary-color); aspect-ratio: 1/1; object-fit: cover;">
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0, 255, 204, 0.9); color: #000; padding: 5px 15px; border-radius: 5px; font-weight: bold;">画像3</div>
+                    </div>
+                    <div style="position: relative; flex: 0 0 calc(33.333% - 10px);">
+                        <img src="images/instagrammanual/instagrammanual5.png" alt="サンクスメッセージ" style="width: 100%; border-radius: 8px; border: 2px solid var(--secondary-color); aspect-ratio: 1/1; object-fit: cover;">
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(255, 0, 255, 0.9); color: #fff; padding: 5px 15px; border-radius: 5px; font-weight: bold;">サンクスメッセージ</div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                @media (max-width: 768px) {
+                    .highlight-box + div > div {
+                        flex-direction: column;
+                    }
+                    .highlight-box + div > div > div {
+                        flex: 0 0 100% !important;
+                    }
+                }
+            </style>
+        </div>
+
+        <!-- 詳しい手順 -->
+        <div class="section">
+            <h2>詳しい手順</h2>
+
+            <h3>ステップ1: 画像を作ろう!</h3>
+
+            <div class="warning-box" style="text-align: center;">
+                <strong>投稿カレンダーの指示に従おう!</strong> 投稿カレンダーに「画像の種類」が書いてあるから、必ずそれに合わせて作ってね。
+            </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <a href="https://docs.google.com/spreadsheets/d/1yUUAmKkeRmfiiyltFlFKxYzzlbd-1T3cDYYELgpzFCU/edit?usp=sharing" target="_blank" style="display: inline-block; width: 90%; max-width: 600px; padding: 15px 30px; background: linear-gradient(135deg, #0f9d58, #34a853); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(15, 157, 88, 0.4); transition: all 0.3s;">
+                    投稿カレンダー(ダミーデータ)を確認する
+                </a>
+            </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/instagrammanual/dammydata.png" alt="ダミーデータ例" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <div style="text-align: center; margin: 25px 0; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid #ffd700; border-radius: 10px;">
+                <p style="margin: 0; font-size: 1.1rem;"><strong>※ 実際の投稿カレンダーは業務開始時に共有します</strong></p>
+            </div>
+
+            <p><strong>画像の作り方(投稿カレンダーの指示に従って選んでね):</strong></p>
+            <ul class="step-list">
+                <li>
+                    <strong>「写真」と書いてある場合</strong><br>
+                    用意されている写真素材をそのまま使います
+                </li>
+                <li>
+                    <strong>「画像」と書いてある場合</strong><br>
+                    生成AIで作成するか、画面のスクリーンショットを使います<br>
+                    <small style="color: var(--text-gray);">※ 投稿カレンダーの「画像の説明」をコピペするだけでAIが画像を作ってくれる!</small>
+                </li>
+                <li>
+                    <strong>写真や生成AIだけだと変な場合</strong><br>
+                    Canvaで適宜編集して、より良い画像に仕上げます
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Canvaでの作業手順</strong><br>
+                1. Canvaで1080×1080のファイルを作成
+            </div>
+
+            <div style="display: flex; gap: 15px; justify-content: center; align-items: flex-start; margin: 25px 0; flex-wrap: wrap;">
+                <img src="images/instagrammanual/instagrammanual6.png" alt="Canva作業手順1" style="max-width: 48%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                <img src="images/instagrammanual/instagrammanual7.png" alt="Canva作業手順2" style="max-width: 48%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <div class="highlight-box">
+                2. 写真素材や生成AI画像を配置・編集<br>
+                3. 作った画像をどんどん登録していく
+            </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/instagrammanual/instagrammanual8.png" alt="画像登録" style="max-width: 70%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <div class="highlight-box">
+                4. 全部作ったら、まとめてダウンロード!
+            </div>
+
+            <h3>ステップ2: 画像に文字を載せよう!</h3>
+            <p>ここで専用ツールを使います!</p>
+
+            <div style="text-align: center;">
+                <a href="https://getabako.github.io/InstagramGenerator/" target="_blank" class="tool-link">
+                    専用ツールを開く
+                </a>
+            </div>
+
+            <ol class="step-list">
+                <li>
+                    <strong>投稿カレンダーの「コピペ用並び替え」ボタンを押す</strong>
+                </li>
+            </ol>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/instagrammanual/instagrammanual9.png" alt="コピペ用並び替えボタン" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <ol class="step-list" start="2">
+                <li>
+                    <strong>テキストエリア1のテキストを、カレンダーからツールにコピペ</strong>
+                </li>
+                <li>
+                    <strong>テキストエリア2のテキストを、カレンダーからツールにコピペ</strong>
+                </li>
+                <li>
+                    <strong>画像が番号順になっているか確認</strong>
+                </li>
+                <li>
+                    <strong>全ての画像をドラッグ&ドロップ</strong><br>
+                    (画像をツールの画面にポイッと入れるだけ!)
+                </li>
+            </ol>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/instagrammanual/instagrammanual10.png" alt="画像をドラッグ&ドロップ" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <ol class="step-list" start="6">
+                <li>
+                    <strong>フォントやエフェクトの種類を選ぶ</strong><br>
+                    他の設定は基本的にいじらなくてOK
+                </li>
+                <li>
+                    <strong>「画像を生成」ボタンを押す</strong>
+                </li>
+            </ol>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/instagrammanual/instagrammanual11.png" alt="画像を生成ボタン" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <ol class="step-list" start="8">
+                <li>
+                    <strong>できた画像をダウンロード!</strong>
+                </li>
+            </ol>
+
+            <h3>ステップ3: インスタグラムに予約登録</h3>
+            <p>作成した画像を、インスタグラムの公式予約ツールに登録します。</p>
+            <div class="highlight-box">
+                完成した投稿は自動で予約投稿されるので、あとはお任せ! 🎉
+            </div>
+        </div>
+
+        <!-- 報酬について -->
+        <div class="section">
+            <h2>報酬について</h2>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong>報酬の受け取り方</strong><br>
+                • 10投稿以上で支払い可能になります<br>
+                • 10個以上作ったら必ず報告してね!<br>
+                • 月末時点で10個以上作った人に確認します<br>
+                • 次月に繰り越すか、支払いを受けるか選べます
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;">銀行振込を希望する場合、振込手数料500円がかかります</strong>
+            </div>
+
+            <div class="highlight-box" style="text-align: center;">
+                どんどん投稿を作ってくれると嬉しいです。<br>
+                10個に満たない場合は次月以降に持ち越しになるよ。
+            </div>
+        </div>
+
+        <!-- 求める能力 -->
+        <div class="section">
+            <h2>こんな人にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>パソコンを持っている</li>
+                <li>パソコンの基本操作ができる</li>
+                <li>コピーアンドペーストができる</li>
+                <li>期限をきっちり守れる</li>
+                <li>LINEの返信をちゃんと見る、返信ができる</li>
+                <li>できるだけ早くLINEを返せる</li>
+                <li>報告・連絡・相談がちゃんとできる</li>
+                <li>人間性が良い(優しく、真面目に取り組める)</li>
+                <li>Canvaの基本的な操作ができるとなお良し!</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>年齢制限: 小学生からOK!</strong><br>
+                小学生から大人まで、誰でもチャレンジできるお仕事だよ!
+            </div>
+        </div>
+
+        <!-- まとめ -->
+        <div class="section">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお仕事は、専用ツールを使うことで誰でも簡単にSNS運用ができるようになっています。<br>
+                インスタグラムの投稿作りを通じて、デザインやSNSマーケティングのスキルも自然と身についていくよ!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">楽しみながらお小遣いを稼いで、新しいスキルを身につけよう!</strong>
+            </p>
+        </div>
+
+        <a href="index.html#beginner" class="back-button">← if(チャレンジ)forビギナーに戻る</a>
+    </div>
+</body>
+</html>

@@ -1623,10 +1623,29 @@
 
             .hero-title {
                 font-size: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .hero-title .sp-break {
+                display: block;
             }
 
             .hero-subtitle {
                 font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .hero-subtitle .sp-break {
+                display: block;
+            }
+
+            .curriculum-sp-break {
+                display: block;
+                font-size: 1.1rem;
+            }
+
+            .curriculum-pc-break {
+                display: none;
             }
 
             .tab-buttons {
@@ -1865,6 +1884,9 @@
             position: relative;
             display: inline-block;
             animation: fireFlicker 1.5s ease-in-out infinite;
+            color: #333;
+            -webkit-text-stroke: 1.5px #000;
+            paint-order: stroke fill;
         }
 
         @keyframes fireFlicker {
@@ -2201,8 +2223,8 @@
         </video>
         <div class="hero-content">
             <img src="images/logo.png" alt="if(塾)ロゴ" class="hero-logo">
-            <h1 class="hero-title">AIと起業を学ぶ、オンラインプログラミング塾</h1>
-            <p class="hero-subtitle">遠隔・全国対応で、好きなことを学びながら稼げる力を育成</p>
+            <h1 class="hero-title"><span class="sp-break">AIと起業を学ぶ、オンライン</span><span class="sp-break">プログラミング塾</span></h1>
+            <p class="hero-subtitle"><span class="sp-break">遠隔・全国対応で、好きなことを学びながら</span><span class="sp-break">稼げる力を育成</span></p>
             <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 <a href="#contact" class="cta-button smooth-scroll">無料体験授業を申し込む</a>
                 <div class="visitor-counter">
@@ -2283,7 +2305,7 @@
         <div style="max-width: 1200px; margin: 0 auto 4rem;">
             <div style="background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,140,66,0.1)); border-radius: 20px; padding: 2.5rem; margin-bottom: 3rem; text-align: center;">
                 <p style="color: var(--text-gray); font-size: 1.15rem; line-height: 1.9; margin-bottom: 0;">
-                    if(塾)には、<strong style="color: var(--primary-color); font-size: 1.4rem;">決まったカリキュラムがありません</strong>。<br>なぜなら、自分で決めたことに能動的に取り組むことこそが、<strong>最も効率的な学習</strong>だからです。
+                    if(塾)には、<strong style="color: var(--primary-color); font-size: 1.4rem;"><span class="curriculum-sp-break">決まった</span><span class="curriculum-sp-break">カリキュラムがありません</span></strong>。<br class="curriculum-pc-break"><span class="curriculum-sp-break">なぜなら、自分で決めたことに能動的に取り組むことこそが、<strong>最も効率的な学習</strong>だからです。</span>
                 </p>
             </div>
 
@@ -2293,9 +2315,9 @@
                     <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                             <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">1</span>
-                            <h4 style="color: var(--primary-color); font-size: 1.3rem; margin: 0;">適性を見極める</h4>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">適性を見極める</h4>
                         </div>
-                        <p style="color: var(--text-gray); line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                        <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
                             例えば、マインクラフトで建築が好きな子はデザインセンスに長けている可能性が高いです。そうした子には3Dモデリングやグラフィック作成を提案します。また、家での様子や現在の困りごとなどを親御様にもヒアリングしながら、中長期の目標設定を行っていきます。
                         </p>
                     </div>
@@ -2306,9 +2328,9 @@
                     <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                             <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">2</span>
-                            <h4 style="color: var(--primary-color); font-size: 1.3rem; margin: 0;">スキルを身につける</h4>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">スキルを身につける</h4>
                         </div>
-                        <p style="color: var(--text-gray); line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                        <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
                             興味を持ったスキルを段階的に学習。独自開発のAIツールや人間メンターのサポートで、楽しみながら実践的なスキルを習得します。AI先生もいて、日頃の相談から作りたいものの作り方まで、本人に合わせていつでもサポートします。
                         </p>
                     </div>
@@ -2319,9 +2341,9 @@
                     <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                             <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">3</span>
-                            <h4 style="color: var(--primary-color); font-size: 1.3rem; margin: 0;">実際に仕事をして報酬を得る</h4>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">実際に仕事をして報酬を得る</h4>
                         </div>
-                        <p style="color: var(--text-gray); line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                        <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
                             スキルが身についてきたら、単発の仕事にチャレンジ。実際に報酬を得ることで「ここまでやればお金がもらえる」という仕事の感覚が掴め、小さい時から地元に貢献した実感と将来への見通しが持てるようになります。
                         </p>
                     </div>
@@ -2463,7 +2485,7 @@
             <div class="service-grid">
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest1.png'); position: relative;">
-                        <a href="shortmoviemanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ff6b6b, #ff8c42); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 0 40px rgba(255, 140, 66, 0.5); transition: all 0.3s; z-index: 10;">
+                        <a href="shortmoviemanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ff6b6b, #ff8c42); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 0 40px rgba(255, 140, 66, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
                             ショート動画<br>マニュアル
                         </a>
                     </div>
@@ -2474,7 +2496,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest2.png'); position: relative;">
-                        <a href="minecraftmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #8bc34a, #4caf50); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(139, 195, 74, 0.8), 0 0 40px rgba(76, 175, 80, 0.5); transition: all 0.3s; z-index: 10;">
+                        <a href="minecraftmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #8bc34a, #4caf50); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(139, 195, 74, 0.8), 0 0 40px rgba(76, 175, 80, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
                             マイクラ<br>マニュアル
                         </a>
                     </div>
@@ -2485,7 +2507,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest3.png'); position: relative;">
-                        <a href="developmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #4a90e2, #357abd); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(74, 144, 226, 0.8), 0 0 40px rgba(53, 122, 189, 0.5); transition: all 0.3s; z-index: 10;">
+                        <a href="developmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #4a90e2, #357abd); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(74, 144, 226, 0.8), 0 0 40px rgba(53, 122, 189, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
                             システム開発<br>マニュアル
                         </a>
                     </div>
@@ -2496,7 +2518,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest4.png'); position: relative;">
-                        <a href="instagrammanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #00ffcc, #00ff00); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); transition: all 0.3s; z-index: 10;">
+                        <a href="instagrammanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #00ffcc, #00ff00); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
                             SNS運用<br>マニュアル
                         </a>
                     </div>
@@ -2507,7 +2529,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest5.png'); position: relative;">
-                        <a href="advertisingmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #9c27b0, #e91e63); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(156, 39, 176, 0.8), 0 0 40px rgba(233, 30, 99, 0.5); transition: all 0.3s; z-index: 10;">
+                        <a href="advertisingmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #9c27b0, #e91e63); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(156, 39, 176, 0.8), 0 0 40px rgba(233, 30, 99, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
                             広告デザイン<br>マニュアル
                         </a>
                     </div>
@@ -2518,7 +2540,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('images/quest6.png'); position: relative;">
-                        <a href="allinmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ffd700, #ffb300); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 179, 0, 0.5); transition: all 0.3s; z-index: 10;">
+                        <a href="allinmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ffd700, #ffb300); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 179, 0, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
                             総合開発<br>マニュアル
                         </a>
                     </div>

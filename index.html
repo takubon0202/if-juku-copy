@@ -1586,6 +1586,17 @@
                 grid-template-columns: 1fr !important;
                 gap: 3rem !important;
             }
+
+            /* Fix case section text overflow on mobile */
+            .change-item p {
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+                padding: 1rem !important;
+            }
+
+            .change-item > div {
+                padding: 1rem !important;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2141,7 +2152,7 @@
     <!-- Loading Screen -->
     <div class="loading" id="loading">
         <div class="loading-logo">
-            <img src="images/logo.png" alt="if(塾)">
+            <img src="images/logo.png" alt="if(塾)" loading="eager">
         </div>
         <div class="loading-percentage" id="loadingPercentage">0%</div>
         <div class="loading-progress">
@@ -2185,7 +2196,7 @@
 
     <!-- Hero Section -->
     <section id="hero">
-        <video autoplay muted loop playsinline id="heroVideo">
+        <video autoplay muted loop playsinline id="heroVideo" preload="metadata">
             <source src="images/ifmvpc.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
@@ -2323,25 +2334,25 @@
                     <div style="border-radius: 20px; position: relative; overflow: hidden; flex: 1; display: flex; align-items: center; justify-content: center;">
                         <div class="changes-slider" id="changesSlider">
                             <div class="change-item active" style="display: block; position: relative;">
-                                <img src="images/case1.png" alt="中学生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 2rem; color: white; border-radius: 0 0 20px 20px;">
-                                    <p style="line-height: 1.9; font-size: 1.05rem; margin: 0;">
+                                <img src="images/case1.png" alt="中学生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 60%, transparent); padding: 2rem 1.5rem; color: white; border-radius: 0 0 20px 20px;">
+                                    <p style="line-height: 1.7; font-size: 1.05rem; margin: 0;">
                                         入塾当初は何も手につかず、ゲームばかりしていた中学3年生の生徒がいました。マインクラフトで遊ぶ姿を観察すると、建築への強いこだわりが見られたため、3Dモデリングを提案。次第に熱中し始め、自らチュートリアルを探して学習するように。今では自発的に勉強に取り組み、学校にも通えるようになりました。
                                     </p>
                                 </div>
                             </div>
                             <div class="change-item" style="display: none; position: relative;">
-                                <img src="images/case2.png" alt="小学生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 2rem; color: white; border-radius: 0 0 20px 20px;">
-                                    <p style="line-height: 1.9; font-size: 1.05rem; margin: 0;">
+                                <img src="images/case2.png" alt="小学生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 60%, transparent); padding: 2rem 1.5rem; color: white; border-radius: 0 0 20px 20px;">
+                                    <p style="line-height: 1.7; font-size: 1.05rem; margin: 0;">
                                         小学2年生の生徒は、癇癪やパニックを起こすことが多く、友達とのトラブルが絶えませんでした。if(塾)では、まず安心できる環境づくりから始め、少しずつコミュニケーションの取り方を一緒に学んでいきました。半年後、その子は自分から適切に声をかけられるようになり、今ではクラスのプロジェクトでリーダーを務めるまでに成長しました。
                                     </p>
                                 </div>
                             </div>
                             <div class="change-item" style="display: none; position: relative;">
-                                <img src="images/case3.png" alt="高校生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 2rem; color: white; border-radius: 0 0 20px 20px;">
-                                    <p style="line-height: 1.9; font-size: 1.05rem; margin: 0;">
+                                <img src="images/case3.png" alt="高校生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 60%, transparent); padding: 2rem 1.5rem; color: white; border-radius: 0 0 20px 20px;">
+                                    <p style="line-height: 1.7; font-size: 1.05rem; margin: 0;">
                                         起業に興味を持っていた高校2年生の生徒。if(塾)でビジネスの基礎を学びながら、地域課題を解決するサービスを考案しました。メンターと共にビジネスプランを磨き上げ、ついに地方自治体の補助金に採択。現在は実際に起業準備を進めており、高校生起業家として地元で注目を集めています。
                                     </p>
                                 </div>
@@ -2977,15 +2988,16 @@
             }
         }, 200);
 
-        window.addEventListener('load', () => {
-            // Ensure progress reaches 100% when loaded
+        // Use DOMContentLoaded instead of 'load' for faster display
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure progress reaches 100% when DOM is ready
             progress = 100;
             loadingProgressBar.style.width = '100%';
             loadingPercentage.textContent = '100%';
 
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
-            }, 1000);
+            }, 500);
         });
 
         // Visitor Counter

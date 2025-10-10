@@ -301,17 +301,35 @@
 
             <div class="prompt-box">インスタグラムのリール動画投稿用の投稿カレンダーを30日分作成してください。
 投稿する事業の内容は以下の通りです。
-"事業の内容"
+<span style="color: #ff6b6b; font-weight: bold;">"事業の内容"</span>
 
-シートはAから順に表紙説明,表紙テキストエリア1,表紙テキストエリア2,動画場面1説明,動画場面1テキストエリア1,動画場面1テキストエリア2,動画場面2説明,動画場面2テキストエリア1,動画場面2テキストエリア2,動画場面3説明,動画場面3テキストエリア1,動画場面3テキストエリア2,投稿のテキスト,ハッシュタグでAからNまで、一行に1日分の投稿の情報を入力する。
+シートはAから順に動画場面1説明,動画場面1テキストエリア1,動画場面1テキストエリア2,動画場面2説明,動画場面2テキストエリア1,動画場面2テキストエリア2,動画場面3説明,動画場面3テキストエリア1,動画場面3テキストエリア2,投稿のテキスト+ハッシュタグでAからJまで、一行に1日分の投稿の情報を入力する。
 
-場面の説明については、いつどこで誰が何をどのようにしているのかを明確に書いてください。
+場面の説明については、動画生成AI(image to video)で使用することを想定しています。以下の形式で具体的に記載してください：
+1. どのような画像を用意するか（いつ・どこで・誰が・何をしている静止画なのか）
+2. その画像をどのように動かすか（カメラの動き、被写体の動き、エフェクトなど）
+
+例：「教室で小学生3人がパソコンに向かっている画像。カメラは左から右にゆっくりパンし、子どもたちの手がキーボードを打つ動きを加える」
 
 テキストエリア1の文字数は1行あたりの文字数は8文字までとし、改行をいれても2行まで、単語の意味の途中では改行しないようにし、改行は単語の区切り目でするようにする。各テキストエリアの改行は必ず"\n"で表現する。
 
 テキストエリア2の文字数は1行あたりの文字数は12文字までとし、改行をいれても4行まで、単語の意味の途中では改行しないようにし、改行は単語の区切り目でするようにする。各テキストエリアの改行は必ず"\n"で表現する。
 
-"用意しやすい場面の種類　例：子どもたちが学習している様子、ゲームをプレイしている場面etc"が用意しやすいので、投稿内容に多めに組み込んでください。
+投稿のテキスト+ハッシュタグ(J列)
+
+投稿のテキストは改行を使わず、句読点(、。)で区切る
+投稿のテキストの後にハッシュタグを続ける
+ハッシュタグは#で始める
+ハッシュタグ同士は改行で区切る
+例:
+
+  今日は公園で楽しく遊びました。子どもたちの笑顔がたくさん見られて嬉しい一日でした。
+  #子育て
+  #育児
+  #公園遊び
+  #おうち時間
+
+<span style="color: #ff6b6b; font-weight: bold;">"用意しやすい場面の種類 例:子どもたちが学習している様子、ゲームをプレイしている場面etc"</span>が用意しやすいので、投稿内容に多めに組み込んでください。
 
 以上の内容でリール動画投稿カレンダー.csvを作成してください。</div>
 
@@ -329,22 +347,18 @@
             <h2>📊 CSVファイルの構造</h2>
 
             <div class="csv-structure">
-                <p><strong>カラム構成(A列〜N列):</strong></p>
+                <p><strong>カラム構成(A列〜J列):</strong></p>
                 <div class="column-list">
-                    <div class="column-header">A列:</div><div>表紙説明</div>
-                    <div class="column-header">B列:</div><div>表紙テキストエリア1</div>
-                    <div class="column-header">C列:</div><div>表紙テキストエリア2</div>
-                    <div class="column-header">D列:</div><div>動画場面1説明</div>
-                    <div class="column-header">E列:</div><div>動画場面1テキストエリア1</div>
-                    <div class="column-header">F列:</div><div>動画場面1テキストエリア2</div>
-                    <div class="column-header">G列:</div><div>動画場面2説明</div>
-                    <div class="column-header">H列:</div><div>動画場面2テキストエリア1</div>
-                    <div class="column-header">I列:</div><div>動画場面2テキストエリア2</div>
-                    <div class="column-header">J列:</div><div>動画場面3説明</div>
-                    <div class="column-header">K列:</div><div>動画場面3テキストエリア1</div>
-                    <div class="column-header">L列:</div><div>動画場面3テキストエリア2</div>
-                    <div class="column-header">M列:</div><div>投稿のテキスト</div>
-                    <div class="column-header">N列:</div><div>ハッシュタグ</div>
+                    <div class="column-header">A列:</div><div>動画場面1説明</div>
+                    <div class="column-header">B列:</div><div>動画場面1テキストエリア1</div>
+                    <div class="column-header">C列:</div><div>動画場面1テキストエリア2</div>
+                    <div class="column-header">D列:</div><div>動画場面2説明</div>
+                    <div class="column-header">E列:</div><div>動画場面2テキストエリア1</div>
+                    <div class="column-header">F列:</div><div>動画場面2テキストエリア2</div>
+                    <div class="column-header">G列:</div><div>動画場面3説明</div>
+                    <div class="column-header">H列:</div><div>動画場面3テキストエリア1</div>
+                    <div class="column-header">I列:</div><div>動画場面3テキストエリア2</div>
+                    <div class="column-header">J列:</div><div>投稿のテキスト+ハッシュタグ</div>
                 </div>
                 <p style="margin-top: 15px;"><strong>※ 1行に1日分の投稿情報が入ります(30行で30日分)</strong></p>
             </div>
@@ -368,17 +382,44 @@
                 <li>改行位置:単語の区切り目で改行(単語の途中で改行しない)</li>
                 <li>改行表現:<strong>必ず"\n"を使用</strong></li>
             </ul>
+
+            <h3>投稿のテキストとハッシュタグの制約</h3>
+            <ul class="step-list">
+                <li>投稿のテキストは改行を使わず、句読点(、。)で区切る</li>
+                <li>投稿のテキストの後にハッシュタグを続ける</li>
+                <li>ハッシュタグは#で始める</li>
+                <li>ハッシュタグ同士は改行で区切る</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>📝 投稿のテキスト+ハッシュタグの例:</strong>
+                <div style="margin-top: 10px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace;">
+今日は公園で楽しく遊びました。子どもたちの笑顔がたくさん見られて嬉しい一日でした。
+#子育て
+#育児
+#公園遊び
+#おうち時間
+                </div>
+            </div>
         </div>
 
         <div class="section">
             <h2>🎨 場面説明の書き方</h2>
 
             <div class="highlight-box">
-                <strong>📸 場面の説明は具体的に:</strong>
-                <p style="margin-top: 10px;">いつどこで誰が何をどのようにしているのかを明確に書いてください。</p>
+                <strong>📸 場面の説明は動画生成AI(image to video)用に具体的に:</strong>
+                <p style="margin-top: 10px;">動画生成AIで使用することを想定し、以下の2つの要素を含めてください：</p>
+                <ul style="margin-top: 10px;">
+                    <li><strong>1. 用意する画像の説明:</strong> いつ・どこで・誰が・何をしている静止画なのか</li>
+                    <li><strong>2. 動きの指示:</strong> その画像をどのように動かすか（カメラの動き、被写体の動き、エフェクト）</li>
+                </ul>
+
+                <p style="margin-top: 15px; font-weight: bold;">例：</p>
                 <ul style="margin-top: 10px;">
                     <li>❌ 悪い例: 「子どもの様子」</li>
-                    <li>✅ 良い例: 「教室で小学生3人がパソコンでプログラミングをしている場面」</li>
+                    <li>❌ 悪い例: 「教室で小学生3人がパソコンでプログラミングをしている場面」</li>
+                    <li>✅ 良い例: 「教室で小学生3人がパソコンに向かっている画像。カメラは左から右にゆっくりパンし、子どもたちの手がキーボードを打つ動きを加える」</li>
+                    <li>✅ 良い例: 「公園で子どもが笑顔でこちらを見ている画像。カメラはゆっくりズームインし、背景の木々が風で揺れる動きを加える」</li>
                 </ul>
             </div>
         </div>

@@ -2443,12 +2443,12 @@
                     <div class="counter-title">Visitors</div>
                     <div class="counter-stats">
                         <div class="counter-row">
-                            <span class="counter-label">今日</span>
-                            <div class="counter-value" id="counterToday"></div>
+                            <span class="counter-label">全体</span>
+                            <div class="counter-value" id="counterTotal"></div>
                         </div>
                         <div class="counter-row">
-                            <span class="counter-label">今週</span>
-                            <div class="counter-value" id="counterWeek"></div>
+                            <span class="counter-label">今日</span>
+                            <div class="counter-value" id="counterToday"></div>
                         </div>
                         <div class="counter-row">
                             <span class="counter-label">今月</span>
@@ -3243,50 +3243,72 @@
             ).join('');
         }
 
-        function initVisitorCounter() {
-            // Get or initialize visitor data from localStorage
+        async function initVisitorCounter() {
             const today = new Date().toDateString();
-            const currentWeek = getWeekNumber(new Date());
-            const currentMonth = new Date().getMonth();
+            const currentMonth = `${new Date().getFullYear()}-${new Date().getMonth()}`;
 
+            // Initialize display with loading state
+            updateCounter('counterTotal', 0);
+            updateCounter('counterToday', 0);
+            updateCounter('counterMonth', 0);
+
+            // Get or initialize visitor data from localStorage
             let visitorData = JSON.parse(localStorage.getItem('visitorData') || '{}');
 
-            // Reset counters if period changed
-            if (visitorData.lastVisitDate !== today) {
-                if (!visitorData.todayCount) visitorData.todayCount = 0;
-                visitorData.todayCount++;
+            // Check if this is a new visit today
+            const isNewVisitToday = visitorData.lastVisitDate !== today;
+            const isNewVisitThisMonth = visitorData.lastVisitMonth !== currentMonth;
+
+            // Update today counter
+            if (isNewVisitToday) {
+                visitorData.todayCount = 1;
                 visitorData.lastVisitDate = today;
-            }
-
-            if (visitorData.lastVisitWeek !== currentWeek) {
-                visitorData.weekCount = 1;
-                visitorData.lastVisitWeek = currentWeek;
             } else {
-                if (!visitorData.weekCount) visitorData.weekCount = 0;
-                visitorData.weekCount++;
+                visitorData.todayCount = (visitorData.todayCount || 0) + 1;
             }
 
-            if (visitorData.lastVisitMonth !== currentMonth) {
+            // Update month counter
+            if (isNewVisitThisMonth) {
                 visitorData.monthCount = 1;
                 visitorData.lastVisitMonth = currentMonth;
             } else {
-                if (!visitorData.monthCount) visitorData.monthCount = 0;
-                visitorData.monthCount++;
+                visitorData.monthCount = (visitorData.monthCount || 0) + 1;
             }
 
             // Save updated data
             localStorage.setItem('visitorData', JSON.stringify(visitorData));
 
-            // Update display
-            updateCounter('counterToday', visitorData.todayCount || 1);
-            updateCounter('counterWeek', visitorData.weekCount || 1);
-            updateCounter('counterMonth', visitorData.monthCount || 1);
-        }
+            // Update display for local counters
+            updateCounter('counterToday', visitorData.todayCount);
+            updateCounter('counterMonth', visitorData.monthCount);
 
-        function getWeekNumber(date) {
-            const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-            const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
-            return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+            // Fetch cumulative total count from CountAPI
+            try {
+                // Use CountAPI to track total visits across all devices
+                const namespace = 'if-juku-getabako';
+                const key = 'total-visitors';
+
+                // Increment the counter (this happens on every page load)
+                const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    updateCounter('counterTotal', data.value);
+                } else {
+                    // Fallback: use localStorage only
+                    if (!visitorData.totalCount) visitorData.totalCount = 0;
+                    visitorData.totalCount++;
+                    localStorage.setItem('visitorData', JSON.stringify(visitorData));
+                    updateCounter('counterTotal', visitorData.totalCount);
+                }
+            } catch (error) {
+                console.error('Failed to fetch visitor count:', error);
+                // Fallback: use localStorage only
+                if (!visitorData.totalCount) visitorData.totalCount = 0;
+                visitorData.totalCount++;
+                localStorage.setItem('visitorData', JSON.stringify(visitorData));
+                updateCounter('counterTotal', visitorData.totalCount);
+            }
         }
 
         initVisitorCounter();

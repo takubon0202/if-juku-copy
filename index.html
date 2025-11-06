@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>if(塾) - AIと起業を学ぶオンラインプログラミング塾</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -29,6 +33,13 @@
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
+            font-size: 18px;
+        }
+
+        /* Global responsive image fix */
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         body::before {
@@ -99,9 +110,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             transition: all 0.3s;
             box-shadow: var(--neon-glow);
+            position: relative;
         }
 
         .hamburger span {
@@ -112,15 +124,16 @@
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(7px, 7px);
         }
 
         .hamburger.active span:nth-child(2) {
             opacity: 0;
+            transform: scale(0);
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .hamburger.active {
@@ -222,13 +235,92 @@
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             font-weight: 700;
+            color: #4da6ff;
+            -webkit-text-stroke: 2px #000;
+            paint-order: stroke fill;
+            text-shadow:
+                0 0 20px rgba(77, 166, 255, 0.8),
+                0 0 40px rgba(77, 166, 255, 0.6),
+                0 0 60px rgba(77, 166, 255, 0.4);
+            animation: blueGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes blueGlow {
+            0%, 100% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 20px rgba(100, 200, 255, 0.8),
+                    0 0 40px rgba(100, 200, 255, 0.6),
+                    0 0 60px rgba(100, 200, 255, 0.4);
+            }
+            50% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 30px rgba(100, 200, 255, 1),
+                    0 0 50px rgba(100, 200, 255, 0.8),
+                    0 0 70px rgba(100, 200, 255, 0.6);
+            }
         }
 
         .hero-subtitle {
             font-size: clamp(1rem, 2vw, 1.3rem);
-            color: var(--text-gray);
+            color: #ffd700;
             margin-bottom: 3rem;
             line-height: 1.8;
+            text-shadow:
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.6),
+                0 0 60px rgba(255, 215, 0, 0.4);
+            animation: yellowGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes yellowGlow {
+            0%, 100% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 20px rgba(255, 215, 0, 0.8),
+                    0 0 40px rgba(255, 215, 0, 0.6),
+                    0 0 60px rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 30px rgba(255, 215, 0, 1),
+                    0 0 50px rgba(255, 215, 0, 0.8),
+                    0 0 70px rgba(255, 215, 0, 0.6);
+            }
         }
 
         .cta-button {
@@ -403,14 +495,16 @@
             box-shadow: var(--purple-glow);
         }
 
-        .calendar-container iframe {
+        .calendar-image {
             width: 100%;
             border-radius: 10px;
+            display: block;
         }
 
         .schedule-note {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 0;
+            padding-top: 1rem;
             font-size: 1rem;
             color: var(--text-gray);
             line-height: 1.4;
@@ -437,21 +531,14 @@
         }
 
         .service-card::before {
-            content: attr(data-title);
+            content: '';
             position: absolute;
-            top: 15px;
-            left: 15px;
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 3;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-card:hover::before {
-            opacity: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+            z-index: 1;
         }
 
         .service-card:hover {
@@ -469,22 +556,13 @@
             left: 0;
         }
 
-        .service-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3), rgba(10, 10, 10, 0.7));
-        }
 
         .service-info {
             position: absolute;
             bottom: 20px;
             left: 20px;
             right: 20px;
-            z-index: 3;
+            z-index: 2;
         }
 
         .service-name {
@@ -503,38 +581,81 @@
         }
 
         .service-detail {
-            position: absolute;
+            display: none;
+        }
+
+        .service-modal {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
             color: var(--text-light);
-            padding: 20px;
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .service-modal.active {
+            display: flex;
+        }
+
+        .service-modal-content {
+            max-width: 800px;
+            width: 100%;
             text-align: center;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 4;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .service-modal-close {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            word-wrap: break-word;
-            white-space: normal;
+            transition: all 0.3s;
+            font-weight: bold;
         }
 
-        .service-card:hover .service-detail {
-            opacity: 1;
+        .service-modal-close:hover {
+            background: var(--text-light);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .service-modal-close {
+                top: 10px;
+                right: 10px;
+            }
+
+            .service-modal-content {
+                font-size: 1.1rem;
+                padding: 60px 20px 20px;
+            }
         }
 
         /* Challenge Section */
         .challenge-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 40px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             align-items: center;
         }
 
@@ -696,7 +817,7 @@
 
         .staff-role {
             position: absolute;
-            top: 20px;
+            bottom: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.8);
             padding: 8px 16px;
@@ -814,7 +935,7 @@
         .youtube-scroll {
             display: flex;
             gap: 20px;
-            animation: scroll-left 30s linear infinite;
+            animation: scroll-left 10s linear infinite;
         }
 
         @keyframes scroll-left {
@@ -872,6 +993,16 @@
             display: block;
         }
 
+        /* SP only slides - hidden by default */
+        .comic-slide.sp-only {
+            display: none !important;
+        }
+
+        /* Only show SP slides when they are active */
+        .comic-slide.sp-only.active {
+            display: block !important;
+        }
+
         .comic-slide img {
             width: 100%;
             border-radius: 15px;
@@ -908,8 +1039,9 @@
         /* Message Section */
         .message-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px;
             background: url('images/paper.png') center/cover;
+            background-size: 110%;
             border-radius: 15px;
             padding: 60px;
             box-shadow: var(--purple-glow);
@@ -938,14 +1070,13 @@
             line-height: 2;
             margin-bottom: 2rem;
             color: var(--text-light);
+            padding-left: 1.2em;
         }
 
         .message-signature {
             text-align: right;
             margin-top: 3rem;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            position: relative;
         }
 
         .message-signature p {
@@ -956,84 +1087,56 @@
         /* NPO if(AI) Section Styles */
         #if-ai .business-card {
             position: relative;
-            background-size: cover;
-            background-position: center;
             border-radius: 15px;
             overflow: hidden;
-            cursor: pointer;
             transition: all 0.3s;
-            min-height: 250px;
-        }
-
-        #if-ai .business-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
-            z-index: 1;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            display: flex;
+            flex-direction: column;
+            aspect-ratio: 1/1;
         }
 
         #if-ai .business-card-image {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
+            height: 60%;
             background-size: cover;
+            background-repeat: no-repeat;
             background-position: center;
-            z-index: 0;
+            flex-shrink: 0;
         }
 
         #if-ai .business-card-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px;
-            height: 100%;
+            padding: 20px 15px;
+            height: 40%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
+            overflow: hidden;
         }
 
         #if-ai .business-card-content h3 {
             font-size: 1.5rem;
-            margin-bottom: 0;
+            margin-bottom: 0.8rem;
             color: var(--primary-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         #if-ai .business-card-detail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
             color: var(--text-light);
-            padding: 20px;
-            text-align: center;
             font-size: 1.1rem;
             line-height: 1.6;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        #if-ai .business-card:hover .business-card-detail,
-        #if-ai .business-card:active .business-card-detail {
-            opacity: 1;
+        #if-ai .business-card-detail p {
+            margin: 0;
         }
 
         #if-ai .business-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--neon-glow);
+            border-color: var(--primary-color);
         }
 
         /* Business Section */
@@ -1049,16 +1152,40 @@
             position: relative;
         }
 
-        .business-video, .kitazuna-video {
-            position: absolute;
+        .business-video {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
-            opacity: 1;
+            opacity: 0;
             z-index: -1;
             pointer-events: none;
+            transition: opacity 0.5s ease;
+            filter: brightness(0.7);
+        }
+
+        .business-video.active {
+            opacity: 1;
+        }
+
+        .kitazuna-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            filter: brightness(0.7);
+        }
+
+        .kitazuna-video.active {
+            opacity: 1;
         }
 
         #business::after, #kitazuna::after {
@@ -1100,6 +1227,12 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-bottom: 3rem;
+        }
+
+        #if-ai .business-grid {
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+            gap: 40px;
         }
 
         .business-card {
@@ -1173,25 +1306,65 @@
         .contact-link {
             display: block;
             padding: 20px 40px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-            background-size: 200% 100%;
-            background-position: -100% 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             color: var(--text-light);
             text-decoration: none;
             text-align: center;
             font-size: 1.2rem;
             font-weight: bold;
-            border: 2px solid var(--primary-color);
+            border: 2px solid;
             border-radius: 50px;
             transition: all 0.3s;
-            box-shadow: var(--neon-glow);
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-link:hover {
-            background-position: 0 0;
-            color: var(--bg-dark);
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
+        }
+
+        .contact-link:nth-child(1) {
+            border-color: #4a90e2;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:nth-child(1):hover {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0, 255, 204, 0.6);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:nth-child(2) {
+            border-color: #ff8c42;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:nth-child(2):hover {
+            background: linear-gradient(135deg, #ff8c42, #ff6b1a);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:nth-child(3) {
+            border-color: #06c755;
+            box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-link:nth-child(3):hover {
+            background: linear-gradient(135deg, #06c755, #05a344);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 199, 85, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .contact-info {
@@ -1240,7 +1413,7 @@
         .blog-items {
             display: flex;
             gap: 20px;
-            animation: scroll-right 40s linear infinite;
+            animation: scroll-right 13s linear infinite;
         }
 
         @keyframes scroll-right {
@@ -1249,7 +1422,7 @@
         }
 
         .blog-items.reverse {
-            animation: scroll-left 40s linear infinite;
+            animation: scroll-left 13s linear infinite;
         }
 
         .blog-item {
@@ -1279,6 +1452,80 @@
         }
 
         /* Responsive Design */
+        /* Mobile specific styles for if(AI) section */
+        @media (max-width: 768px) {
+            #if-ai .business-card {
+                min-height: 200px;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            #if-ai .business-card-content h3 {
+                font-size: 1.2rem;
+            }
+            #if-ai .business-card-detail {
+                font-size: 0.95rem;
+                padding: 15px;
+            }
+
+            /* Course titles smaller on mobile */
+            .course-title {
+                font-size: 1.2rem !important;
+                line-height: 1.4;
+            }
+
+            /* Challenge subtitle smaller on mobile */
+            .challenge-title {
+                font-size: 1.2rem !important;
+            }
+
+            /* Section titles smaller for long titles */
+            #comic .section-title,
+            #business .section-title,
+            #kitazuna .section-title {
+                font-size: 1.5rem !important;
+                line-height: 1.2;
+            }
+
+            /* Flow section button adjustments */
+            .flow-button .cta-button {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+
+            /* Business section subtitle smaller */
+            .business-subtitle {
+                font-size: 1rem !important;
+            }
+
+            /* Message section fixes */
+            .message-signature {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 2rem;
+                text-align: center;
+            }
+
+            .message-signature > div {
+                flex-direction: row !important;
+                gap: 2rem !important;
+                justify-content: center !important;
+            }
+
+            .message-signature p {
+                margin: 2px 0 !important;
+                line-height: 1.2;
+            }
+
+            /* if(AI) section mobile fixes */
+            #if-ai .business-card-detail {
+                font-size: 0.9rem !important;
+                padding: 15px !important;
+                line-height: 1.4 !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
                 width: 100%;
@@ -1324,6 +1571,45 @@
             .comic-slider {
                 padding: 0 20px;
             }
+
+            .flow-image {
+                width: 85%;
+            }
+
+            .cta-button {
+                width: 90%;
+                max-width: 400px;
+            }
+
+            /* Curriculum section mobile layout */
+            .curriculum-two-column {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+
+            /* Fix case section text overflow on mobile */
+            .change-item p {
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+                padding: 1rem !important;
+            }
+
+            .change-item > div {
+                padding: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #if-ai .business-card {
+                min-height: 150px;
+                aspect-ratio: 16/9;
+            }
+            #if-ai .business-card-content {
+                padding: 15px;
+            }
+            #if-ai .business-card-content h3 {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1337,10 +1623,29 @@
 
             .hero-title {
                 font-size: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .hero-title .sp-break {
+                display: block;
             }
 
             .hero-subtitle {
                 font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .hero-subtitle .sp-break {
+                display: block;
+            }
+
+            .curriculum-sp-break {
+                display: block;
+                font-size: 1.1rem;
+            }
+
+            .curriculum-pc-break {
+                display: none;
             }
 
             .tab-buttons {
@@ -1365,6 +1670,7 @@
             height: 100%;
             background: var(--bg-dark);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10000;
@@ -1376,10 +1682,252 @@
             pointer-events: none;
         }
 
+        .loading-logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .loading-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: logoFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+        .loading-progress {
+            width: 300px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+        }
+
         .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .loading-percentage {
             font-size: 2rem;
             color: var(--primary-color);
-            animation: pulse 1s infinite;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Visitor Counter */
+        .visitor-counter {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 3px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.4), inset 0 0 20px rgba(0, 255, 204, 0.1);
+            font-family: 'Courier New', monospace;
+            min-width: 250px;
+            margin-left: 20px;
+        }
+
+        .counter-title {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        .counter-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .counter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .counter-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .counter-value {
+            display: flex;
+            gap: 3px;
+        }
+
+        .counter-digit {
+            display: inline-block;
+            background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            min-width: 28px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.3), 0 0 8px rgba(255, 0, 255, 0.2);
+            animation: digitGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes digitGlow {
+            0%, 100% {
+                box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.3), 0 0 8px rgba(255, 0, 255, 0.2);
+            }
+            50% {
+                box-shadow: inset 0 0 15px rgba(255, 0, 255, 0.5), 0 0 12px rgba(255, 0, 255, 0.4);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .visitor-counter {
+                display: block;
+                min-width: 200px;
+                padding: 12px 15px;
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            .counter-title {
+                font-size: 0.75rem;
+            }
+
+            .counter-label {
+                font-size: 0.75rem;
+            }
+
+            .counter-digit {
+                font-size: 0.85rem;
+                min-width: 24px;
+                padding: 3px 6px;
+            }
+        }
+
+        /* Minecraft Style Text */
+        .minecraft-text {
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ffff00;
+            text-shadow:
+                3px 3px 0px #000000,
+                -1px -1px 0px #000000,
+                1px -1px 0px #000000,
+                -1px 1px 0px #000000,
+                0 0 20px rgba(255, 255, 0, 0.8);
+            transform: skewY(-5deg);
+            display: block;
+            animation: minecraftPulse 2s ease-in-out infinite;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            margin-top: -1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: right;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        @keyframes minecraftPulse {
+            0%, 100% {
+                transform: skewY(-5deg) scale(1);
+            }
+            50% {
+                transform: skewY(-5deg) scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .minecraft-text {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Fire Effect for Challenge Title */
+        .fire-text {
+            position: relative;
+            display: inline-block;
+            animation: fireFlicker 1.5s ease-in-out infinite;
+            color: #333;
+            -webkit-text-stroke: 1.5px #000;
+            paint-order: stroke fill;
+        }
+
+        @keyframes fireFlicker {
+            0%, 100% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 10px #ff6600,
+                    0 0 20px #ff6600,
+                    0 0 30px #ff3300,
+                    0 0 40px #ff3300,
+                    0 0 50px #ff0000,
+                    0 -10px 60px #ff3300,
+                    0 -15px 80px #ff0000;
+                filter: brightness(1.2);
+            }
+            50% {
+                text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px 2px 0 #000,
+                    2px 2px 0 #000,
+                    -3px -3px 0 #fff,
+                    3px -3px 0 #fff,
+                    -3px 3px 0 #fff,
+                    3px 3px 0 #fff,
+                    0 0 5px #ff9900,
+                    0 0 15px #ff6600,
+                    0 0 25px #ff3300,
+                    0 0 35px #ff3300,
+                    0 0 45px #ff0000,
+                    0 -5px 55px #ff6600,
+                    0 -10px 70px #ff3300;
+                filter: brightness(1);
+            }
         }
 
         /* Blog Modal Styles */
@@ -1474,12 +2022,165 @@
         .blog-modal-content::-webkit-scrollbar-thumb:hover {
             background: var(--secondary-color);
         }
+
+        /* Animated Background Styles */
+        .animated-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(255, 107, 107, 0.05) 0%,
+                rgba(255, 140, 66, 0.05) 25%,
+                rgba(102, 126, 234, 0.05) 50%,
+                rgba(118, 75, 162, 0.05) 75%,
+                rgba(255, 107, 107, 0.05) 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 140, 66, 0.1) 0%, transparent 50%);
+            animation: floatingBubbles 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .animated-bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes floatingBubbles {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.5;
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+                opacity: 0.7;
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+                opacity: 0.6;
+            }
+        }
+
+        /* Particle Animation for specific sections */
+        .particle-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particle-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: particleMove 30s linear infinite;
+            z-index: 0;
+        }
+
+        .particle-bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Wave Animation */
+        .wave-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-bg::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, rgba(102, 126, 234, 0.1), transparent);
+            animation: wave 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .wave-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, rgba(255, 140, 66, 0.08), transparent);
+            animation: wave 10s ease-in-out infinite reverse;
+            z-index: 0;
+        }
+
+        .wave-bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateX(0) scaleY(1);
+            }
+            50% {
+                transform: translateX(-25%) scaleY(1.2);
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Loading Screen -->
     <div class="loading" id="loading">
-        <div class="loading-text">if(塾) Loading...</div>
+        <div class="loading-logo">
+            <img src="images/logo.png" alt="if(塾)" loading="eager">
+        </div>
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
+        <div class="loading-text">読み込み中...</div>
     </div>
 
     <!-- Navigation -->
@@ -1495,10 +2196,9 @@
                     <a href="#about">if(塾)について</a>
                     <ul>
                         <li><a href="#courses">コース紹介</a></li>
-                        <li><a href="#schedule">授業スケジュール</a></li>
+                        <li><a href="#curriculum">カリキュラム</a></li>
                         <li><a href="#services">サービス内容</a></li>
                         <li><a href="#challenge">if(チャレンジ)</a></li>
-                        <li><a href="#beginner">if(チャレンジ)forビギナー</a></li>
                         <li><a href="#issues">if(塾)が取り組む課題</a></li>
                         <li><a href="#flow">入塾までの流れ</a></li>
                         <li><a href="#staff">運営メンバー</a></li>
@@ -1518,14 +2218,33 @@
 
     <!-- Hero Section -->
     <section id="hero">
-        <video autoplay muted loop playsinline id="heroVideo">
+        <video autoplay muted loop playsinline id="heroVideo" preload="metadata">
             <source src="images/ifmvpc.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
             <img src="images/logo.png" alt="if(塾)ロゴ" class="hero-logo">
-            <h1 class="hero-title">AIと起業を学ぶ、オンラインプログラミング塾</h1>
-            <p class="hero-subtitle">遠隔・全国対応で、好きなことを学びながら稼げる力を育成</p>
-            <a href="#contact" class="cta-button smooth-scroll">無料体験授業を申し込む</a>
+            <h1 class="hero-title"><span class="sp-break">AIと起業を学ぶ、オンライン</span><span class="sp-break">プログラミング塾</span></h1>
+            <p class="hero-subtitle"><span class="sp-break">遠隔・全国対応で、好きなことを学びながら</span><span class="sp-break">稼げる力を育成</span></p>
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                <a href="#contact" class="cta-button smooth-scroll">無料体験授業を申し込む</a>
+                <div class="visitor-counter">
+                    <div class="counter-title">Visitors</div>
+                    <div class="counter-stats">
+                        <div class="counter-row">
+                            <span class="counter-label">今日</span>
+                            <div class="counter-value" id="counterToday"></div>
+                        </div>
+                        <div class="counter-row">
+                            <span class="counter-label">今週</span>
+                            <div class="counter-value" id="counterWeek"></div>
+                        </div>
+                        <div class="counter-row">
+                            <span class="counter-label">今月</span>
+                            <div class="counter-value" id="counterMonth"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1579,29 +2298,257 @@
         </div>
     </section>
 
-    <!-- Schedule Section -->
-    <section id="schedule">
-        <h2 class="section-title">授業スケジュール</h2>
-        <div class="calendar-container">
-            <iframe src="https://calendar.google.com/calendar/embed?src=ifjuku%40gmail.com&ctz=Asia%2FTokyo" 
-                    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <!-- Curriculum Section -->
+    <section id="curriculum">
+        <h2 class="section-title">学習の進め方</h2>
+
+        <div style="max-width: 1200px; margin: 0 auto 4rem;">
+            <div style="background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,140,66,0.1)); border-radius: 20px; padding: 2.5rem; margin-bottom: 3rem; text-align: center;">
+                <p style="color: var(--text-gray); font-size: 1.15rem; line-height: 1.9; margin-bottom: 0;">
+                    if(塾)には、<strong style="color: var(--primary-color); font-size: 1.4rem;"><span class="curriculum-sp-break">決まった</span><span class="curriculum-sp-break">カリキュラムがありません</span></strong>。<br class="curriculum-pc-break"><span class="curriculum-sp-break">なぜなら、自分で決めたことに能動的に取り組むことこそが、<strong>最も効率的な学習</strong>だからです。</span>
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 1.5rem; margin-bottom: 4rem; justify-content: center; flex-wrap: wrap;">
+                <div style="background: white; border-radius: 15px; padding: 1.5rem 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); flex: 1; min-width: 280px; max-width: 350px; position: relative; overflow: hidden;">
+                    <img src="images/progress1.png" alt="適性を見極める" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                    <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">1</span>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">適性を見極める</h4>
+                        </div>
+                        <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                            例えば、マインクラフトで建築が好きな子はデザインセンスに長けている可能性が高いです。そうした子には3Dモデリングやグラフィック作成を提案します。また、家での様子や現在の困りごとなどを親御様にもヒアリングしながら、中長期の目標設定を行っていきます。
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 15px; padding: 1.5rem 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); flex: 1; min-width: 280px; max-width: 350px; position: relative; overflow: hidden;">
+                    <img src="images/progress2.png" alt="スキルを身につける" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                    <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">2</span>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">スキルを身につける</h4>
+                        </div>
+                        <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                            興味を持ったスキルを段階的に学習。独自開発のAIツールや人間メンターのサポートで、楽しみながら実践的なスキルを習得します。AI先生もいて、日頃の相談から作りたいものの作り方まで、本人に合わせていつでもサポートします。
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: white; border-radius: 15px; padding: 1.5rem 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); flex: 1; min-width: 280px; max-width: 350px; position: relative; overflow: hidden;">
+                    <img src="images/progress3.png" alt="実際に仕事をして報酬を得る" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                    <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">3</span>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">実際に仕事をして報酬を得る</h4>
+                        </div>
+                        <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
+                            スキルが身についてきたら、単発の仕事にチャレンジ。実際に報酬を得ることで「ここまでやればお金がもらえる」という仕事の感覚が掴め、小さい時から地元に貢献した実感と将来への見通しが持てるようになります。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curriculum-two-column" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch;">
+                <div style="position: relative; display: flex; flex-direction: column;">
+                    <h3 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">こんな変化が起こっています</h3>
+                    <div style="border-radius: 20px; position: relative; overflow: hidden; flex: 1; display: flex; align-items: center; justify-content: center;">
+                        <div class="changes-slider" id="changesSlider">
+                            <div class="change-item active" style="display: block; position: relative;">
+                                <img src="images/case1.png" alt="中学生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 60%, transparent); padding: 2rem 1.5rem; color: white; border-radius: 0 0 20px 20px;">
+                                    <p style="line-height: 1.7; font-size: 1.05rem; margin: 0;">
+                                        入塾当初は何も手につかず、ゲームばかりしていた中学3年生の生徒がいました。マインクラフトで遊ぶ姿を観察すると、建築への強いこだわりが見られたため、3Dモデリングを提案。次第に熱中し始め、自らチュートリアルを探して学習するように。今では自発的に勉強に取り組み、学校にも通えるようになりました。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="change-item" style="display: none; position: relative;">
+                                <img src="images/case2.png" alt="小学生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 60%, transparent); padding: 2rem 1.5rem; color: white; border-radius: 0 0 20px 20px;">
+                                    <p style="line-height: 1.7; font-size: 1.05rem; margin: 0;">
+                                        小学2年生の生徒は、癇癪やパニックを起こすことが多く、友達とのトラブルが絶えませんでした。if(塾)では、まず安心できる環境づくりから始め、少しずつコミュニケーションの取り方を一緒に学んでいきました。半年後、その子は自分から適切に声をかけられるようになり、今ではクラスのプロジェクトでリーダーを務めるまでに成長しました。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="change-item" style="display: none; position: relative;">
+                                <img src="images/case3.png" alt="高校生の事例" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6) 60%, transparent); padding: 2rem 1.5rem; color: white; border-radius: 0 0 20px 20px;">
+                                    <p style="line-height: 1.7; font-size: 1.05rem; margin: 0;">
+                                        起業に興味を持っていた高校2年生の生徒。if(塾)でビジネスの基礎を学びながら、地域課題を解決するサービスを考案しました。メンターと共にビジネスプランを磨き上げ、ついに地方自治体の補助金に採択。現在は実際に起業準備を進めており、高校生起業家として地元で注目を集めています。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column;">
+                    <h3 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">授業スケジュール</h3>
+                    <div class="calendar-container" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                        <img src="images/calenderpc.png" alt="授業スケジュール" class="calendar-image" id="calendarImage" style="max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+
+            <p style="color: var(--text-gray); font-size: 1.15rem; line-height: 1.9; margin-top: 3rem; text-align: center; font-weight: 500;">
+                だからこそif(塾)は、決まったカリキュラムを設けず、<br>
+                <strong style="color: var(--primary-color);">一人ひとりが好きなことを自主的に学べる仕組み</strong>にしています。
+            </p>
         </div>
-        <p class="schedule-note">授業は基本的にオンラインで実施されます。</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title" style="margin-bottom: 1rem;">サービス案内</h2>
+        <p class="minecraft-text">月額11,000円(税込)〜で利用できる、<br>if(塾)の全面サポートサブスクリプション!</p>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('images/service1.png');"></div>
+                <div class="service-info">
+                    <h3 class="service-name">オンライン授業</h3>
+                    <p class="service-brief">全国どこからでも参加可能</p>
+                    <div class="service-detail">
+                        Discordを使用したリアルタイムオンライン授業。全国どこからでも参加でき、録画も視聴可能です。質問もチャットやボイスで気軽にできます。
+                    </div>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('images/service2.png');"></div>
+                <div class="service-info">
+                    <h3 class="service-name">オフラインイベント</h3>
+                    <p class="service-brief">秋田県内で定期開催</p>
+                    <div class="service-detail">
+                        月に1回程度、秋田県内でオフラインイベントを開催。実際に会って交流したり、特別なワークショップを実施します。
+                    </div>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('images/service3.png');"></div>
+                <div class="service-info">
+                    <h3 class="service-name">教育相談</h3>
+                    <p class="service-brief">保護者向けサポート</p>
+                    <div class="service-detail">
+                        お子様の学習状況や進路について、専門スタッフが個別相談に応じます。教育方針や家庭でのサポート方法もアドバイスします。
+                    </div>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('images/service4.png');"></div>
+                <div class="service-info">
+                    <h3 class="service-name">案件割振</h3>
+                    <p class="service-brief">実践的な仕事体験</p>
+                    <div class="service-detail">
+                        実際の案件をレベルに応じて割り振り、報酬を得ながら実践的なスキルを身につけます。メンターがサポートするので安心です。
+                    </div>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('images/service5.png');"></div>
+                <div class="service-info">
+                    <h3 class="service-name">独立サポート</h3>
+                    <p class="service-brief">起業・独立を支援</p>
+                    <div class="service-detail">
+                        将来の起業や独立を目指す生徒に対して、ビジネスプランの作成から資金調達まで総合的にサポートします。
+                    </div>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('images/service6.png');"></div>
+                <div class="service-info">
+                    <h3 class="service-name">AI先生</h3>
+                    <p class="service-brief">24時間質問可能</p>
+                    <div class="service-detail">
+                        最新のAI技術を活用した学習サポート。24時間いつでも質問でき、個人のレベルに合わせた最適な学習を提供します。
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Challenge Section -->
     <section id="challenge">
-        <h2 class="section-title">if(チャレンジ)</h2>
+        <h2 class="section-title">if(<span class="fire-text">チャレンジ</span>)</h2>
+        <p class="challenge-intro" style="color: var(--text-gray); text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.1rem; line-height: 1.5;">
+            if(塾)では、独自開発のAIツールにより、多くの仕事を小学生から誰でも取り組みやすい形にしています。<br>
+            自分が少し得意なことでお金を稼ぐ経験を幼い頃からすることで、将来への見通しや意欲が生まれます。<br>
+            こうした実践的な経験が自信となり、より本格的なスキル習得へとつながっていきます。
+        </p>
         <div class="challenge-container">
-            <img src="images/cyclepc.png" alt="if(チャレンジ)" class="challenge-image">
-            <div class="challenge-window">
-                <h3 class="challenge-title">能動的に学ぶ力を身につける</h3>
-                <p class="challenge-text">
-                    企業からの案件を割り振って、実際に報酬を得ながら実践的なスキルを習得します。
-                    メンターのサポートのもと、リアルなビジネス環境で成長していきます。
-                </p>
-                <p class="challenge-note">※ 案件参加には保護者の同意が必要になります</p>
-                <a href="#contact" class="cta-button smooth-scroll">if(塾)の塾生に仕事を依頼する</a>
+            <div style="position: relative;">
+                <img src="images/cyclepc.png" alt="if(チャレンジ)" class="challenge-image" style="filter: brightness(0.6);">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; text-align: center; width: 100%; padding: 0 20px;">
+                    <p class="challenge-note" style="color: var(--text-light); margin-bottom: 1.5rem; font-size: 1.1rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);">※ 案件参加には保護者の同意が必要になります</p>
+                    <a href="https://forms.gle/pPdswo61LDD1QUtt7" class="cta-button" target="_blank" style="font-size: 1.3rem; padding: 18px 40px;">if(チャレンジ)に申し込む</a>
+                </div>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest1.png'); position: relative;">
+                        <a href="shortmoviemanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ff6b6b, #ff8c42); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 0 40px rgba(255, 140, 66, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
+                            ショート動画<br>マニュアル
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 1</h3>
+                        <p class="service-brief">ショート動画作成</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest2.png'); position: relative;">
+                        <a href="minecraftmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #8bc34a, #4caf50); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(139, 195, 74, 0.8), 0 0 40px rgba(76, 175, 80, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
+                            マイクラ<br>マニュアル
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 2</h3>
+                        <p class="service-brief">マインクラフトで建築</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest3.png'); position: relative;">
+                        <a href="developmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #4a90e2, #357abd); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(74, 144, 226, 0.8), 0 0 40px rgba(53, 122, 189, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
+                            バイブコーディング<br>マニュアル
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 3</h3>
+                        <p class="service-brief">システム開発</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest4.png'); position: relative;">
+                        <a href="instagrammanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #00ffcc, #00ff00); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 40px rgba(0, 255, 0, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
+                            SNS運用<br>マニュアル
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 4</h3>
+                        <p class="service-brief">SNS運用</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest5.png'); position: relative;">
+                        <a href="advertisingmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #9c27b0, #e91e63); color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(156, 39, 176, 0.8), 0 0 40px rgba(233, 30, 99, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
+                            広告デザイン<br>マニュアル
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 5</h3>
+                        <p class="service-brief">広告デザイン</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('images/quest6.png'); position: relative;">
+                        <a href="allinmanual.html" style="position: absolute; top: 10px; left: 10px; right: 10px; display: block; padding: 12px 20px; background: linear-gradient(135deg, #ffd700, #ffb300); color: #000000; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 179, 0, 0.5); transition: all 0.3s; z-index: 10; font-size: 0.95rem;">
+                            総合開発<br>マニュアル
+                        </a>
+                    </div>
+                    <div class="service-info">
+                        <h3 class="service-name">Quest 6</h3>
+                        <p class="service-brief">総合開発</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1645,7 +2592,7 @@
     </section>
 
     <!-- Flow Section -->
-    <section id="flow">
+    <section id="flow" class="animated-bg">
         <h2 class="section-title">入塾までの流れ</h2>
         <div class="flow-container">
             <img src="images/flowpc.png" alt="入塾までの流れ" class="flow-image" id="flowImage">
@@ -1655,143 +2602,16 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services">
-        <h2 class="section-title">サービス案内</h2>
-        <p style="color: var(--text-gray); margin-bottom: 2rem;">月額11,000円（税込）〜で利用できる、if(塾)の全面サポートサブスクリプション！</p>
-        <div class="service-grid">
-            <div class="service-card" data-title="サービス案内">
-                <div class="service-image" style="background-image: url('images/service1.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">オンライン授業</h3>
-                    <p class="service-brief">全国どこからでも参加可能</p>
-                    <div class="service-detail">
-                        Discordを使用したリアルタイムオンライン授業。全国どこからでも参加でき、録画も視聴可能です。質問もチャットやボイスで気軽にできます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="サービス案内">
-                <div class="service-image" style="background-image: url('images/service2.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">オフラインイベント</h3>
-                    <p class="service-brief">秋田県内で定期開催</p>
-                    <div class="service-detail">
-                        月に1回程度、秋田県内でオフラインイベントを開催。実際に会って交流したり、特別なワークショップを実施します。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="サービス案内">
-                <div class="service-image" style="background-image: url('images/service3.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">教育相談</h3>
-                    <p class="service-brief">保護者向けサポート</p>
-                    <div class="service-detail">
-                        お子様の学習状況や進路について、専門スタッフが個別相談に応じます。教育方針や家庭でのサポート方法もアドバイスします。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="if(塾)への仕事のご依頼はこちら">
-                <div class="service-image" style="background-image: url('images/service4.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">案件割振</h3>
-                    <p class="service-brief">実践的な仕事体験</p>
-                    <div class="service-detail">
-                        実際の案件をレベルに応じて割り振り、報酬を得ながら実践的なスキルを身につけます。メンターがサポートするので安心です。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="Kitazuna -未来杉の守護者-">
-                <div class="service-image" style="background-image: url('images/service5.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">独立サポート</h3>
-                    <p class="service-brief">起業・独立を支援</p>
-                    <div class="service-detail">
-                        将来の起業や独立を目指す生徒に対して、ビジネスプランの作成から資金調達まで総合的にサポートします。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="サービス案内">
-                <div class="service-image" style="background-image: url('images/service6.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">AI先生</h3>
-                    <p class="service-brief">24時間質問可能</p>
-                    <div class="service-detail">
-                        最新のAI技術を活用した学習サポート。24時間いつでも質問でき、個人のレベルに合わせた最適な学習を提供します。
-                    </div>
-                </div>
-            </div>
+    <!-- Service Modal -->
+    <div class="service-modal" id="serviceModal">
+        <div class="service-modal-content">
+            <button class="service-modal-close" id="serviceModalClose">×</button>
+            <p id="serviceModalText"></p>
         </div>
-    </section>
-
-    <!-- Beginner Challenge Section -->
-    <section id="beginner">
-        <h2 class="section-title">if(チャレンジ)forビギナー</h2>
-        <div class="service-grid">
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
-                <div class="service-image" style="background-image: url('images/quest1.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 1</h3>
-                    <p class="service-brief">動画編集にチャレンジ</p>
-                    <div class="service-detail">
-                        動画編集ソフトを使って、自分だけのオリジナル動画を作成します。カット、エフェクト、BGMの追加など、基本的な動画編集技術を習得します。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
-                <div class="service-image" style="background-image: url('images/quest2.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 2</h3>
-                    <p class="service-brief">マインクラフトで建築</p>
-                    <div class="service-detail">
-                        マインクラフトを使って創造力を発揮し、自分だけの建築物を作成します。基本的な建築技術から応用まで、楽しく学習できます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
-                <div class="service-image" style="background-image: url('images/quest3.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 3</h3>
-                    <p class="service-brief">プログラミング基礎</p>
-                    <div class="service-detail">
-                        ビジュアルプログラミングから始めて、プログラミングの基本概念を学習します。ゲーム感覚で楽しく論理的思考を身につけます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
-                <div class="service-image" style="background-image: url('images/quest4.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 4</h3>
-                    <p class="service-brief">デジタルアート制作</p>
-                    <div class="service-detail">
-                        デジタルツールを使って、イラストやアート作品を制作します。創造性を発揮しながら、デジタル技術を習得できます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
-                <div class="service-image" style="background-image: url('images/quest5.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 5</h3>
-                    <p class="service-brief">3Dモデリング体験</p>
-                    <div class="service-detail">
-                        3Dモデリングソフトを使って、立体的な作品を作成します。空間認識能力を養いながら、新しい表現方法を学びます。
-                    </div>
-                </div>
-            </div>
-            <div class="service-card" data-title="if(チャレンジ)forビギナー">
-                <div class="service-image" style="background-image: url('images/quest6.png');"></div>
-                <div class="service-info">
-                    <h3 class="service-name">Quest 6</h3>
-                    <p class="service-brief">総合プロジェクト</p>
-                    <div class="service-detail">
-                        これまでに学習した技術を組み合わせて、オリジナルの作品を完成させます。企画から完成まで、一連の制作プロセスを体験します。
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Staff Section -->
-    <section id="staff">
+    <section id="staff" class="particle-bg">
         <h2 class="section-title">運営メンバー</h2>
         <div class="staff-slider">
             <div class="staff-slide active">
@@ -1816,6 +2636,11 @@
                     <p class="staff-text">
                         高校1年でIT会社を起業！Web開発やPCコンサルタントとして活躍後、if(塾)を開業。塾長としてみんなをまとめ、授業もメインで回す頼れるリーダーだよ！AI開発や講演も行う、AI活用の最前線に立つ若きイノベーター！中学時代は支援級で過ごした経験も力に、現役で国立大学合格！
                     </p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://amzn.asia/d/1lVoFg1" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #ff9900, #ff6600); color: #ffffff; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4); transition: all 0.3s;">
+                            📚 Kindleで著書を読む
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="staff-slide">
@@ -1865,7 +2690,7 @@
     </section>
 
     <!-- Online Materials Section -->
-    <section id="materials">
+    <section id="materials" class="wave-bg">
         <h2 class="section-title">オンライン教材</h2>
         <div class="blog-scroll">
             <div class="blog-items">
@@ -1878,7 +2703,7 @@
     </section>
 
     <!-- News Section -->
-    <section id="news">
+    <section id="news" class="animated-bg">
         <h2 class="section-title">お知らせ</h2>
         <div class="blog-scroll">
             <div class="blog-items reverse">
@@ -1891,7 +2716,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq">
+    <section id="faq" class="particle-bg">
         <h2 class="section-title">よくある質問</h2>
         <div class="faq-container">
             <div class="faq-character"></div>
@@ -1910,7 +2735,7 @@
     </section>
 
     <!-- YouTube Section -->
-    <section id="youtube">
+    <section id="youtube" class="wave-bg">
         <h2 class="section-title">YouTube</h2>
         <div class="youtube-container">
             <div class="youtube-scroll" id="youtubeScroll">
@@ -1954,7 +2779,37 @@
                 <img src="images/ifcomicpc9.png" alt="漫画ページ9">
             </div>
             <div class="comic-slide">
-                <img src="images/ifcomicpc10png.png" alt="漫画ページ10">
+                <img src="images/ifcomicpc10.png" alt="漫画ページ10">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp11.png" alt="漫画ページ11">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp12.png" alt="漫画ページ12">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp13.png" alt="漫画ページ13">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp14.png" alt="漫画ページ14">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp15.png" alt="漫画ページ15">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp16.png" alt="漫画ページ16">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp17.png" alt="漫画ページ17">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp18.png" alt="漫画ページ18">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp19.png" alt="漫画ページ19">
+            </div>
+            <div class="comic-slide sp-only">
+                <img src="images/ifcomicsp20.png" alt="漫画ページ20">
             </div>
         </div>
         <div class="comic-nav">
@@ -1964,26 +2819,26 @@
     </section>
 
     <!-- Message Section -->
-    <section id="message">
+    <section id="message" class="animated-bg">
         <h2 class="section-title">if(メッセージ)</h2>
         <div class="message-container">
             <div class="message-content">
-                <p class="message-text">
-                    現代は目まぐるしく変化する時代です。AIの活用は今後さらに重要になり、教育の在り方も価値観も変わっていくでしょう。<br><br>
-                    このサイトは最新AIで制作されています。表現手段とAIを組み合わせれば表現できないものはありません。皆さんもAIを使った開発や起業、自由な表現に挑戦してほしいです。<br><br>
-                    学校が面白くないと感じる人もいるかもしれません。私たちもそうでした。だからこそ、誰でも楽しめる塾を目指しています。<br><br>
-                    行動すれば世界は変わります。if(塾)の運営メンバーも高校生から始め、挑戦を形にしています。<br><br>
-                    まずは日常の何かを変えてみましょう。第一歩として、if(塾)で好きなことに取り組んでみませんか？<br><br>
+                <p class="message-text" style="line-height: 1.7;">
+                    現代は目まぐるしく変化する時代です。AIの活用は今後さらに重要になり、教育の在り方も価値観も変わっていくでしょう。<br>
+                    このサイトは最新AIで制作されています。表現手段とAIを組み合わせれば表現できないものはありません。皆さんもAIを使った開発や起業、自由な表現に挑戦してほしいです。<br>
+                    学校が面白くないと感じる人もいるかもしれません。私たちもそうでした。だからこそ、誰でも楽しめる塾を目指しています。<br>
+                    行動すれば世界は変わります。if(塾)の運営メンバーも高校生から始め、挑戦を形にしています。<br>
+                    まずは日常の何かを変えてみましょう。第一歩として、if(塾)で好きなことに取り組んでみませんか？<br>
                     if(塾)で、あなたの可能性を最大限に引き出しましょう。
                 </p>
                 <div class="message-signature">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem;">
-                        <div style="text-align: center;">
-                            <p>塾頭</p>
+                    <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 2rem; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                            <p style="font-size: 0.9rem;">塾頭</p>
                             <p style="font-size: 1.2rem;">高崎翔太</p>
                         </div>
-                        <div style="text-align: center;">
-                            <p>塾長</p>
+                        <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                            <p style="font-size: 0.9rem;">塾長</p>
                             <p style="font-size: 1.2rem;">山﨑琢己</p>
                         </div>
                     </div>
@@ -2038,8 +2893,8 @@
             <div class="business-content">
                 <h2 class="section-title">Kitazuna -未来杉の守護者-</h2>
                 <p class="business-text" style="margin-bottom: 3rem;">
-                    秋田県全域を舞台にしたRPGで、地域の伝統文化をテーマにしたRPGです。<br>
-                    プレイヤーは杉野健太として秋田各地を巡り、ナマハゲや稲庭うどん、竿燈祭りなどの伝統文化に触れながら、過度な真面目さが生んだ化身「スギノオウ」を封印する冒険を繰り広げます。<br>
+                    秋田県全域を舞台にした地域の伝統文化をテーマにしたRPGです。<br>
+                    プレイヤーは杉野健太として秋田各地を巡り、ナマハゲやきりたんぽ、竿燈祭りなどの伝統文化に触れながら、過度な真面目さの化身「スギノオウ」を封印する冒険を繰り広げます。<br>
                     ゲーム開発を通じて、伝統と現代の融合を学び、実際の収益化体験まで可能な教育プラットフォームとして設計されています。現在、開発中です。
                 </p>
                 <div class="business-grid">
@@ -2072,11 +2927,12 @@
         <h2 class="section-title">NPO法人if(AI)</h2>
         <div class="section-content">
             <div class="section-description" style="text-align: center; margin-bottom: 3rem;">
-                <p style="font-size: 1.5rem; margin-bottom: 1rem;">地域と共に歩む、温かい就労支援</p>
-                <p style="font-size: 1.2rem;">秋田市の若者・障がい者の皆様にAIと地域の力で新しい未来を</p>
+                <p style="font-size: 2rem; margin-bottom: 1rem;">地域と共に歩む、温かい就労支援</p>
+                <p style="font-size: 1.5rem;">秋田市の若者・障がい者の皆様にAIと地域の力で新しい未来を</p>
             </div>
             <div class="business-grid">
-                <div class="business-card" data-support-type="truancy" style="background-image: url('images/npo1.png');">
+                <div class="business-card" data-support-type="truancy">
+                    <div class="business-card-image" style="background-image: url('images/npo1.png');"></div>
                     <div class="business-card-content">
                         <h3>不登校支援</h3>
                         <div class="business-card-detail">
@@ -2084,7 +2940,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="business-card" data-support-type="disability" style="background-image: url('images/npo2.png');">
+                <div class="business-card" data-support-type="disability">
+                    <div class="business-card-image" style="background-image: url('images/npo2.png');"></div>
                     <div class="business-card-content">
                         <h3>障がい者就労支援</h3>
                         <div class="business-card-detail">
@@ -2092,7 +2949,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="business-card" data-support-type="youth" style="background-image: url('images/npo3.png');">
+                <div class="business-card" data-support-type="youth">
+                    <div class="business-card-image" style="background-image: url('images/npo3.png');"></div>
                     <div class="business-card-content">
                         <h3>若者自立支援</h3>
                         <div class="business-card-detail">
@@ -2102,7 +2960,7 @@
                 </div>
             </div>
             <div class="cta-section" style="text-align: center; margin-top: 3rem;">
-                <a href="https://getabako.github.io/if-ai-site/" target="_blank" class="cta-button">サービス詳細を見る</a>
+                <a href="https://ai.if-juku.net/" target="_blank" class="cta-button">サービス詳細を見る</a>
             </div>
         </div>
     </section>
@@ -2134,12 +2992,92 @@
     </footer>
 
     <script>
-        // Loading Screen
-        window.addEventListener('load', () => {
+        // Loading Screen with Progress
+        let progress = 0;
+        const loadingProgressBar = document.getElementById('loadingProgressBar');
+        const loadingPercentage = document.getElementById('loadingPercentage');
+
+        // Simulate loading progress
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+
+            loadingProgressBar.style.width = progress + '%';
+            loadingPercentage.textContent = Math.floor(progress) + '%';
+
+            if (progress >= 100) {
+                clearInterval(progressInterval);
+            }
+        }, 200);
+
+        // Use DOMContentLoaded instead of 'load' for faster display
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure progress reaches 100% when DOM is ready
+            progress = 100;
+            loadingProgressBar.style.width = '100%';
+            loadingPercentage.textContent = '100%';
+
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
-            }, 1000);
+            }, 500);
         });
+
+        // Visitor Counter
+        function updateCounter(elementId, count) {
+            const element = document.getElementById(elementId);
+            const digits = count.toString().padStart(4, '0').split('');
+            element.innerHTML = digits.map(digit =>
+                `<span class="counter-digit">${digit}</span>`
+            ).join('');
+        }
+
+        function initVisitorCounter() {
+            // Get or initialize visitor data from localStorage
+            const today = new Date().toDateString();
+            const currentWeek = getWeekNumber(new Date());
+            const currentMonth = new Date().getMonth();
+
+            let visitorData = JSON.parse(localStorage.getItem('visitorData') || '{}');
+
+            // Reset counters if period changed
+            if (visitorData.lastVisitDate !== today) {
+                if (!visitorData.todayCount) visitorData.todayCount = 0;
+                visitorData.todayCount++;
+                visitorData.lastVisitDate = today;
+            }
+
+            if (visitorData.lastVisitWeek !== currentWeek) {
+                visitorData.weekCount = 1;
+                visitorData.lastVisitWeek = currentWeek;
+            } else {
+                if (!visitorData.weekCount) visitorData.weekCount = 0;
+                visitorData.weekCount++;
+            }
+
+            if (visitorData.lastVisitMonth !== currentMonth) {
+                visitorData.monthCount = 1;
+                visitorData.lastVisitMonth = currentMonth;
+            } else {
+                if (!visitorData.monthCount) visitorData.monthCount = 0;
+                visitorData.monthCount++;
+            }
+
+            // Save updated data
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+
+            // Update display
+            updateCounter('counterToday', visitorData.todayCount || 1);
+            updateCounter('counterWeek', visitorData.weekCount || 1);
+            updateCounter('counterMonth', visitorData.monthCount || 1);
+        }
+
+        function getWeekNumber(date) {
+            const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+            const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+            return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+        }
+
+        initVisitorCounter();
 
         // Responsive Video and Image
         function updateMedia() {
@@ -2147,6 +3085,7 @@
             const heroVideo = document.getElementById('heroVideo');
             const aboutImage = document.getElementById('aboutImage');
             const flowImage = document.getElementById('flowImage');
+            const calendarImage = document.getElementById('calendarImage');
 
             if (heroVideo) {
                 heroVideo.src = isMobile ? 'images/ifmvsp.mp4' : 'images/ifmvpc.mp4';
@@ -2158,6 +3097,10 @@
 
             if (flowImage) {
                 flowImage.src = isMobile ? 'images/flowsp.png' : 'images/flowpc.png';
+            }
+
+            if (calendarImage) {
+                calendarImage.src = isMobile ? 'images/calendersp.png' : 'images/calenderpc.png';
             }
         }
 
@@ -2297,20 +3240,50 @@
         });
 
         // Comic Slider
-        const comicSlides = document.querySelectorAll('.comic-slide');
+        let allComicSlides = document.querySelectorAll('.comic-slide');
         const prevComic = document.getElementById('prevComic');
         const nextComic = document.getElementById('nextComic');
         let currentComicSlide = 0;
 
+        function getVisibleComicSlides() {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                // On mobile, include all slides (PC 1-10 + SP 11-20)
+                return document.querySelectorAll('.comic-slide');
+            } else {
+                // On PC, only show first 10 slides
+                return document.querySelectorAll('.comic-slide:not(.sp-only)');
+            }
+        }
+
         function showComicSlide(index) {
-            comicSlides.forEach(slide => slide.classList.remove('active'));
-            comicSlides[index].classList.add('active');
-            
+            const visibleSlides = getVisibleComicSlides();
+
+            // Remove active class from all slides
+            allComicSlides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Add active class to the current slide (CSS will handle display)
+            if (visibleSlides[index]) {
+                visibleSlides[index].classList.add('active');
+            }
+
             prevComic.disabled = index === 0;
-            nextComic.disabled = index === comicSlides.length - 1;
+            nextComic.disabled = index === visibleSlides.length - 1;
+        }
+
+        function updateComicSlider() {
+            const visibleSlides = getVisibleComicSlides();
+            // Reset to first slide if current slide is out of range
+            if (currentComicSlide >= visibleSlides.length) {
+                currentComicSlide = 0;
+            }
+            showComicSlide(currentComicSlide);
         }
 
         prevComic.addEventListener('click', () => {
+            const visibleSlides = getVisibleComicSlides();
             if (currentComicSlide > 0) {
                 currentComicSlide--;
                 showComicSlide(currentComicSlide);
@@ -2318,14 +3291,20 @@
         });
 
         nextComic.addEventListener('click', () => {
-            if (currentComicSlide < comicSlides.length - 1) {
+            const visibleSlides = getVisibleComicSlides();
+            if (currentComicSlide < visibleSlides.length - 1) {
                 currentComicSlide++;
                 showComicSlide(currentComicSlide);
             }
         });
 
         // Initialize comic slider
-        showComicSlide(0);
+        updateComicSlider();
+
+        // Update comic slider when window resizes
+        window.addEventListener('resize', () => {
+            updateComicSlider();
+        });
 
         // Duplicate blog items for infinite scroll
         const blogItems = document.querySelectorAll('.blog-items');
@@ -2344,39 +3323,97 @@
         // Update comic images for mobile
         function updateComicImages() {
             const isMobile = window.innerWidth <= 768;
-            const comicSlides = document.querySelectorAll('.comic-slide img');
-            
+            const comicSlides = document.querySelectorAll('.comic-slide');
+            const spOnlySlides = document.querySelectorAll('.comic-slide.sp-only');
+
             if (isMobile) {
-                comicSlides.forEach((img, index) => {
-                    const pcSrc = img.src;
-                    if (pcSrc.includes('ifcomicpc')) {
-                        const spNumber = index <= 19 ? index + 1 : index + 1;
-                        img.src = pcSrc.replace(/ifcomicpc\d+/, `ifcomicsp${spNumber}`);
+                // Make SP only slides available on mobile - remove any inline styles
+                spOnlySlides.forEach(slide => {
+                    slide.style.display = ''; // Remove inline style, let CSS handle it
+                    slide.classList.remove('active');
+                });
+
+                // Update existing slides to SP version
+                comicSlides.forEach((slide, index) => {
+                    if (!slide.classList.contains('sp-only')) {
+                        const img = slide.querySelector('img');
+                        const pcSrc = img.src;
+                        if (pcSrc.includes('ifcomicpc')) {
+                            const spNumber = index + 1;
+                            img.src = pcSrc.replace(/ifcomicpc\d+/, `ifcomicsp${spNumber}`);
+                        }
                     }
                 });
             } else {
-                comicSlides.forEach((img, index) => {
-                    const spSrc = img.src;
-                    if (spSrc.includes('ifcomicsp')) {
-                        const pcNumber = index + 1 === 10 ? '10png' : index + 1;
-                        img.src = spSrc.replace(/ifcomicsp\d+/, `ifcomicpc${pcNumber}`);
+                // Hide SP only slides on PC
+                spOnlySlides.forEach(slide => {
+                    slide.style.display = 'none';
+                    slide.classList.remove('active');
+                });
+
+                // Update existing slides to PC version
+                comicSlides.forEach((slide, index) => {
+                    if (!slide.classList.contains('sp-only')) {
+                        const img = slide.querySelector('img');
+                        const spSrc = img.src;
+                        if (spSrc.includes('ifcomicsp')) {
+                            const pcNumber = index + 1;
+                            if (pcNumber <= 10) {
+                                img.src = spSrc.replace(/ifcomicsp\d+/, `ifcomicpc${pcNumber}`);
+                            }
+                        }
                     }
                 });
             }
         }
 
         updateComicImages();
-        window.addEventListener('resize', updateComicImages);
+        window.addEventListener('resize', () => {
+            updateComicImages();
+            updateComicSlider();
+        });
 
         // Parallax Effect
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('video');
-            
+            const parallaxElements = document.querySelectorAll('video:not(.kitazuna-video):not(.business-video)');
+
             parallaxElements.forEach(element => {
                 const speed = 0.5;
                 element.style.transform = `translateY(${scrolled * speed}px)`;
             });
+
+            // Business video visibility control
+            const businessSection = document.getElementById('business');
+            const businessVideo = document.querySelector('.business-video');
+
+            if (businessSection && businessVideo) {
+                const rect = businessSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Show video when business section is 50% visible
+                if (rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.5) {
+                    businessVideo.classList.add('active');
+                } else {
+                    businessVideo.classList.remove('active');
+                }
+            }
+
+            // Kitazuna video visibility control
+            const kitazunaSection = document.getElementById('kitazuna');
+            const kitazunaVideo = document.querySelector('.kitazuna-video');
+
+            if (kitazunaSection && kitazunaVideo) {
+                const rect = kitazunaSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Show video when kitazuna section is 50% visible
+                if (rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.5) {
+                    kitazunaVideo.classList.add('active');
+                } else {
+                    kitazunaVideo.classList.remove('active');
+                }
+            }
         });
 
         // Add intersection observer for fade-in animations
@@ -2591,6 +3628,50 @@
 
         // Load YouTube videos
         loadYouTubeVideos();
+
+        // Service Modal functionality
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceModalClose = document.getElementById('serviceModalClose');
+        const serviceModalText = document.getElementById('serviceModalText');
+        const serviceCards = document.querySelectorAll('#services .service-card');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const detailText = card.querySelector('.service-detail').textContent.trim();
+                serviceModalText.textContent = detailText;
+                serviceModal.classList.add('active');
+            });
+        });
+
+        serviceModalClose.addEventListener('click', () => {
+            serviceModal.classList.remove('active');
+        });
+
+        serviceModal.addEventListener('click', (e) => {
+            if (e.target === serviceModal) {
+                serviceModal.classList.remove('active');
+            }
+        });
+
+        // Changes slider functionality
+        const changesSlider = document.getElementById('changesSlider');
+        if (changesSlider) {
+            const changeItems = changesSlider.querySelectorAll('.change-item');
+            let currentChangeIndex = 0;
+
+            function showNextChange() {
+                changeItems[currentChangeIndex].style.display = 'none';
+                changeItems[currentChangeIndex].classList.remove('active');
+
+                currentChangeIndex = (currentChangeIndex + 1) % changeItems.length;
+
+                changeItems[currentChangeIndex].style.display = 'block';
+                changeItems[currentChangeIndex].classList.add('active');
+            }
+
+            // Auto-rotate changes every 4 seconds
+            setInterval(showNextChange, 4000);
+        }
     </script>
 </body>
 </html>

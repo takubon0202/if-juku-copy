@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>広告デザインマニュアル - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        .mode-tabs {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-tab {
+            padding: 10px 20px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .mode-tab:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+
+        .content-elementary {
+            display: none;
+        }
+
+        .content-junior {
+            display: block;
+        }
+
+        body.elementary-mode .content-elementary {
+            display: block;
+        }
+
+        body.elementary-mode .content-junior {
+            display: none;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .price-box {
+            background: rgba(255, 0, 255, 0.15);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            box-shadow: var(--purple-glow);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 20px 20px 20px 60px;
+            margin-bottom: 15px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 12px 12px 40px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        .warning-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 15px 15px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-tabs">
+        <div class="mode-tab active" onclick="switchMode('junior')"><ruby>中学生以上<rt>ちゅうがくせいいじょう</rt></ruby></div>
+        <div class="mode-tab" onclick="switchMode('elementary')"><ruby>小学生<rt>しょうがくせい</rt></ruby></div>
+    </div>
+
+    <div class="container">
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+
+        <h1 class="content-junior">広告デザインマニュアル</h1>
+        <h1 class="content-elementary"><ruby>広告<rt>こうこく</rt></ruby>デザインマニュアル</h1>
+
+        <div class="intro content-junior">
+            AIとCanvaを使って資料やチラシを作成!<br>
+            デザイン経験がなくても、AIとテンプレートで高品質な成果物を作れるよ
+        </div>
+        <div class="intro content-elementary">
+            AIとCanvaを<ruby>使<rt>つか</rt></ruby>って<ruby>資料<rt>しりょう</rt></ruby>やチラシを<ruby>作成<rt>さくせい</rt></ruby>!<br>
+            デザイン<ruby>経験<rt>けいけん</rt></ruby>がなくても、AIとテンプレートで<ruby>高品質<rt>こうひんしつ</rt></ruby>な<ruby>成果物<rt>せいかぶつ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>れるよ
+        </div>
+
+        <div class="warning-box content-junior" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                参加前に必ず確認! 18歳未満の方は、必ず保護者の同意を得てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお仕事に参加するには、業務委託契約の締結が必要です。下のボタンから契約フォームに進んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    業務委託契約フォームへ
+                </a>
+            </div>
+        </div>
+        <div class="warning-box content-elementary" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                <ruby>参加<rt>さんか</rt></ruby><ruby>前<rt>まえ</rt></ruby>に<ruby>必<rt>かなら</rt></ruby>ず<ruby>確認<rt>かくにん</rt></ruby>! 18<ruby>歳<rt>さい</rt></ruby><ruby>未満<rt>みまん</rt></ruby>の<ruby>方<rt>かた</rt></ruby>は、<ruby>必<rt>かなら</rt></ruby>ず<ruby>保護者<rt>ほごしゃ</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>を<ruby>得<rt>え</rt></ruby>てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>に<ruby>参加<rt>さんか</rt></ruby>するには、<ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>の<ruby>締結<rt>ていけつ</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>です。<ruby>下<rt>した</rt></ruby>のボタンから<ruby>契約<rt>けいやく</rt></ruby>フォームに<ruby>進<rt>すす</rt></ruby>んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    <ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>フォームへ
+                </a>
+            </div>
+        </div>
+
+        <!-- お仕事の内容 -->
+        <div class="section content-junior">
+            <h2>お仕事の内容</h2>
+            <p>企業の資料、チラシ、ポスター、バナーなどのデザインを、AI画像生成ツールとCanvaを組み合わせて効率的に制作するお仕事です!</p>
+
+            <div class="price-box">
+                1,000円〜 (デザインの複雑さや枚数によって変動)
+            </div>
+
+            <div class="highlight-box">
+                <strong>デザイン経験がなくても大丈夫!</strong><br>
+                AIとテンプレートを使って、誰でも高品質な成果物を作成できます。
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>お<ruby>仕事<rt>しごと</rt></ruby>の<ruby>内容<rt>ないよう</rt></ruby></h2>
+            <p><ruby>企業<rt>きぎょう</rt></ruby>の<ruby>資料<rt>しりょう</rt></ruby>、チラシ、ポスター、バナーなどのデザインを、AI<ruby>画像生成<rt>がぞうせいせい</rt></ruby>ツールとCanvaを<ruby>組<rt>く</rt></ruby>み<ruby>合<rt>あ</rt></ruby>わせて<ruby>効率的<rt>こうりつてき</rt></ruby>に<ruby>制作<rt>せいさく</rt></ruby>するお<ruby>仕事<rt>しごと</rt></ruby>です!</p>
+
+            <div class="price-box">
+                1,000<ruby>円<rt>えん</rt></ruby>〜 (デザインの<ruby>複雑<rt>ふくざつ</rt></ruby>さや<ruby>枚数<rt>まいすう</rt></ruby>によって<ruby>変動<rt>へんどう</rt></ruby>)
+            </div>
+
+            <div class="highlight-box">
+                <strong>デザイン<ruby>経験<rt>けいけん</rt></ruby>がなくても<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>!</strong><br>
+                AIとテンプレートを<ruby>使<rt>つか</rt></ruby>って、<ruby>誰<rt>だれ</rt></ruby>でも<ruby>高品質<rt>こうひんしつ</rt></ruby>な<ruby>成果物<rt>せいかぶつ</rt></ruby>を<ruby>作成<rt>さくせい</rt></ruby>できます。
+            </div>
+        </div>
+
+        <!-- 制作の流れ -->
+        <div class="section content-junior">
+            <h2>制作の流れ</h2>
+
+            <ul class="step-list">
+                <li>
+                    <strong>デザイン要件の確認</strong><br>
+                    クライアントから要件をヒアリング。目的、ターゲット、サイズ、納期を明確化します。
+                </li>
+                <li>
+                    <strong>AI画像生成</strong><br>
+                    Midjourney、DALL-E、Stable Diffusion等で素材画像を生成。テーマに合った画像を複数パターン作成します。
+                </li>
+                <li>
+                    <strong>Canvaでデザイン作成</strong><br>
+                    テンプレートを活用し、AI生成画像を配置。テキスト、配色、レイアウトを調整し、ブランドカラーやフォントを適用します。
+                </li>
+                <li>
+                    <strong>修正・調整</strong><br>
+                    クライアント確認後、フィードバックに基づいて修正します。
+                </li>
+                <li>
+                    <strong>納品</strong><br>
+                    PDF、PNG、JPEGなど指定形式で納品。印刷データの場合は解像度に注意します。
+                </li>
+            </ul>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>制作<rt>せいさく</rt></ruby>の<ruby>流<rt>なが</rt></ruby>れ</h2>
+
+            <ul class="step-list">
+                <li>
+                    <strong>デザイン<ruby>要件<rt>ようけん</rt></ruby>の<ruby>確認<rt>かくにん</rt></ruby></strong><br>
+                    クライアントから<ruby>要件<rt>ようけん</rt></ruby>をヒアリング。<ruby>目的<rt>もくてき</rt></ruby>、ターゲット、サイズ、<ruby>納期<rt>のうき</rt></ruby>を<ruby>明確化<rt>めいかくか</rt></ruby>します。
+                </li>
+                <li>
+                    <strong>AI<ruby>画像生成<rt>がぞうせいせい</rt></ruby></strong><br>
+                    Midjourney、DALL-E、Stable Diffusion<ruby>等<rt>など</rt></ruby>で<ruby>素材画像<rt>そざいがぞう</rt></ruby>を<ruby>生成<rt>せいせい</rt></ruby>。テーマに<ruby>合<rt>あ</rt></ruby>った<ruby>画像<rt>がぞう</rt></ruby>を<ruby>複数<rt>ふくすう</rt></ruby>パターン<ruby>作成<rt>さくせい</rt></ruby>します。
+                </li>
+                <li>
+                    <strong>Canvaでデザイン<ruby>作成<rt>さくせい</rt></ruby></strong><br>
+                    テンプレートを<ruby>活用<rt>かつよう</rt></ruby>し、AI<ruby>生成画像<rt>せいせいがぞう</rt></ruby>を<ruby>配置<rt>はいち</rt></ruby>。テキスト、<ruby>配色<rt>はいしょく</rt></ruby>、レイアウトを<ruby>調整<rt>ちょうせい</rt></ruby>し、ブランドカラーやフォントを<ruby>適用<rt>てきよう</rt></ruby>します。
+                </li>
+                <li>
+                    <strong><ruby>修正<rt>しゅうせい</rt></ruby>・<ruby>調整<rt>ちょうせい</rt></ruby></strong><br>
+                    クライアント<ruby>確認後<rt>かくにんご</rt></ruby>、フィードバックに<ruby>基<rt>もと</rt></ruby>づいて<ruby>修正<rt>しゅうせい</rt></ruby>します。
+                </li>
+                <li>
+                    <strong><ruby>納品<rt>のうひん</rt></ruby></strong><br>
+                    PDF、PNG、JPEG<ruby>など指定形式<rt>などしていけいしき</rt></ruby>で<ruby>納品<rt>のうひん</rt></ruby>。<ruby>印刷<rt>いんさつ</rt></ruby>データの<ruby>場合<rt>ばあい</rt></ruby>は<ruby>解像度<rt>かいぞうど</rt></ruby>に<ruby>注意<rt>ちゅうい</rt></ruby>します。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 使用するツール -->
+        <div class="section content-junior">
+            <h2>使用するツール</h2>
+
+            <div class="highlight-box">
+                <h3>AI画像生成ツール</h3>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Midjourney</li>
+                    <li>DALL-E</li>
+                    <li>Stable Diffusion</li>
+                    <li>Canva AI</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>デザインツール</h3>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Canva</li>
+                    <li>Figma</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>素材サイト</h3>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Unsplash</li>
+                    <li>Pexels</li>
+                    <li>Pixabay</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>使用<rt>しよう</rt></ruby>するツール</h2>
+
+            <div class="highlight-box">
+                <h3>AI<ruby>画像生成<rt>がぞうせいせい</rt></ruby>ツール</h3>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Midjourney</li>
+                    <li>DALL-E</li>
+                    <li>Stable Diffusion</li>
+                    <li>Canva AI</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>デザインツール</h3>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Canva</li>
+                    <li>Figma</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3><ruby>素材<rt>そざい</rt></ruby>サイト</h3>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Unsplash</li>
+                    <li>Pexels</li>
+                    <li>Pixabay</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 制作物の例 -->
+        <div class="section content-junior">
+            <h2>制作物の例と報酬</h2>
+
+            <ul class="step-list">
+                <li>
+                    <strong>チラシ・フライヤー</strong><br>
+                    1,000円〜
+                </li>
+                <li>
+                    <strong>ポスター</strong><br>
+                    1,500円〜
+                </li>
+                <li>
+                    <strong>バナー広告</strong><br>
+                    800円〜
+                </li>
+                <li>
+                    <strong>プレゼン資料(1ページ)</strong><br>
+                    500円〜
+                </li>
+                <li>
+                    <strong>名刺デザイン</strong><br>
+                    1,000円〜
+                </li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>※ 複数枚セットの場合は割引あり</strong>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>制作物<rt>せいさくぶつ</rt></ruby>の<ruby>例<rt>れい</rt></ruby>と<ruby>報酬<rt>ほうしゅう</rt></ruby></h2>
+
+            <ul class="step-list">
+                <li>
+                    <strong>チラシ・フライヤー</strong><br>
+                    1,000<ruby>円<rt>えん</rt></ruby>〜
+                </li>
+                <li>
+                    <strong>ポスター</strong><br>
+                    1,500<ruby>円<rt>えん</rt></ruby>〜
+                </li>
+                <li>
+                    <strong>バナー<ruby>広告<rt>こうこく</rt></ruby></strong><br>
+                    800<ruby>円<rt>えん</rt></ruby>〜
+                </li>
+                <li>
+                    <strong>プレゼン<ruby>資料<rt>しりょう</rt></ruby>(1ページ)</strong><br>
+                    500<ruby>円<rt>えん</rt></ruby>〜
+                </li>
+                <li>
+                    <strong><ruby>名刺<rt>めいし</rt></ruby>デザイン</strong><br>
+                    1,000<ruby>円<rt>えん</rt></ruby>〜
+                </li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>※ <ruby>複数枚<rt>ふくすうまい</rt></ruby>セットの<ruby>場合<rt>ばあい</rt></ruby>は<ruby>割引<rt>わりびき</rt></ruby>あり</strong>
+            </div>
+        </div>
+
+        <!-- 報酬について -->
+        <div class="section content-junior">
+            <h2>報酬について</h2>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong>報酬の受け取り方</strong><br>
+                • 10制作物以上で支払い可能になります<br>
+                • 10個以上作ったら必ず報告してね!<br>
+                • 月末時点で10個以上作った人に確認します<br>
+                • 次月に繰り越すか、支払いを受けるか選べます
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;">銀行振込を希望する場合、振込手数料500円がかかります</strong>
+            </div>
+
+            <div class="highlight-box" style="text-align: center;">
+                どんどん制作してくれると嬉しいです。<br>
+                10個に満たない場合は次月以降に持ち越しになるよ。
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>報酬<rt>ほうしゅう</rt></ruby>について</h2>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>の<ruby>受<rt>う</rt></ruby>け<ruby>取<rt>と</rt></ruby>り<ruby>方<rt>かた</rt></ruby></strong><br>
+                • 10<ruby>制作物以上<rt>せいさくぶついじょう</rt></ruby>で<ruby>支払<rt>しはら</rt></ruby>い<ruby>可能<rt>かのう</rt></ruby>になります<br>
+                • 10<ruby>個以上作<rt>こいじょうつく</rt></ruby>ったら<ruby>必<rt>かなら</rt></ruby>ず<ruby>報告<rt>ほうこく</rt></ruby>してね!<br>
+                • <ruby>月末時点<rt>げつまつじてん</rt></ruby>で10<ruby>個以上作<rt>こいじょうつく</rt></ruby>った<ruby>人<rt>ひと</rt></ruby>に<ruby>確認<rt>かくにん</rt></ruby>します<br>
+                • <ruby>次月<rt>じげつ</rt></ruby>に<ruby>繰<rt>く</rt></ruby>り<ruby>越<rt>こ</rt></ruby>すか、<ruby>支払<rt>しはら</rt></ruby>いを<ruby>受<rt>う</rt></ruby>けるか<ruby>選<rt>えら</rt></ruby>べます
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;"><ruby>銀行振込<rt>ぎんこうふりこみ</rt></ruby>を<ruby>希望<rt>きぼう</rt></ruby>する<ruby>場合<rt>ばあい</rt></ruby>、<ruby>振込手数料<rt>ふりこみてすうりょう</rt></ruby>500<ruby>円<rt>えん</rt></ruby>がかかります</strong>
+            </div>
+
+            <div class="highlight-box" style="text-align: center;">
+                どんどん<ruby>制作<rt>せいさく</rt></ruby>してくれると<ruby>嬉<rt>うれ</rt></ruby>しいです。<br>
+                10<ruby>個<rt>こ</rt></ruby>に<ruby>満<rt>み</rt></ruby>たない<ruby>場合<rt>ばあい</rt></ruby>は<ruby>次月以降<rt>じげついこう</rt></ruby>に<ruby>持<rt>も</rt></ruby>ち<ruby>越<rt>こ</rt></ruby>しになるよ。
+            </div>
+        </div>
+
+        <!-- 求める能力 -->
+        <div class="section content-junior">
+            <h2>こんな人にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>デザインに興味がある</li>
+                <li>センスを活かしたい</li>
+                <li>AIツールを使いこなしたい</li>
+                <li>Canvaの操作ができる</li>
+                <li>細かい作業が好き</li>
+                <li>クライアントの要望を理解できる</li>
+                <li>期限をきっちり守れる</li>
+                <li>LINEの返信をちゃんと見る、返信ができる</li>
+                <li>報告・連絡・相談がちゃんとできる</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>年齢制限: 小学生からOK!</strong><br>
+                小学生から大人まで、誰でもチャレンジできるお仕事だよ!
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>こんな<ruby>人<rt>ひと</rt></ruby>にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>デザインに<ruby>興味<rt>きょうみ</rt></ruby>がある</li>
+                <li>センスを<ruby>活<rt>い</rt></ruby>かしたい</li>
+                <li>AIツールを<ruby>使<rt>つか</rt></ruby>いこなしたい</li>
+                <li>Canvaの<ruby>操作<rt>そうさ</rt></ruby>ができる</li>
+                <li><ruby>細<rt>こま</rt></ruby>かい<ruby>作業<rt>さぎょう</rt></ruby>が<ruby>好<rt>す</rt></ruby>き</li>
+                <li>クライアントの<ruby>要望<rt>ようぼう</rt></ruby>を<ruby>理解<rt>りかい</rt></ruby>できる</li>
+                <li><ruby>期限<rt>きげん</rt></ruby>をきっちり<ruby>守<rt>まも</rt></ruby>れる</li>
+                <li>LINEの<ruby>返信<rt>へんしん</rt></ruby>をちゃんと<ruby>見<rt>み</rt></ruby>る、<ruby>返信<rt>へんしん</rt></ruby>ができる</li>
+                <li><ruby>報告<rt>ほうこく</rt></ruby>・<ruby>連絡<rt>れんらく</rt></ruby>・<ruby>相談<rt>そうだん</rt></ruby>がちゃんとできる</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong><ruby>年齢制限<rt>ねんれいせいげん</rt></ruby>: <ruby>小学生<rt>しょうがくせい</rt></ruby>からOK!</strong><br>
+                <ruby>小学生<rt>しょうがくせい</rt></ruby>から<ruby>大人<rt>おとな</rt></ruby>まで、<ruby>誰<rt>だれ</rt></ruby>でもチャレンジできるお<ruby>仕事<rt>しごと</rt></ruby>だよ!
+            </div>
+        </div>
+
+        <!-- まとめ -->
+        <div class="section content-junior">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお仕事は、AIとCanvaを活用することで、デザイン経験がなくても高品質な広告デザインを作成できます。<br>
+                制作活動を通じて、デザインスキルやAIツールの活用能力が自然と身についていきます!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">AIとデザインツールを駆使して、クリエイティブな成果物を作ろう!</strong>
+            </p>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>は、AIとCanvaを<ruby>活用<rt>かつよう</rt></ruby>することで、デザイン<ruby>経験<rt>けいけん</rt></ruby>がなくても<ruby>高品質<rt>こうひんしつ</rt></ruby>な<ruby>広告<rt>こうこく</rt></ruby>デザインを<ruby>作成<rt>さくせい</rt></ruby>できます。<br>
+                <ruby>制作活動<rt>せいさくかつどう</rt></ruby>を<ruby>通<rt>とお</rt></ruby>じて、デザインスキルやAIツールの<ruby>活用能力<rt>かつようのうりょく</rt></ruby>が<ruby>自然<rt>しぜん</rt></ruby>と<ruby>身<rt>み</rt></ruby>についていきます!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">AIとデザインツールを<ruby>駆使<rt>くし</rt></ruby>して、クリエイティブな<ruby>成果物<rt>せいかぶつ</rt></ruby>を<ruby>作<rt>つく</rt></ruby>ろう!</strong>
+            </p>
+        </div>
+
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+    </div>
+
+    <script>
+        function switchMode(mode) {
+            const tabs = document.querySelectorAll('.mode-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            if (mode === 'elementary') {
+                document.body.classList.add('elementary-mode');
+                tabs[1].classList.add('active');
+            } else {
+                document.body.classList.remove('elementary-mode');
+                tabs[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

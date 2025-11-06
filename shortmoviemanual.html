@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ショート動画作成マニュアル - if(塾)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        .mode-tabs {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .mode-tab {
+            padding: 10px 20px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .mode-tab:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+
+        .content-elementary {
+            display: none;
+        }
+
+        .content-junior {
+            display: block;
+        }
+
+        body.elementary-mode .content-elementary {
+            display: block;
+        }
+
+        body.elementary-mode .content-junior {
+            display: none;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            padding: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: '';
+            font-size: 1.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3::before {
+            content: '';
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .price-box {
+            background: rgba(255, 0, 255, 0.15);
+            border: 2px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            box-shadow: var(--purple-glow);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 20px 20px 20px 60px;
+            margin-bottom: 15px;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 12px 12px 40px;
+            margin-bottom: 10px;
+            position: relative;
+            background: rgba(0, 255, 204, 0.05);
+            border-radius: 8px;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .tool-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        .warning-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 15px 15px 15px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-tabs">
+        <div class="mode-tab active" onclick="switchMode('junior')">中学生以上</div>
+        <div class="mode-tab" onclick="switchMode('elementary')">小学生</div>
+    </div>
+
+    <div class="container">
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+
+        <h1 class="content-junior">ショート動画作成マニュアル</h1>
+        <h1 class="content-elementary">ショート<ruby>動画作成<rt>どうがさくせい</rt></ruby>マニュアル</h1>
+
+        <div class="intro content-junior">
+            Instagram/TikTok/YouTubeショート用の動画を作って、楽しくお小遣い稼ぎ!<br>
+            AIツールを活用するから、初心者でもカンタンにできるよ
+        </div>
+        <div class="intro content-elementary">
+            Instagram/TikTok/YouTubeショート<ruby>用<rt>よう</rt></ruby>の<ruby>動画<rt>どうが</rt></ruby>を<ruby>作<rt>つく</rt></ruby>って、<ruby>楽<rt>たの</rt></ruby>しくお<ruby>小遣<rt>こづか</rt></ruby>い<ruby>稼<rt>かせ</rt></ruby>ぎ!<br>
+            AIツールを<ruby>活用<rt>かつよう</rt></ruby>するから、<ruby>初心者<rt>しょしんしゃ</rt></ruby>でもカンタンにできるよ
+        </div>
+
+        <div class="warning-box content-junior" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                参加前に必ず確認! 18歳未満の方は、必ず保護者の同意を得てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお仕事に参加するには、業務委託契約の締結が必要です。下のボタンから契約フォームに進んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    業務委託契約フォームへ
+                </a>
+            </div>
+        </div>
+        <div class="warning-box content-elementary" style="background: rgba(255, 0, 0, 0.15); border-color: #ff3333;">
+            <div style="font-size: 1.3rem; font-weight: bold; color: #ff3333; margin-bottom: 15px; text-align: center;">
+                <ruby>参加<rt>さんか</rt></ruby><ruby>前<rt>まえ</rt></ruby>に<ruby>必<rt>かなら</rt></ruby>ず<ruby>確認<rt>かくにん</rt></ruby>! 18<ruby>歳<rt>さい</rt></ruby><ruby>未満<rt>みまん</rt></ruby>の<ruby>方<rt>かた</rt></ruby>は、<ruby>必<rt>かなら</rt></ruby>ず<ruby>保護者<rt>ほごしゃ</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>を<ruby>得<rt>え</rt></ruby>てください!
+            </div>
+            <div style="text-align: center; margin-bottom: 15px;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>に<ruby>参加<rt>さんか</rt></ruby>するには、<ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>の<ruby>締結<rt>ていけつ</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>です。<ruby>下<rt>した</rt></ruby>のボタンから<ruby>契約<rt>けいやく</rt></ruby>フォームに<ruby>進<rt>すす</rt></ruby>んでください。
+            </div>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/7zD9p9Ufmd5Nabks7" target="_blank" style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #ff3333, #ff6666); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; text-align: center; box-shadow: 0 0 25px rgba(255, 51, 51, 0.6); transition: all 0.3s;">
+                    <ruby>業務委託契約<rt>ぎょうむいたくけいやく</rt></ruby>フォームへ
+                </a>
+            </div>
+        </div>
+
+        <!-- お仕事の内容 -->
+        <div class="section content-junior">
+            <h2>お仕事の内容</h2>
+            <p>こちらが用意しているリール動画カレンダーの内容に従って、Instagram/TikTok/YouTubeショート用の動画を作成するお仕事です!</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <video controls style="max-width: 20%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                    <source src="images/reelmanual/reelmanualsample.mp4" type="video/mp4">
+                    お使いのブラウザは動画タグをサポートしていません。
+                </video>
+                <p style="margin-top: 10px; color: var(--text-gray);">サンプル動画</p>
+            </div>
+
+            <div class="price-box">
+                1動画につき 500円
+            </div>
+
+            <div class="highlight-box">
+                <strong>リール動画カレンダーに従って作成!</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>各シーンの説明が記載されています</li>
+                    <li>シーンごとに画像・写真を用意して動画化</li>
+                    <li>Canvaでつなぎ合わせてテキストを追加</li>
+                    <li>完成したら予約投稿ツールに登録</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>お<ruby>仕事<rt>しごと</rt></ruby>の<ruby>内容<rt>ないよう</rt></ruby></h2>
+            <p>こちらが<ruby>用意<rt>ようい</rt></ruby>しているリール<ruby>動画<rt>どうが</rt></ruby>カレンダーの<ruby>内容<rt>ないよう</rt></ruby>に<ruby>従<rt>したが</rt></ruby>って、Instagram/TikTok/YouTubeショート<ruby>用<rt>よう</rt></ruby>の<ruby>動画<rt>どうが</rt></ruby>を<ruby>作成<rt>さくせい</rt></ruby>するお<ruby>仕事<rt>しごと</rt></ruby>です!</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <video controls style="max-width: 20%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                    <source src="images/reelmanual/reelmanualsample.mp4" type="video/mp4">
+                    お使いのブラウザは動画タグをサポートしていません。
+                </video>
+                <p style="margin-top: 10px; color: var(--text-gray);">サンプル動画</p>
+            </div>
+
+            <div class="price-box">
+                1<ruby>動画<rt>どうが</rt></ruby>につき 500<ruby>円<rt>えん</rt></ruby>
+            </div>
+
+            <div class="highlight-box">
+                <strong>リール<ruby>動画<rt>どうが</rt></ruby>カレンダーに<ruby>従<rt>したが</rt></ruby>って<ruby>作成<rt>さくせい</rt></ruby>!</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><ruby>各<rt>かく</rt></ruby>シーンの<ruby>説明<rt>せつめい</rt></ruby>が<ruby>記載<rt>きさい</rt></ruby>されています</li>
+                    <li>シーンごとに<ruby>画像<rt>がぞう</rt></ruby>・<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>用意<rt>ようい</rt></ruby>して<ruby>動画化<rt>どうがか</rt></ruby></li>
+                    <li>Canvaでつなぎ<ruby>合<rt>あ</rt></ruby>わせてテキストを<ruby>追加<rt>ついか</rt></ruby></li>
+                    <li><ruby>完成<rt>かんせい</rt></ruby>したら<ruby>予約投稿<rt>よやくとうこう</rt></ruby>ツールに<ruby>登録<rt>とうろく</rt></ruby></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 詳しい手順 -->
+        <div class="section content-junior">
+            <h2>詳しい手順</h2>
+
+            <h3>ステップ1: リール動画カレンダーで内容確認</h3>
+
+            <div class="warning-box" style="text-align: center;">
+                <strong>リール動画カレンダーの指示に従おう!</strong> 各シーンの説明が書いてあるから、必ずそれに合わせて作ってね。
+            </div>
+
+            <div style="text-align: center; margin: 25px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <a href="https://docs.google.com/spreadsheets/d/1vJE_YOUR_SHEET_ID/edit" target="_blank" style="display: inline-block; width: 90%; max-width: 600px; padding: 15px 30px; background: linear-gradient(135deg, #0f9d58, #34a853); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(15, 157, 88, 0.4); transition: all 0.3s;">
+                    リール動画カレンダーを確認する
+                </a>
+                <a href="reelmanual.html" style="display: inline-block; width: 90%; max-width: 600px; padding: 15px 30px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s;">
+                    📅 カレンダー作成マニュアルを見る
+                </a>
+            </div>
+
+            <div style="text-align: center; margin: 25px 0; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid #ffd700; border-radius: 10px;">
+                <p style="margin: 0; font-size: 1.1rem;"><strong>※ 実際のカレンダーは業務開始時に共有します</strong></p>
+            </div>
+
+            <h3>ステップ2: シーンの説明を確認</h3>
+            <p>カレンダーに記載されている各シーンの内容を読み取ります</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/reelmanual/reelmanual1.png" alt="シーンの確認" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <h3>ステップ3: Image to Video AIツールで動画化</h3>
+            <p>Runway、Pika Labs等のツールを使って、静止画を動画に変換します</p>
+            <p>各画像をツールにアップロードして、動きのある動画に変換しましょう</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/reelmanual/reelmanual4.png" alt="Image to Video AI" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <div class="highlight-box">
+                <strong>💡 ヒント:</strong>
+                <p style="margin-top: 10px;">画像ではPixverseを用いていますが、類似の画像から動画化するAIツールであれば何でも良いです。</p>
+            </div>
+
+            <h3>ステップ4: テキストをアニメーションと共に追加</h3>
+            <p>リール動画カレンダーに記載されているテキストを、適切なアニメーションと共に追加します</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/reelmanual/reelmanual5.png" alt="テキスト追加" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <h3>ステップ5: 予約ツールで登録</h3>
+            <p>完成した動画を、Instagram/TikTok/YouTubeの予約投稿ツールに登録します。</p>
+
+            <div style="display: flex; gap: 15px; justify-content: center; align-items: flex-start; margin: 25px 0; flex-wrap: wrap;">
+                <img src="images/reelmanual/reelmanual2.png" alt="予約投稿1" style="max-width: 48%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                <img src="images/reelmanual/reelmanual3.png" alt="予約投稿2" style="max-width: 48%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <style>
+                @media (max-width: 768px) {
+                    .section h3 + p + div {
+                        flex-direction: column !important;
+                    }
+                    .section h3 + p + div img {
+                        max-width: 100% !important;
+                    }
+                }
+            </style>
+
+            <div class="highlight-box">
+                予約投稿の設定が完了したら、あとは自動で投稿されます!
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>詳<rt>くわ</rt></ruby>しい<ruby>手順<rt>てじゅん</rt></ruby></h2>
+
+            <h3>ステップ1: リール<ruby>動画<rt>どうが</rt></ruby>カレンダーで<ruby>内容確認<rt>ないようかくにん</rt></ruby></h3>
+
+            <div class="warning-box" style="text-align: center;">
+                <strong>リール<ruby>動画<rt>どうが</rt></ruby>カレンダーの<ruby>指示<rt>しじ</rt></ruby>に<ruby>従<rt>したが</rt></ruby>おう!</strong> <ruby>各<rt>かく</rt></ruby>シーンの<ruby>説明<rt>せつめい</rt></ruby>が<ruby>書<rt>か</rt></ruby>いてあるから、<ruby>必<rt>かなら</rt></ruby>ずそれに<ruby>合<rt>あ</rt></ruby>わせて<ruby>作<rt>つく</rt></ruby>ってね。
+            </div>
+
+            <div style="text-align: center; margin: 25px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <a href="https://docs.google.com/spreadsheets/d/1vJE_YOUR_SHEET_ID/edit" target="_blank" style="display: inline-block; width: 90%; max-width: 600px; padding: 15px 30px; background: linear-gradient(135deg, #0f9d58, #34a853); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(15, 157, 88, 0.4); transition: all 0.3s;">
+                    リール<ruby>動画<rt>どうが</rt></ruby>カレンダーを<ruby>確認<rt>かくにん</rt></ruby>する
+                </a>
+                <a href="reelmanual.html" style="display: inline-block; width: 90%; max-width: 600px; padding: 15px 30px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s;">
+                    📅 カレンダー<ruby>作成<rt>さくせい</rt></ruby>マニュアルを<ruby>見<rt>み</rt></ruby>る
+                </a>
+            </div>
+
+            <div style="text-align: center; margin: 25px 0; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid #ffd700; border-radius: 10px;">
+                <p style="margin: 0; font-size: 1.1rem;"><strong>※ <ruby>実際<rt>じっさい</rt></ruby>のカレンダーは<ruby>業務開始時<rt>ぎょうむかいしじ</rt></ruby>に<ruby>共有<rt>きょうゆう</rt></ruby>します</strong></p>
+            </div>
+
+            <h3>ステップ2: シーンの<ruby>説明<rt>せつめい</rt></ruby>を<ruby>確認<rt>かくにん</rt></ruby></h3>
+            <p>カレンダーに<ruby>記載<rt>きさい</rt></ruby>されている<ruby>各<rt>かく</rt></ruby>シーンの<ruby>内容<rt>ないよう</rt></ruby>を<ruby>読<rt>よ</rt></ruby>み<ruby>取<rt>と</rt></ruby>ります</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/reelmanual/reelmanual1.png" alt="シーンの確認" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <h3>ステップ3: Image to Video AIツールで<ruby>動画化<rt>どうがか</rt></ruby></h3>
+            <p>Runway、Pika Labs<ruby>等<rt>とう</rt></ruby>のツールを<ruby>使<rt>つか</rt></ruby>って、<ruby>静止画<rt>せいしが</rt></ruby>を<ruby>動画<rt>どうが</rt></ruby>に<ruby>変換<rt>へんかん</rt></ruby>します</p>
+            <p><ruby>各画像<rt>かくがぞう</rt></ruby>をツールにアップロードして、<ruby>動<rt>うご</rt></ruby>きのある<ruby>動画<rt>どうが</rt></ruby>に<ruby>変換<rt>へんかん</rt></ruby>しましょう</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/reelmanual/reelmanual4.png" alt="Image to Video AI" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <div class="highlight-box">
+                <strong>💡 ヒント:</strong>
+                <p style="margin-top: 10px;"><ruby>画像<rt>がぞう</rt></ruby>ではPixverseを<ruby>用<rt>もち</rt></ruby>いていますが、<ruby>類似<rt>るいじ</rt></ruby>の<ruby>画像<rt>がぞう</rt></ruby>から<ruby>動画化<rt>どうがか</rt></ruby>するAIツールであれば<ruby>何<rt>なん</rt></ruby>でも<ruby>良<rt>よ</rt></ruby>いです。</p>
+            </div>
+
+            <h3>ステップ4: テキストをアニメーションと<ruby>共<rt>とも</rt></ruby>に<ruby>追加<rt>ついか</rt></ruby></h3>
+            <p>リール<ruby>動画<rt>どうが</rt></ruby>カレンダーに<ruby>記載<rt>きさい</rt></ruby>されているテキストを、<ruby>適切<rt>てきせつ</rt></ruby>なアニメーションと<ruby>共<rt>とも</rt></ruby>に<ruby>追加<rt>ついか</rt></ruby>します</p>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img src="images/reelmanual/reelmanual5.png" alt="テキスト追加" style="max-width: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <h3>ステップ5: <ruby>予約<rt>よやく</rt></ruby>ツールで<ruby>登録<rt>とうろく</rt></ruby></h3>
+            <p><ruby>完成<rt>かんせい</rt></ruby>した<ruby>動画<rt>どうが</rt></ruby>を、Instagram/TikTok/YouTubeの<ruby>予約投稿<rt>よやくとうこう</rt></ruby>ツールに<ruby>登録<rt>とうろく</rt></ruby>します。</p>
+
+            <div style="display: flex; gap: 15px; justify-content: center; align-items: flex-start; margin: 25px 0; flex-wrap: wrap;">
+                <img src="images/reelmanual/reelmanual2.png" alt="予約投稿1" style="max-width: 48%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                <img src="images/reelmanual/reelmanual3.png" alt="予約投稿2" style="max-width: 48%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+
+            <style>
+                @media (max-width: 768px) {
+                    .section h3 + p + div {
+                        flex-direction: column !important;
+                    }
+                    .section h3 + p + div img {
+                        max-width: 100% !important;
+                    }
+                }
+            </style>
+
+            <div class="highlight-box">
+                <ruby>予約投稿<rt>よやくとうこう</rt></ruby>の<ruby>設定<rt>せってい</rt></ruby>が<ruby>完了<rt>かんりょう</rt></ruby>したら、あとは<ruby>自動<rt>じどう</rt></ruby>で<ruby>投稿<rt>とうこう</rt></ruby>されます!
+            </div>
+        </div>
+
+        <!-- 報酬について -->
+        <div class="section content-junior">
+            <h2>報酬について</h2>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong>報酬の受け取り方</strong><br>
+                • 10動画以上で支払い可能になります<br>
+                • 10個以上作ったら必ず報告してね!<br>
+                • 月末時点で10個以上作った人に確認します<br>
+                • 次月に繰り越すか、支払いを受けるか選べます
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;">銀行振込を希望する場合、振込手数料500円がかかります</strong>
+            </div>
+
+            <div class="highlight-box" style="text-align: center;">
+                どんどん動画を作ってくれると嬉しいです。<br>
+                10個に満たない場合は次月以降に持ち越しになるよ。
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2><ruby>報酬<rt>ほうしゅう</rt></ruby>について</h2>
+
+            <div class="warning-box" style="text-align: left;">
+                <strong><ruby>報酬<rt>ほうしゅう</rt></ruby>の<ruby>受<rt>う</rt></ruby>け<ruby>取<rt>と</rt></ruby>り<ruby>方<rt>かた</rt></ruby></strong><br>
+                • 10<ruby>動画以上<rt>どうがいじょう</rt></ruby>で<ruby>支払<rt>しはら</rt></ruby>い<ruby>可能<rt>かのう</rt></ruby>になります<br>
+                • 10<ruby>個以上作<rt>こいじょうつく</rt></ruby>ったら<ruby>必<rt>かなら</rt></ruby>ず<ruby>報告<rt>ほうこく</rt></ruby>してね!<br>
+                • <ruby>月末時点<rt>げつまつじてん</rt></ruby>で10<ruby>個以上作<rt>こいじょうつく</rt></ruby>った<ruby>人<rt>ひと</rt></ruby>に<ruby>確認<rt>かくにん</rt></ruby>します<br>
+                • <ruby>次月<rt>じげつ</rt></ruby>に<ruby>繰<rt>く</rt></ruby>り<ruby>越<rt>こ</rt></ruby>すか、<ruby>支払<rt>しはら</rt></ruby>いを<ruby>受<rt>う</rt></ruby>けるか<ruby>選<rt>えら</rt></ruby>べます
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <strong style="color: #ffd700; font-size: 1.1rem;"><ruby>銀行振込<rt>ぎんこうふりこみ</rt></ruby>を<ruby>希望<rt>きぼう</rt></ruby>する<ruby>場合<rt>ばあい</rt></ruby>、<ruby>振込手数料<rt>ふりこみてすうりょう</rt></ruby>500<ruby>円<rt>えん</rt></ruby>がかかります</strong>
+            </div>
+
+            <div class="highlight-box" style="text-align: center;">
+                どんどん<ruby>動画<rt>どうが</rt></ruby>を<ruby>作<rt>つく</rt></ruby>ってくれると<ruby>嬉<rt>うれ</rt></ruby>しいです。<br>
+                10<ruby>個<rt>こ</rt></ruby>に<ruby>満<rt>み</rt></ruby>たない<ruby>場合<rt>ばあい</rt></ruby>は<ruby>次月以降<rt>じげついこう</rt></ruby>に<ruby>持<rt>も</rt></ruby>ち<ruby>越<rt>こ</rt></ruby>しになるよ。
+            </div>
+        </div>
+
+        <!-- 求める能力 -->
+        <div class="section content-junior">
+            <h2>こんな人にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>パソコンを持っている</li>
+                <li>パソコンの基本操作ができる</li>
+                <li>コピーアンドペーストができる</li>
+                <li>期限をきっちり守れる</li>
+                <li>LINEの返信をちゃんと見る、返信ができる</li>
+                <li>できるだけ早くLINEを返せる</li>
+                <li>報告・連絡・相談がちゃんとできる</li>
+                <li>人間性が良い(優しく、真面目に取り組める)</li>
+                <li>Canvaの基本的な操作ができるとなお良し!</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>年齢制限: 小学生からOK!</strong><br>
+                小学生から大人まで、誰でもチャレンジできるお仕事だよ!
+            </div>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>こんな<ruby>人<rt>ひと</rt></ruby>にピッタリ!</h2>
+            <ul class="requirements-list">
+                <li>パソコンを<ruby>持<rt>mo</rt></ruby>っている</li>
+                <li>パソコンの<ruby>基本操作<rt>きほんそうさ</rt></ruby>ができる</li>
+                <li>コピーアンドペーストができる</li>
+                <li><ruby>期限<rt>きげん</rt></ruby>をきっちり<ruby>守<rt>まも</rt></ruby>れる</li>
+                <li>LINEの<ruby>返信<rt>へんしん</rt></ruby>をちゃんと<ruby>見<rt>み</rt></ruby>る、<ruby>返信<rt>へんしん</rt></ruby>ができる</li>
+                <li>できるだけ<ruby>早<rt>はや</rt></ruby>くLINEを<ruby>返<rt>かえ</rt></ruby>せる</li>
+                <li><ruby>報告<rt>ほうこく</rt></ruby>・<ruby>連絡<rt>れんらく</rt></ruby>・<ruby>相談<rt>そうだん</rt></ruby>がちゃんとできる</li>
+                <li><ruby>人間性<rt>にんげんせい</rt></ruby>が<ruby>良<rt>よ</rt></ruby>い(<ruby>優<rt>やさ</rt></ruby>しく、<ruby>真面目<rt>まじめ</rt></ruby>に<ruby>取<rt>と</rt></ruby>り<ruby>組<rt>く</rt></ruby>める)</li>
+                <li>Canvaの<ruby>基本的<rt>きほんてき</rt></ruby>な<ruby>操作<rt>そうさ</rt></ruby>ができるとなお<ruby>良<rt>よ</rt></ruby>し!</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong><ruby>年齢制限<rt>ねんれいせいげん</rt></ruby>: <ruby>小学生<rt>しょうがくせい</rt></ruby>からOK!</strong><br>
+                <ruby>小学生<rt>しょうがくせい</rt></ruby>から<ruby>大人<rt>おとな</rt></ruby>まで、<ruby>誰<rt>だれ</rt></ruby>でもチャレンジできるお<ruby>仕事<rt>しごと</rt></ruby>だよ!
+            </div>
+        </div>
+
+        <!-- まとめ -->
+        <div class="section content-junior">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお仕事は、AIツールを活用することで誰でも簡単にショート動画を作成できるようになっています。<br>
+                動画作成を通じて、動画編集やSNSマーケティングのスキルも自然と身についていくよ!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);">楽しみながらお小遣いを稼いで、新しいスキルを身につけよう!</strong>
+            </p>
+        </div>
+
+        <div class="section content-elementary">
+            <h2>まとめ</h2>
+            <p style="font-size: 1.1rem; line-height: 2;">
+                このお<ruby>仕事<rt>しごと</rt></ruby>は、AIツールを<ruby>活用<rt>かつよう</rt></ruby>することで<ruby>誰<rt>だれ</rt></ruby>でも<ruby>簡単<rt>かんたん</rt></ruby>にショート<ruby>動画<rt>どうが</rt></ruby>を<ruby>作成<rt>さくせい</rt></ruby>できるようになっています。<br>
+                <ruby>動画作成<rt>どうがさくせい</rt></ruby>を<ruby>通<rt>とお</rt></ruby>じて、<ruby>動画編集<rt>どうがへんしゅう</rt></ruby>やSNSマーケティングのスキルも<ruby>自然<rt>しぜん</rt></ruby>と<ruby>身<rt>み</rt></ruby>についていくよ!
+            </p>
+            <p style="font-size: 1.1rem; line-height: 2; text-align: center; margin-top: 20px;">
+                <strong style="color: var(--primary-color);"><ruby>楽<rt>たの</rt></ruby>しみながらお<ruby>小遣<rt>こづか</rt></ruby>いを<ruby>稼<rt>かせ</rt></ruby>いで、<ruby>新<rt>あたら</rt></ruby>しいスキルを<ruby>身<rt>mi</rt></ruby>につけよう!</strong>
+            </p>
+        </div>
+
+        <a href="index.html#challenge" class="back-button">← if(チャレンジ)に戻る</a>
+    </div>
+
+    <script>
+        function switchMode(mode) {
+            const tabs = document.querySelectorAll('.mode-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            if (mode === 'elementary') {
+                document.body.classList.add('elementary-mode');
+                tabs[1].classList.add('active');
+            } else {
+                document.body.classList.remove('elementary-mode');
+                tabs[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+name: 画像ルール自動生成
+
+on:
+  # 手動実行
+  workflow_dispatch:
+  # ホームページファイルが変更された時に自動実行
+  push:
+    paths:
+      - 'WorkFlow_origin/homepage.txt'
+      - 'WorkFlow_origin/src/analyze-homepage.js'
+      - 'WorkFlow_origin/src/generate-imagerule.js'
+
+jobs:
+  generate-image-rule:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: WorkFlow_origin
+
+    steps:
+      # リポジトリのチェックアウト
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      # Node.jsのセットアップ
+      - name: Node.jsをセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'WorkFlow_origin/package.json'
+
+      # 依存関係のインストール
+      - name: 依存関係をインストール
+        run: npm ci
+
+      # 出力ディレクトリの作成
+      - name: 出力ディレクトリを作成
+        run: |
+          mkdir -p output
+
+      # ホームページ解析
+      - name: ホームページを解析
+        run: npm run analyze-homepage
+
+      # 画像ルール生成
+      - name: 画像ルールを生成
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run generate-imagerule
+
+      # 画像ルールファイルをArtifactとしてアップロード
+      - name: 画像ルールをアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-rule
+          path: WorkFlow_origin/output/image-rule.txt
+          retention-days: 90
+
+      # ビジネスサマリーをアップロード
+      - name: ビジネスサマリーをアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: business-summary
+          path: WorkFlow_origin/output/business-summary.txt
+          retention-days: 90
+        if: always()
+
+      # 結果をコミット
+      - name: 結果をコミット
+        if: success()
+        working-directory: .
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # 画像ルールファイルに変更があればコミット
+          if [[ -n $(git status -s WorkFlow_origin/output/) ]]; then
+            git add WorkFlow_origin/output/
+            git commit -m "🤖 自動生成: 画像ルール $(date '+%Y-%m-%d')"
+            git push
+          else
+            echo "変更がないため、コミットをスキップします"
+          fi
+
+      # 完了メッセージ
+      - name: 完了
+        run: |
+          echo "✅ 画像ルール生成完了"
+          echo ""
+          echo "📦 Artifactからダウンロードできます:"
+          echo "   🎨 image-rule - 画像生成ルール"
+          echo "   📄 business-summary - ビジネスサマリー"
+          echo ""
+          echo "📝 生成されたファイルは output/ フォルダに保存されています"

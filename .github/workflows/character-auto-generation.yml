@@ -3,6 +3,12 @@ name: キャラクター自動生成
 on:
   # 手動実行
   workflow_dispatch:
+    inputs:
+      custom_prompt:
+        description: 'カスタムプロンプト（任意）: CSV内容を修正するための追加指示'
+        required: false
+        type: string
+        default: ''
   # キャラクター画像が追加・変更された時に自動実行
   push:
     paths:
@@ -43,6 +49,7 @@ jobs:
       - name: キャラクターCSVを生成
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CUSTOM_PROMPT: ${{ github.event.inputs.custom_prompt || '' }}
         run: npm run generate-character-csv
 
       # 生成されたキャラクターCSVをArtifactとしてアップロード

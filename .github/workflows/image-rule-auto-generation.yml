@@ -3,6 +3,12 @@ name: 画像ルール自動生成
 on:
   # 手動実行
   workflow_dispatch:
+    inputs:
+      custom_prompt:
+        description: 'カスタムプロンプト（任意）: 画像ルール内容を修正するための追加指示'
+        required: false
+        type: string
+        default: ''
   # ホームページファイルが変更された時に自動実行
   push:
     paths:
@@ -47,6 +53,7 @@ jobs:
       - name: 画像ルールを生成
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CUSTOM_PROMPT: ${{ github.event.inputs.custom_prompt || '' }}
         run: npm run generate-imagerule
 
       # 画像ルールファイルをArtifactとしてアップロード

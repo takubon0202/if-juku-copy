@@ -16,6 +16,9 @@ on:
       - 'WorkFlow_origin/src/analyze-homepage.js'
       - 'WorkFlow_origin/src/generate-imagerule.js'
 
+permissions:
+  contents: write
+
 jobs:
   generate-image-rule:
     runs-on: ubuntu-latest

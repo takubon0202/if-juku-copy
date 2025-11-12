@@ -16,6 +16,9 @@ on:
       - 'WorkFlow_origin/character/**/*.jpg'
       - 'WorkFlow_origin/character/**/*.jpeg'
 
+permissions:
+  contents: write
+
 jobs:
   generate-character:
     runs-on: ubuntu-latest

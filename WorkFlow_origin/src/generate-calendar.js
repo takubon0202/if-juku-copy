@@ -255,19 +255,69 @@ async function generateCalendar() {
     // 既存投稿情報をプロンプト用にフォーマット
     let existingPostsSection = '';
     if (existingPosts.length > 0) {
-      const recentPosts = existingPosts.slice(0, 30); // 最新30件
-      existingPostsSection = `
-# 既存の投稿内容（重複を避けるための参考情報）
-以下は、既に作成された投稿の内容です。これらと似た内容や重複するテーマを避けて、新しいユニークな投稿を生成してください。
+      const recentPosts = existingPosts.slice(0, 50); // 最新50件を参照
 
-${recentPosts.map((post, idx) => `
-## 既存投稿${idx + 1}
-- ファイル: ${post.file}
-- 表紙画像: ${post.coverImage.substring(0, 100)}...
-- 投稿テキスト: ${post.postText.substring(0, 150)}...
+      // 既存投稿のテーマを分析
+      const existingThemes = recentPosts.map(post => {
+        const text = post.postText.toLowerCase();
+        return {
+          hasMinecraft: text.includes('マインクラフト') || text.includes('minecraft'),
+          hasAI: text.includes('ai') || text.includes('人工知能'),
+          hasEntrepreneur: text.includes('起業') || text.includes('ビジネス'),
+          hasParent: text.includes('保護者') || text.includes('お母様') || text.includes('親御'),
+          hasStudent: text.includes('生徒') || text.includes('子ども'),
+          hasInstructor: text.includes('講師') || text.includes('先生') || text.includes('メンター'),
+          text: post.postText.substring(0, 200)
+        };
+      });
+
+      existingPostsSection = `
+# 既存の投稿履歴（${recentPosts.length}件）- 重複回避のための重要な参考情報
+
+## 📊 既存投稿の統計
+- 総投稿数: ${existingPosts.length}件
+- 参照する最新投稿: ${recentPosts.length}件
+- 最も古い参照投稿: ${recentPosts[recentPosts.length - 1]?.file || '不明'}
+- 最も新しい参照投稿: ${recentPosts[0]?.file || '不明'}
+
+## 🎯 既存投稿のテーマ傾向
+- マインクラフト関連: ${existingThemes.filter(t => t.hasMinecraft).length}件
+- AI関連: ${existingThemes.filter(t => t.hasAI).length}件
+- 起業・ビジネス関連: ${existingThemes.filter(t => t.hasEntrepreneur).length}件
+- 保護者向け: ${existingThemes.filter(t => t.hasParent).length}件
+- 生徒の成長・事例: ${existingThemes.filter(t => t.hasStudent).length}件
+- 講師紹介: ${existingThemes.filter(t => t.hasInstructor).length}件
+
+## 📝 最近の投稿サンプル（最新10件）
+${recentPosts.slice(0, 10).map((post, idx) => `
+### 既存投稿${idx + 1}（${post.file}）
+- 表紙画像の概要: ${post.coverImage.substring(0, 120)}...
+- 投稿テキスト: ${post.postText.substring(0, 180)}...
 `).join('\n')}
 
-**重要: 上記の既存投稿と内容が重複しないよう、新しい視点やテーマで投稿を作成してください。**
+## ⚠️ 重要な制約 - 新規性の確保
+**必ず以下を守ってください:**
+
+1. **完全に新しいテーマを選ぶ**
+   - 上記の既存投稿と同じテーマ・切り口は避ける
+   - 既に使われている具体例や事例は使用しない
+   - 同じキャラクターの組み合わせが連続しないようにする
+
+2. **新しい視点を提供**
+   - 「〇〇だった子が今では〜」のような同じフォーマットの連続使用を避ける
+   - 異なる投稿タイプ（保護者共感型、ストーリー型など）をバランスよく配分
+   - 季節感、時事性、新しいトレンドを取り入れる
+
+3. **テーマの多様性を確保**
+   - マインクラフトだけでなく、AI、起業、メンター、学習方法など多様なテーマを扱う
+   - 保護者向けと生徒向けのバランスを取る
+   - Q&A型、日常風景型など、様々な投稿タイプを活用
+
+4. **具体性の変化**
+   - 「小6男子」「中1女子」など、既存投稿で使われた具体例と異なる例を使う
+   - 新しいエピソード、新しい数字、新しい実績を創造的に提示
+
+**今回生成する投稿は、上記の既存投稿とは明確に異なる、全く新しい内容でなければなりません。**
 `;
     }
 

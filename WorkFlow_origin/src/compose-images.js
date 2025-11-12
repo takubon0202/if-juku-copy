@@ -463,7 +463,6 @@ async function composeAndUploadImages() {
 
     // アップロードされた画像URLを記録（一括投稿CSV用）
     const uploadedImageUrls = [];
-    const thanksMessageUrls = [];
 
     // 各日の画像を合成
     for (let dayIndex = 0; dayIndex < lines.length; dayIndex++) {
@@ -542,6 +541,7 @@ async function composeAndUploadImages() {
     // サンクスメッセージ画像をアップロード
     console.log('\n📮 サンクスメッセージ画像をアップロード中...');
     const thanksMessageDir = join(__dirname, '..', 'thanks_message');
+    let thanksMessageUrl = null;
 
     // thanks_messageフォルダが存在しない場合は作成
     if (!existsSync(thanksMessageDir)) {
@@ -549,36 +549,27 @@ async function composeAndUploadImages() {
       console.log('  📁 thanks_messageフォルダを作成しました');
     }
 
-    if (existsSync(thanksMessageDir)) {
-      const thanksFiles = readdirSync(thanksMessageDir).filter(file =>
-        file.toLowerCase().endsWith('.png') ||
-        file.toLowerCase().endsWith('.jpg') ||
-        file.toLowerCase().endsWith('.jpeg')
-      );
+    // juku_thanks.pngを優先的にアップロード
+    const thanksImagePath = join(thanksMessageDir, 'juku_thanks.png');
+    if (existsSync(thanksImagePath)) {
+      try {
+        const thanksImageBuffer = readFileSync(thanksImagePath);
 
-      for (const file of thanksFiles) {
-        try {
-          const thanksImagePath = join(thanksMessageDir, file);
-          const thanksImageBuffer = readFileSync(thanksImagePath);
+        // サーバーにアップロード（同じフォルダに）
+        const uploadPath = `${folderName}/juku_thanks.png`;
+        console.log(`  ⬆️  juku_thanks.pngをアップロード中...`);
 
-          // サーバーにアップロード（同じフォルダに）
-          const uploadPath = `${folderName}/${file}`;
-          console.log(`  ⬆️  ${file}をアップロード中...`);
+        thanksMessageUrl = await uploadImage(thanksImageBuffer, uploadPath);
+        console.log(`  ✅ アップロード完了: ${thanksMessageUrl}`);
+        totalUploaded++;
 
-          const uploadedUrl = await uploadImage(thanksImageBuffer, uploadPath);
-          console.log(`  ✅ アップロード完了: ${uploadedUrl}`);
-          totalUploaded++;
-
-          // サンクスメッセージURLを記録
-          thanksMessageUrls.push(uploadedUrl);
-
-          await new Promise(resolve => setTimeout(resolve, 500));
-        } catch (error) {
-          console.error(`  ❌ ${file}のアップロードに失敗:`, error.message);
-        }
+        await new Promise(resolve => setTimeout(resolve, 500));
+      } catch (error) {
+        console.error(`  ❌ juku_thanks.pngのアップロードに失敗:`, error.message);
       }
     } else {
-      console.log('  ℹ️  thanks_messageフォルダが見つかりません - スキップ');
+      console.log('  ⚠️  juku_thanks.pngが見つかりません');
+      console.log(`     期待されるパス: ${thanksImagePath}`);
     }
 
     // 一括投稿データ.CSV作成
@@ -612,8 +603,11 @@ async function composeAndUploadImages() {
           // この日の4枚の画像URL
           const dayImageUrls = uploadedImageUrls.slice(i * 4, i * 4 + 4);
 
-          // サンクスメッセージURLを追加
-          const mediaUrls = [...dayImageUrls, ...thanksMessageUrls].join(',');
+          // サンクスメッセージURLを最後に追加（存在する場合）
+          const allMediaUrls = thanksMessageUrl
+            ? [...dayImageUrls, thanksMessageUrl]
+            : dayImageUrls;
+          const mediaUrls = allMediaUrls.join(',');
 
           // CSV行を作成（テキストにカンマが含まれるのでダブルクォートで囲む）
           const csvLine = `${dateStr},"${postText.replace(/"/g, '""')}",,"${mediaUrls}"`;

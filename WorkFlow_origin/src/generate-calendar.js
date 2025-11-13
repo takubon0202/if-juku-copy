@@ -521,9 +521,17 @@ ${calendarDays > 3 ? '...（中略）...\n' + calendarDays + '日目の13列デ�
     const calendarDir = join(__dirname, '..', 'calendar');
     if (!existsSync(calendarDir)) {
       mkdirSync(calendarDir, { recursive: true });
+      console.log('📁 calendarフォルダを作成しました');
     }
     const calendarPath = join(calendarDir, `calendar_${timestamp}.csv`);
     writeFileSync(calendarPath, calendarCSV, 'utf-8');
+
+    // 保存確認
+    if (existsSync(calendarPath)) {
+      console.log(`✅ カレンダー履歴に保存しました: ${calendarPath}`);
+    } else {
+      console.warn(`⚠️  警告: カレンダー履歴への保存に失敗した可能性があります`);
+    }
 
     // outputフォルダにも保存（後方互換性のため）
     const csvPath = join(__dirname, '..', 'output', 'calendar.csv');

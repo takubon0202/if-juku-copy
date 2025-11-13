@@ -83,6 +83,13 @@ jobs:
           path: WorkFlow_origin/output/calendar.csv
           retention-days: 90
 
+      - name: カレンダー履歴フォルダをアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: calendar-history
+          path: WorkFlow_origin/calendar/
+          retention-days: 90
+
       - name: ビジネスサマリーをアップロード
         uses: actions/upload-artifact@v4
         with:
@@ -123,8 +130,8 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # 変更があればコミット
-          if [[ -n $(git status -s WorkFlow_origin/output/) ]]; then
-            git add WorkFlow_origin/output/
+          if [[ -n $(git status -s WorkFlow_origin/output/ WorkFlow_origin/calendar/) ]]; then
+            git add WorkFlow_origin/output/ WorkFlow_origin/calendar/
             git commit -m "🤖 自動生成: Instagram投稿カレンダー $(date '+%Y-%m-%d')"
             git push
           else
@@ -137,15 +144,17 @@ jobs:
           echo "✅ Instagram投稿カレンダー生成完了"
           echo ""
           echo "📦 以下のArtifactから必要なものを選択してダウンロードできます:"
-          echo "   1️⃣ calendar-csv - 投稿カレンダー（CSV形式）"
-          echo "   2️⃣ business-summary - ビジネスサマリー"
+          echo "   1️⃣ calendar-csv - 投稿カレンダー（CSV形式、最新版）"
+          echo "   2️⃣ calendar-history - カレンダー履歴フォルダ（全ての過去カレンダー）"
+          echo "   3️⃣ business-summary - ビジネスサマリー"
           if [ "${{ github.event.inputs.generate_images }}" == "true" ] || [ "${{ github.event_name }}" == "push" ]; then
-            echo "   3️⃣ ai-generated-images - AI生成画像（元画像）"
-            echo "   4️⃣ composed-images - 合成済み画像（テキスト入り、3:4サイズ）"
-            echo "   5️⃣ bulk-post-csv - 一括投稿データ.CSV（Instagram予約投稿用）"
+            echo "   4️⃣ ai-generated-images - AI生成画像（元画像）"
+            echo "   5️⃣ composed-images - 合成済み画像（テキスト入り、3:4サイズ）"
+            echo "   6️⃣ bulk-post-csv - 一括投稿データ.CSV（Instagram予約投稿用）"
             echo ""
             echo "🌐 合成済み画像はサーバーにもアップロードされています:"
             echo "   https://images.if-juku.net/juku_post_$(date '+%Y_%m')/"
           fi
           echo ""
           echo "💡 各Artifactは個別にダウンロード可能です（zipファイルとして）"
+          echo "📁 カレンダー履歴はリポジトリのcalendarフォルダにも自動コミットされています"

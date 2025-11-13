@@ -165,17 +165,17 @@ async function generateImage(apiKey, prompt, index, characterName = null) {
         const enhancedPrompt = `CRITICAL: Keep the person EXACTLY as shown in the reference images. DO NOT change their face, facial features, hairstyle, hair color, skin tone, or clothing style. The person's identity and appearance must remain 100% identical across all reference images. Only change the background, setting, and pose to match this scene: ${prompt}. IMPORTANT: NO TEXT, NO LETTERS, NO WORDS, NO WRITING, NO SIGNS WITH TEXT in the image, use blank signs and clean surfaces without any text or characters.`;
         parts.push({ text: enhancedPrompt });
       } else {
-        // キャラクター画像が見つからない場合はエラー
-        console.log(`  ❌ エラー: キャラクター "${characterName}" の画像が見つかりません`);
+        // キャラクター画像が見つからない場合はnullを返す（エラーで止めない）
+        console.log(`  ⚠️  警告: キャラクター "${characterName}" の画像が見つかりません - スキップ`);
         console.log(`  💡 characterフォルダに画像を配置するか、プロンプト内のキャラクター名を確認してください`);
-        throw new Error(`キャラクター画像が見つかりません: ${characterName}`);
+        return null;
       }
     } else {
-      // キャラクターが指定されていない場合はエラー
-      console.log(`  ❌ エラー: プロンプト内にキャラクターが指定されていません`);
+      // キャラクターが指定されていない場合はnullを返す（エラーで止めない）
+      console.log(`  ⚠️  警告: プロンプト内にキャラクターが指定されていません - スキップ`);
       console.log(`  💡 画像生成には登録済みキャラクターの指定が必須です`);
       console.log(`  📝 利用可能なキャラクター: ${getCharacterNames().join(', ')}`);
-      throw new Error('プロンプト内にキャラクターが指定されていません。登録済みキャラクターを使用してください。');
+      return null;
     }
 
     const requestBody = {

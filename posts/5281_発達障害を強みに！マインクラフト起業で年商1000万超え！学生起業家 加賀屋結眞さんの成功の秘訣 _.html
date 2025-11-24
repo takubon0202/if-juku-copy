@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>発達障害を強みに！マインクラフト起業で年商1000万超え！学生起業家 加賀屋結眞さんの成功の秘訣 | if塾 - if(塾)</title>
+    <meta name="description" content="発達障害を持つ学生起業家、加賀屋結眞さんのサクセスストーリー！マインクラフトを活用した起業、ビジコンでの活躍、キャリア形成のヒント満載！if塾の支援事例も紹介。">
+    <meta name="keywords" content="起業, 学生起業, ビジコン, キャリア, フリーランス, スタートアップ, マインクラフト 教育, 発達障害, if塾">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 100px 0 0 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 20px 40px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            background: rgba(0, 255, 204, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .post-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            font-size: 1.7rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .back-to-list {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .back-to-list:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 80px 15px 40px;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> /
+            <a href="../news.html">お知らせ</a> /
+            <span>発達障害を強みに！マインクラフト起業で年商1000万超え！学生起業家 加賀屋結眞さんの成功の秘訣 | if塾</span>
+        </nav>
+
+        <div class="post-meta">
+            <div class="post-date">2025年11月24日</div>
+            <div class="post-categories">
+                <span class="category-tag">起業・キャリア</span>
+                <span class="category-tag">起業</span>
+                <span class="category-tag">学生起業</span>
+                <span class="category-tag">ビジコン</span>
+                <span class="category-tag">キャリア</span>
+                <span class="category-tag">フリーランス</span>
+                <span class="category-tag">スタートアップ</span>
+                <span class="category-tag">マインクラフト 教育</span>
+                <span class="category-tag">発達障害</span>
+                <span class="category-tag">if塾</span>
+            </div>
+        </div>
+
+        <h1 class="post-title">発達障害を強みに！マインクラフト起業で年商1000万超え！学生起業家 加賀屋結眞さんの成功の秘訣 | if塾</h1>
+
+        <div class="post-content">
+            
+        <h2>「好き」を仕事に！加賀屋結眞さんのマインクラフト起業ストーリー（加賀屋結眞）</h2>
+        <img src="../blog-images/blog_1763988307191_1.png" alt="「好き」を仕事に！加賀屋結眞さんのマインクラフト起業ストーリー（加賀屋結眞）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>皆さん、こんにちは！if塾ブログへようこそ。今回は、発達特性を持つ学生起業家、加賀屋結眞さんをご紹介します。加賀屋さんは、幼い頃から<strong>マインクラフト</strong>が大好き。その情熱を活かし、高校在学中にマインクラフトの建築代行サービスを提供する会社を設立。なんと、初年度から年商1000万円を突破したんです！</p><p>加賀屋さんは、集中力が高く、一度ハマると徹底的に追求する特性をお持ちです。その集中力と創造性を活かし、クライアントの要望以上のクオリティの建築物を作り上げ、多くの顧客から支持を得ています。</p><p>加賀屋さんは言います。「最初は不安もありましたが、自分の『好き』を信じて挑戦して本当に良かった。発達障害があるからこそ、人とは違う視点や発想が生まれるし、それが強みになるんだと実感しました。」</p><p>加賀屋さんの成功は、<strong>「好き」を仕事にする</strong>こと、そして<strong>自身の特性を強みに変える</strong>ことの大切さを教えてくれます。</p>
+
+        <h2>ビジコンでの挑戦と学び、そしてif塾との出会い（高崎先生、山﨑塾長）</h2>
+        <img src="../blog-images/blog_1763988321338_2.png" alt="ビジコンでの挑戦と学び、そしてif塾との出会い（高崎先生、山﨑塾長）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>加賀屋さんの起業のきっかけは、高校のビジネスコンテストでした。そこで、if塾の高崎先生と出会い、メンターとしてサポートを受けることになります。</p><p><strong>高崎先生：</strong>「加賀屋くんのプレゼンを聞いた時、その熱意と才能に圧倒されました。少しコミュニケーションに課題があると感じましたが、彼の持つ可能性を最大限に引き出すことが、私たちの使命だと感じました。」</p><p>if塾では、加賀屋さんの特性に合わせたビジネスプランの作成、プレゼンテーションスキル向上、そしてメンタル面のサポートを行いました。山﨑塾長は、加賀屋さんの強みである集中力と創造性を活かすための戦略を一緒に練り上げました。</p><p><strong>山﨑塾長：</strong>「加賀屋くんは、非常に優れた才能を持っていますが、それを社会にどう活かしていくかが課題でした。if塾では、彼の才能を最大限に引き出し、社会で活躍できる人材を育成することを目標にしています。」</p><p>ビジコンでの経験とif塾のサポートを通じて、加賀屋さんは起業に必要な知識とスキルを習得し、自信を持ってスタートアップへと踏み出すことができました。</p>
+
+        <h2>eスポーツで才能を開花！Y君の挑戦と可能性（山﨑塾長）</h2>
+        <img src="../blog-images/blog_1763988336132_3.png" alt="eスポーツで才能を開花！Y君の挑戦と可能性（山﨑塾長）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>if塾では、起業支援だけでなく、<strong>eスポーツ</strong>を通じた発達障害を持つ方の才能開花も支援しています。その一例が、プロ<strong>eスポーツ</strong>プレイヤーを目指すY君です。Y君は、注意欠陥・多動性障害（ADHD）の診断を受けていますが、ゲームに対する集中力と反射神経は抜群です。</p><p>山﨑塾長はY君の才能を見抜き、集中的なトレーニングプログラムを提供。Y君はメキメキと実力をつけ、現在ではプロチームへの入団を目指して日々練習に励んでいます。</p><p><strong>山﨑塾長：</strong>「Y君のように、発達障害を持つ方の中には、特定の分野で非常に高い能力を発揮する方が多くいます。大切なのは、その才能を見つけ、伸ばすための適切な環境を提供することです。if塾では、一人ひとりの個性と才能に合わせた教育を提供し、社会で活躍できる人材を育成しています。」</p><p>Y君は、<strong>マインクラフト 教育</strong>にも興味があり、将来はゲームを通じて子供たちの教育に貢献したいと考えています。</p>
+
+        <h2>あなたの「才能」を社会へ！if塾で未来を切り開こう！（山﨑塾長）</h2>
+        <img src="../blog-images/blog_1763988353172_4.png" alt="あなたの「才能」を社会へ！if塾で未来を切り開こう！（山﨑塾長）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>加賀屋さんの起業、Y君のeスポーツへの挑戦。これらは、発達特性を持つ方々の可能性を示すほんの一例です。if塾では、一人ひとりの個性と才能を尊重し、社会で活躍できる人材を育成するためのサポートを行っています。</p><p><strong>「自分には何ができるんだろう？」</strong><br><strong>「得意なことを仕事にしたい！」</strong></p><p>そう思っている方は、ぜひ一度if塾にご相談ください。経験豊富な講師陣が、あなたの才能を見つけ、伸ばすための最適なプランをご提案します。</p><p>今すぐif塾の無料体験にお申込みください！あなたの未来を一緒に切り開きましょう！</p><p><a href="#" class="button">無料体験に申し込む</a></p><p>また、if塾では<strong>マインクラフト 教育</strong>にも力を入れています。ゲームを通じて、創造性、問題解決能力、コミュニケーション能力を育むことができます。ぜひ、お気軽にお問い合わせください。</p>
+
+        </div>
+
+        <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

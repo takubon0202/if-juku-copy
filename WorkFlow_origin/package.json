@@ -11,6 +11,8 @@
     "generate-calendar": "node src/generate-calendar.js",
     "generate-images": "node src/generate-images.js",
     "compose-images": "node src/compose-images.js",
+    "generate-blog": "node src/generate-blog.js",
+    "update-news": "node src/update-news-page.js",
     "setup": "npm run analyze-homepage && npm run generate-imagerule && npm run generate-character-csv",
     "workflow": "npm run setup && npm run generate-calendar",
     "workflow-with-images": "npm run setup && npm run generate-calendar && npm run generate-images && npm run compose-images"

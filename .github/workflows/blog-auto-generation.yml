@@ -1,0 +1,148 @@
+name: ブログ記事自動生成
+
+on:
+  # スケジュール実行（朝7時と夜19時、日本時間）
+  schedule:
+    - cron: '0 22 * * *'  # UTC 22:00 = JST 07:00（朝）
+    - cron: '0 10 * * *'  # UTC 10:00 = JST 19:00（夜）
+
+  # 手動実行
+  workflow_dispatch:
+    inputs:
+      article_count:
+        description: '生成する記事数'
+        required: false
+        type: number
+        default: 1
+
+permissions:
+  contents: write
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: WorkFlow_origin
+
+    steps:
+      # リポジトリのチェックアウト
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      # Node.jsのセットアップ
+      - name: Node.jsをセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'WorkFlow_origin/package.json'
+
+      # 依存関係のインストール
+      - name: 依存関係をインストール
+        run: npm ci
+
+      # 出力ディレクトリの作成
+      - name: 出力ディレクトリを作成
+        run: |
+          mkdir -p output
+          mkdir -p ../blog-images
+
+      # ブログ記事を生成
+      - name: ブログ記事を生成
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run generate-blog
+
+      # news.htmlを更新
+      - name: news.htmlを更新
+        run: npm run update-news
+
+      # 生成結果を表示
+      - name: 生成結果を表示
+        run: |
+          echo "## 📝 生成されたブログ記事" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "output/blog-info.json" ]; then
+            TITLE=$(cat output/blog-info.json | grep -o '"title": "[^"]*"' | cut -d'"' -f4)
+            CATEGORY=$(cat output/blog-info.json | grep -o '"category": "[^"]*"' | cut -d'"' -f4)
+            FILENAME=$(cat output/blog-info.json | grep -o '"filename": "[^"]*"' | cut -d'"' -f4)
+
+            echo "### 📰 $TITLE" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- **カテゴリ**: $CATEGORY" >> $GITHUB_STEP_SUMMARY
+            echo "- **ファイル名**: \`$FILENAME\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "### 📊 生成ファイル一覧" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**posts/**" >> $GITHUB_STEP_SUMMARY
+          ls -la ../posts/*.html 2>/dev/null | tail -5 | while read line; do
+            echo "- $line" >> $GITHUB_STEP_SUMMARY
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**blog-images/**" >> $GITHUB_STEP_SUMMARY
+          ls -la ../blog-images/*.png 2>/dev/null | tail -10 | while read line; do
+            echo "- $line" >> $GITHUB_STEP_SUMMARY
+          done
+
+      # 生成物をArtifactとしてアップロード
+      - name: ブログ記事をアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-article-${{ github.run_number }}
+          path: |
+            posts/
+            blog-images/
+          retention-days: 30
+
+      - name: ブログ情報JSONをアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-info-${{ github.run_number }}
+          path: WorkFlow_origin/output/blog-info.json
+          retention-days: 30
+
+      # 結果をコミット
+      - name: 結果をコミット
+        if: success()
+        working-directory: .
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # 変更があればコミット
+          if [[ -n $(git status -s posts/ blog-images/ news.html) ]]; then
+            git add posts/
+            git add blog-images/
+            git add news.html
+
+            # blog-info.jsonからタイトルを取得
+            TITLE="新規ブログ記事"
+            if [ -f "WorkFlow_origin/output/blog-info.json" ]; then
+              TITLE=$(cat WorkFlow_origin/output/blog-info.json | grep -o '"title": "[^"]*"' | cut -d'"' -f4 | head -1)
+            fi
+
+            git commit -m "📝 自動生成: $TITLE $(date '+%Y-%m-%d %H:%M')"
+            git push
+
+            echo "✅ コミット完了"
+          else
+            echo "変更がないため、コミットをスキップします"
+          fi
+
+      # 完了メッセージ
+      - name: 完了
+        run: |
+          echo "✅ ブログ記事自動生成完了"
+          echo ""
+          echo "📦 Artifactから以下をダウンロードできます:"
+          echo "   1️⃣ blog-article - 生成されたブログ記事と画像"
+          echo "   2️⃣ blog-info - 生成情報JSON"
+          echo ""
+          echo "📝 生成された記事はpostsフォルダに保存されました"
+          echo "🖼️ 画像はblog-imagesフォルダに保存されました"
+          echo ""
+          echo "💡 記事はnews.htmlから確認できます"

@@ -72,9 +72,9 @@ jobs:
             # URLエンコードされたファイル名を生成
             ENCODED_FILENAME=$(echo "$FILENAME" | sed 's/ /%20/g')
 
-            # ブログ記事のURL
-            BLOG_URL="https://getabako.github.io/if-juku/posts/${ENCODED_FILENAME}"
-            NEWS_URL="https://getabako.github.io/if-juku/news.html"
+            # ブログ記事のURL（Vercelでデプロイ）
+            BLOG_URL="https://if-juku.net/posts/${ENCODED_FILENAME}"
+            NEWS_URL="https://if-juku.net/news.html"
 
             echo "### 📰 $TITLE" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY

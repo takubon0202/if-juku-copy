@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方 - if(塾)</title>
+    <meta name="description" content="不安を抱える君へ。発達特性は才能！eスポーツで才能を開花させたY君や学生起業家加賀屋君の物語。ASDを強みに変えるICT教育と成功のヒントを紹介。">
+    <meta name="keywords" content="起業, 学生起業, 発達障害, ICT教育, eスポーツ, ASD, 才能">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 100px 0 0 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 20px 40px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            background: rgba(0, 255, 204, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .post-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            font-size: 1.7rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .back-to-list {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .back-to-list:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 80px 15px 40px;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> /
+            <a href="../news.html">お知らせ</a> /
+            <span>eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方</span>
+        </nav>
+
+        <div class="post-meta">
+            <div class="post-date">2025年11月24日</div>
+            <div class="post-categories">
+                <span class="category-tag">起業・キャリア</span>
+                <span class="category-tag">起業</span>
+                <span class="category-tag">学生起業</span>
+                <span class="category-tag">発達障害</span>
+                <span class="category-tag">ICT教育</span>
+                <span class="category-tag">eスポーツ</span>
+                <span class="category-tag">ASD</span>
+                <span class="category-tag">才能</span>
+            </div>
+        </div>
+
+        <h1 class="post-title">eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方</h1>
+
+        <div class="post-content">
+            
+        <h2>「普通」じゃなくていい！ASDの僕が見つけた起業という道 (加賀屋)</h2>
+        <img src="../blog-images/blog_1763989625806_1.png" alt="「普通」じゃなくていい！ASDの僕が見つけた起業という道 (加賀屋)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>こんにちは、加賀屋結眞です。僕は小さい頃から、周りの人とは少し違うなと感じていました。集中しすぎると周りが見えなくなったり、興味のないことには全く集中できなかったり…。いわゆるASD（自閉スペクトラム症）の特性を持っています。学校ではなかなかうまくいかず、自信をなくしていた時期もありました。</p>
+<p>そんな僕が変わるきっかけになったのが、高校で高崎先生と出会ったこと。先生は僕の特性を『才能の原石』だと言ってくれたんです。得意なこと、好きなことをとことん伸ばせばいい。そう教えてもらって、僕はプログラミングに没頭しました。そして、15歳で個人事業主として起業。今では、ICTスキルを活かして、様々な企業のサポートをしています。</p>
+<p>最初は不安もありましたが、小さな成功体験を積み重ねることで、少しずつ自信が持てるようになりました。<strong>eスポーツ 発達障害</strong>を持つY君が才能を開花させたように、僕も自分の特性を活かして、社会に貢献できると信じています。<strong>ASD ICT 才能</strong>は、掛け合わせることで無限の可能性を秘めているんです。</p>
+
+        <h2>高崎先生との出会いが、僕の人生を変えた (加賀屋)</h2>
+        <img src="../blog-images/blog_1763989643361_2.png" alt="高崎先生との出会いが、僕の人生を変えた (加賀屋)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>起業のきっかけを与えてくれた高崎先生は、臨床心理士でありながらITエンジニアでもある、本当にすごい先生です。先生は<strong>マインクラフト 教育</strong>など、ICTを活用した新しい教育方法を積極的に取り入れていて、僕のような発達特性を持つ子どもたちの可能性を信じて、たくさんのチャンスをくれました。先生がいなければ、今の僕はなかったと思います。</p>
+<p>if塾では、僕のように発達特性を持つ仲間たちがたくさんいます。お互いの得意なこと、苦手なことを理解し合い、助け合いながら成長できる環境が、僕にとって大きな支えになっています。山﨑塾長もADHDとASDの診断を受けていますが、持ち前の行動力と創造性を活かして、塾を盛り上げています。過去の自分と同じように悩んでいる子どもたちの力になりたいという熱い想いが、僕たちの原動力です。</p>
+
+        <h2>eスポーツで才能開花！Y君の挑戦 (高崎)</h2>
+        <img src="../blog-images/blog_1763989656543_3.png" alt="eスポーツで才能開花！Y君の挑戦 (高崎)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>if塾には、eスポーツの世界で活躍しているY君という子がいます。彼は高い集中力と空間認識能力を持ち、ゲームの世界でその才能を発揮しています。<strong>eスポーツ 発達障害</strong>を持つ彼は、その特性を武器に、数々の大会で好成績を収めています。</p>
+<p>Y君も最初は自信がありませんでしたが、ゲームを通じて成功体験を積み重ねることで、少しずつ自信をつけていきました。今では、自分の得意なことを活かして、将来はプロのeスポーツプレイヤーとして活躍することを夢見ています。Y君のように、自分の好きなこと、得意なことを追求することで、人生を切り開いていくことができるんです。（高崎）</p>
+
+        <h2>君だけの「好き」を、強みに変えよう (山﨑)</h2>
+        <img src="../blog-images/blog_1763989669564_4.png" alt="君だけの「好き」を、強みに変えよう (山﨑)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>「自分には何もない…」そう思っている君へ。大丈夫、そんなことはありません。誰にでも、必ず何か得意なこと、好きなことがあります。それは、もしかしたら、君自身も気づいていない才能かもしれません。</p>
+<p>if塾では、君の「好き」を見つけ、それを強みに変えるお手伝いをします。ICTスキルを身につけたり、仲間との出会いを通じて、新しい可能性を発見したり…。僕自身も、発達特性を持ちながら、自分の強みを見つけて、人生を切り開いてきました。だから、君もきっとできると信じています。（山﨑）</p>
+<p><strong>ASD ICT 才能</strong>を伸ばすことで、君だけの未来を切り開こう。不安な時はいつでも、if塾に相談してください。僕たちは、君の成長を全力でサポートします。</p>
+
+        </div>
+
+        <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

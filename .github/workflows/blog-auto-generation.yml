@@ -127,10 +127,11 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # 変更があればコミット
-          if [[ -n $(git status -s posts/ blog-images/ news.html) ]]; then
+          if [[ -n $(git status -s posts/ blog-images/ news.html index.html) ]]; then
             git add posts/
             git add blog-images/
             git add news.html
+            git add index.html
 
             # blog-info.jsonからタイトルを取得
             TITLE="新規ブログ記事"

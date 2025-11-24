@@ -5,6 +5,9 @@ import { dirname, join, basename } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// 表示する最大記事数
+const MAX_NEWS_ITEMS = 8;
+
 /**
  * postsフォルダから全記事情報を取得
  */
@@ -138,8 +141,66 @@ function updateNewsPage() {
     console.log(`  ${i + 1}. ${post.title} (${post.date})`);
   });
 
-  return posts.length;
+  return posts;
+}
+
+/**
+ * index.htmlのお知らせセクションを更新
+ */
+function updateIndexPage(posts) {
+  console.log('\n📄 index.htmlのお知らせセクションを更新中...\n');
+
+  const indexPath = join(__dirname, '..', '..', 'index.html');
+
+  if (!existsSync(indexPath)) {
+    console.error('❌ index.htmlが見つかりません');
+    return;
+  }
+
+  let indexContent = readFileSync(indexPath, 'utf-8');
+
+  // 最新のニュース記事を取得（最大MAX_NEWS_ITEMS件）
+  const latestNews = posts.slice(0, MAX_NEWS_ITEMS);
+
+  // titleToFilenameMappingを更新
+  // News section mappingsの部分を見つけて更新
+  const newsMappings = latestNews.map(post => {
+    const escapedTitle = post.title.replace(/'/g, "\\'");
+    return `            '${escapedTitle}': '${post.file}'`;
+  }).join(',\n');
+
+  // News section mappingsを更新
+  const mappingRegex = /(\/\/ News section mappings\s*\n)([\s\S]*?)(        \};)/;
+  const mappingMatch = indexContent.match(mappingRegex);
+
+  if (mappingMatch) {
+    // Materials mappingsを保持しつつNews mappingsを更新
+    const beforeNews = indexContent.substring(0, indexContent.indexOf('// News section mappings'));
+    const afterMapping = indexContent.substring(indexContent.indexOf('};', indexContent.indexOf('// News section mappings')) + 2);
+
+    indexContent = beforeNews + `// News section mappings  \n${newsMappings}\n        ` + '}' + afterMapping;
+  }
+
+  // newsDataを更新
+  const newsDataItems = latestNews.map(post => {
+    const escapedTitle = post.title.replace(/'/g, "\\'");
+    const escapedExcerpt = post.excerpt.replace(/'/g, "\\'").substring(0, 100);
+    return `                { title: '${escapedTitle}', excerpt: '${escapedExcerpt}' }`;
+  }).join(',\n');
+
+  // newsData配列を更新
+  const newsDataRegex = /(\/\/ Fixed news\s*\n\s*const newsData = \[)\n[\s\S]*?(\];)/;
+  indexContent = indexContent.replace(newsDataRegex, `$1\n${newsDataItems}\n            $2`);
+
+  // ファイルを保存
+  writeFileSync(indexPath, indexContent);
+
+  console.log('✅ index.htmlのお知らせセクションを更新しました');
+  console.log(`📊 表示記事数: ${latestNews.length}件`);
 }
 
 // 実行
-updateNewsPage();
+const posts = updateNewsPage();
+if (posts && posts.length > 0) {
+  updateIndexPage(posts);
+}

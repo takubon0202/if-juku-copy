@@ -8,41 +8,87 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// ブログトピックのカテゴリー
+// キャラクター定義と役割
+const CHARACTERS = {
+  '塾頭高崎翔太': {
+    name: '塾頭高崎翔太',
+    displayName: '高崎先生',
+    role: '塾頭',
+    topics: ['教育', 'AI開発', '発達障害の専門知識', 'ICT教育', 'プログラミング教育', '臨床心理']
+  },
+  '塾長山﨑琢己': {
+    name: '塾長山﨑琢己',
+    displayName: '山﨑塾長',
+    role: '塾長',
+    topics: ['学生交流', '執筆', '発達障害の体験談', '特別支援級', '国立大学進学', '成長体験']
+  },
+  'CTO井上陽斗': {
+    name: 'CTO井上陽斗',
+    displayName: '井上CTO',
+    role: 'CTO',
+    topics: ['マインクラフト', 'AI開発', 'プログラミング', 'コマンドブロック', 'ゲーム開発']
+  },
+  '学生起業家加賀屋結眞': {
+    name: '学生起業家加賀屋結眞',
+    displayName: '加賀屋',
+    role: '学生起業家',
+    topics: ['起業', 'ビジコン', 'ビジネス', 'スタートアップ', '学生起業']
+  },
+  'eスポーツプレイヤー渡辺柚気': {
+    name: 'eスポーツプレイヤー渡辺柚気',
+    displayName: 'Y君',
+    role: 'eスポーツプレイヤー',
+    topics: ['eスポーツ', 'ストリートファイター6', 'FPS', '格闘ゲーム', '大会', '競技ゲーム']
+  }
+};
+
+// ブログトピックのカテゴリー（キャラクター割り当て付き）
 const BLOG_TOPICS = [
   {
-    category: 'AI・ICT',
-    keywords: ['AI', 'ICT', '人工知能', 'プログラミング', 'テクノロジー', 'ChatGPT', 'Gemini', '機械学習', '自動化'],
-    angle: '発達特性を持つ人がAI・ICTを活用して成長した事例や可能性'
+    category: 'AI・ICT教育',
+    keywords: ['AI', 'ICT', '人工知能', 'プログラミング', 'テクノロジー', 'ChatGPT', 'Gemini', '機械学習'],
+    angle: '発達特性を持つ人がAI・ICTを活用して成長した事例や可能性',
+    mainCharacter: '塾頭高崎翔太',
+    subCharacters: ['CTO井上陽斗', '塾長山﨑琢己']
   },
   {
-    category: '発達障害とテクノロジー',
-    keywords: ['発達障害', 'ADHD', 'ASD', '自閉スペクトラム症', '注意欠陥', '多動性', 'ICT支援', 'AI活用'],
-    angle: '発達障害とAI・ICTの相性の良さ、才能開花の可能性'
+    category: '発達障害と成長',
+    keywords: ['発達障害', 'ADHD', 'ASD', '自閉スペクトラム症', '特別支援', '成長', '克服'],
+    angle: '発達障害の体験談と成長ストーリー、支援級から国立大学への進学',
+    mainCharacter: '塾長山﨑琢己',
+    subCharacters: ['塾頭高崎翔太']
   },
   {
-    category: 'ゲームと成長',
-    keywords: ['マインクラフト', 'Minecraft', 'ゲーム', 'プログラミング教育', 'コマンドブロック', '論理的思考'],
-    angle: 'ゲームを通じた学習効果、発達特性を活かした創造性の発揮'
+    category: 'マインクラフト教育',
+    keywords: ['マインクラフト', 'Minecraft', 'コマンドブロック', 'プログラミング教育', '論理的思考', 'ゲーム開発'],
+    angle: 'ゲームを通じた学習効果、発達特性を活かした創造性の発揮',
+    mainCharacter: 'CTO井上陽斗',
+    subCharacters: ['塾長山﨑琢己', '塾頭高崎翔太']
   },
   {
     category: 'eスポーツ',
     keywords: ['ストリートファイター6', 'SF6', 'FPS', 'eスポーツ', '格闘ゲーム', '大会', '競技'],
-    angle: '集中力や反応速度など発達特性を活かしたeスポーツでの活躍'
+    angle: '集中力や反応速度など発達特性を活かしたeスポーツでの活躍',
+    mainCharacter: 'eスポーツプレイヤー渡辺柚気',
+    subCharacters: ['塾長山﨑琢己', '塾頭高崎翔太']
   },
   {
     category: '起業・キャリア',
-    keywords: ['起業', '学生起業', 'キャリア', 'フリーランス', '副業', 'スキルアップ'],
-    angle: '発達特性を持つ人の起業やキャリア形成での成功事例'
+    keywords: ['起業', '学生起業', 'ビジコン', 'キャリア', 'フリーランス', 'スタートアップ'],
+    angle: '発達特性を持つ人の起業やキャリア形成での成功事例',
+    mainCharacter: '学生起業家加賀屋結眞',
+    subCharacters: ['塾頭高崎翔太', '塾長山﨑琢己']
   },
   {
     category: '才能開花',
     keywords: ['才能開花', '特性活用', '強み', '個性', '成長', '自己実現', '可能性'],
-    angle: '発達特性を「障害」ではなく「才能」として活かす方法'
+    angle: '発達特性を「障害」ではなく「才能」として活かす方法',
+    mainCharacter: '塾頭高崎翔太',
+    subCharacters: ['塾長山﨑琢己', '学生起業家加賀屋結眞']
   }
 ];
 
-// SEOキーワード（検索順位を上げたいキーワード）
+// SEOキーワード
 const SEO_KEYWORDS = [
   '発達障害 AI',
   '発達障害 プログラミング',
@@ -55,7 +101,8 @@ const SEO_KEYWORDS = [
   '発達特性 強み',
   '学生起業 IT',
   'プログラミング教室 秋田',
-  'if塾'
+  'if塾',
+  '特別支援級 大学進学'
 ];
 
 /**
@@ -74,6 +121,55 @@ function selectRandomSEOKeywords(count = 3) {
 }
 
 /**
+ * キャラクター画像を読み込む
+ */
+function loadCharacterImages(characterName) {
+  const characterDir = join(__dirname, '..', 'character', characterName);
+
+  if (!existsSync(characterDir)) {
+    console.log(`  ⚠️ キャラクターフォルダが見つかりません: ${characterDir}`);
+    return null;
+  }
+
+  try {
+    const files = readdirSync(characterDir);
+    const imageFiles = files.filter(file => {
+      const ext = file.toLowerCase();
+      return ext.endsWith('.png') || ext.endsWith('.jpg') || ext.endsWith('.jpeg');
+    });
+
+    if (imageFiles.length === 0) {
+      console.log(`  ⚠️ キャラクター画像が見つかりません: ${characterDir}`);
+      return null;
+    }
+
+    const images = [];
+    for (const file of imageFiles) {
+      const imagePath = join(characterDir, file);
+      const imageBuffer = readFileSync(imagePath);
+      const base64Data = imageBuffer.toString('base64');
+
+      let mimeType = 'image/png';
+      if (file.toLowerCase().endsWith('.jpg') || file.toLowerCase().endsWith('.jpeg')) {
+        mimeType = 'image/jpeg';
+      }
+
+      images.push({
+        data: base64Data,
+        mimeType: mimeType,
+        filename: file
+      });
+    }
+
+    console.log(`  📸 ${images.length}枚の参照画像を読み込みました`);
+    return images;
+  } catch (error) {
+    console.error(`  ❌ キャラクター画像の読み込みに失敗: ${error.message}`);
+    return null;
+  }
+}
+
+/**
  * Gemini APIでブログ記事を生成
  */
 async function generateBlogContent(apiKey) {
@@ -81,7 +177,12 @@ async function generateBlogContent(apiKey) {
   const seoKeywords = selectRandomSEOKeywords(3);
 
   console.log(`\n📝 トピック: ${topic.category}`);
+  console.log(`🎭 メインキャラクター: ${CHARACTERS[topic.mainCharacter].displayName}`);
   console.log(`🔍 SEOキーワード: ${seoKeywords.join(', ')}`);
+
+  // キャラクターの表示名を取得（Y君の場合は特別処理）
+  const mainChar = CHARACTERS[topic.mainCharacter];
+  const mainCharDisplayName = mainChar.displayName;
 
   const prompt = `あなたはif塾という発達障害支援とICT教育を行う塾のブログライターです。
 
@@ -92,9 +193,13 @@ async function generateBlogContent(apiKey) {
 【記事の視点】${topic.angle}
 【SEO対象キーワード】${seoKeywords.join(', ')}
 
+【登場キャラクター】
+メイン: ${mainCharDisplayName}（${mainChar.role}）
+サブ: ${topic.subCharacters.map(c => CHARACTERS[c].displayName).join('、')}
+
 【記事の要件】
 1. タイトルは魅力的でSEOを意識したもの（30〜60文字）
-2. 記事は3〜5セクションに分割
+2. 記事は3〜4セクションに分割
 3. 各セクションには見出し（h2）とその内容を記述
 4. 発達特性を持つ人の成功体験や可能性に焦点を当てる
 5. 具体的な事例やデータを含める
@@ -102,6 +207,12 @@ async function generateBlogContent(apiKey) {
 7. if塾の活動と関連付ける
 8. 前向きで希望を持てる内容にする
 9. SEOキーワードを自然に記事内に含める
+10. 各セクションで登場するキャラクターを明記する
+
+【キャラクター使用ルール】
+- ${mainCharDisplayName}をメインで登場させる
+- 各セクションでどのキャラクターが活躍するか指定する
+- eスポーツプレイヤーの渡辺柚気はブログ内では「Y君」として登場させる
 
 【出力形式】以下のJSON形式で出力してください：
 {
@@ -113,7 +224,8 @@ async function generateBlogContent(apiKey) {
     {
       "heading": "セクション見出し",
       "content": "セクション本文（HTMLタグ使用可：p, ul, li, strong, em）",
-      "imagePrompt": "このセクションに合う画像の説明（英語、日本の若者が活躍するシーン）"
+      "characterName": "このセクションで登場するキャラクター名（塾頭高崎翔太/塾長山﨑琢己/CTO井上陽斗/学生起業家加賀屋結眞/eスポーツプレイヤー渡辺柚気）",
+      "sceneDescription": "このセクションの画像シーン説明（日本語、キャラクターが何をしているか具体的に）"
     }
   ]
 }
@@ -158,26 +270,64 @@ async function generateBlogContent(apiKey) {
 }
 
 /**
- * Gemini APIで画像を生成
+ * Gemini APIでキャラクター画像を生成（gemini-2.5-flash-image使用）
  */
-async function generateBlogImage(apiKey, imagePrompt, index) {
-  console.log(`  🎨 画像${index}を生成中...`);
+async function generateBlogImage(apiKey, sceneDescription, characterName, index) {
+  console.log(`  🎨 画像${index}を生成中... (${CHARACTERS[characterName]?.displayName || characterName})`);
 
-  const enhancedPrompt = `Create a vibrant, modern illustration for a blog about education and technology in Japan. Scene: ${imagePrompt}. Style: Clean, professional, inspiring, suitable for educational content. NO TEXT, NO LETTERS, NO WORDS in the image. The image should feature Japanese young people in a positive, empowering context.`;
+  // キャラクター画像を読み込む
+  const characterImages = loadCharacterImages(characterName);
+
+  if (!characterImages || characterImages.length === 0) {
+    console.log(`  ⚠️ キャラクター画像が見つかりません: ${characterName}`);
+    return null;
+  }
+
+  // Y君の場合は特別な表示名を使用
+  const displayName = characterName === 'eスポーツプレイヤー渡辺柚気' ? 'Y君' : CHARACTERS[characterName].displayName;
+
+  const enhancedPrompt = `CRITICAL: Keep the person EXACTLY as shown in the reference images. DO NOT change their face, facial features, hairstyle, hair color, skin tone, or clothing style. The person's identity and appearance must remain 100% identical across all reference images.
+
+Scene: ${sceneDescription}
+Character: ${displayName} from if塾
+
+Create an illustration showing this exact person in the described scene. Style: Clean, professional, modern Japanese educational setting, inspiring atmosphere.
+
+IMPORTANT: NO TEXT, NO LETTERS, NO WORDS, NO WRITING in the image. Use clean surfaces without any text.`;
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateImages?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${apiKey}`;
+
+    // パーツ配列を準備（キャラクター画像 + プロンプト）
+    const parts = [];
+
+    // 全てのキャラクター画像をパーツに追加
+    for (const image of characterImages) {
+      parts.push({
+        inlineData: {
+          mimeType: image.mimeType,
+          data: image.data
+        }
+      });
+    }
+
+    // プロンプトを追加
+    parts.push({ text: enhancedPrompt });
+
+    const requestBody = {
+      contents: [{
+        parts: parts
+      }],
+      generationConfig: {
+        responseModalities: ['image', 'text'],
+        temperature: 0.4
+      }
+    };
 
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: enhancedPrompt }] }],
-        generationConfig: {
-          responseModalities: ['image'],
-          imageConfig: { aspectRatio: '16:9' }
-        }
-      })
+      body: JSON.stringify(requestBody)
     });
 
     if (!response.ok) {
@@ -188,8 +338,8 @@ async function generateBlogImage(apiKey, imagePrompt, index) {
     const data = await response.json();
 
     if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-      const parts = data.candidates[0].content.parts;
-      for (const part of parts) {
+      const responseParts = data.candidates[0].content.parts;
+      for (const part of responseParts) {
         if (part.inlineData && part.inlineData.data) {
           return Buffer.from(part.inlineData.data, 'base64');
         }
@@ -204,7 +354,7 @@ async function generateBlogImage(apiKey, imagePrompt, index) {
 }
 
 /**
- * 記事IDを生成（既存の記事との重複を避ける）
+ * 記事IDを生成
  */
 function generateArticleId(postsDir) {
   const existingIds = [];
@@ -219,7 +369,6 @@ function generateArticleId(postsDir) {
     });
   }
 
-  // 新しいIDを生成（最大ID + ランダム値）
   const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 5000;
   return maxId + Math.floor(Math.random() * 100) + 1;
 }
@@ -603,7 +752,10 @@ async function generateBlog() {
 
     for (let i = 0; i < blogData.sections.length; i++) {
       const section = blogData.sections[i];
-      const imageBuffer = await generateBlogImage(apiKey, section.imagePrompt, i + 1);
+      const characterName = section.characterName || '塾頭高崎翔太';
+      const sceneDescription = section.sceneDescription || section.heading;
+
+      const imageBuffer = await generateBlogImage(apiKey, sceneDescription, characterName, i + 1);
 
       if (imageBuffer) {
         const timestamp = Date.now();
@@ -617,7 +769,7 @@ async function generateBlog() {
       }
 
       // API制限を考慮して待機
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 3000));
     }
 
     // 3. HTMLファイルを生成
@@ -634,7 +786,7 @@ async function generateBlog() {
     console.log(`📁 ファイル: ${filename}`);
     console.log(`📊 画像数: ${imageFilenames.filter(f => f).length}枚`);
 
-    // 生成情報をJSONで出力（CI/CD用）
+    // 生成情報をJSONで出力
     const outputInfo = {
       filename,
       title: blogData.title,

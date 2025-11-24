@@ -1,0 +1,153 @@
+name: ブログ記事編集
+
+on:
+  workflow_dispatch:
+    inputs:
+      blog_filename:
+        description: '編集するブログファイル名（例: 2024-01-01_タイトル.html）'
+        required: true
+        type: string
+      edit_type:
+        description: '編集タイプ'
+        required: true
+        type: choice
+        options:
+          - text
+          - image
+          - both
+        default: 'text'
+      section_index:
+        description: '編集するセクション番号（0から開始）'
+        required: false
+        type: number
+        default: 0
+      edit_prompt:
+        description: 'テキスト編集の指示（例: もっと具体的なエピソードを追加して）'
+        required: false
+        type: string
+      image_prompt:
+        description: '画像再生成の指示（例: 教室で生徒に教えている様子）'
+        required: false
+        type: string
+      character_name:
+        description: '画像のキャラクター'
+        required: false
+        type: choice
+        options:
+          - 塾頭高崎翔太
+          - 塾長山﨑琢己
+          - CTO井上陽斗
+          - 学生起業家加賀屋結眞
+          - eスポーツプレイヤー渡辺柚気
+        default: '塾頭高崎翔太'
+
+permissions:
+  contents: write
+
+jobs:
+  edit-blog:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: WorkFlow_origin
+
+    steps:
+      # リポジトリのチェックアウト
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      # Node.jsのセットアップ
+      - name: Node.jsをセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'WorkFlow_origin/package.json'
+
+      # 依存関係のインストール
+      - name: 依存関係をインストール
+        run: npm ci
+
+      # 出力ディレクトリの作成
+      - name: 出力ディレクトリを作成
+        run: |
+          mkdir -p output
+          mkdir -p ../blog-images
+
+      # ブログ記事を編集
+      - name: ブログ記事を編集
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BLOG_FILENAME: ${{ github.event.inputs.blog_filename }}
+          EDIT_TYPE: ${{ github.event.inputs.edit_type }}
+          SECTION_INDEX: ${{ github.event.inputs.section_index }}
+          EDIT_PROMPT: ${{ github.event.inputs.edit_prompt }}
+          IMAGE_PROMPT: ${{ github.event.inputs.image_prompt }}
+          CHARACTER_NAME: ${{ github.event.inputs.character_name }}
+        run: npm run edit-blog
+
+      # 編集結果を表示
+      - name: 編集結果を表示
+        run: |
+          echo "## ✏️ ブログ記事編集完了" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          FILENAME="${{ github.event.inputs.blog_filename }}"
+          EDIT_TYPE="${{ github.event.inputs.edit_type }}"
+
+          # URLエンコードされたファイル名を生成
+          ENCODED_FILENAME=$(echo "$FILENAME" | sed 's/ /%20/g')
+
+          # ブログ記事のURL
+          BLOG_URL="https://if-juku.net/posts/${ENCODED_FILENAME}"
+
+          echo "### 📝 編集情報" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **ファイル名**: \`$FILENAME\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **編集タイプ**: $EDIT_TYPE" >> $GITHUB_STEP_SUMMARY
+          echo "- **セクション**: ${{ github.event.inputs.section_index }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "$EDIT_TYPE" = "text" ] || [ "$EDIT_TYPE" = "both" ]; then
+            echo "- **テキスト編集指示**: ${{ github.event.inputs.edit_prompt }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "$EDIT_TYPE" = "image" ] || [ "$EDIT_TYPE" = "both" ]; then
+            echo "- **画像再生成指示**: ${{ github.event.inputs.image_prompt }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **キャラクター**: ${{ github.event.inputs.character_name }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔗 記事リンク" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "👉 **[📖 編集後のブログを確認]($BLOG_URL)**" >> $GITHUB_STEP_SUMMARY
+
+      # 結果をコミット
+      - name: 結果をコミット
+        if: success()
+        working-directory: .
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # 変更があればコミット
+          if [[ -n $(git status -s posts/ blog-images/) ]]; then
+            git add posts/
+            git add blog-images/
+
+            FILENAME="${{ github.event.inputs.blog_filename }}"
+            git commit -m "✏️ 編集: $FILENAME $(date '+%Y-%m-%d %H:%M')"
+            git push
+
+            echo "✅ コミット完了"
+          else
+            echo "変更がないため、コミットをスキップします"
+          fi
+
+      # 完了メッセージ
+      - name: 完了
+        run: |
+          echo "✅ ブログ記事編集完了"
+          echo ""
+          echo "📝 編集された記事: ${{ github.event.inputs.blog_filename }}"
+          echo "✏️ 編集タイプ: ${{ github.event.inputs.edit_type }}"

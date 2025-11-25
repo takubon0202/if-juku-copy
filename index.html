@@ -4135,107 +4135,15 @@
             'Minecraftでボスバーデスタイマーを作ろう！（上級編）': '975_Minecraftでボスバーデスタイマーを作ろう_上級編.html',
 
             // News section mappings  
+            '発達障害は「才能」？AI・プログラミングで未来を拓く！成功のヒント': '5431_発達障害は「才能」？AI・プログラミングで未来を拓く！成功のヒント.html',
             '発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道': '5211_発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道.html',
             'ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例': '5225_ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例.html',
             'eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方': '5304_eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方.html',
             '【if塾】ASD/ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）': '5403_【if塾】ASD_ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）.html',
             '塾長が選ぶパソコンの選び方（ノートパソコン）': '5183_塾長が選ぶパソコンの選び方_ノートパソコン.html',
             '塾長が選ぶパソコンの選び方（ノートパソコン）': '5183_塾長が選ぶパソコンの選び方_ノートパソコン.html',
-            'AI時代の才能開花プログラム～ゲームの情熱を未来のスキルへ～': '5007_AI時代の才能開花プログラム_ゲームの情熱を未来のスキルへ.html',
-            'AI時代の才能開花プログラム～ゲームの情熱を未来のスキルへ～': '5007_AI時代の才能開花プログラム_ゲームの情熱を未来のスキルへ.html'
+            'AI時代の才能開花プログラム～ゲームの情熱を未来のスキルへ～': '5007_AI時代の才能開花プログラム_ゲームの情熱を未来のスキルへ.html'
         }
-
-        // Helper function to get filename by title
-        function getFilenameByTitle(title) {
-            return titleToFilenameMapping[title] || null;
-        }
-
-        // Fixed content for materials and news
-        function loadFixedContent() {
-            // Fixed online materials
-            const materialsData = [
-                { title: 'Minecraft タイトルコマンド出し方マニュアル', excerpt: 'Minecraftで/titleコマンドを使って画面にテキストを表示する方法を学びます。' },
-                { title: 'Minecraftで最強の武器を作ろう！', excerpt: 'コマンドを使って超強力な武器を作成する方法を解説します。' },
-                { title: 'Minecraftでジップラインを作ろう！', excerpt: 'コマンドブロックを使ってジップラインを作る方法を学びます。' },
-                { title: 'Minecraftで超簡単なPVPゲームを作ろう！', excerpt: 'プレイヤー対戦ゲームを作る基本的な方法を解説します。' },
-                { title: 'Minecraftで爆弾弓を作ろう！', excerpt: '特殊効果付きの爆弾弓を作成する方法を学びます。' },
-                { title: 'Minecraftで強力な雪玉爆弾を作ろう！', excerpt: '雪玉に爆発効果を付ける方法を解説します。' },
-                { title: 'Minecraftでタイマーを作ろう！！', excerpt: 'ゲーム内で使えるタイマー機能を作る方法を学びます。' },
-                { title: 'Minecraftで音の出る斧を作ろう！', excerpt: '特殊な音効果付きの斧を作成する方法を解説します。' },
-                { title: 'Minecraftでボスバーデスタイマーを作ろう！（上級編）', excerpt: '上級者向けのボスバーを使ったタイマー機能を作ります。' }
-            ];
-
-            // Fixed news
-            const newsData = [
-                { title: '発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道', excerpt: '集中力と情熱を力に変える！発達障害を持つ起業家の可能性 発達障害と診断された人々の中には、特定の分野に驚異的な集中力を発揮する才能を持つ人が多くいます。例えば、ゲーム『ストリートファイター6』に没頭し' },
-                { title: 'ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例', excerpt: '発達特性は「障害」じゃない！隠された才能の原石（高崎先生） 皆さん、こんにちは！if塾塾頭の高崎です。私たちは、発達特性を持つお子さんたちの可能性を最大限に引き出すために、日々ICT教育と向き合ってい' },
-                { title: 'eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方', excerpt: '「普通」じゃなくていい！ASDの僕が見つけた起業という道 (加賀屋) こんにちは、加賀屋結眞です。僕は小さい頃から、周りの人とは少し違うなと感じていました。集中しすぎると周りが見えなくなったり、興味の' },
-                { title: '【if塾】ASD/ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）', excerpt: '「苦手」を「得意」に変える！AI・ICT教育の可能性（高崎先生） 皆さん、こんにちは！if塾塾頭の高崎です。私たちは、発達特性を持つお子さんたちが秘めている可能性を、AIやICTの力を借りて開花させる' },
-                { title: '塾長が選ぶパソコンの選び方（ノートパソコン）', excerpt: 'ノートパソコンの選び方ガイド | if(塾) body { font-family: \'Noto Sans JP\', \'Noto Sans\', sans-serif !important; b' },
-                { title: '塾長が選ぶパソコンの選び方（ノートパソコン）', excerpt: 'ノートパソコンの選び方ガイド | if(塾) body { font-family: \'Noto Sans JP\', \'Noto Sans\', sans-serif !important; b' },
-                { title: 'AI時代の才能開花プログラム～ゲームの情熱を未来のスキルへ～', excerpt: 'AI時代の才能開花プログラム body { font-family: \'Helvetica Neue\', Arial, \'Hiragino Kaku Gothic ProN\', \'Hirag' },
-                { title: 'AI時代の才能開花プログラム～ゲームの情熱を未来のスキルへ～', excerpt: 'AI時代の才能開花プログラム body { font-family: \'Helvetica Neue\', Arial, \'Hiragino Kaku Gothic ProN\', \'Hirag' }
-            ];
-
-            // Update materials section
-            const materialsContainer = document.querySelector('#materials .blog-items');
-            if (materialsContainer) {
-                let materialsHTML = '';
-                materialsData.forEach(item => {
-                    const filename = getFilenameByTitle(item.title);
-                    materialsHTML += `
-                        <div class="blog-item" onclick="navigateToPost('${filename}')" style="cursor: pointer;">
-                            <h3 class="blog-title">${item.title}</h3>
-                            <p class="blog-excerpt">${item.excerpt}</p>
-                        </div>
-                    `;
-                });
-                // Duplicate for infinite scroll
-                materialsContainer.innerHTML = materialsHTML + materialsHTML;
-            }
-
-            // Update news section
-            const newsContainer = document.querySelector('#news .blog-items');
-            if (newsContainer) {
-                let newsHTML = '';
-                newsData.forEach(item => {
-                    const filename = getFilenameByTitle(item.title);
-                    newsHTML += `
-                        <div class="blog-item" onclick="navigateToPost('${filename}')" style="cursor: pointer;">
-                            <h3 class="blog-title">${item.title}</h3>
-                            <p class="blog-excerpt">${item.excerpt}</p>
-                        </div>
-                    `;
-                });
-                // Duplicate for infinite scroll
-                newsContainer.innerHTML = newsHTML + newsHTML;
-            }
-        }
-
-        // Function to navigate to a post
-        function navigateToPost(filename) {
-            if (filename) {
-                window.location.href = `./posts/${filename}`;
-            }
-        }
-        
-        // Extract excerpt from content
-        function extractExcerpt(content) {
-            // Remove HTML tags
-            const text = content.replace(/<[^>]*>/g, '');
-            // Get first 100 characters
-            return text.substring(0, 100) + (text.length > 100 ? '...' : '');
-        }
-        
-        // Escape HTML for safety
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
             return text.replace(/[&<>"']/g, m => map[m]);
         }
         

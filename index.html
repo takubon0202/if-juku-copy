@@ -4156,7 +4156,81 @@
             };
             return text.replace(/[&<>"']/g, m => map[m]);
         }
-        
+
+        // Helper function to get filename by title
+        function getFilenameByTitle(title) {
+            return titleToFilenameMapping[title] || null;
+        }
+
+        // Function to navigate to a post
+        function navigateToPost(filename) {
+            if (filename) {
+                window.location.href = `./posts/${filename}`;
+            }
+        }
+
+        // Load fixed content for materials and news
+        function loadFixedContent() {
+            // Fixed online materials
+            const materialsData = [
+                { title: 'Minecraft タイトルコマンド出し方マニュアル', excerpt: 'Minecraftで/titleコマンドを使って画面にテキストを表示する方法を学びます。' },
+                { title: 'Minecraftで最強の武器を作ろう！', excerpt: 'コマンドを使って超強力な武器を作成する方法を解説します。' },
+                { title: 'Minecraftでジップラインを作ろう！', excerpt: 'コマンドブロックを使ってジップラインを作る方法を学びます。' },
+                { title: 'Minecraftで超簡単なPVPゲームを作ろう！', excerpt: 'プレイヤー対戦ゲームを作る基本的な方法を解説します。' },
+                { title: 'Minecraftで爆弾弓を作ろう！', excerpt: '特殊効果付きの爆弾弓を作成する方法を学びます。' },
+                { title: 'Minecraftで強力な雪玉爆弾を作ろう！', excerpt: '雪玉に爆発効果を付ける方法を解説します。' },
+                { title: 'Minecraftでタイマーを作ろう！！', excerpt: 'ゲーム内で使えるタイマー機能を作る方法を学びます。' },
+                { title: 'Minecraftで音の出る斧を作ろう！', excerpt: '特殊な音効果付きの斧を作成する方法を解説します。' },
+                { title: 'Minecraftでボスバーデスタイマーを作ろう！（上級編）', excerpt: '上級者向けのボスバーを使ったタイマー機能を作ります。' }
+            ];
+
+            // Fixed news
+            const newsData = [
+                { title: '秋田若者チャレンジに採択されました', excerpt: 'if(塾)の取り組みが秋田若者チャレンジに採択されました。' },
+                { title: 'if(塾)の取り組みをnews every.にて紹介して頂きました', excerpt: 'テレビ番組で当塾の活動が紹介されました。' },
+                { title: 'if(塾)の取り組みをCNAし〜なチャンにて紹介して頂きました', excerpt: 'ローカルテレビで特集を組んでいただきました。' },
+                { title: 'ある日の日常 ～アケコン自作～', excerpt: '塾生がアーケードコントローラーを自作した記録です。' },
+                { title: '中学特別支援学級から国立大学へ行けた話', excerpt: '塾長の体験談を綴った記事です。' },
+                { title: 'なるテック様と横手市にてイベントに参加しました！', excerpt: '地域のテクノロジーイベントに参加した報告です。' },
+                { title: '藤野英人様をお招きし秋田県とEO North Japan様と共に投資の勉強会を開催しました', excerpt: '投資家を招いた特別勉強会のレポートです。' },
+                { title: 'if(塾)と塾頭と所属eスポーツプレイヤーY君がノースアジア大学で開催されたストリートファイター6のeスポーツ大会に出場し優勝しました！', excerpt: 'eスポーツ大会優勝の報告記事です。' }
+            ];
+
+            // Update materials section
+            const materialsContainer = document.querySelector('#materials .blog-items');
+            if (materialsContainer) {
+                let materialsHTML = '';
+                materialsData.forEach(item => {
+                    const filename = getFilenameByTitle(item.title);
+                    materialsHTML += `
+                        <div class="blog-item" onclick="navigateToPost('${filename}')" style="cursor: pointer;">
+                            <h3 class="blog-title">${item.title}</h3>
+                            <p class="blog-excerpt">${item.excerpt}</p>
+                        </div>
+                    `;
+                });
+                // Duplicate for infinite scroll
+                materialsContainer.innerHTML = materialsHTML + materialsHTML;
+            }
+
+            // Update news section
+            const newsContainer = document.querySelector('#news .blog-items');
+            if (newsContainer) {
+                let newsHTML = '';
+                newsData.forEach(item => {
+                    const filename = getFilenameByTitle(item.title);
+                    newsHTML += `
+                        <div class="blog-item" onclick="navigateToPost('${filename}')" style="cursor: pointer;">
+                            <h3 class="blog-title">${item.title}</h3>
+                            <p class="blog-excerpt">${item.excerpt}</p>
+                        </div>
+                    `;
+                });
+                // Duplicate for infinite scroll
+                newsContainer.innerHTML = newsHTML + newsHTML;
+            }
+        }
+
         // Show individual post (placeholder - would open modal or navigate)
         function showPost(title) {
             const post = window.blogPosts?.find(p => p.title === title);

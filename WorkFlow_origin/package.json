@@ -14,6 +14,7 @@
     "generate-blog": "node src/generate-blog.js",
     "edit-blog": "node src/edit-blog.js",
     "update-news": "node src/update-news-page.js",
+    "remove-real-names": "node src/remove-real-names.js",
     "setup": "npm run analyze-homepage && npm run generate-imagerule && npm run generate-character-csv",
     "workflow": "npm run setup && npm run generate-calendar",
     "workflow-with-images": "npm run setup && npm run generate-calendar && npm run generate-images && npm run compose-images"

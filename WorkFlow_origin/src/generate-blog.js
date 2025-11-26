@@ -13,38 +13,38 @@ const __dirname = dirname(__filename);
 const CHARACTERS = {
   '塾頭高崎翔太': {
     name: '塾頭高崎翔太',
-    displayName: '高崎先生',
+    displayName: '塾頭',
     role: '塾頭',
     topics: ['教育', 'AI開発', '発達障害の専門知識', 'ICT教育', 'プログラミング教育', '臨床心理'],
     background: '臨床心理士・ITエンジニアとして、発達特性を持つ子どもたちの可能性を信じ、if塾を立ち上げた'
   },
   '塾長山﨑琢己': {
     name: '塾長山﨑琢己',
-    displayName: '山﨑塾長',
+    displayName: '塾長',
     role: '塾長',
     topics: ['学生交流', '執筆', '発達障害の体験談', '特別支援級', '国立大学進学', '成長体験'],
-    background: 'ADHD・ASDの診断を受け、中学時代は特別支援学級に通っていたが、高校で高崎先生と出会い、国立大学に進学。自身の経験を活かして後輩たちを支援'
+    background: 'ADHD・ASDの診断を受け、中学時代は特別支援学級に通っていたが、高校で塾頭と出会い、国立大学に進学。自身の経験を活かして後輩たちを支援'
   },
   'CTO井上陽斗': {
     name: 'CTO井上陽斗',
-    displayName: '井上CTO',
+    displayName: 'CTO',
     role: 'CTO',
     topics: ['マインクラフト', 'AI開発', 'プログラミング', 'コマンドブロック', 'ゲーム開発'],
-    background: '高校生の時に高崎先生と出会い、ゲームへの情熱をプログラミングスキルに昇華。発達特性を活かした集中力で技術を磨いている'
+    background: '高校生の時に塾頭と出会い、ゲームへの情熱をプログラミングスキルに昇華。発達特性を活かした集中力で技術を磨いている'
   },
   '学生起業家加賀屋結眞': {
     name: '学生起業家加賀屋結眞',
-    displayName: '加賀屋',
+    displayName: '学生起業家',
     role: '学生起業家',
     topics: ['起業', 'ビジコン', 'ビジネス', 'スタートアップ', '学生起業'],
-    background: '高校生の時に高崎先生と出会い、15歳で個人事業主として起業。発達特性による独自の視点をビジネスに活かしている'
+    background: '高校生の時に塾頭と出会い、15歳で個人事業主として起業。発達特性による独自の視点をビジネスに活かしている'
   },
   'eスポーツプレイヤー渡辺柚気': {
     name: 'eスポーツプレイヤー渡辺柚気',
     displayName: 'Y君',
     role: 'eスポーツプレイヤー',
     topics: ['eスポーツ', 'ストリートファイター6', 'FPS', '格闘ゲーム', '大会', '競技ゲーム'],
-    background: '高校生の時に高崎先生と出会い、発達特性による集中力と反応速度をeスポーツで発揮。大会で優勝経験を持つ'
+    background: '高校生の時に塾頭と出会い、発達特性による集中力と反応速度をeスポーツで発揮。大会で優勝経験を持つ'
   }
 };
 
@@ -251,10 +251,11 @@ ${IF_JUKU_MISSION.targets.map(t => `・${t}`).join('\n')}
 
 【キャラクター使用ルール】
 - ${mainCharDisplayName}をメインで登場させる
-- 高崎先生以外のメンバーは高校生の時に高崎先生と出会った経験を持つ
+- 塾頭以外のメンバーは高校生の時に塾頭と出会った経験を持つ
 - 各セクションでどのキャラクターが活躍するか指定する
-- eスポーツプレイヤーの渡辺柚気はブログ内では「Y君」として登場させる
+- eスポーツプレイヤーはブログ内では「Y君」として登場させる
 - メンバーの背景ストーリーを活かした内容にする
+- 本名は使わず、役職名のみで呼ぶ（塾頭、塾長、CTO、学生起業家、Y君）
 
 【出力形式】以下のJSON形式で出力してください：
 {
@@ -736,6 +737,23 @@ function generateHTML(blogData, articleId, imageFilenames) {
 
         <div class="post-content">
             ${sectionsHTML}
+
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--primary-color); border-radius: 10px;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 興味を持っていただいた方へ</h2>
+                <p>if塾では、発達特性を持つ子どもたちの「好き」を「才能」に変える教育を行っています。現在の記事内容と実際の活動に大きなズレはありませんが、詳細については直接お問い合わせください。</p>
+                <ul style="margin: 1rem 0;">
+                    <li><strong>📝 お問い合わせフォーム</strong>: <a href="../index.html#contact" style="color: var(--primary-color);">こちらから</a></li>
+                    <li><strong>🎓 体験授業</strong>: 無料体験授業を実施中です</li>
+                    <li><strong>📱 Instagram</strong>: <a href="https://www.instagram.com/if_juku/" target="_blank" style="color: var(--primary-color);">@if_juku</a></li>
+                    <li><strong>💬 LINE公式アカウント</strong>: 最新情報をお届けします</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 0, 255, 0.05); border: 1px solid var(--secondary-color); border-radius: 10px; font-size: 0.9rem; color: var(--text-gray);">
+                <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">📌 記事について</h3>
+                <p>この記事は、塾頭による完全自動化への挑戦としてAIが自動生成しています。将来的には塾頭が執筆しているような記事になることを目指しており、現時点では事実と異なる内容が含まれる可能性があります。最新の正確な情報については、お問い合わせフォームよりご確認ください。</p>
+                <p style="margin-top: 0.5rem;">🤖 Generated with AI - if塾のブログ自動化プロジェクト</p>
+            </div>
         </div>
 
         <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>

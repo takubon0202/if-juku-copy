@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント - if(塾)</title>
+    <meta name="description" content="発達特性は個性！AI・ICT教育で才能を開花させたif塾の仲間たちの物語。プログラミング、ゲーム、起業…自分らしい成長を見つけよう。">
+    <meta name="keywords" content="AI, ICT, 発達障害, 才能, プログラミング, 成功体験, 学生起業, ASD ICT 才能, ADHD ゲーム 集中力, 学生起業 IT">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 100px 0 0 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 20px 40px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            background: rgba(0, 255, 204, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .post-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            font-size: 1.7rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .back-to-list {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .back-to-list:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 80px 15px 40px;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> /
+            <a href="../news.html">お知らせ</a> /
+            <span>ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント</span>
+        </nav>
+
+        <div class="post-meta">
+            <div class="post-date">2025年11月26日</div>
+            <div class="post-categories">
+                <span class="category-tag">AI・ICT教育</span>
+                <span class="category-tag">AI</span>
+                <span class="category-tag">ICT</span>
+                <span class="category-tag">発達障害</span>
+                <span class="category-tag">才能</span>
+                <span class="category-tag">プログラミング</span>
+                <span class="category-tag">成功体験</span>
+                <span class="category-tag">学生起業</span>
+                <span class="category-tag">ASD ICT 才能</span>
+                <span class="category-tag">ADHD ゲーム 集中力</span>
+                <span class="category-tag">学生起業 IT</span>
+            </div>
+        </div>
+
+        <h1 class="post-title">ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント</h1>
+
+        <div class="post-content">
+            
+        <h2>「苦手」を「得意」に！AI・ICTが変える学び方（高崎先生）</h2>
+        <img src="../blog-images/blog_1764152334030_1.png" alt="「苦手」を「得意」に！AI・ICTが変える学び方（高崎先生）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>「勉強がどうしても続かない…」「周りのペースについていけない…」そんな風に悩んでいる君へ。もしかしたらそれは、君の持っている素晴らしい才能が、まだ上手く活かせていないだけなのかもしれません。</p><p>if塾では、AIやICTといったテクノロジーを駆使して、一人ひとりの発達特性に合わせた学び方を提案しています。例えば、<strong>ADHD</strong>の特性を持つ子が、ゲームを通して培った驚異的な<strong>集中力</strong>を、プログラミング学習に活かすことも可能です。</p><p>大切なのは、自分の「苦手」にばかり目を向けるのではなく、「得意」を伸ばすこと。AI・ICTは、そのための強力なツールになり得ます。<strong>ASD ICT 才能</strong>を開花させる第一歩を、一緒に踏み出してみませんか？</p><p>if塾では、ただ知識を詰め込むのではなく、君が本当に興味のあること、好きなことを軸に、AI・ICTを活用した独自のカリキュラムを組んでいます。小さな成功体験を積み重ねることで、自信を持って未来に向かって進んでいけるように、全力でサポートします。</p>
+
+        <h2>ゲーム好きからIT起業家へ！集中力を武器にする井上CTOの物語（井上CTO）</h2>
+        <img src="../blog-images/blog_1764152347238_2.png" alt="ゲーム好きからIT起業家へ！集中力を武器にする井上CTOの物語（井上CTO）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>「ゲームばかりして…」小さい頃、親や先生によく言われたという井上CTO。でも、彼はそのゲームへの情熱を、プログラミングという形で開花させました。</p><p>高校時代に高崎先生と出会い、<strong>ADHD ゲーム 集中力</strong>を活かせる道を見つけたのです。最初は簡単なゲームの改造から始め、徐々に本格的なプログラミングに挑戦。今では、if塾のICT教育を支える重要なメンバーとして活躍しています。</p><p>井上CTOは言います。「集中しすぎて、周りの声が聞こえなくなることもあるけど、それが僕の強み。一つのことに没頭できるからこそ、質の高いものが作れるんだ」と。</p><p>if塾では、彼の経験を活かし、ゲーム好きの子どもたちに、プログラミングの楽しさを伝えています。君も、大好きなゲームを、未来を切り拓く力に変えてみませんか？</p>
+
+        <h2>特別支援学級から国立大学へ！山﨑塾長の逆転ストーリー（山﨑塾長）</h2>
+        <img src="../blog-images/blog_1764152361330_3.png" alt="特別支援学級から国立大学へ！山﨑塾長の逆転ストーリー（山﨑塾長）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>山﨑塾長は、中学時代に<strong>ADHD</strong>と<strong>ASD</strong>の診断を受け、特別支援学級に通っていました。しかし、高校で高崎先生と出会い、人生が大きく変わったと言います。</p><p>「最初は、周りの人と同じようにできない自分に、すごく落ち込んでいました。でも、高崎先生は、『君には、他の人にはない才能がある』と言ってくれたんです」</p><p>高崎先生の指導のもと、山﨑塾長は自分の特性を理解し、それを強みに変える方法を学びました。そして、見事国立大学に合格。現在は、if塾の塾長として、後輩たちのサポートに力を注いでいます。</p><p>「僕の経験から言えるのは、絶対に諦めないでほしいということ。自分のペースで、少しずつでも前に進んでいけば、必ず道は開けます。if塾は、そんな君の背中を押し続ける場所です。」</p>
+
+        <h2>AIで自分だけの学びを！if塾で見つける未来（高崎先生）</h2>
+        <img src="../blog-images/blog_1764152377713_4.png" alt="AIで自分だけの学びを！if塾で見つける未来（高崎先生）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>if塾では、<strong>AI</strong>を活用して、一人ひとりの個性や特性に合わせた、きめ細やかな学習プランを提供しています。例えば、<strong>ChatGPT</strong>や<strong>Gemini</strong>といった<strong>人工知能</strong>ツールを使って、苦手な分野を克服したり、興味のある分野を深く掘り下げたりすることができます。</p><p>また、<strong>機械学習</strong>の技術を活用して、君の学習データを分析し、最適な学習方法を提案することも可能です。<strong>ICT</strong>教育の可能性は無限大です。</p><p>if塾は、君が自信を持って未来を歩めるように、全力でサポートします。一歩踏み出して、新しい自分に出会ってみませんか？</p><p>私たちは、君の可能性を信じています。そして、君が自分らしく輝ける未来を、心から応援しています。</p>
+
+        </div>
+
+        <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

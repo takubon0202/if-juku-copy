@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集中力は才能！発達特性を活かしてストリートファイター6で全国へ！if塾Y君のeスポーツ挑戦 - if(塾)</title>
+    <meta name="description" content="発達障害は才能の種！SF6で才能を開花させたY君の物語。if塾で集中力と反応速度を活かし、eスポーツで活躍する姿を紹介。ASD ICT教育で才能を伸ばす！">
+    <meta name="keywords" content="ストリートファイター6, SF6, eスポーツ, 発達障害 AI, ASD ICT 才能, if塾">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 100px 0 0 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 20px 40px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            background: rgba(0, 255, 204, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .post-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            font-size: 1.7rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .back-to-list {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .back-to-list:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 80px 15px 40px;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> /
+            <a href="../news.html">お知らせ</a> /
+            <span>集中力は才能！発達特性を活かしてストリートファイター6で全国へ！if塾Y君のeスポーツ挑戦</span>
+        </nav>
+
+        <div class="post-meta">
+            <div class="post-date">2025年12月01日</div>
+            <div class="post-categories">
+                <span class="category-tag">eスポーツ</span>
+                <span class="category-tag">ストリートファイター6</span>
+                <span class="category-tag">SF6</span>
+                <span class="category-tag">eスポーツ</span>
+                <span class="category-tag">発達障害 AI</span>
+                <span class="category-tag">ASD ICT 才能</span>
+                <span class="category-tag">if塾</span>
+            </div>
+        </div>
+
+        <h1 class="post-title">集中力は才能！発達特性を活かしてストリートファイター6で全国へ！if塾Y君のeスポーツ挑戦</h1>
+
+        <div class="post-content">
+            
+        <h2>SF6との出会い、そしてif塾との運命的な出会い (Y君)</h2>
+        <img src="../blog-images/blog_1764627140443_1.png" alt="SF6との出会い、そしてif塾との運命的な出会い (Y君)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>「ストリートファイター6（SF6）」を始めたのは、高校に入ってすぐの頃でした。最初は友達とワイワイ楽しむ程度でしたが、技のコンボを覚えたり、対戦で勝てるようになっていくうちに、どんどんのめり込んでいきました。気がつけば、毎日何時間も練習するようになっていました。</p><p>そんな時、高校の先生から「if塾」を紹介してもらったんです。最初は正直、塾に通うのは気が進みませんでした。でも、塾頭先生との面談で、僕の集中力や反応速度といった発達特性をSF6のようなeスポーツで活かせる可能性があることを教えてもらい、興味を持つようになりました。</p><p>if塾では、SF6の技術指導だけでなく、集中力を高めるためのトレーニングや、対戦相手の心理を読むための分析力など、様々なことを学びました。特に、自分の得意な部分を伸ばすことに焦点を当てた指導は、僕にとって大きな自信になりました。</p>
+
+        <h2>集中力と反応速度が武器に！大会での成功体験 (Y君, 塾頭)</h2>
+        <img src="../blog-images/blog_1764627152614_2.png" alt="集中力と反応速度が武器に！大会での成功体験 (Y君, 塾頭)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>if塾で学び始めてから、SF6の腕は格段に上達しました。以前は勝てなかった相手にも勝てるようになり、自信を持って大会に臨めるようになりました。</p><p>初めて出場した大会では、緊張で手が震えましたが、塾頭先生から教えてもらった深呼吸法を試したところ、落ち着いてプレイすることができました。集中力を維持し、相手の動きを的確に捉えることができ、順調に勝ち進むことができました。結果、なんと優勝することができたんです！</p><p>優勝した瞬間は、信じられない気持ちでした。これまで努力してきたことが報われた気がして、本当に嬉しかったです。if塾の仲間たちや塾頭先生も、自分のことのように喜んでくれました。この成功体験を通して、僕はさらにSF6に情熱を注ぐようになりました。</p><p>塾頭は言います。「Y君の集中力と反応速度は、まさにeスポーツ向きの才能。それをSF6という舞台で開花させたのは、彼の努力の賜物です。if塾では、Y君のように、自分の特性を活かして活躍できる子どもたちを応援しています。」</p>
+
+        <h2>eスポーツを通して学んだこと、そして未来への希望 (Y君, 塾長)</h2>
+        <img src="../blog-images/blog_1764627166319_3.png" alt="eスポーツを通して学んだこと、そして未来への希望 (Y君, 塾長)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>SF6を通して、僕は技術だけでなく、多くのことを学びました。目標に向かって努力することの大切さ、困難に立ち向かう勇気、そして仲間との絆。これらの経験は、僕の人生を大きく変えました。</p><p>以前の僕は、自分の発達特性にコンプレックスを感じていました。でも、if塾で自分の特性を活かせることを見つけ、成功体験を重ねることで、自信を持つことができるようになりました。</p><p>塾長もまた、発達特性を持つ一人として、Y君の成長を心から応援しています。「私も中学時代は特別支援学級に通っていましたが、高校で塾頭先生に出会い、自分の才能に気づくことができました。Y君のように、自分の特性を活かして輝ける子どもたちが、if塾からどんどん生まれてほしいと思っています。」</p><p>今、僕はプロのeスポーツプレイヤーを目指して、日々練習に励んでいます。将来は、世界大会で活躍できる選手になりたいと思っています。そして、僕と同じように、自分の特性に悩んでいる子どもたちに、希望を与えられるような存在になりたいです。</p>
+
+        <h2>発達障害は才能の原石！if塾で自分らしい成長を (塾頭)</h2>
+        <img src="../blog-images/blog_1764627180507_4.png" alt="発達障害は才能の原石！if塾で自分らしい成長を (塾頭)" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>if塾では、発達特性を「障害」ではなく「才能」と捉え、子どもたちの可能性を最大限に引き出すためのサポートを行っています。ASD ICT教育を通して、それぞれの個性に合わせた学びを提供し、得意なことを伸ばし、苦手なことを克服するための支援をしています。</p><p>Y君のように、eスポーツで才能を開花させる子どももいれば、プログラミングやデザインで才能を発揮する子どももいます。if塾では、子どもたちが自分の興味や才能を見つけ、自分らしい成長を遂げられるように、全力でサポートしていきます。</p><p>不安感が強く、自分に自信が持てない子どもたち、成功体験に乏しく、何をやってもうまくいかないと感じている子どもたち、ぜひ一度if塾に遊びに来てください。仲間との出会いが、あなたの人生を変えるかもしれません。</p><p>if塾は、発達特性を持つ子どもたちが、自分らしく輝ける場所です。</p>
+
+
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--primary-color); border-radius: 10px;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 興味を持っていただいた方へ</h2>
+                <p>if塾では、発達特性を持つ子どもたちの「好き」を「才能」に変える教育を行っています。現在の記事内容と実際の活動に大きなズレはありませんが、詳細については直接お問い合わせください。</p>
+                <ul style="margin: 1rem 0;">
+                    <li><strong>📝 お問い合わせフォーム</strong>: <a href="../index.html#contact" style="color: var(--primary-color);">こちらから</a></li>
+                    <li><strong>🎓 体験授業</strong>: 無料体験授業を実施中です</li>
+                    <li><strong>📱 Instagram</strong>: <a href="https://www.instagram.com/if_juku/" target="_blank" style="color: var(--primary-color);">@if_juku</a></li>
+                    <li><strong>💬 LINE公式アカウント</strong>: 最新情報をお届けします</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 0, 255, 0.05); border: 1px solid var(--secondary-color); border-radius: 10px; font-size: 0.9rem; color: var(--text-gray);">
+                <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">📌 記事について</h3>
+                <p>この記事は、塾頭による完全自動化への挑戦としてAIが自動生成しています。将来的には塾頭が執筆しているような記事になることを目指しており、現時点では事実と異なる内容が含まれる可能性があります。最新の正確な情報については、お問い合わせフォームよりご確認ください。</p>
+                <p style="margin-top: 0.5rem;">🤖 Generated with AI - if塾のブログ自動化プロジェクト</p>
+            </div>
+        </div>
+
+        <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

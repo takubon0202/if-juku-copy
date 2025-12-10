@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHDの僕が国立大へ！ゲーム集中力と発達特性を強みに変えた成長ストーリー - if(塾)</title>
+    <meta name="description" content="ADHDとASDを持つ塾長が、特別支援学級から国立大学へ進学した体験談。発達特性を強みに変え、自分らしい成長を遂げる方法を伝えます。eスポーツで才能を開花させた仲間も紹介！">
+    <meta name="keywords" content="発達障害, ADHD, ASD, 自閉スペクトラム症, 特別支援, 成長, 克服">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 100px 0 0 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 20px 40px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            background: rgba(0, 255, 204, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .post-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            font-size: 1.7rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .back-to-list {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .back-to-list:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 80px 15px 40px;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> /
+            <a href="../news.html">お知らせ</a> /
+            <span>ADHDの僕が国立大へ！ゲーム集中力と発達特性を強みに変えた成長ストーリー</span>
+        </nav>
+
+        <div class="post-meta">
+            <div class="post-date">2025年12月10日</div>
+            <div class="post-categories">
+                <span class="category-tag">発達障害と成長</span>
+                <span class="category-tag">発達障害</span>
+                <span class="category-tag">ADHD</span>
+                <span class="category-tag">ASD</span>
+                <span class="category-tag">自閉スペクトラム症</span>
+                <span class="category-tag">特別支援</span>
+                <span class="category-tag">成長</span>
+                <span class="category-tag">克服</span>
+            </div>
+        </div>
+
+        <h1 class="post-title">ADHDの僕が国立大へ！ゲーム集中力と発達特性を強みに変えた成長ストーリー</h1>
+
+        <div class="post-content">
+            
+        <h2>どん底からのスタート：特別支援学級での日々（塾長）</h2>
+        <img src="../blog-images/blog_1765361980024_1.png" alt="どん底からのスタート：特別支援学級での日々（塾長）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>こんにちは、if塾塾長の山﨑です。僕にはADHDとASDの診断があります。小中学校時代は、授業に集中できず、忘れ物も多くて、周りの子と同じようにできない自分に自信をなくしていました。特に中学時代は、ほとんどの時間を特別支援学級で過ごしました。当時は、将来のことなんて考えられず、ただ毎日を乗り越えるだけで精一杯でした。</p>
+<p>忘れ物が多い、整理整頓が苦手、じっとしていられない…。ADHDの特性は、日常生活でたくさんの困難をもたらします。でも、今思えば、その特性を理解し、うまく付き合っていくことが、成長への第一歩だったんです。</p>
+<p>当時の僕は、自分の特性を「障害」だと捉えていましたが、<strong>塾頭との出会いが、僕の人生を大きく変えました。</strong></p>
+
+        <h2>ゲーム集中力が才能に変わる瞬間：塾頭との出会いとeスポーツ（塾長、塾頭、Y君）</h2>
+        <img src="../blog-images/blog_1765361997780_2.png" alt="ゲーム集中力が才能に変わる瞬間：塾頭との出会いとeスポーツ（塾長、塾頭、Y君）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>高校に入学してすぐに、塾頭と出会いました。塾頭は、僕のADHDの特性である<strong>ゲームへの異常な集中力</strong>に目をつけ、「それは才能だ」と言ってくれたんです。信じられませんでした。</p>
+<p>塾頭は、僕に<strong>「発達特性は強みになる」</strong>という考え方を教えてくれました。そして、eスポーツの世界を紹介してくれたんです。最初は戸惑いましたが、ゲームの世界では、僕の集中力と瞬時の判断力が活かせることに気づきました。</p>
+<p>if塾の仲間、Y君もその一人です。Y君も発達特性がありましたが、持ち前の集中力と戦略性で、プロのeスポーツプレイヤーとして活躍しています。Y君の活躍は、僕たちに大きな勇気を与えてくれます。Y君は言います。「自分の好きなこと、得意なことを見つけて、それをとことん追求することが大切だ」と。</p>
+<p>塾頭はいつも言っています。「大切なのは、自分の特性を理解し、それを活かせる場所を見つけること。そして、小さな成功体験を積み重ねて、自信をつけることだ」と。</p>
+
+        <h2>特別支援から国立大学へ：自分らしい成長の形（塾長、塾頭）</h2>
+        <img src="../blog-images/blog_1765362012293_3.png" alt="特別支援から国立大学へ：自分らしい成長の形（塾長、塾頭）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>eスポーツでの成功体験を通して、僕は少しずつ自信を取り戻しました。そして、塾頭のサポートを受けながら、勉強にも積極的に取り組むようになりました。<strong>ADHDの特性を理解した上で、自分に合った勉強法を見つけることができた</strong>んです。</p>
+<p>例えば、集中力が途切れないように、タイマーを使って短い時間で区切って勉強したり、興味のある分野から優先的に取り組んだりしました。また、塾頭は、僕の学習状況に合わせて、個別のカリキュラムを組んでくれました。</p>
+<p>その結果、僕は見事、国立大学に合格することができました。特別支援学級にいた頃の僕からは想像もできないことです。</p>
+<p>塾頭は、僕の合格を自分のことのように喜んでくれました。そして、「お前なら、自分の経験を活かして、同じように悩んでいる子どもたちを支援できる」と言ってくれたんです。それが、if塾を始めるきっかけになりました。</p>
+
+        <h2>if塾で出会う、自分らしい成長の物語（塾長）</h2>
+        <img src="../blog-images/blog_1765362026112_4.png" alt="if塾で出会う、自分らしい成長の物語（塾長）" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; margin: 2rem auto; display: block;">
+        <p>if塾では、僕自身の経験を活かして、発達特性を持つ子どもたちの支援を行っています。<strong>ADHDやASDなどの発達特性は、決して「障害」ではなく、才能になりうる</strong>と信じているからです。</p>
+<p>if塾では、一人ひとりの個性や才能を尊重し、その子に合った学習方法や進路を一緒に探していきます。また、eスポーツやプログラミングなど、好きなことに没頭できる環境も提供しています。</p>
+<p><strong>「何をやってもうまくいかない」と感じているあなたへ。</strong>大丈夫です。あなたは一人ではありません。if塾には、あなたと同じように悩みを抱えながらも、自分らしい成長を遂げている仲間がたくさんいます。ぜひ、if塾で、あなたの才能を見つけて、輝く未来を切り開いていきましょう。</p>
+<p>一緒に、<strong>発達特性を強みに変えて、自分らしい成長の物語を紡いでいきましょう！</strong></p>
+
+
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--primary-color); border-radius: 10px;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 興味を持っていただいた方へ</h2>
+                <p>if塾では、発達特性を持つ子どもたちの「好き」を「才能」に変える教育を行っています。現在の記事内容と実際の活動に大きなズレはありませんが、詳細については直接お問い合わせください。</p>
+                <ul style="margin: 1rem 0;">
+                    <li><strong>📝 お問い合わせフォーム</strong>: <a href="../index.html#contact" style="color: var(--primary-color);">こちらから</a></li>
+                    <li><strong>🎓 体験授業</strong>: 無料体験授業を実施中です</li>
+                    <li><strong>📱 Instagram</strong>: <a href="https://www.instagram.com/if_juku/" target="_blank" style="color: var(--primary-color);">@if_juku</a></li>
+                    <li><strong>💬 LINE公式アカウント</strong>: 最新情報をお届けします</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 0, 255, 0.05); border: 1px solid var(--secondary-color); border-radius: 10px; font-size: 0.9rem; color: var(--text-gray);">
+                <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">📌 記事について</h3>
+                <p>この記事は、塾頭による完全自動化への挑戦としてAIが自動生成しています。将来的には塾頭が執筆しているような記事になることを目指しており、現時点では事実と異なる内容が含まれる可能性があります。最新の正確な情報については、お問い合わせフォームよりご確認ください。</p>
+                <p style="margin-top: 0.5rem;">🤖 Generated with AI - if塾のブログ自動化プロジェクト</p>
+            </div>
+        </div>
+
+        <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

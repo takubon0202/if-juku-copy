@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自信がない？才能開花！発達特性を活かした学生起業家ストーリー - プログラミング教室 秋田 - if(塾)</title>
+    <meta name="description" content="発達特性は才能の原石！学生起業家が独自の視点を武器に成功を掴むまでの物語。Minecraftコマンドやストリートファイター6上達のヒントも！">
+    <meta name="keywords" content="起業, 学生起業, 発達障害, 才能, プログラミング教室 秋田">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 255, 204, 0.1);
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 100px 0 0 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 20px 40px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .nav-menu a:hover {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary-color);
+        }
+
+        .post-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            background: rgba(0, 255, 204, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .post-categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            font-size: 1.7rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .back-to-list {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--neon-glow);
+        }
+
+        .back-to-list:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 80px 15px 40px;
+            }
+
+            .post-title {
+                font-size: 1.5rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> /
+            <a href="../news.html">お知らせ</a> /
+            <span>自信がない？才能開花！発達特性を活かした学生起業家ストーリー - プログラミング教室 秋田</span>
+        </nav>
+
+        <div class="post-meta">
+            <div class="post-date">2025年12月20日</div>
+            <div class="post-categories">
+                <span class="category-tag">起業・キャリア</span>
+                <span class="category-tag">起業</span>
+                <span class="category-tag">学生起業</span>
+                <span class="category-tag">発達障害</span>
+                <span class="category-tag">才能</span>
+                <span class="category-tag">プログラミング教室 秋田</span>
+            </div>
+        </div>
+
+        <h1 class="post-title">自信がない？才能開花！発達特性を活かした学生起業家ストーリー - プログラミング教室 秋田</h1>
+
+        <div class="post-content">
+            
+        <h2>「みんなと違う」は強みになる！ 学生起業家 加賀屋結眞さんの挑戦</h2>
+        
+        <p>「どうして僕はみんなと同じようにできないんだろう…」そう悩んでいた時期もありました。秋田県出身の加賀屋結眞さんは、幼い頃から周りの子と少し違うことに気づいていました。集中力がずば抜けていたり、興味のあることには没頭する一方で、興味のないことには全く集中できなかったり…。</p><p>そんな彼が大きく変わったのは、高校生の時にif塾の塾頭と出会ったこと。そこで自身の特性を「障害」ではなく「才能」として捉えることを学びます。そして、15歳で個人事業主として起業。今では、発達特性を持つ人の視点を活かした独自のビジネスを展開しています。</p>
+
+        <h2>Minecraftコマンドから生まれたビジネスアイデア！</h2>
+        
+        <p>加賀屋さんの起業のきっかけは、なんとMinecraftのコマンドでした。子どもの頃からMinecraftに夢中だった彼は、複雑なコマンドを使いこなすうちに、その論理的思考力と創造性を活かせることに気づきます。そして、そのスキルを活かして、企業向けのシステム開発やWebサイト制作を請け負うようになったのです。</p><p>「最初は不安もありましたが、塾頭の『やってみよう！』という言葉に背中を押されました。if塾で出会った仲間たちも応援してくれたので、勇気が出ました」と加賀屋さんは語ります。if塾では、それぞれの得意分野を活かして、お互いをサポートし合う文化が根付いています。</p>
+
+        <h2>成功の秘訣は「好き」を追求すること</h2>
+        
+        <p>加賀屋さんのように、発達特性を持つ人が起業やキャリアで成功するためには、「好き」を追求することが大切だと塾頭は言います。「発達特性を持つ人は、特定の分野に強い興味を持つ傾向があります。その『好き』を徹底的に追求することで、周りの人が思いつかないようなユニークな発想が生まれることがあります」</p><p>また、if塾では、小さな成功体験を積み重ねることを重視しています。例えば、プログラミングの基礎を学んだり、簡単なWebサイトを作ったりすることで、「自分にもできる！」という自信につなげていきます。その自信が、新たな挑戦への原動力となるのです。</p>
+
+        <h2>「できない」を「できる」に変える場所 - if塾</h2>
+        
+        <p>「もし、あの時if塾に出会っていなかったら、今の僕はどうなっていただろうか…」加賀屋さんはそう振り返ります。if塾は、発達特性を持つ子どもたちが、自分の才能を見つけ、自信を持って未来を切り開くための場所です。</p><p>「ストリートファイター6 上達を目指しているY君も、最初はなかなか勝てずに悩んでいました。でも、if塾で出会った仲間たちと切磋琢磨するうちに、メキメキと実力を伸ばしています」と塾長は語ります。if塾では、eスポーツのような分野でも、才能を開花させる子どもたちがたくさんいます。もしあなたが、自分に自信が持てずに悩んでいるなら、ぜひif塾に足を運んでみてください。きっと、新しい自分に出会えるはずです。</p><p>秋田で<a href='https://example.com/programming-akita'>プログラミング教室 秋田</a>をお探しの方も、ぜひ一度ご相談ください。</p>
+
+
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--primary-color); border-radius: 10px;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 興味を持っていただいた方へ</h2>
+                <p>if塾では、発達特性を持つ子どもたちの「好き」を「才能」に変える教育を行っています。現在の記事内容と実際の活動に大きなズレはありませんが、詳細については直接お問い合わせください。</p>
+                <ul style="margin: 1rem 0;">
+                    <li><strong>📝 お問い合わせフォーム</strong>: <a href="../index.html#contact" style="color: var(--primary-color);">こちらから</a></li>
+                    <li><strong>🎓 体験授業</strong>: 無料体験授業を実施中です</li>
+                    <li><strong>📱 Instagram</strong>: <a href="https://www.instagram.com/if_juku/" target="_blank" style="color: var(--primary-color);">@if_juku</a></li>
+                    <li><strong>💬 LINE公式アカウント</strong>: 最新情報をお届けします</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 0, 255, 0.05); border: 1px solid var(--secondary-color); border-radius: 10px; font-size: 0.9rem; color: var(--text-gray);">
+                <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">📌 記事について</h3>
+                <p>この記事は、塾頭による完全自動化への挑戦としてAIが自動生成しています。将来的には塾頭が執筆しているような記事になることを目指しており、現時点では事実と異なる内容が含まれる可能性があります。最新の正確な情報については、お問い合わせフォームよりご確認ください。</p>
+                <p style="margin-top: 0.5rem;">🤖 Generated with AI - if塾のブログ自動化プロジェクト</p>
+            </div>
+        </div>
+
+        <a href="../news.html" class="back-to-list">← お知らせ一覧に戻る</a>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const navContainer = document.querySelector('.nav-container');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (!navContainer.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -236,9 +236,9 @@
             margin-bottom: 1rem;
             font-weight: 700;
             color: #4da6ff;
-            -webkit-text-stroke: 2px #000;
-            paint-order: stroke fill;
             text-shadow:
+                -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+                -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
                 0 0 20px rgba(77, 166, 255, 0.8),
                 0 0 40px rgba(77, 166, 255, 0.6),
                 0 0 60px rgba(77, 166, 255, 0.4);
@@ -1906,8 +1906,7 @@
             display: inline-block;
             animation: fireFlicker 1.5s ease-in-out infinite;
             color: #333;
-            -webkit-text-stroke: 1.5px #000;
-            paint-order: stroke fill;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
         @keyframes fireFlicker {
@@ -2901,7 +2900,7 @@
                     <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                             <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">1</span>
-                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">適性を見極める</h4>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">適性を見極める</h4>
                         </div>
                         <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
                             例えば、マインクラフトで建築が好きな子はデザインセンスに長けている可能性が高いです。そうした子には3Dモデリングやグラフィック作成を提案します。また、家での様子や現在の困りごとなどを親御様にもヒアリングしながら、中長期の目標設定を行っていきます。
@@ -2914,7 +2913,7 @@
                     <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                             <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">2</span>
-                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">スキルを身につける</h4>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">スキルを身につける</h4>
                         </div>
                         <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
                             興味を持ったスキルを段階的に学習。独自開発のAIツールや人間メンターのサポートで、楽しみながら実践的なスキルを習得します。AI先生もいて、日頃の相談から作りたいものの作り方まで、本人に合わせていつでもサポートします。
@@ -2927,7 +2926,7 @@
                     <div style="position: relative; z-index: 1; background: rgba(255,255,255,0.95); border-radius: 10px; padding: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                             <span style="background: var(--primary-color); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">3</span>
-                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; -webkit-text-stroke: 0.5px #000; paint-order: stroke fill;">実際に仕事をして報酬を得る</h4>
+                            <h4 style="color: #1a5f7a; font-size: 1.3rem; margin: 0; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">実際に仕事をして報酬を得る</h4>
                         </div>
                         <p style="color: #000; line-height: 1.7; font-size: 0.95rem; margin: 0;">
                             スキルが身についてきたら、単発の仕事にチャレンジ。実際に報酬を得ることで「ここまでやればお金がもらえる」という仕事の感覚が掴め、小さい時から地元に貢献した実感と将来への見通しが持てるようになります。
@@ -4146,11 +4145,14 @@
 
             // News section mappings  
             'ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント': '5584_ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント.html',
+            'SF6で才能開花！発達特性を活かしたeスポーツの世界 - if塾': '5675_SF6で才能開花！発達特性を活かしたeスポーツの世界 - if塾.html',
             '発達障害は「才能」？AI・プログラミングで未来を拓く！成功のヒント': '5431_発達障害は「才能」？AI・プログラミングで未来を拓く！成功のヒント.html',
             'ASD・発達障害の才能開花！ICTとAIで個性を強みに変える成長戦略': '5520_ASD・発達障害の才能開花！ICTとAIで個性を強みに変える成長戦略.html',
+            '発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道': '5211_発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道.html',
+            'ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例': '5225_ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例.html',
+            'eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方': '5304_eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方.html',
             '【if塾】ASD/ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）': '5403_【if塾】ASD_ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）.html',
-            'プログラミング苦手な塾長がClaude Codeで開発者になった話': '5800_プログラミング苦手な塾長がClaude_Codeで開発者になった話.html',
-            '吃音のある高校生がeスポーツコーチングシステムを開発した話': '5801_吃音のある高校生がeスポーツコーチングシステムを開発した話.html'
+            'プログラミング苦手な塾長がClaude Codeで開発者になった話': '5800_プログラミング苦手な塾長がClaude_Codeで開発者になった話.html'
         }
 
         // Helper function to get filename by title
@@ -4182,12 +4184,15 @@
 
             // Fixed news
             const newsData = [
-                { title: '吃音のある高校生がeスポーツコーチングシステムを開発した話', excerpt: '吃音のあるY君がeスポーツを通じてコミュニケーションの壁を乗り越え、吃音の子のためのeスポーツコーチングシステム「eBridge」を開発。ASHIOTOで優勝し、未踏プロジェクトにも挑戦する成長ストーリー。' },
                 { title: 'プログラミング苦手な塾長がClaude Codeで開発者になった話', excerpt: 'プログラミングに苦手意識があったif塾の塾長・琢己が、Claude Codeを使ってマイクラプラグインやLINEアプリを開発。AIと対話しながらモノが作れる時代の教育とは。' },
                 { title: 'マインクラフト教育で才能開花！ADHD/ASD特性を活かして夢中になれるプログラミング学習', excerpt: 'マインクラフトが秘める無限の可能性：CTO井上が語る魅力 皆さん、こんにちは！if塾のCTO井上です。突然ですが、マインクラフトって知っていますか？ただのゲームだと思っている人もいるかもしれませんが、' },
+                { title: 'SF6で才能開花！ADHDの集中力と反応速度を武器にeスポーツで輝くY君の物語', excerpt: 'ゲームの世界で出会った才能 - Y君とストリートファイター6 「ストリートファイター6（SF6）」の世界に没頭するY君。彼は幼い頃から落ち着きがなく、集中力がないと言われてきました。ADHDの診断を受' },
                 { title: 'ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント', excerpt: '「苦手」を「得意」に！AI・ICTが変える学び方（高崎先生） 「勉強がどうしても続かない…」「周りのペースについていけない…」そんな風に悩んでいる君へ。もしかしたらそれは、君の持っている素晴らしい才能' },
+                { title: 'SF6で才能開花！発達特性を活かしたeスポーツの世界 - if塾', excerpt: '集中力が武器に！Y君、SF6で全国大会を目指す 「また負けた…」コントローラーを握るY君の指に力がこもる。得意なはずのストリートファイター6（SF6）で、なかなか勝てない日々が続いていた。そんなY君は' },
                 { title: '発達障害は「才能」？AI・プログラミングで未来を拓く！成功のヒント', excerpt: '「苦手」を「得意」に！AI・プログラミングとの出会い（塾頭） こんにちは！if塾塾頭の高崎です。多くの人が苦手意識を持つAIやプログラミング。でも、発達障害を持つ人の中には、これらの分野で驚くほどの才' },
                 { title: 'ASD・発達障害の才能開花！ICTとAIで個性を強みに変える成長戦略', excerpt: '「障害」を「才能」に！ 発達特性を活かす視点とは？ (高崎先生) 皆さん、こんにちは！if塾塾頭の高崎です。発達特性を持つお子さんをお持ちの保護者の皆様、そして、自分自身に不安を感じている皆さん。もし' },
+                { title: '発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道', excerpt: '集中力と情熱を力に変える！発達障害を持つ起業家の可能性 発達障害と診断された人々の中には、特定の分野に驚異的な集中力を発揮する才能を持つ人が多くいます。例えば、ゲーム『ストリートファイター6』に没頭し' },
+                { title: 'ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例', excerpt: '発達特性は「障害」じゃない！隠された才能の原石（塾頭） 皆さん、こんにちは！if塾塾頭の高崎です。私たちは、発達特性を持つお子さんたちの可能性を最大限に引き出すために、日々ICT教育と向き合っています' }
             ];
 
             // Update materials section

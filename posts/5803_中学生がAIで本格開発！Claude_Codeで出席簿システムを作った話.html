@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中学生がAIで本格開発！Claude Codeで出席簿システムを作った話 - if(塾)</title>
+    <meta name="description" content="中学生の消毒液がClaude Codeでif塾の出席簿自動化システムを開発。Bikkyはマイクラで精巧なキャラ制作。中学生でもAIツールで本格開発できる時代のリアル。">
+    <meta name="keywords" content="中学生,AI開発,Claude Code,出席簿システム,マインクラフト,if塾,プログラミング教育,AIネイティブ">
+    <meta property="og:title" content="中学生がAIで本格開発！Claude Codeで出席簿システムを作った話">
+    <meta property="og:description" content="中学生がClaude Codeで出席簿の自動化システムを開発。AIツールで中学生でも本格開発できる時代のリアルストーリー。">
+    <meta property="og:image" content="https://images.if-juku.net/blog/chuugakusei-ai/blog_a.webp">
+    <meta property="og:type" content="article">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .category-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.4;
+        }
+
+        .post-content {
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .post-content h2 {
+            font-size: 1.6rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .post-content h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary-color);
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+            color: var(--text-light);
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s;
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 10px 0;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> / 
+            <a href="../news.html">お知らせ</a> / 
+            <span>中学生がAIで本格開発！Claude Codeで出席簿システムを作った話</span>
+        </nav>
+        
+        <div class="post-meta">
+            <div class="post-date">2026年02月20日</div>
+            <div class="post-categories">
+                <span class="category-tag">AI教育</span>
+                <span class="category-tag">プログラミング</span>
+                <span class="category-tag">生徒の声</span>
+            </div>
+        </div>
+        
+        <h1 class="post-title">中学生がAIで本格開発！Claude Codeで出席簿システムを作った話</h1>
+        
+        <div class="post-content">
+
+<p>「中学生にシステム開発なんて無理でしょ？」——そう思っていませんか？</p>
+
+<p>if塾には、<strong>AIツールを使いこなして本格的なシステムを開発している中学生</strong>がいます。今回は、そんな2人の中学生の活躍をご紹介します。</p>
+
+<img src="https://images.if-juku.net/blog/chuugakusei-ai/blog_a.webp" alt="中学生がClaude Codeで開発している様子" />
+
+<h2>消毒液——Claude Codeで出席簿自動化システムを開発</h2>
+
+<p>if塾に通う中学生の<strong>消毒液</strong>（ニックネーム）は、<strong>Claude Code</strong>を使いこなし、if塾の<strong>出席簿自動化システム</strong>を開発しました。</p>
+
+<p>このシステムは、出席管理だけでなく<strong>欠席者への自動通知機能</strong>も備えています。実はこの自動化、高崎先生自身もまだ実現できていなかった仕組みでした。それを中学生が作ってしまったのです。</p>
+
+<p>Claude Codeに日本語で「こういう機能がほしい」と伝えながら、対話を重ねてシステムを完成させていく。<strong>プログラミング言語を完璧に覚える必要はなく、「何を作りたいか」を考える力があれば形にできる</strong>——その好例です。</p>
+
+<img src="https://images.if-juku.net/blog/chuugakusei-ai/blog_b.webp" alt="出席簿自動化システムのイメージ" />
+
+<h2>Bikky——マイクラで魅せる圧倒的なクリエイティブセンス</h2>
+
+<p>もうひとりの中学生、<strong>Bikky</strong>は<strong>絵が上手く</strong>、その才能をマインクラフトの世界で発揮しています。</p>
+
+<p>Bikkyが作るのは、マイクラの中で<strong>精巧なキャラクターを再現する作品</strong>。ブロックひとつひとつを積み上げて、細部までこだわったキャラクターを制作しています。</p>
+
+<p>絵のセンスと空間把握能力、そして何時間でも集中して作り続ける粘り強さ。<strong>好きなことに没頭できる力</strong>は、それ自体が大きな才能です。</p>
+
+<h2>中学生でもAIで本格開発できる時代</h2>
+
+<p>消毒液やBikkyの活躍が示しているのは、<strong>年齢は関係ない</strong>ということです。</p>
+
+<p>Claude Codeのようなツールの登場で、プログラミングの「入口」は劇的に低くなりました。中学生でも、自分のアイデアを形にし、実際に使えるシステムを作ることができます。</p>
+
+<div class="highlight-box">
+<h3>💡 AIネイティブ世代の強み</h3>
+<ul>
+<li>AIツールを<strong>自然に使いこなす柔軟性</strong></li>
+<li>「何を作りたいか」を考える<strong>発想力</strong></li>
+<li>好きなことに<strong>没頭できる集中力</strong></li>
+<li>大人が「まだ早い」と思うことを<strong>軽々と飛び越える行動力</strong></li>
+</ul>
+</div>
+
+<img src="https://images.if-juku.net/blog/chuugakusei-ai/blog_c.webp" alt="AIツールで開発する中学生たち" />
+
+<h2>if塾が提供する環境</h2>
+
+<p>if塾では、<strong>Claude CodeのMaxプラン（最上位プラン）を生徒に提供</strong>しています。中学生であっても、最先端のAIツールを自由に使える環境です。</p>
+
+<p>高崎先生の方針は明確です。<strong>「年齢で可能性を制限しない」</strong>。やりたいことがあるなら、最高の環境を用意する。あとは本人の「やってみたい」という気持ちに任せる。</p>
+
+<p>消毒液が作った出席簿システムは、実際にif塾で使われています。自分が作ったものが実際に役に立っている——その経験は、何よりも大きな自信になります。</p>
+
+<h2>まとめ——「中学生だから」はもう通用しない</h2>
+
+<p>AIツールが当たり前になった今、<strong>「中学生だからまだ早い」は過去の常識</strong>です。</p>
+
+<p>大切なのは、年齢ではなく<strong>「何を作りたいか」「何に夢中になれるか」</strong>。if塾では、その気持ちを最大限に活かせる環境を整えています。</p>
+
+<div class="highlight-box">
+<h3>🏫 if塾について</h3>
+<p>if塾は、AIやプログラミングを活用した新しい形の教育を提供しています。中学生から社会人まで、一人ひとりの「やりたい」に寄り添う指導が特徴です。<br>
+興味のある方は、ぜひお気軽にお問い合わせください。</p>
+</div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleNav() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

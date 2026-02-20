@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if塾のAI教育——全員にClaude Code Maxプランを提供する理由 - if(塾)</title>
+    <meta name="description" content="if塾では生徒全員にClaude Code Maxプランを提供。塾長たくみ、正宗など生徒たちの成長と、高崎先生のAIネイティブ教育の全体像を紹介。">
+    <meta name="keywords" content="AI教育,Claude Code,if塾,AIネイティブ,プログラミング教育,秋田,発達障害,個別指導">
+    <meta property="og:title" content="if塾のAI教育——全員にClaude Code Maxプランを提供する理由">
+    <meta property="og:description" content="生徒全員に最上位AIを提供するif塾の教育方針。塾長たくみや正宗の成長、高崎先生のAIネイティブ教育とは。">
+    <meta property="og:image" content="https://images.if-juku.net/blog/ifjuku-ai-education/blog_a.webp">
+    <meta property="og:type" content="article">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.03) 2px, rgba(0, 255, 204, 0.03) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .post-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 2; }
+        .breadcrumb { margin-bottom: 30px; font-size: 0.9rem; color: var(--text-gray); }
+        .breadcrumb a { color: var(--primary-color); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .post-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .post-date { color: var(--text-gray); font-size: 0.9rem; }
+        .category-tag { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--bg-dark); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+        .post-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.4; }
+        .post-content { line-height: 2; font-size: 1.05rem; }
+        .post-content p { margin-bottom: 1.5rem; color: var(--text-light); }
+        .post-content h2 { font-size: 1.6rem; margin: 3rem 0 1.5rem; padding-bottom: 10px; border-bottom: 2px solid var(--primary-color); background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .post-content h3 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--primary-color); }
+        .post-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 2rem auto; display: block; border: 1px solid rgba(0, 255, 204, 0.2); box-shadow: var(--neon-glow); }
+        .post-content ul, .post-content ol { margin: 1rem 0 1.5rem 2rem; color: var(--text-light); }
+        .post-content li { margin-bottom: 0.5rem; }
+        .post-content strong { color: var(--primary-color); }
+        .highlight-box { background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1)); border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 12px; padding: 25px; margin: 2rem 0; }
+        .highlight-box h3 { margin-top: 0; }
+        .nav-container { position: fixed; top: 0; right: 0; z-index: 1000; padding: 20px; }
+        .hamburger { width: 40px; height: 40px; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); border: 1px solid var(--primary-color); border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: all 0.3s; box-shadow: var(--neon-glow); }
+        .hamburger-line { width: 24px; height: 2px; background: var(--primary-color); transition: all 0.3s; }
+        .nav-menu { position: fixed; top: 0; right: -100%; width: 320px; height: 100vh; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); border-left: 1px solid var(--primary-color); transition: right 0.3s; padding: 80px 30px 30px; overflow-y: auto; z-index: 999; }
+        .nav-menu.active { right: 0; }
+        .nav-menu ul { list-style: none; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; font-size: 1.1rem; display: block; padding: 10px 0; transition: all 0.3s; }
+        .nav-menu a:hover { color: var(--primary-color); padding-left: 10px; }
+        @media (max-width: 768px) { .post-container { padding: 20px 15px; } }
+    </style>
+</head>
+<body>
+    
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> / 
+            <a href="../news.html">お知らせ</a> / 
+            <span>if塾のAI教育——全員にClaude Code Maxプランを提供する理由</span>
+        </nav>
+        
+        <div class="post-meta">
+            <div class="post-date">2026年02月20日</div>
+            <div class="post-categories">
+                <span class="category-tag">AI教育</span>
+                <span class="category-tag">if塾について</span>
+            </div>
+        </div>
+        
+        <h1 class="post-title">if塾のAI教育——全員にClaude Code Maxプランを提供する理由</h1>
+        
+        <div class="post-content">
+
+<p>if塾では、<strong>生徒全員にClaude CodeのMaxプラン（最上位プラン）を提供</strong>しています。</p>
+
+<p>なぜそこまでするのか？それは、高崎先生が掲げる<strong>「AIネイティブ教育」</strong>という方針にあります。今回は、if塾のAI教育の全体像と、実際に成長している生徒たちの姿をお伝えします。</p>
+
+<img src="https://images.if-juku.net/blog/ifjuku-ai-education/blog_a.webp" alt="if塾のAI教育環境" />
+
+<h2>高崎先生の教育方針——AIネイティブ教育とは</h2>
+
+<p>高崎先生の考えはシンプルです。<strong>「これからの時代、AIを使えることは読み書きと同じくらい基本的なスキルになる」</strong>。</p>
+
+<p>だからこそ、生徒たちには最初から<strong>最高の環境</strong>を提供する。中途半端なツールではなく、プロが使うのと同じ最上位プランのAIを使える環境を整える。</p>
+
+<p>「安いプランでいいんじゃない？」ではなく、<strong>「最高のツールを渡して、あとは本人に任せる」</strong>。それが高崎先生のスタイルです。</p>
+
+<h2>塾長・たくみの成長——プログラミング苦手からAI開発者へ</h2>
+
+<p>if塾の塾長であり生徒でもある<strong>琢己（たくみ）</strong>は、大学1年生。もともとプログラミングに苦手意識がありましたが、Claude Codeとの出会いで大きく変わりました。</p>
+
+<p>今では<strong>マイクラプラグインやLINEアプリを自分で開発</strong>できるようになっています。コードを完璧に書けなくても、AIと対話しながら「作りたいもの」を形にしていく。その過程で、プログラミングへの苦手意識は自然と薄れていきました。</p>
+
+<p>琢己は将来、<strong>「if塾をやっています！」と自信を持って言えるようになりたい</strong>と語っています。進路相談や人に教えること、誰かと一緒に何かを作ることが好きな琢己にとって、if塾は天職かもしれません。</p>
+
+<img src="https://images.if-juku.net/blog/ifjuku-ai-education/blog_b.webp" alt="たくみがAIで開発している様子" />
+
+<h2>正宗——Claudeを覚え始めて急成長中</h2>
+
+<p><strong>正宗（まさむね）</strong>は、最近Claudeを覚え始めた生徒です。</p>
+
+<p>使い始めてからの<strong>伸びが目覚ましく</strong>、塾長の琢己も「これから数年キーになる人」と評価するほど。AIツールとの相性が良く、新しいことをどんどん吸収しています。</p>
+
+<p>正宗の成長は、<strong>AIツールが「きっかけ」になれる</strong>ことを示しています。今まで見つけられなかった自分の可能性を、AIとの対話を通じて発見していく。そんなストーリーが、if塾では日常的に起きています。</p>
+
+<h2>生徒たちの多彩な活躍</h2>
+
+<p>if塾の生徒たちは、それぞれの「好き」や「得意」を活かして成長しています。</p>
+
+<div class="highlight-box">
+<h3>🎮 Y君——eBridge開発者</h3>
+<p>吃音のあるY君は、eスポーツを通じたコミュニケーション支援システム<strong>「eBridge」</strong>を開発。ASHIOTOに採択・優勝し、未踏プロジェクトにも挑戦しています。</p>
+</div>
+
+<div class="highlight-box">
+<h3>💼 ゆうま——起業に挑戦</h3>
+<p>LDのあるゆうまは、書字の苦手をPCスキルでカバーし、ホリエモンへのプレゼンや起業準備に奮闘中。地元企業で社会人経験を積みながら一人暮らしをしています。</p>
+</div>
+
+<div class="highlight-box">
+<h3>🖥️ 消毒液——出席簿システム開発</h3>
+<p>中学生の消毒液は、Claude Codeでif塾の出席簿自動化システムを開発。欠席者への自動通知機能まで実装しました。</p>
+</div>
+
+<div class="highlight-box">
+<h3>🎨 Bikky——マイクラクリエイター</h3>
+<p>中学生のBikkyは、絵の才能を活かしてマイクラで精巧なキャラクターを制作。クリエイティブな表現力が光ります。</p>
+</div>
+
+<img src="https://images.if-juku.net/blog/ifjuku-ai-education/blog_c.webp" alt="if塾の生徒たちの活躍" />
+
+<h2>なぜMaxプランを提供するのか</h2>
+
+<p>高崎先生がMaxプランにこだわる理由は、<strong>「ツールの制限が、子どもの可能性の制限になってはいけない」</strong>から。</p>
+
+<ul>
+<li>無料プランでは使用量の制限がすぐに来る</li>
+<li>制限があると「もっと試したい」と思った時に止まってしまう</li>
+<li>最高の環境を用意することで、<strong>「どこまでやれるか」の限界を本人が決められる</strong></li>
+</ul>
+
+<p>教育への投資として、生徒一人ひとりに最上位プランを提供する。それは決して安いコストではありません。でも、<strong>生徒の可能性に投資する価値</strong>があると高崎先生は考えています。</p>
+
+<h2>まとめ——AIネイティブ教育の現在地</h2>
+
+<p>if塾のAI教育は、単なる「プログラミング教室」ではありません。</p>
+
+<p><strong>AIを道具として使いこなし、自分のやりたいことを形にする力を育てる場所</strong>です。年齢も、得意不得意も関係ない。一人ひとりの「やりたい」に最高のツールと環境を用意する。</p>
+
+<p>たくみ、正宗、Y君、ゆうま、消毒液、Bikky——それぞれの道を、AIの力を借りながら切り拓いている生徒たち。彼らの成長こそが、if塾のAI教育の成果そのものです。</p>
+
+<img src="https://images.if-juku.net/blog/ifjuku-ai-education/blog_d.webp" alt="if塾のAIネイティブ教育" />
+
+<div class="highlight-box">
+<h3>🏫 if塾について</h3>
+<p>if塾は、秋田を拠点にAIやプログラミングを活用した新しい形の教育を提供しています。発達障害のあるお子さまにも対応した、一人ひとりに寄り添う指導が特徴です。<br>
+興味のある方は、ぜひお気軽にお問い合わせください。</p>
+</div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleNav() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書くのが苦手でもPCなら得意に — LDのある学生の起業挑戦記 - if(塾)</title>
+    <meta name="description" content="学習障害（LD）で書字が苦手なゆうまが、PCスキルを武器にホリエモンへのプレゼンや起業準備に挑戦。不登校からの再出発ストーリー。">
+    <meta name="keywords" content="学習障害,LD,起業,不登校,PC活用,発達障害,if塾,プログラミング教育,才能開花">
+    <meta property="og:title" content="書くのが苦手でもPCなら得意に — LDのある学生の起業挑戦記">
+    <meta property="og:description" content="LDで書字が苦手なゆうまが、PCを武器に起業に挑む。ホリエモンへのプレゼン、不登校からの再出発を描く実話。">
+    <meta property="og:image" content="https://images.if-juku.net/blog/yuuma-startup/blog_a.webp">
+    <meta property="og:type" content="article">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 204, 0.03) 2px,
+                    rgba(0, 255, 204, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .category-tag {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .post-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.4;
+        }
+
+        .post-content {
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .post-content h2 {
+            font-size: 1.6rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .post-content h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary-color);
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            box-shadow: var(--neon-glow);
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+            color: var(--text-light);
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content strong {
+            color: var(--primary-color);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1));
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .hamburger {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            box-shadow: var(--neon-glow);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--primary-color);
+            transition: right 0.3s;
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 10px 0;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> / 
+            <a href="../news.html">お知らせ</a> / 
+            <span>書くのが苦手でもPCなら得意に — LDのある学生の起業挑戦記</span>
+        </nav>
+        
+        <div class="post-meta">
+            <div class="post-date">2026年02月20日</div>
+            <div class="post-categories">
+                <span class="category-tag">才能開花</span>
+                <span class="category-tag">LD・学習障害</span>
+                <span class="category-tag">起業</span>
+            </div>
+        </div>
+        
+        <h1 class="post-title">書くのが苦手でもPCなら得意に — LDのある学生の起業挑戦記</h1>
+        
+        <div class="post-content">
+
+<p>「字を書くのが、どうしてもうまくいかない」——それは怠けているわけでも、やる気がないわけでもありません。<strong>LD（学習障害）</strong>の特性として、手先の微細運動や目と手の協応動作がうまく働かないことがあるのです。</p>
+
+<p>今回紹介するのは、そんな書字の困難を抱えながら、<strong>PCという武器を手にして起業に挑戦している</strong>ゆうまのストーリーです。</p>
+
+<img src="https://images.if-juku.net/blog/yuuma-startup/blog_a.webp" alt="PCに向かうゆうまのイメージ" />
+
+<h2>書けないなら、打てばいい——LDとPCの出会い</h2>
+
+<p>ゆうまには<strong>LD（学習障害）</strong>があります。具体的には、手先の微細運動と目と手の協応運動が弱く、<strong>鉛筆で字を書くことが極端に苦手</strong>でした。</p>
+
+<p>学校では「ノートを取れ」「板書を写せ」が当たり前。でもゆうまにとって、それは途方もなく大きなハードルでした。書くことに全エネルギーを持っていかれて、<strong>肝心の「学び」にたどり着けない</strong>。そんな日々が続き、やがて不登校に。</p>
+
+<p>しかし、転機が訪れます。<strong>PCとの出会い</strong>です。</p>
+
+<p>キーボードなら指先の微細運動の負担が軽い。書字のようなコントロールが不要。ゆうまは瞬く間にPCの操作を覚え、<strong>「書く」ことが苦手だった分のエネルギーを、「打つ」ことに全振り</strong>しました。結果、同年代の中でもトップクラスのPCスキルを身につけていきます。</p>
+
+<h2>不登校からの再出発——if塾との出会い</h2>
+
+<p>不登校期間が長くなるにつれ、ゆうまの中には「自分はこのままでいいのか」というモヤモヤが膨らんでいました。</p>
+
+<p>そんなとき出会ったのが<strong>if塾</strong>と<strong>高崎先生</strong>です。高崎先生はゆうまのLDの特性を理解した上で、<strong>「書けないこと」ではなく「PCが得意なこと」</strong>に注目しました。</p>
+
+<p>「ゆうまの武器はPCだ。それを使って何ができるか考えよう」——高崎先生のその言葉が、ゆうまの新しいスタートラインになりました。</p>
+
+<img src="https://images.if-juku.net/blog/yuuma-startup/blog_b.webp" alt="高崎先生とゆうまが話している様子" />
+
+<h2>ホリエモンにプレゼンしに行った男</h2>
+
+<p>ゆうまの最大の武器は、そのバイタリティです。</p>
+
+<p>ある日ゆうまは、<strong>堀江貴文（ホリエモン）にプレゼンしに行く</strong>という行動に出ます。LDがあって、不登校歴が長くて、まだ学生で——普通なら尻込みしてもおかしくない状況。でもゆうまは「やりたい」と思ったら動く。その<strong>行動力とバイタリティ</strong>は、周囲を驚かせました。</p>
+
+<p>高崎先生も「あいつの行動力は本物だ」と語ります。思い立ったら即行動できる——これはゆうまにしかない強みです。</p>
+
+<h2>課題——「ふわっと」しがちな部分をどう深めるか</h2>
+
+<p>一方で、ゆうまには<strong>課題</strong>もあります。</p>
+
+<p>アイデアは次々と湧いてくる。行動力もある。でも、<strong>ひとつのことを深く掘り下げるのが苦手</strong>で、活動がふわっとしたまま形になりにくい。せっかくのバイタリティが、具体的な成果につながらないもどかしさがありました。</p>
+
+<p>高崎先生はこの課題について、こう話します。「ゆうまに必要なのは"止まる力"。アイデアを出すのは得意だから、そこから<strong>一つを選んで深める練習</strong>を一緒にやっている。」</p>
+
+<div class="highlight-box">
+<h3>💡 ゆうまの強みと課題</h3>
+<ul>
+<li><strong>強み：</strong>圧倒的な行動力、PCスキル、人を巻き込む力</li>
+<li><strong>課題：</strong>アイデアが拡散しがちで、一つを深掘りするのが苦手</li>
+<li><strong>アプローチ：</strong>高崎先生と一緒に「選ぶ→深める→形にする」のサイクルを練習中</li>
+</ul>
+</div>
+
+<h2>今のゆうま——社会人経験を積みながら起業準備中</h2>
+
+<p>現在、ゆうまは<strong>地元の有力企業で働きながら、一人暮らしと起業準備を同時に進めています</strong>。</p>
+
+<p>いきなり起業するのではなく、まずは<strong>社会人としての働き方</strong>を学ぶ。ビジネスの現場でお金の流れや人との関わり方を体感する。それが将来の起業に必ず活きてくる——高崎先生と一緒に考えた作戦です。</p>
+
+<p>ゆうまは今、毎日の仕事をこなしながら、起業のアイデアを練り続けています。ふわっとしがちだった思考も、実社会での経験を通じて少しずつ<strong>地に足のついたもの</strong>になりつつあります。</p>
+
+<img src="https://images.if-juku.net/blog/yuuma-startup/blog_c.webp" alt="社会人として働きながら起業準備をするゆうま" />
+
+<h2>LDは「できないこと」じゃない——「別の道があること」</h2>
+
+<p>ゆうまのストーリーが教えてくれるのは、<strong>LDは「できない」のではなく「別のやり方がある」</strong>ということです。</p>
+
+<p>書けないなら打てばいい。学校が合わないなら別の場所で学べばいい。一人で深められないなら、支えてくれる人と一緒にやればいい。</p>
+
+<p>大切なのは、<strong>自分の特性を「弱み」ではなく「ルートの違い」</strong>として捉えること。ゆうまはPCという別ルートを見つけ、そこから起業という山の頂を目指しています。</p>
+
+<img src="https://images.if-juku.net/blog/yuuma-startup/blog_d.webp" alt="未来に向かって歩むゆうまのイメージ" />
+
+<h2>まとめ——「苦手」の裏側にある才能を見つけよう</h2>
+
+<p>ゆうまの挑戦はまだ道半ばです。でも、不登校だった少年がPCを武器にして、ホリエモンにプレゼンしに行き、今は社会人経験を積みながら起業を準備している——その<strong>軌跡そのものが、才能開花のストーリー</strong>です。</p>
+
+<p>if塾では、ゆうまのように<strong>「苦手」の裏側にある才能</strong>を見つけ、伸ばすサポートをしています。LDやその他の発達特性があっても、<strong>自分だけの武器を見つけて前に進む方法</strong>は必ずあります。</p>
+
+<div class="highlight-box">
+<h3>🏫 if塾について</h3>
+<p>if塾は、発達特性のある子どもたちの<strong>「才能開花」</strong>を支援する教室です。PCやAIを活用した学び方で、一人ひとりの強みを伸ばします。<br>
+「うちの子にも合うかも？」と思ったら、ぜひお気軽にお問い合わせください。</p>
+</div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleNav() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

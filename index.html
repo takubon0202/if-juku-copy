@@ -1814,11 +1814,11 @@
             background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
             border: 1px solid var(--secondary-color);
             border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 1rem;
+            padding: 4px 6px;
+            font-size: 0.9rem;
             color: var(--secondary-color);
             font-weight: bold;
-            min-width: 28px;
+            min-width: 22px;
             text-align: center;
             box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.3), 0 0 8px rgba(255, 0, 255, 0.2);
             animation: digitGlow 2s ease-in-out infinite;
@@ -3707,17 +3707,18 @@
         // Visitor Counter
         function updateCounter(elementId, count) {
             const element = document.getElementById(elementId);
-            const digits = count.toString().padStart(4, '0').split('');
+            const digits = count.toString().padStart(6, '0').split('');
             element.innerHTML = digits.map(digit =>
                 `<span class="counter-digit">${digit}</span>`
             ).join('');
         }
 
-        async function initVisitorCounter() {
+        function initVisitorCounter() {
+            const INITIAL_TOTAL = 5000;
             const today = new Date().toDateString();
             const currentMonth = `${new Date().getFullYear()}-${new Date().getMonth()}`;
 
-            // Initialize display with loading state
+            // Initialize display
             updateCounter('counterTotal', 0);
             updateCounter('counterToday', 0);
             updateCounter('counterMonth', 0);
@@ -3725,60 +3726,47 @@
             // Get or initialize visitor data from localStorage
             let visitorData = JSON.parse(localStorage.getItem('visitorData') || '{}');
 
-            // Check if this is a new visit today
-            const isNewVisitToday = visitorData.lastVisitDate !== today;
-            const isNewVisitThisMonth = visitorData.lastVisitMonth !== currentMonth;
+            const isNewDay = visitorData.lastVisitDate !== today;
+            const isNewMonth = visitorData.lastVisitMonth !== currentMonth;
+            const alreadyVisitedToday = visitorData.visitedToday === true && !isNewDay;
 
-            // Update today counter
-            if (isNewVisitToday) {
-                visitorData.todayCount = 1;
-                visitorData.lastVisitDate = today;
-            } else {
-                visitorData.todayCount = (visitorData.todayCount || 0) + 1;
+            // Only increment once per day
+            if (!alreadyVisitedToday) {
+                // Increment total
+                visitorData.incrementCount = (visitorData.incrementCount || 0) + 1;
+
+                // Update today counter
+                if (isNewDay) {
+                    visitorData.todayCount = 1;
+                    visitorData.lastVisitDate = today;
+                } else {
+                    visitorData.todayCount = (visitorData.todayCount || 0) + 1;
+                }
+
+                // Update month counter
+                if (isNewMonth) {
+                    visitorData.monthCount = 1;
+                    visitorData.lastVisitMonth = currentMonth;
+                } else {
+                    visitorData.monthCount = (visitorData.monthCount || 0) + 1;
+                }
+
+                visitorData.visitedToday = true;
             }
 
-            // Update month counter
-            if (isNewVisitThisMonth) {
-                visitorData.monthCount = 1;
-                visitorData.lastVisitMonth = currentMonth;
-            } else {
-                visitorData.monthCount = (visitorData.monthCount || 0) + 1;
+            // Reset visitedToday flag on new day
+            if (isNewDay) {
+                visitorData.visitedToday = true;
+                visitorData.lastVisitDate = today;
             }
 
             // Save updated data
             localStorage.setItem('visitorData', JSON.stringify(visitorData));
 
-            // Update display for local counters
-            updateCounter('counterToday', visitorData.todayCount);
-            updateCounter('counterMonth', visitorData.monthCount);
-
-            // Fetch cumulative total count from CountAPI
-            try {
-                // Use CountAPI to track total visits across all devices
-                const namespace = 'if-juku-getabako';
-                const key = 'total-visitors';
-
-                // Increment the counter (this happens on every page load)
-                const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    updateCounter('counterTotal', data.value);
-                } else {
-                    // Fallback: use localStorage only
-                    if (!visitorData.totalCount) visitorData.totalCount = 0;
-                    visitorData.totalCount++;
-                    localStorage.setItem('visitorData', JSON.stringify(visitorData));
-                    updateCounter('counterTotal', visitorData.totalCount);
-                }
-            } catch (error) {
-                console.error('Failed to fetch visitor count:', error);
-                // Fallback: use localStorage only
-                if (!visitorData.totalCount) visitorData.totalCount = 0;
-                visitorData.totalCount++;
-                localStorage.setItem('visitorData', JSON.stringify(visitorData));
-                updateCounter('counterTotal', visitorData.totalCount);
-            }
+            // Update display
+            updateCounter('counterTotal', INITIAL_TOTAL + (visitorData.incrementCount || 0));
+            updateCounter('counterToday', visitorData.todayCount || 0);
+            updateCounter('counterMonth', visitorData.monthCount || 0);
         }
 
         initVisitorCounter();
@@ -4164,7 +4152,8 @@
             '発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道': '5211_発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道.html',
             'ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例': '5225_ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例.html',
             'eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方': '5304_eスポーツ 発達障害は才能の原石！ASDの学生起業家が語るICTと自信の育て方.html',
-            '【if塾】ASD/ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）': '5403_【if塾】ASD_ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）.html'
+            '【if塾】ASD/ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）': '5403_【if塾】ASD_ADHDの才能開花！AI・ICT教育で未来を拓くプログラミング教室（秋田）.html',
+            'プログラミング苦手な塾長がClaude Codeで開発者になった話': '5800_プログラミング苦手な塾長がClaude_Codeで開発者になった話.html'
         }
 
         // Helper function to get filename by title
@@ -4196,14 +4185,15 @@
 
             // Fixed news
             const newsData = [
-                { title: '自信がない？才能開花！発達特性を活かした学生起業家ストーリー - プログラミング教室 秋田', excerpt: '「みんなと違う」は強みになる！ 学生起業家 加賀屋結眞さんの挑戦 「どうして僕はみんなと同じようにできないんだろう…」そう悩んでいた時期もありました。秋田県出身の加賀屋結眞さんは、幼い頃から周りの子と' },
-                { title: 'Minecraftコマンドから大学進学まで！AI・ICTで才能開花！【プログラミング教室 秋田】', excerpt: 'Minecraft コマンドが未来を拓く！？AI・ICT教育の可能性（塾頭） こんにちは！if塾塾頭です。皆さんはMinecraftで遊んだことはありますか？実は、Minecraftのコマンドって、プ' },
-                { title: '【発達特性は強み】AI・ICTで自信を！ゲーム好きからプログラミングの道へ', excerpt: '「好き」を「得意」に！AI・ICTが拓く未来 (塾頭) 皆さん、こんにちは！if塾塾頭です。周りの人と同じようにできない、授業についていけない…そんな不安を抱えているかもしれませんね。でも、大丈夫！発' },
-                { title: 'ADHDの集中力は才能だ！ストリートファイター6で全国優勝したY君の物語【if塾】', excerpt: 'ゲームに救われた過去 - Y君と塾頭の出会い (Y君/塾頭) 「また負けた…」Y君は、ストリートファイター6（SF6）の画面を睨みつけていました。小さい頃から落ち着きがなく、集中力が続かない。学校の授' },
-                { title: 'ASDのICT才能開花！発達障害を持つ子がAIで未来を切り開く方法 - 特別支援級から大学進学も', excerpt: '「苦手」を「得意」に！AI・ICTがもたらす可能性（塾頭） 皆さん、こんにちは！if塾塾頭です。発達特性を持つお子さんの中には、学習面やコミュニケーションで苦労されている方もいるかもしれません。でも、' },
-                { title: '発達障害は才能だ！SF6で全国優勝したY君の物語｜集中力と情熱をeスポーツへ', excerpt: '「普通」が苦手だったY君、SF6との出会い（Y君） 小学校の頃から、周りの友達と同じように過ごすのが苦手だったY君。授業中、じっとしているのが苦痛で、いつも何か違うことを考えていました。忘れ物も多く、' },
-                { title: 'ASDの才能が開花！学生起業家が語るICTと成功の秘訣｜特別支援級からの大学進学も', excerpt: '「普通」じゃなくていい！自分の強みを見つけるまで 「みんなと同じようにできない…」そう悩んでいた時期もありました。特に学校では、周りのスピードについていけず、自信をなくす毎日。でも、高校生の時、if塾' },
-                { title: 'スト6で才能開花！発達特性を武器にeスポーツで輝くY君の物語 | if塾', excerpt: '集中力と反応速度が武器に！Y君、スト6の世界へ (Y君) 小さい頃からゲームが好きだったY君。特に格闘ゲームには目がなく、友達と遊ぶのはもちろん、一人で黙々と練習することも大好きでした。でも、学校生活' }
+                { title: 'プログラミング苦手な塾長がClaude Codeで開発者になった話', excerpt: 'プログラミングに苦手意識があったif塾の塾長・琢己が、Claude Codeを使ってマイクラプラグインやLINEアプリを開発。AIと対話しながらモノが作れる時代の教育とは。' },
+                { title: 'マインクラフト教育で才能開花！ADHD/ASD特性を活かして夢中になれるプログラミング学習', excerpt: 'マインクラフトが秘める無限の可能性：CTO井上が語る魅力 皆さん、こんにちは！if塾のCTO井上です。突然ですが、マインクラフトって知っていますか？ただのゲームだと思っている人もいるかもしれませんが、' },
+                { title: 'SF6で才能開花！ADHDの集中力と反応速度を武器にeスポーツで輝くY君の物語', excerpt: 'ゲームの世界で出会った才能 - Y君とストリートファイター6 「ストリートファイター6（SF6）」の世界に没頭するY君。彼は幼い頃から落ち着きがなく、集中力がないと言われてきました。ADHDの診断を受' },
+                { title: 'ASD、ADHDは才能の原石！AI・ICT教育で未来を切り拓く成功のヒント', excerpt: '「苦手」を「得意」に！AI・ICTが変える学び方（高崎先生） 「勉強がどうしても続かない…」「周りのペースについていけない…」そんな風に悩んでいる君へ。もしかしたらそれは、君の持っている素晴らしい才能' },
+                { title: 'SF6で才能開花！発達特性を活かしたeスポーツの世界 - if塾', excerpt: '集中力が武器に！Y君、SF6で全国大会を目指す 「また負けた…」コントローラーを握るY君の指に力がこもる。得意なはずのストリートファイター6（SF6）で、なかなか勝てない日々が続いていた。そんなY君は' },
+                { title: '発達障害は「才能」？AI・プログラミングで未来を拓く！成功のヒント', excerpt: '「苦手」を「得意」に！AI・プログラミングとの出会い（塾頭） こんにちは！if塾塾頭の高崎です。多くの人が苦手意識を持つAIやプログラミング。でも、発達障害を持つ人の中には、これらの分野で驚くほどの才' },
+                { title: 'ASD・発達障害の才能開花！ICTとAIで個性を強みに変える成長戦略', excerpt: '「障害」を「才能」に！ 発達特性を活かす視点とは？ (高崎先生) 皆さん、こんにちは！if塾塾頭の高崎です。発達特性を持つお子さんをお持ちの保護者の皆様、そして、自分自身に不安を感じている皆さん。もし' },
+                { title: '発達障害×AI起業：スト6で培った集中力が武器に！才能開花への道', excerpt: '集中力と情熱を力に変える！発達障害を持つ起業家の可能性 発達障害と診断された人々の中には、特定の分野に驚異的な集中力を発揮する才能を持つ人が多くいます。例えば、ゲーム『ストリートファイター6』に没頭し' },
+                { title: 'ASDの才能開花！ICT×AIで発達障害を強みに変える！Y君のプログラミング成功例', excerpt: '発達特性は「障害」じゃない！隠された才能の原石（塾頭） 皆さん、こんにちは！if塾塾頭の高崎です。私たちは、発達特性を持つお子さんたちの可能性を最大限に引き出すために、日々ICT教育と向き合っています' }
             ];
 
             // Update materials section

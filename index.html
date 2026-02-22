@@ -236,9 +236,9 @@
             margin-bottom: 1rem;
             font-weight: 700;
             color: #4da6ff;
+            -webkit-text-stroke: 2px #000;
+            paint-order: stroke fill;
             text-shadow:
-                -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
-                -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
                 0 0 20px rgba(77, 166, 255, 0.8),
                 0 0 40px rgba(77, 166, 255, 0.6),
                 0 0 60px rgba(77, 166, 255, 0.4);
@@ -248,28 +248,12 @@
         @keyframes blueGlow {
             0%, 100% {
                 text-shadow:
-                    -2px -2px 0 #000,
-                    2px -2px 0 #000,
-                    -2px 2px 0 #000,
-                    2px 2px 0 #000,
-                    -3px -3px 0 #fff,
-                    3px -3px 0 #fff,
-                    -3px 3px 0 #fff,
-                    3px 3px 0 #fff,
                     0 0 20px rgba(100, 200, 255, 0.8),
                     0 0 40px rgba(100, 200, 255, 0.6),
                     0 0 60px rgba(100, 200, 255, 0.4);
             }
             50% {
                 text-shadow:
-                    -2px -2px 0 #000,
-                    2px -2px 0 #000,
-                    -2px 2px 0 #000,
-                    2px 2px 0 #000,
-                    -3px -3px 0 #fff,
-                    3px -3px 0 #fff,
-                    -3px 3px 0 #fff,
-                    3px 3px 0 #fff,
                     0 0 30px rgba(100, 200, 255, 1),
                     0 0 50px rgba(100, 200, 255, 0.8),
                     0 0 70px rgba(100, 200, 255, 0.6);
@@ -281,11 +265,9 @@
             color: #ffd700;
             margin-bottom: 3rem;
             line-height: 1.8;
+            -webkit-text-stroke: 1.5px #000;
+            paint-order: stroke fill;
             text-shadow:
-                -2px -2px 0 #000,
-                2px -2px 0 #000,
-                -2px 2px 0 #000,
-                2px 2px 0 #000,
                 0 0 20px rgba(255, 215, 0, 0.8),
                 0 0 40px rgba(255, 215, 0, 0.6),
                 0 0 60px rgba(255, 215, 0, 0.4);
@@ -295,28 +277,12 @@
         @keyframes yellowGlow {
             0%, 100% {
                 text-shadow:
-                    -2px -2px 0 #000,
-                    2px -2px 0 #000,
-                    -2px 2px 0 #000,
-                    2px 2px 0 #000,
-                    -3px -3px 0 #fff,
-                    3px -3px 0 #fff,
-                    -3px 3px 0 #fff,
-                    3px 3px 0 #fff,
                     0 0 20px rgba(255, 215, 0, 0.8),
                     0 0 40px rgba(255, 215, 0, 0.6),
                     0 0 60px rgba(255, 215, 0, 0.4);
             }
             50% {
                 text-shadow:
-                    -2px -2px 0 #000,
-                    2px -2px 0 #000,
-                    -2px 2px 0 #000,
-                    2px 2px 0 #000,
-                    -3px -3px 0 #fff,
-                    3px -3px 0 #fff,
-                    -3px 3px 0 #fff,
-                    3px 3px 0 #fff,
                     0 0 30px rgba(255, 215, 0, 1),
                     0 0 50px rgba(255, 215, 0, 0.8),
                     0 0 70px rgba(255, 215, 0, 0.6);
@@ -1906,20 +1872,13 @@
             display: inline-block;
             animation: fireFlicker 1.5s ease-in-out infinite;
             color: #333;
-            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            -webkit-text-stroke: 1.5px #000;
+            paint-order: stroke fill;
         }
 
         @keyframes fireFlicker {
             0%, 100% {
                 text-shadow:
-                    -2px -2px 0 #000,
-                    2px -2px 0 #000,
-                    -2px 2px 0 #000,
-                    2px 2px 0 #000,
-                    -3px -3px 0 #fff,
-                    3px -3px 0 #fff,
-                    -3px 3px 0 #fff,
-                    3px 3px 0 #fff,
                     0 0 10px #ff6600,
                     0 0 20px #ff6600,
                     0 0 30px #ff3300,
@@ -1931,14 +1890,6 @@
             }
             50% {
                 text-shadow:
-                    -2px -2px 0 #000,
-                    2px -2px 0 #000,
-                    -2px 2px 0 #000,
-                    2px 2px 0 #000,
-                    -3px -3px 0 #fff,
-                    3px -3px 0 #fff,
-                    -3px 3px 0 #fff,
-                    3px 3px 0 #fff,
                     0 0 5px #ff9900,
                     0 0 15px #ff6600,
                     0 0 25px #ff3300,

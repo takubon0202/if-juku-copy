@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プログラミング塾を生徒と一緒に運営してる話 - if(塾)</title>
+    <meta name="description" content="if塾の塾長は大学生の琢己。生徒が教える側にも回る自走型の塾。9名の生徒が在籍するif塾のリアルな運営についてまとめました。">
+    <meta name="keywords" content="プログラミング塾,if塾,生徒運営,塾長,教え合い,秋田,プログラミング教育,自走する塾">
+    <meta property="og:title" content="プログラミング塾を生徒と一緒に運営してる話">
+    <meta property="og:description" content="if塾の塾長は大学生の琢己。生徒が教える側にも回る自走型の塾のリアルな話。">
+    <meta property="og:image" content="https://images.if-juku.net/blog/ifjuku-student-run-v2/blog_a.webp">
+    <meta property="og:type" content="article">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #ff00ff;
+            --accent-color: #00ff00;
+            --bg-dark: #0a0a0a;
+            --bg-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --neon-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+            --purple-glow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.03) 2px, rgba(0, 255, 204, 0.03) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .post-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 2; }
+        .breadcrumb { margin-bottom: 30px; font-size: 0.9rem; color: var(--text-gray); }
+        .breadcrumb a { color: var(--primary-color); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .post-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .post-date { color: var(--text-gray); font-size: 0.9rem; }
+        .category-tag { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--bg-dark); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+        .post-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 2rem; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.4; }
+        .post-content { line-height: 2; font-size: 1.05rem; }
+        .post-content p { margin-bottom: 1.5rem; color: var(--text-light); }
+        .post-content h2 { font-size: 1.6rem; margin: 3rem 0 1.5rem; padding-bottom: 10px; border-bottom: 2px solid var(--primary-color); background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .post-content h3 { font-size: 1.3rem; margin: 2rem 0 1rem; color: var(--primary-color); }
+        .post-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 2rem auto; display: block; border: 1px solid rgba(0, 255, 204, 0.2); box-shadow: var(--neon-glow); }
+        .post-content ul, .post-content ol { margin: 1rem 0 1.5rem 2rem; color: var(--text-light); }
+        .post-content li { margin-bottom: 0.5rem; }
+        .post-content strong { color: var(--primary-color); }
+        .highlight-box { background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(255, 0, 255, 0.1)); border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 12px; padding: 25px; margin: 2rem 0; }
+        .highlight-box h3 { margin-top: 0; }
+        .nav-container { position: fixed; top: 0; right: 0; z-index: 1000; padding: 20px; }
+        .hamburger { width: 40px; height: 40px; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); border: 1px solid var(--primary-color); border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; transition: all 0.3s; box-shadow: var(--neon-glow); }
+        .hamburger-line { width: 24px; height: 2px; background: var(--primary-color); transition: all 0.3s; }
+        .nav-menu { position: fixed; top: 0; right: -100%; width: 320px; height: 100vh; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); border-left: 1px solid var(--primary-color); transition: right 0.3s; padding: 80px 30px 30px; overflow-y: auto; z-index: 999; }
+        .nav-menu.active { right: 0; }
+        .nav-menu ul { list-style: none; }
+        .nav-menu a { color: var(--text-light); text-decoration: none; font-size: 1.1rem; display: block; padding: 10px 0; transition: all 0.3s; }
+        .nav-menu a:hover { color: var(--primary-color); padding-left: 10px; }
+        @media (max-width: 768px) { .post-container { padding: 20px 15px; } }
+    </style>
+</head>
+<body>
+    
+    <div class="nav-container">
+        <div class="hamburger" onclick="toggleNav()">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../materials.html">教材</a></li>
+                <li><a href="../news.html">お知らせ</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    
+    <div class="post-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> / 
+            <a href="../news.html">お知らせ</a> / 
+            <span>プログラミング塾を生徒と一緒に運営してる話</span>
+        </nav>
+        
+        <div class="post-meta">
+            <div class="post-date">2026年02月23日</div>
+            <div class="post-categories">
+                <span class="category-tag">if塾について</span>
+                <span class="category-tag">塾運営</span>
+            </div>
+        </div>
+        
+        <h1 class="post-title">プログラミング塾を生徒と一緒に運営してる話</h1>
+        
+        <div class="post-content">
+
+<p>if塾は秋田にあるプログラミング塾です。現在9名の生徒が在籍しています。</p>
+
+<p>この塾の特徴を一つ挙げるなら、<strong>塾長が生徒</strong>だということ。大学1年生の琢己（たくみ）が塾長として運営に関わっています。</p>
+
+<h2>琢己が塾長になった経緯</h2>
+
+<img src="https://images.if-juku.net/blog/ifjuku-student-run-v2/blog_a.webp" alt="琢己が塾長として生徒に教えている様子" loading="lazy" />
+
+<p>琢己はもともとif塾の生徒でした。プログラミングに苦手意識があったところからスタートし、AIツールを使いながら開発ができるようになっていきました。</p>
+
+<p>進路相談が好きで、人に教えるのが好き。そういう性格が運営側に向いていたこともあり、自然と塾長というポジションに収まりました。</p>
+
+<p>「任命した」というより、<strong>琢己自身がその役割を選んだ</strong>という方が正確です。高崎（代表）が全部やるのではなく、やりたい人がやる。if塾はそういう場所です。</p>
+
+<h2>生徒同士で教え合う文化</h2>
+
+<img src="https://images.if-juku.net/blog/ifjuku-student-run-v2/blog_b.webp" alt="生徒同士が教え合っている様子" loading="lazy" />
+
+<p>if塾では、生徒が教える側に回ることがあります。</p>
+
+<p>たとえば、Claude Codeの使い方を先に覚えた生徒が、新しく入った生徒に教える。マイクラのプラグイン開発で詰まった子に、別の生徒がヒントを出す。そういうやり取りが日常的に起きています。</p>
+
+<p>教える側にも学びがあります。人に説明しようとすると、自分の理解があいまいな部分に気づく。<strong>教えることが、そのまま復習になる</strong>。</p>
+
+<p>これは意図的に設計したわけではなく、少人数の塾で自然に生まれた文化です。ただ、結果的にうまく機能しているので、そのまま続けています。</p>
+
+<h2>「自走する塾」の仕組み</h2>
+
+<p>if塾が目指しているのは、<strong>生徒が自分で動ける環境</strong>を作ることです。</p>
+
+<ul>
+<li>琢己が塾長として運営を担当</li>
+<li>生徒同士の教え合いで、高崎一人に依存しない体制</li>
+<li>出席簿システムは中学生の生徒が開発・運用</li>
+<li>それぞれが自分のプロジェクトを持ち、自分のペースで進める</li>
+</ul>
+
+<p>高崎の役割は「全部教える先生」ではなく、<strong>環境を整えて、必要なときにサポートする</strong>こと。最新のAIツールを用意し、生徒が使える状態にしておく。あとは本人たちに任せる。</p>
+
+<p>もちろん、放置しているわけではありません。進捗は把握しているし、困っていれば介入します。ただ、「まず自分でやってみる」を大事にしています。</p>
+
+<h2>9名それぞれの取り組み</h2>
+
+<img src="https://images.if-juku.net/blog/ifjuku-student-run-v2/blog_c.webp" alt="if塾の生徒たちがそれぞれのプロジェクトに取り組む様子" loading="lazy" />
+
+<p>現在の生徒は9名。中学生から大学生まで、年齢も背景もさまざまです。</p>
+
+<div class="highlight-box">
+<h3>やっていることの例</h3>
+<ul>
+<li>eスポーツを活用したコミュニケーション支援システムの開発</li>
+<li>LINEアプリやマイクラプラグインの制作</li>
+<li>塾の出席簿自動化システムの構築</li>
+<li>起業準備やビジネスプランの作成</li>
+<li>マイクラでのクリエイティブ制作</li>
+</ul>
+</div>
+
+<p>決められたカリキュラムを順番にこなす形ではなく、<strong>本人がやりたいことをベースに進める</strong>スタイルです。やりたいことがまだ見つかっていない子には、いくつか選択肢を提示して、一緒に探すところから始めます。</p>
+
+<h2>この体制のメリットと課題</h2>
+
+<p>生徒主導の運営には良い面があります。</p>
+
+<ul>
+<li>当事者意識が生まれる。「自分の塾」という感覚</li>
+<li>年齢が近い分、相談しやすい</li>
+<li>教える経験がスキルの定着につながる</li>
+</ul>
+
+<p>一方で、課題もあります。</p>
+
+<ul>
+<li>琢己も学生なので、時間やキャパシティに限界がある</li>
+<li>生徒同士の教え合いは、教える側のスキルに依存する</li>
+<li>人数が増えたとき、今の体制のまま回るかはわからない</li>
+</ul>
+
+<p>完璧な仕組みではないです。ただ、<strong>9名の規模では機能している</strong>というのが現状の評価です。</p>
+
+<h2>興味がある方へ</h2>
+
+<p>if塾は無料体験を受け付けています。オンラインでの参加も可能です。</p>
+
+<p>「うちの子に合うかわからない」「プログラミング未経験だけど大丈夫？」——そういった相談も含めて、まずは体験してみてください。</p>
+
+<div class="highlight-box">
+<h3>🏫 無料体験のご案内</h3>
+<p>if塾の無料体験はこちらから申し込めます。<br>
+<a href="https://forms.gle/fyFxcAE8HeHksv5p6" target="_blank" rel="noopener" style="color: var(--primary-color);">▶ 無料体験に申し込む</a></p>
+</div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleNav() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
